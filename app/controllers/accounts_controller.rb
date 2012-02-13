@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class AccountsController < ApplicationController
 
   before_filter :is_admin
 

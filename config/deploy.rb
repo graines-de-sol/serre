@@ -1,16 +1,13 @@
 set :application, "refuge"
-set :repository,  "guillaume@ssh.alwaysdata.com:git/#{application}.git"
+set :repository,  "file:///var/git/refuge"
+set :local_repository, "s15367251.onlinehome-server.info:/var/git/refuge"
+set :deploy_to, "/home/refuge"
+set :use_sudo, false
+set :scm, 'git'
 
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+role :web, "s15367251.onlinehome-server.info"
+role :app, "s15367251.onlinehome-server.info"
+role :db,  "s15367251.onlinehome-server.info", :primary => true
 
 # Passenger stuff :
 namespace :deploy do

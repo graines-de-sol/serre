@@ -1,15 +1,16 @@
 .container{:style=>'background:none;'}
   .span4.offset3#login_box
-    %h2= "Sign in"
+    %h2= t('devise.common.hello')
+
     .clear{:style=>'height:20px;'}
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       %div
-        = f.label :email
+        = f.label t('devise.common.login')
         %br
         = f.email_field :email
 
       %div
-        = f.label :password
+        = f.label t('devise.common.password')
         %br
         = f.password_field :password
 
@@ -20,7 +21,7 @@
 
       .clear{:style=>'height:20px;'}
       %div
-        = f.submit "Sign in", :class=>'btn  btn-warning'
+        = f.submit t('devise.common.sign_in'), :class=>'btn  btn-warning'
 
 
     = render :partial => "devise/shared/links"

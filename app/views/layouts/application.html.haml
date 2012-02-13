@@ -1,0 +1,18 @@
+!!!
+%head
+  %meta{:charset=>"utf-8"}
+  %title= t('app.title')
+  = stylesheet_link_tag "application"
+  = javascript_include_tag "application"
+  = csrf_meta_tags
+
+%body
+  #top_bar
+    = render :template=>'shared/top_bar'
+
+  .container
+    .row
+      = render :template=>'shared/menu'
+
+      = yield
+

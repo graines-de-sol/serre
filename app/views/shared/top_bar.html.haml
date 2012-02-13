@@ -1,0 +1,11 @@
+.container
+  #avatar
+    = image_tag '/images/avatar.jpg'
+
+  #profil_link
+    %span= hello
+    = link_to 'Guillaume', accounts_path
+    %span= "| Vous avez 2 nouveaux messages"
+
+  = link_to "Deconnexion", destroy_user_session_path, :method => :delete, :id=>'logout'
+
