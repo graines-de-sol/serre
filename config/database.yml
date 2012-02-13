@@ -1,0 +1,24 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: refuge
+  username: root
+  password: 04mars1974
+  socket: /var/run/mysqld/mysqld.sock
+
+#production:
+#  adapter: mysql2
+#  encoding: utf8
+#  database: marge
+#  username: root
+#  password: 04mars1974
+#  socket: /var/run/mysqld/mysqld.sock
+
+#test:
+#  adapter: mysql2
+#  encoding: utf8
+#  database: marge_test
+#  username: root
+#  password: 04mars1974
+#  socket: /var/run/mysqld/mysqld.sock
+

@@ -1,0 +1,4 @@
+$ ->
+
+  $("a[rel='tooltip']").tooltip()
+

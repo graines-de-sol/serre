@@ -1,0 +1,48 @@
+#top_bar
+  .container
+    #avatar
+      = image_tag '/images/avatar.jpg'
+    #profil_link
+      %span= "Bienvenue "
+      = link_to 'Guillaume', '/profile'
+      %span= "| Vous avez 2 nouveaux messages"
+    = link_to "Deconnexion", destroy_user_session_path, :method => :delete, :id=>'logout'
+
+.container
+  .row
+
+
+  .row
+    .span2.show-grid.columns
+      .tabbable.tabs-left
+        %ul.nav.nav-tabs
+          %li.active
+            %a{:href=>"#"}
+              %i.icon-home
+              = "Dashboard"
+          %li
+            %a{:href=>"#"}
+              %i.icon-user
+              = "Membres"
+          %li
+            %a{:href=>"#"}
+              %i.icon-book
+              = "Library"
+          %li
+            %a{:href=>"#"}
+              %i.icon-signal
+              = "Library"
+          %li
+            %a{:href=>"#"}
+              %i.icon-trash
+              = "Library"
+
+    .span10
+      %h1= 'Dashboard !'
+      %p= "oiuoiuoioiu"
+      %a{:href=>'#', :rel=>'tooltip', :data=>{'original-title'=>"un bidule qui apparait !"}}
+        = "et là y'a un lien ?"
+      %br
+      %br
+      = submit_tag "Envoyer !", :class=>'btn btn-warning'
+
