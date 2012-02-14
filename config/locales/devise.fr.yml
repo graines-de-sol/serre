@@ -41,6 +41,11 @@ fr:
       sign_up: "S'enregistrer"
       login: "Adresse E-Mail"
       password: "Mot de passe"
+      remember_me: "Se souvenir de moi"
+      confirm_password: "Confirmer le mot de passe"
+      new_password: "Nouveau mot de passe"
+      an_email_is_going_to_be_sent_with_instructions_1: "Un E-Mail va vous être envoyé contenant les instructions nécessaires afin de changer votre mot de passe."
+      an_email_is_going_to_be_sent_with_instructions_2: "Merci de relever votre boite Mail après validation de ce formulaire"
     shared:
       links:
         didnt_receive_confirmation_instructions?: "Vous n'avez pas reçu de courriel de confirmation ?"

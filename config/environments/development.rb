@@ -29,5 +29,13 @@ Refuge::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { :host => 'refuge.com' }
+
+  ActionMailer::Base.smtp_settings = {
+    :address => "smtp.free.fr",
+    :port => 25,
+    :domain => "free.fr"
+  }
+
+
 end
 

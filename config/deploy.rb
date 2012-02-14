@@ -19,7 +19,7 @@ namespace :deploy do
   end
 
   task :symlink_shared do
-    run "ln -s #{shared_path}/database.yml #{release_path}/config/"
+    run "ln -s #{shared_path}/config/database.yml #{release_path}/config/"
   end
 
 end

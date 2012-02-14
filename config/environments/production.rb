@@ -31,7 +31,11 @@ Refuge::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'refuge.com' }
 
-
+  ActionMailer::Base.delivery_method = :sendmail
+  ActionMailer::Base.sendmail_settings = {
+    :location       => '/usr/sbin/sendmail',
+    :arguments      => "-i -t -f no-reply@refuge.la-cordee.net"
+  }
 
 
 
