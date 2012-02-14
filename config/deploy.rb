@@ -4,6 +4,7 @@ set :local_repository, "s15367251.onlinehome-server.info:/var/git/refuge"
 set :deploy_to, "/home/refuge"
 set :use_sudo, false
 set :scm, 'git'
+set :default_stage, 'development'
 
 role :web, "s15367251.onlinehome-server.info"
 role :app, "s15367251.onlinehome-server.info"
