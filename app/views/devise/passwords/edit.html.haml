@@ -1,6 +1,7 @@
 .container{:style=>'background:none;'}
   .span4.offset3#login_box
-    %h2= t('devise.passwords.edit.change_my_password')
+    %h2= t('devise.common.password_renew_1')
+    %h2= t('devise.common.password')
 
     .clear{:style=>'height:20px;'}
     = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|

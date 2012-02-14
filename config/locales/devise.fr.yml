@@ -41,6 +41,7 @@ fr:
       sign_up: "S'enregistrer"
       login: "Adresse E-Mail"
       password: "Mot de passe"
+      password_renew_1: "Renouvellement du"
       remember_me: "Se souvenir de moi"
       confirm_password: "Confirmer le mot de passe"
       new_password: "Nouveau mot de passe"
