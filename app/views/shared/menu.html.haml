@@ -1,6 +1,6 @@
 .span2.show-grid.columns
   .tabbable.tabs-left
-    %ul.nav.nav-tabs
+    %ul.nav.nav-tabs#main_menu
       - tabs.each do |tab|
         %li{:class=>('active' if params[:controller] == tab[:controller])}
           %a{:href=>"/#{tab[:controller]}"}

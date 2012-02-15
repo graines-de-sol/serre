@@ -67,4 +67,85 @@ body {
   margin:8px auto auto 10px;
   float:left;
 }
+#main_menu {
+  width:140px;
+}
+#search_for_members {
+  width:750px;
+  height:60px;
+  padding:10px 10px 10px 0;
+}
+#search_for_members input {
+  width:600px;
+  height:20px;
+  float:left;
+  margin-right:10px;
+}
+#search_for_members .btn {
+  width:100px;
+  height:auto;
+  overflow:hidden;
+  float:left;
+}
+a.label {
+  padding:5px;
+  color:#dfdfdf;
+}
+a.label-important:hover{
+  color:#fff;
+}
+#new_user_form {
+  margin:20px 0;
+}
+.member_resume{
+  width:180px;
+  height:200px;
+  padding:5px;
+  margin-right:5px;
+  -moz-box-shadow: 0px 0px 20px 3px #d4d4d4;
+  -webkit-box-shadow: 0px 0px 20px 3px #d4d4d4;
+  -o-box-shadow: 0px 0px 20px 3px #d4d4d4;
+  box-shadow: 0px 0px 20px 3px #d4d4d4;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background-color:#fff;
+  float:left;
+  overflow:hidden;
+}
+.member_resume .avatar{
+  width:180px;
+  height:180px;
+  padding:0;
+  background-color:red;
+  -moz-box-shadow: 0;
+  -webkit-box-shadow: 0;
+  -o-box-shadow: 0;
+  box-shadow: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.avatar {
+  width:180px;
+  height:200px;
+  padding:5px;
+  margin-right:5px;
+  -moz-box-shadow: 0px 0px 20px 3px #d4d4d4;
+  -webkit-box-shadow: 0px 0px 20px 3px #d4d4d4;
+  -o-box-shadow: 0px 0px 20px 3px #d4d4d4;
+  box-shadow: 0px 0px 20px 3px #d4d4d4;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background-color:red;
+  float:left;
+  overflow:hidden;
+}
+.show_forms{
+  background-color:red;
+}
+.hide_forms{
+  background-color:blue;
+}
 

@@ -4,8 +4,8 @@
 
   #profil_link
     %span= hello
-    = link_to 'Guillaume', accounts_path
+    = link_to current_user.member.first_name, accounts_path
     %span= "| Vous avez 2 nouveaux messages"
 
-  = link_to "Deconnexion", destroy_user_session_path, :method => :delete, :id=>'logout'
+  = link_to t(:logout), destroy_user_session_path, :method => :delete, :id=>'logout'
 

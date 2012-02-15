@@ -27,5 +27,15 @@ module ApplicationHelper
     ]
   end
 
+  # Which role are you playing ?
+  def is_admin
+    current_user.role == 'admin' ? true : false
+  end
+
+  # Can we show forms ?
+  def can_edit_member
+    (current_user.role == 'admin' || current_user.member.id == @member.id)? true : false
+  end
+
 end
 

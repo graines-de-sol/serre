@@ -7,4 +7,13 @@ fr:
   members: "Membres"
   account: "Mon compte"
   messages: "Messages"
+  search_for_members: "Rechercher un ou des membres..."
+  search: "Rechercher !"
+  create_new_member: "+ Créer un nouveau membre"
+  member: "Membre"
+  admin: "Administrateur"
+  create: "Créer"
+  anonymous: "Anonyme"
+  logout: "Déconnexion"
+  save: "Enregistrer"
 

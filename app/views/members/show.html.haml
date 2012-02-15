@@ -1,0 +1,9 @@
+.span10
+  .span4
+    .avatar
+  .span4
+    - if can_edit_member
+      = render :partial=>'form'
+    - else
+      %p= "Can't edit"
+

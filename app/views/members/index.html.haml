@@ -1,3 +1,28 @@
 .span10
-  %h1= params[:controller]
+  #search_for_members
+    %label= t(:search_for_members)
+    %input{:type=>'text', :name=>'search_for_members'}
+    = submit_tag t(:search), :class=>'btn  btn-warning'
+
+  #members_list
+    - @members.each do |member|
+      .member_resume
+        .avatar
+
+        = link_to member.first_name, member_path(member.id)
+
+    .clear{:style=>'height:20px;'}
+
+  - if is_admin
+    %a{:href=>'#', :class=>'label label-important', :id=>'do_show_new_user_form'}= t(:create_new_member)
+
+    #new_user_form{:style=>'display:none;'}
+      = form_tag "/members" do
+        %input{:type=>'text', :name=>'user[email]'}
+        %input{:type=>'password', :name=>'user[password]'}
+        %select{:name=>'user[role]'}
+          %option{:value=>'admin'}= t(:admin)
+          %option{:value=>'user'}= t(:member)
+
+        = submit_tag t(:create), :class=>'btn  btn-danger'
 

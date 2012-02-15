@@ -1,5 +1,7 @@
 Refuge::Application.configure do
 
+  # !!!WARNING Hack to allow two developpment env. both localy and remotly on separate files
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
