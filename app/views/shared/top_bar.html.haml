@@ -1,6 +1,6 @@
 .container
   #avatar
-    = image_tag '/images/avatar.jpg'
+    = image_tag current_user.member.avatar.thumb('32x32').url
 
   #profil_link
     %span= hello

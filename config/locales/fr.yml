@@ -1,6 +1,11 @@
 fr:
   app:
     title: "Le refuge, By la-cordee.net"
+  warnings:
+    check_new_user_parameters: "Echec de la création du membre. Email en doublon ou mot de passe de moins de 6 lettres"
+    error: "Une erreur est survenue :-/"
+  confirms:
+    delete_member: "Exclure définitivement ce membre du Refuge ?!"
   good_morning: "Bonjour"
   good_evening: "Bonsoir"
   dashboard: "Dashboard"
@@ -16,4 +21,29 @@ fr:
   anonymous: "Anonyme"
   logout: "Déconnexion"
   save: "Enregistrer"
+  first_name: "Prénom"
+  last_name: "Nom"
+  birthday: "Anniversaire le"
+  city: "Ville"
+  avatar: "Photo"
+  situation: "Situation professionnelle"
+  prestations: "Prestations"
+  references: "Mes réferences"
+  hobbies: "Mes hobbies"
+  powers: "Mes super-pouvoirs"
+  presence: "Je suis plutôt à la cordée"
+  cordee_location: "Membre de la cordée"
+  new_account_creation: "Création d'un nouveau membre"
+  delete_member: "Supprimer ce compte"
+
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%A %d %B %Y"
+
+    day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
+    abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
+    month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
+    abbr_month_names: [~, Jan, Fev, Mar, Avr, Mai, Juin, Juil, Aout, Sep, Oct, Nov, Dec]
 

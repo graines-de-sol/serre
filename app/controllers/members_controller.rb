@@ -3,17 +3,20 @@ class MembersController < ApplicationController
   before_filter :is_logged
 
   # GET /members
-  # List all members                                 HTML
-  # -----------------------------------------------------
+  # List all members                                    HTML
+  # --------------------------------------------------------
   def index
     @members = Member.all
   end
 
   # GET /member/:id
-  # Show member's profile                              HTML
-  # -------------------------------------------------------
+  # Show member's profile                               HTML
+  # --------------------------------------------------------
   def show
     @member = Member.find(params[:id])
+    template = (current_user.role == 'admin' || current_user.member.id == @member.id)? 'edit' : 'show'
+
+    render :template=>"/members/#{template}"
   end
 
   # POST /members
@@ -21,9 +24,13 @@ class MembersController < ApplicationController
   # --------------------------------------------------------
   def create
     new_user = User.create(params[:user])
-    new_member = Member.create(:user_id=>new_user.id)
 
-    redirect_to member_path(new_member.id)
+    if new_user.id
+      redirect_to member_path(new_user.member.id)
+    else
+      flash[:notice] = t('warnings.check_new_user_parameters')
+      redirect_to members_path
+    end
   end
 
   # PUT /members/:id
@@ -34,6 +41,15 @@ class MembersController < ApplicationController
     this_member.update_attributes(params[:member])
 
     redirect_to member_path(params[:id])
+  end
+
+  # DELETE /members/:id
+  # Delete a member                                 REDIRECT
+  # --------------------------------------------------------
+  def destroy
+    User.destroy(params[:id])
+
+    redirect_to members_path
   end
 
 end

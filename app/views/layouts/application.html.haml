@@ -2,8 +2,8 @@
 %head
   %meta{:charset=>"utf-8"}
   %title= t('app.title')
-  = stylesheet_link_tag "application"
-  = javascript_include_tag "application"
+  = stylesheet_link_tag 'application'
+  = javascript_include_tag 'application'
   = csrf_meta_tags
 
 %body
@@ -15,4 +15,18 @@
       = render :template=>'shared/menu'
 
       = yield
+
+- #### Flash messages handler ####
+- if flash[:notice] && !flash[:notice].strip.blank?
+  .modal#error_modal
+    .modal-header
+      %a.close{:data=>{'dismiss'=>'modal'}}
+        = '×'
+      %h3= t('warnings.error')
+
+    .modal-body
+      = flash[:notice]
+
+  :javascript
+    $('#error_modal').modal('toggle').fade();
 

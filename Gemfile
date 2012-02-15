@@ -21,6 +21,8 @@ gem 'yaml_db'
 gem 'capistrano'
 gem 'devise'
 gem 'jquery-rails'
+gem 'rack-cache', :require => 'rack/cache'
+gem 'dragonfly', '~>0.9.10'
 
 group :test do
   # Pretty printed test output

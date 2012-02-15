@@ -8,5 +8,13 @@ class User < ActiveRecord::Base
 
   has_one :member, :dependent=>:destroy
 
+  before_create :build_default_member
+
+private
+  def build_default_member
+    build_member
+    true
+  end
+
 end
 

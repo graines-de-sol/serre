@@ -8,21 +8,34 @@
     - @members.each do |member|
       .member_resume
         .avatar
-
+          = image_tag member.avatar.thumb('200x200').url
         = link_to member.first_name, member_path(member.id)
 
     .clear{:style=>'height:20px;'}
 
   - if is_admin
-    %a{:href=>'#', :class=>'label label-important', :id=>'do_show_new_user_form'}= t(:create_new_member)
+    %a{:href=>'#creation_modal', :class=>'label label-important', :id=>'do_show_new_user_form', :data=>{'toggle'=>'modal'}}= t(:create_new_member)
 
-    #new_user_form{:style=>'display:none;'}
-      = form_tag "/members" do
-        %input{:type=>'text', :name=>'user[email]'}
-        %input{:type=>'password', :name=>'user[password]'}
-        %select{:name=>'user[role]'}
-          %option{:value=>'admin'}= t(:admin)
-          %option{:value=>'user'}= t(:member)
+    .modal#creation_modal{:style=>'display:none;'}
+      .modal-header
+        %a.close{:data=>{'dismiss'=>'modal'}}
+          = '×'
+        %h3= t('new_account_creation')
 
-        = submit_tag t(:create), :class=>'btn  btn-danger'
+      .modal-body
+        #new_user_form
+          = form_tag "/members" do
+            %label= t(:login)
+            %input{:type=>'text', :name=>'user[email]'}
+
+            %label= t(:password)
+            %input{:type=>'password', :name=>'user[password]'}
+
+            %label= t(:role)
+            %select{:name=>'user[role]'}
+              %option{:value=>'admin'}= t(:admin)
+              %option{:value=>'user'}= t(:member)
+
+            %br
+            = submit_tag t(:create), :class=>'btn  btn-danger'
 

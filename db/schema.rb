@@ -10,17 +10,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215080028) do
+ActiveRecord::Schema.define(:version => 20120215200251) do
+
+  create_table "locations", :force => true do |t|
+    t.string "name"
+    t.string "address"
+    t.string "city"
+    t.string "zip"
+  end
 
   create_table "members", :force => true do |t|
     t.integer "user_id"
-    t.string  "first_name"
+    t.string  "first_name",  :default => "anonyme"
     t.string  "last_name"
-    t.string  "email"
-    t.date    "birthdate"
-    t.string  "gender"
-    t.string  "avatar"
-    t.string  "catchword"
+    t.date    "birthday"
+    t.string  "city"
+    t.string  "avatar_uid",  :default => "default_avatar/default_avatar.png"
+    t.text    "situation"
+    t.text    "prestations"
+    t.text    "references"
+    t.text    "hobbies"
+    t.text    "powers"
+    t.text    "presence"
+    t.string  "phone"
+    t.integer "location_id"
   end
 
   create_table "users", :force => true do |t|

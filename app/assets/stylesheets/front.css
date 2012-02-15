@@ -61,7 +61,11 @@ body {
 }
 #avatar {
   float:left;
-  padding-top:2px;
+  width:32px;
+  height:32px;
+  padding:2px;
+  background-color:#fff;
+  overflow:hidden;
 }
 #profil_link {
   margin:8px auto auto 10px;
@@ -95,13 +99,14 @@ a.label-important:hover{
   color:#fff;
 }
 #new_user_form {
-  margin:20px 0;
+  width:220px;
+  margin:0 auto;
 }
 .member_resume{
   width:180px;
   height:200px;
   padding:5px;
-  margin-right:5px;
+  margin:10px 5px 0 0;
   -moz-box-shadow: 0px 0px 20px 3px #d4d4d4;
   -webkit-box-shadow: 0px 0px 20px 3px #d4d4d4;
   -o-box-shadow: 0px 0px 20px 3px #d4d4d4;
@@ -117,11 +122,11 @@ a.label-important:hover{
   width:180px;
   height:180px;
   padding:0;
-  background-color:red;
+  background-color:#fff;
   -moz-box-shadow: 0;
-  -webkit-box-shadow: 0;
-  -o-box-shadow: 0;
-  box-shadow: 0;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0;
@@ -138,14 +143,15 @@ a.label-important:hover{
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  background-color:red;
+  background-color:#fff;
   float:left;
   overflow:hidden;
 }
-.show_forms{
-  background-color:red;
+#members_details textarea {
+  width:530px;
+  height:120px;
 }
-.hide_forms{
-  background-color:blue;
+#error_modal h3 {
+  color:red;
 }
 

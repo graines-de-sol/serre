@@ -10,7 +10,6 @@ role :web, "s15367251.onlinehome-server.info"
 role :app, "s15367251.onlinehome-server.info"
 role :db,  "s15367251.onlinehome-server.info", :primary => true
 
-# Passenger stuff :
 namespace :deploy do
   task :start do ; end
   task :stop do ; end
@@ -23,6 +22,14 @@ namespace :deploy do
   end
 
 end
+
+namespace :dragonfly do
+  desc "Symlink the Rack::Cache files"
+  task :symlink, :roles => [:app] do
+    run "mkdir -p #{shared_path}/tmp/dragonfly && ln -nfs #{shared_path}/tmp/dragonfly #{release_path}/tmp/dragonfly"
+  end
+end
+after 'deploy:update_code', 'dragonfly:symlink'
 
 before "deploy:restart", "deploy:symlink_shared"
 

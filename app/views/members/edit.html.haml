@@ -1,0 +1,55 @@
+.span10
+  = form_for @member, :html => {:multipart => true} do |f|
+    .span4
+      .avatar
+        = image_tag @member.avatar.thumb('180x180').url
+      - if is_admin
+        = f.file_field :avatar
+
+    .span4
+      %label= t(:first_name)
+      = f.text_field :first_name
+      %br
+      %label= t(:last_name)
+      = f.text_field :last_name
+      %br
+      %label= t(:birthday)
+      %input{:type=>'text', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>@member.birthday.day}
+      = select_month(@member.birthday, {:use_month_names=>t('date.month_names').shift}, {:style=>'width:185px;', :name=>'member[birthday][month]'})
+      %br
+      %label= t(:city)
+      = f.text_field :city
+
+    .clear
+    .span9#members_details
+      %label= t(:situation)
+      = f.text_area :situation
+      %br
+      %label= t(:prestations)
+      = f.text_area :prestations
+      %br
+      %label= t(:references)
+      = f.text_area :references
+      %br
+      %label= t(:hobbies)
+      = f.text_area :hobbies
+      %br
+      %label= t(:powers)
+      = f.text_area :powers
+      %br
+      %label= t(:presence)
+      = f.text_field :presence
+      %br
+
+      - if is_admin
+        %label= t(:cordee_location)
+        = f.select(:location_id, Location.all.map{|l|[l.name,l.id]})
+        %br
+
+      = submit_tag t(:save), :class=>'btn  btn-warning'
+
+      - if is_admin
+        %a{:href=>member_path(@member.user.id), :class=>'btn btn-danger destroy', :style=>'float:right;', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_member')}}
+          %i.icon-trash.icon-white
+          = t(:delete_member)
+
