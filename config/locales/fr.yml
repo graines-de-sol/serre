@@ -4,6 +4,8 @@ fr:
   warnings:
     check_new_user_parameters: "Echec de la création du membre. Email en doublon ou mot de passe de moins de 6 lettres"
     error: "Une erreur est survenue :-/"
+    member_birthday_day: "Merci de saisir une date d'anniversaire"
+    first_name: "Merci de saisir votre prénom"
   confirms:
     delete_member: "Exclure définitivement ce membre du Refuge ?!"
   good_morning: "Bonjour"

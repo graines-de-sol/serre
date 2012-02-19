@@ -1,5 +1,6 @@
 .span10
-  = form_for @member, :html => {:multipart => true} do |f|
+  = form_for @member, :html => {:multipart => true, :id=>'edit_member'} do |f|
+
     .span4
       .avatar
         = image_tag @member.avatar.thumb('180x180').url
@@ -8,13 +9,13 @@
 
     .span4
       %label= t(:first_name)
-      = f.text_field :first_name
+      = f.text_field :first_name, :data=>{'required'=>'true', 'alert'=>t('warnings.first_name')}
       %br
       %label= t(:last_name)
       = f.text_field :last_name
       %br
       %label= t(:birthday)
-      %input{:type=>'text', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>@member.birthday.day}
+      %input{:type=>'text', :id=>'member_birthday_day', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>@member.birthday.day, :data=>{'required'=>'true', 'alert'=>t('warnings.member_birthday_day')}}
       = select_month(@member.birthday, {:use_month_names=>t('date.month_names').shift}, {:style=>'width:185px;', :name=>'member[birthday][month]'})
       %br
       %label= t(:city)

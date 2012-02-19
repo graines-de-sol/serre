@@ -37,5 +37,15 @@ module ApplicationHelper
     (current_user.role == 'admin' || current_user.member.id == @member.id)? true : false
   end
 
+  # Generate I18n for JS
+  def translate_to_client(strings)
+    translations = "<script>"
+    translations << "if(!I18n){var I18n = {};};"
+    strings.each do |s|
+      translations << 'I18n["'+s+'"] = "'+t('warnings.'+s)+'";'
+    end
+    translations << "</script>"
+  end
+
 end
 

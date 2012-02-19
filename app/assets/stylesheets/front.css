@@ -154,4 +154,7 @@ a.label-important:hover{
 #error_modal h3 {
   color:red;
 }
+.required {
+  background-color:#ffa200 !important;
+}
 
