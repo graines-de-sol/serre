@@ -23,6 +23,8 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.10'
+gem "twitter-bootstrap-rails", "~> 2.0.1.0"
+gem 'less'
 
 group :test do
   # Pretty printed test output
