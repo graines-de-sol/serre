@@ -14,7 +14,10 @@
     .row
       = render :template=>'shared/menu'
 
-      = yield
+      .span10
+        = yield
+
+    .clear
 
 - #### Flash messages handler ####
 - if flash[:notice] && !flash[:notice].strip.blank?

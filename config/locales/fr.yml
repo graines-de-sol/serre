@@ -6,6 +6,8 @@ fr:
     error: "Une erreur est survenue :-/"
     member_birthday_day: "Merci de saisir une date d'anniversaire"
     first_name: "Merci de saisir votre prénom"
+    email_required: "Merci de saisir une adresse E-Mail valide"
+    password_required: "Merci de saisir votre mot de passe"
   confirms:
     delete_member: "Exclure définitivement ce membre du Refuge ?!"
   good_morning: "Bonjour"

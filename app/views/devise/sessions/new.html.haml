@@ -7,12 +7,12 @@
       %div
         = f.label t('devise.common.login')
         %br
-        = f.email_field :email
+        = f.email_field :email, :data=>{'required'=>'true', 'alert'=>t('warnings.email_required')}
 
       %div
         = f.label t('devise.common.password')
         %br
-        = f.password_field :password
+        = f.password_field :password, :data=>{'required'=>'true', 'alert'=>t('warnings.password_required')}
 
       - if devise_mapping.rememberable?
         %div

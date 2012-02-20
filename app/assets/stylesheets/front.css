@@ -17,6 +17,7 @@ body {
   background-color:#fff;
   background-color:#fff;
   padding:10px;
+  width:940px;
 }
 .clear {
   clear:both;
@@ -153,8 +154,5 @@ a.label-important:hover{
 }
 #error_modal h3 {
   color:red;
-}
-.required {
-  background-color:#ffa200 !important;
 }
 
