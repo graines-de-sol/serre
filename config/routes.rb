@@ -5,9 +5,9 @@ Refuge::Application.routes.draw do
 
   root :to=> "dashboard#index"
 
-  resources :dashboard
-  resources :messages
-  resources :accounts
+  resources :dashboard, :only=>'index'
+  resources :messages, :only=>'index'
+  resources :accounts, :only=>'index'
   resources :members
 end
 

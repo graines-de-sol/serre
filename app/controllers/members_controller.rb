@@ -14,7 +14,7 @@ class MembersController < ApplicationController
   # --------------------------------------------------------
   def show
     @member = Member.find(params[:id])
-    template = (current_user.role == 'admin' || current_user.member.id == @member.id)? 'edit' : 'show'
+    template = Member.can_edit?(current_user.role, @member.id)? 'edit' : 'show'
 
     render :template=>"/members/#{template}"
   end

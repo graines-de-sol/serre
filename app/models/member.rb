@@ -8,24 +8,26 @@ class Member < ActiveRecord::Base
   image_accessor :avatar
 
   before_create :set_birthday_to_now
-  before_update :force_day_of_birth, :compose_birthday
+  before_update :compose_birthday
+
+
+  def self.can_edit?(user_role, current_user)
+    (user_role == 'admin' || self.id == current_user)? true : false
+  end
+
 
 
 private
 
   # Compose SQL date from day and month
   def compose_birthday
+    self.birthday['day'] = 1 if (self.birthday['day'].strip.blank? || self.birthday['day'].to_i == 0)
     self.birthday = "#{Time.now.year}-#{self.birthday['month']}-#{self.birthday['day']}"
   end
 
   # Force birthday to now on create
   def set_birthday_to_now
     self.birthday = Time.now
-  end
-
-  # Force birthday to first day of month is not filled in
-  def force_day_of_birth
-    self.birthday['day'] = 1 if self.birthday['day'].strip.blank?
   end
 
 end
