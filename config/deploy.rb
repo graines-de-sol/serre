@@ -19,13 +19,9 @@ namespace :deploy do
 
   task :symlink_shared do
     run "ln -s #{shared_path}/config/database.yml #{release_path}/config/"
-  end
-  #task :symlink_config do
-  #  run "ln -s #{shared_path}/config/database.yml #{release_path}/config/"
-  #end
-  task :symlink_public do
     run "ln -s #{shared_path}/public #{release_path}/public"
   end
+
 end
 
 namespace :dragonfly do
