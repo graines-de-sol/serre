@@ -1,13 +1,13 @@
 set :application, "refuge"
-set :repository,  "file:///var/git/refuge"
-set :local_repository, "s15367251.onlinehome-server.info:/var/git/refuge"
+set :repository,  "git@github.com:la-cordee/refuge.git"
+set :keep_releases, 2
 set :deploy_to, "/home/refuge"
 set :use_sudo, false
 set :scm, 'git'
 set :default_stage, 'development'
 
-role :web, "s15367251.onlinehome-server.info"
-role :app, "s15367251.onlinehome-server.info"
+role :web, "refuge.la-cordee.net"
+role :app, "refuge.la-cordee.net"
 role :db,  "s15367251.onlinehome-server.info", :primary => true
 
 namespace :deploy do
