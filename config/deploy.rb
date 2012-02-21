@@ -5,6 +5,7 @@ set :deploy_to, "/home/refuge"
 set :use_sudo, false
 set :scm, 'git'
 set :default_stage, 'development'
+set :branch, fetch(:branch, "procution")
 
 role :web, "s15367251.onlinehome-server.info"
 role :app, "s15367251.onlinehome-server.info"

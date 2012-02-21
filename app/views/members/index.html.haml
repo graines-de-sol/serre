@@ -1,5 +1,10 @@
 #search_for_members
-  %label= t(:search_for_members)
+  %h3= t(:search_for_members)
+  %select{:name=>'category', :style=>'width:120px;float:left;margin-right:20px;'}
+    %option{:value=>'#'}= "Prénom"
+    %option{:value=>'#'}= "Super pouvoirs"
+    %option{:value=>'#'}= "Prénom"
+
   %input{:type=>'text', :name=>'search_for_members'}
   = submit_tag t(:search), :class=>'btn  btn-warning'
 
@@ -7,13 +12,14 @@
   - @members.each do |member|
     .member_resume
       .avatar
-        = image_tag member.avatar.thumb('200x200').url
-      = link_to member.first_name, member_path(member.id)
+        %a{:href=>member_path(member.id)}
+          = image_tag member.avatar.thumb('101x101').url, :alt=>"#{member.first_name} #{member.last_name}"
+      %span= link_to member.first_name, member_path(member.id)
 
   .clear{:style=>'height:20px;'}
 
 - if is_admin
-  %a{:href=>'#creation_modal', :class=>'label label-important', :data=>{'toggle'=>'modal'}}
+  %a{:href=>'#creation_modal', :class=>'label label-important', :data=>{'toggle'=>'modal'}, :style=>'margin-left:5px;'}
     = t(:create_new_member)
 
   #creation_modal.modal.hide

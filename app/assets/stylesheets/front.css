@@ -6,10 +6,14 @@ body {
   height:40px;
   background:url(/assets/alpha_bg_80.png);
   position:fixed;
+  -moz-box-shadow: 0px 0px 20px 3px #2f2f2f;
+  -webkit-box-shadow: 0px 0px 20px 3px #2f2f2f;
+  -o-box-shadow: 0px 0px 20px 3px #d4d4d4;
+  box-shadow: 0px 0px 20px 2px #333;
 }
 #top_bar .container {
   background:none;
-  padding-top:2px;
+  padding:0;
   width:960px;
 }
 .container {
@@ -47,9 +51,6 @@ body {
   text-align:left;
 }
 #logout{
-  float:right;
-  margin-top:7px;
-  padding-left:20px;
   background:url(/assets/cross_gs.png) left no-repeat;
 }
 #logout:hover{
@@ -68,21 +69,38 @@ body {
   padding:2px;
   background-color:#fff;
   overflow:hidden;
+  margin-top:2px;
 }
 #profil_link {
   margin:8px auto auto 10px;
   float:left;
 }
-#main_menu {
-  width:140px;
+#profil_link a {
+  text-decoration:underline;
+}
+ul#main_menu {
+  float:right;
+}
+ul#main_menu li {
+  float:left;
+  margin-left:10px;
+  list-style-type:none;
+}
+ul#main_menu li a {
+  display:block;
+  height:25px;
+  padding:10px 10px 5px 10px;
+}
+ul#main_menu li a:hover {
+  background-color:#444;
 }
 #search_for_members {
   width:750px;
   height:60px;
-  padding:10px 10px 10px 0;
+  padding:10px 10px 10px 5px;
 }
-#search_for_members input {
-  width:600px;
+#search_for_members input[type='text'] {
+  width:420px;
   height:20px;
   float:left;
   margin-right:10px;
@@ -105,26 +123,26 @@ a.label-important:hover{
   margin:0 auto;
 }
 .member_resume{
-  width:180px;
-  height:200px;
-  padding:5px;
-  margin:10px 5px 0 0;
-  -moz-box-shadow: 0px 0px 20px 3px #d4d4d4;
-  -webkit-box-shadow: 0px 0px 20px 3px #d4d4d4;
-  -o-box-shadow: 0px 0px 20px 3px #d4d4d4;
-  box-shadow: 0px 0px 20px 3px #d4d4d4;
+  width:110px;
+  height:135px;
+  padding:0px;
+  margin:10px 1px 0 6px;
+  -moz-box-shadow: 0px 0px 10px 0px #d4d4d4;
+  -webkit-box-shadow: 0px 0px 10px 0px #d4d4d4;
+  -o-box-shadow: 0px 0px 10px 0px #d4d4d4;
+  box-shadow: 0px 0px 10px 0px #d4d4d4;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
   background-color:#fff;
   float:left;
-  overflow:hidden;
 }
-.member_resume .avatar{
-  width:180px;
-  height:180px;
-  padding:0;
-  background-color:#fff;
+.member_resume .avatar {
+  width:100px;
+  height:100px;
+  margin:5px;
+  padding:0px;
+  overflow:hidden !important;
   -moz-box-shadow: 0;
   -webkit-box-shadow: none;
   -o-box-shadow: none;
@@ -132,7 +150,29 @@ a.label-important:hover{
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0;
+  background-color:red;
+  text-align:center;
 }
+.member_resume .avatar img {
+  margin:auto;
+  width:100px;
+  height:100px;
+}
+.member_resume .avatar img:hover {
+  margin:0;
+  width:102px;
+  height:102px;
+}
+.member_resume .avatar:hover {
+  width:102px;
+  height:102px;
+  margin:4px;
+  padding:0;
+}
+.member_resume span {
+  margin-left:5px;
+}
+/*
 .avatar {
   width:180px;
   height:200px;
@@ -148,7 +188,7 @@ a.label-important:hover{
   background-color:#fff;
   float:left;
   overflow:hidden;
-}
+}*/
 #members_details textarea {
   width:530px;
   height:120px;

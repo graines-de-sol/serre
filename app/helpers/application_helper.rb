@@ -9,20 +9,12 @@ module ApplicationHelper
   def tabs
     tabs = [
       {:name       => 'dashboard',
-       :icon       => 'icon-home',
+       :icon       => 'icon-home icon-white',
        :controller => 'dashboard'
       },
       {:name       => 'members',
-       :icon       => 'icon-search',
+       :icon       => 'icon-search icon-white',
        :controller => 'members'
-      },
-      {:name       => 'messages',
-       :icon       => 'icon-envelope',
-       :controller => 'messages'
-      },
-      {:name       => 'account',
-       :icon       => 'icon-user',
-       :controller => 'accounts'
       }
     ]
   end
