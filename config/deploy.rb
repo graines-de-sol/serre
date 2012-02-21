@@ -6,8 +6,8 @@ set :use_sudo, false
 set :scm, 'git'
 set :default_stage, 'development'
 
-role :web, "refuge.la-cordee.net"
-role :app, "refuge.la-cordee.net"
+role :web, "s15367251.onlinehome-server.info"
+role :app, "s15367251.onlinehome-server.info"
 role :db,  "s15367251.onlinehome-server.info", :primary => true
 
 namespace :deploy do
@@ -20,7 +20,12 @@ namespace :deploy do
   task :symlink_shared do
     run "ln -s #{shared_path}/config/database.yml #{release_path}/config/"
   end
-
+  #task :symlink_config do
+  #  run "ln -s #{shared_path}/config/database.yml #{release_path}/config/"
+  #end
+  task :symlink_public do
+    run "ln -s #{shared_path}/public #{release_path}/public"
+  end
 end
 
 namespace :dragonfly do
@@ -29,7 +34,7 @@ namespace :dragonfly do
     run "mkdir -p #{shared_path}/tmp/dragonfly && ln -nfs #{shared_path}/tmp/dragonfly #{release_path}/tmp/dragonfly"
   end
 end
-after 'deploy:update_code', 'dragonfly:symlink'
 
+after 'deploy:update_code', 'dragonfly:symlink'
 before "deploy:restart", "deploy:symlink_shared"
 
