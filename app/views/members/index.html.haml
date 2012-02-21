@@ -16,7 +16,7 @@
   %a{:href=>'#creation_modal', :class=>'label label-important', :data=>{'toggle'=>'modal'}}
     = t(:create_new_member)
 
-  #creation_modal.modal.hide{:style=>'display:none;'}
+  #creation_modal.modal.hide
     .modal-header
       %a.close{:data=>{'dismiss'=>'modal'}}
         = '×'
@@ -33,8 +33,8 @@
 
           %label= t(:role)
           %select{:name=>'user[role]'}
-            %option{:value=>'admin'}= t(:admin)
             %option{:value=>'user'}= t(:member)
+            %option{:value=>'admin'}= t(:admin)
 
           %br
           = submit_tag t(:create), :class=>'btn  btn-danger'

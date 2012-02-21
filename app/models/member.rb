@@ -2,6 +2,9 @@ class Member < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :location
+  belongs_to :status
+  has_many :profiles
+  has_many :networks, :through=>:profiles
 
   validates_presence_of :first_name
 
@@ -14,8 +17,6 @@ class Member < ActiveRecord::Base
   def self.can_edit?(user_role, current_user)
     (user_role == 'admin' || self.id == current_user)? true : false
   end
-
-
 
 private
 

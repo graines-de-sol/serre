@@ -5,6 +5,7 @@ body {
   width:100%;
   height:40px;
   background:url(/assets/alpha_bg_80.png);
+  position:fixed;
 }
 #top_bar .container {
   background:none;
@@ -16,7 +17,7 @@ body {
   background: -moz-linear-gradient(top,#f0f0f0,#fff);
   background-color:#fff;
   background-color:#fff;
-  padding:10px;
+  padding:60px 10px 10px 10px;
   width:940px;
 }
 .clear {
@@ -154,5 +155,23 @@ a.label-important:hover{
 }
 #error_modal h3 {
   color:red;
+}
+.hr {
+  padding-top:10px;
+  margin-bottom:10px;
+  border-bottom:1px solid #d4d4d4;
+}
+a.dotoggle {
+  font-size:20px;
+}
+#members_details textarea {
+  width:650px;
+}
+textarea#member_hobbies, textarea#member_powers {
+  width:690px;
+  height:38px;
+}
+input#member_presence {
+  width:690px;
 }
 

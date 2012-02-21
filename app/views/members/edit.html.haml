@@ -20,16 +20,59 @@
     %label= t(:city)
     = f.text_field :city
 
-  .clear
   .span9#members_details
-    %label= t(:situation)
-    = f.text_area :situation
-    %br
-    %label= t(:prestations)
-    = f.text_area :prestations
-    %br
-    %label= t(:references)
-    = f.text_area :references
+    .clear.hr
+    %a.dotoggle{:href=>'#', :data=>{'target'=>'user_access'}}= t(:connexion_params)
+
+    #user_access{:style=>'display:none;'}
+      %br
+      .well
+        %label= t('devise.common.login')
+        = text_field_tag 'user[email]', @current_user.email
+        %br
+        %label= "#{t('devise.common.password')} #{t(:blank_if_no_change)}"
+        = password_field_tag 'user[password]'
+        %br
+        %label= t('devise.common.confirm_password')
+        = password_field_tag 'user[password_confirmation]'
+    .clear.hr
+    %a.dotoggle{:href=>'#', :data=>{'target'=>'pro_situation'}}= t(:pro_situation)
+
+    #pro_situation{:style=>'display:none;'}
+      %br
+      .well
+        %label= t(:pro_status)
+        = f.select(:status_id, Status.all.map{|l|[l.name,l.id]})
+        %br
+        %label= t(:prestations)
+        = f.text_area :prestations
+        %br
+        %label= t(:references)
+        = f.text_area :references
+
+    .clear.hr
+    %a.dotoggle{:href=>'#', :data=>{'target'=>'pro_social_networks'}}= t(:pro_social_networks)
+
+    #pro_social_networks{:style=>'display:none;'}
+      %br
+      - @pro_networks.each do |network|
+        .well
+          %label= t(network[:label])
+          = image_tag network[:icon], :style=>'float:left;margin-right:10px;'
+          = text_field_tag "profile[#{network[:id]}]", network[:url]
+
+    .clear.hr
+    %a.dotoggle{:href=>'#', :data=>{'target'=>'perso_social_networks'}}= t(:perso_social_networks)
+
+    #perso_social_networks{:style=>'display:none;'}
+      %br
+      - @perso_networks.each do |network|
+        .well
+          %label= t(network[:label])
+          = image_tag network[:icon], :style=>'float:left;margin-right:10px;'
+          = text_field_tag "profile[#{network[:id]}]", network[:url]
+
+    .clear.hr
     %br
     %label= t(:hobbies)
     = f.text_area :hobbies

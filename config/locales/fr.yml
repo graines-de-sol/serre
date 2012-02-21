@@ -39,6 +39,19 @@ fr:
   cordee_location: "Membre de la cordée"
   new_account_creation: "Création d'un nouveau membre"
   delete_member: "Supprimer ce compte"
+  connexion_params: "+ Paramètres de connexion"
+  pro_situation: "+ Situation professionnelle"
+  pro_social_networks: "+ Réseaux sociaux professionnels"
+  perso_social_networks: "+ Réseaux sociaux personnels"
+  blank_if_no_change: "(laisser vide si inchangé)"
+  pro_status: "Status professionnel"
+  link_to_facebook: "Lien vers votre profil Facebook"
+  link_to_twitter: "Lien vers votre compte Twitter"
+  link_to_linkedin: "Lien vers votre profil LinkedIn"
+  link_to_viadeo: "Lien vers votre profil Viadeo"
+  link_to_googleplus: "Lien vers votre compte Google+"
+
+
 
   date:
     formats:

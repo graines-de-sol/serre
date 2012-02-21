@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215200251) do
+ActiveRecord::Schema.define(:version => 20120220194103) do
 
   create_table "locations", :force => true do |t|
     t.string "name"
@@ -34,6 +34,29 @@ ActiveRecord::Schema.define(:version => 20120215200251) do
     t.text    "presence"
     t.string  "phone"
     t.integer "location_id"
+    t.integer "status_id"
+  end
+
+  add_index "members", ["status_id"], :name => "index_members_on_status_id"
+
+  create_table "members_networks", :force => true do |t|
+    t.integer "member_id"
+    t.integer "network_id"
+    t.string  "url"
+  end
+
+  add_index "members_networks", ["member_id"], :name => "index_members_networks_on_member_id"
+  add_index "members_networks", ["network_id"], :name => "index_members_networks_on_network_id"
+
+  create_table "networks", :force => true do |t|
+    t.string  "name"
+    t.string  "icon"
+    t.boolean "is_pro"
+    t.string  "label"
+  end
+
+  create_table "status", :force => true do |t|
+    t.string "name"
   end
 
   create_table "users", :force => true do |t|

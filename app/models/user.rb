@@ -9,11 +9,16 @@ class User < ActiveRecord::Base
   has_one :member, :dependent=>:destroy
 
   before_create :build_default_member
+  before_update :confirm_password
 
 private
   def build_default_member
     build_member
     true
+  end
+
+  def confirm_password
+    (self.password == self.password_confirmation) ? true : false
   end
 
 end
