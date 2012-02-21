@@ -1,0 +1,11 @@
+[31m./app/controllers/members_controller.rb:19 - simplify render in controllers[0m
+[31m./app/helpers/application_helper.rb:36 - remove unused methods (ApplicationHelper#can_edit_member)[0m
+[31m./config/routes.rb:9 - restrict auto-generated routes (:only => [:index])[0m
+[31m./config/routes.rb:10 - restrict auto-generated routes (:only => [:index])[0m
+[31m./config/routes.rb:11 - restrict auto-generated routes (:only => [:show, :create, :update, :destroy, :index])[0m
+[31m./db/schema.rb:22 - always add db index (members => [user_id])[0m
+[31m./db/schema.rb:22 - always add db index (members => [location_id])[0m
+[32m
+Please go to http://rails-bestpractices.com to see more useful Rails Best Practices.[0m
+[31m
+Found 7 warnings.[0m
