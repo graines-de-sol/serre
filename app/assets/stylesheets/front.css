@@ -1,6 +1,12 @@
 body {
   background:url(/assets/body_bg_8.png) center;
 }
+h1 {
+  font-family: Georgia, 'Palatino Linotype', Impact;font-size:50px;font-style:italic;color:#2f2f2f;
+}
+h2 {
+  font-family: Georgia, 'Palatino Linotype', Impact;font-size:30px;font-style:italic;color:#2f2f2f;
+}
 #top_bar {
   width:100%;
   height:40px;
@@ -171,23 +177,6 @@ a.label-important:hover{
 .member_resume span {
   margin-left:5px;
 }
-/*
-.avatar {
-  width:180px;
-  height:200px;
-  padding:5px;
-  margin-right:5px;
-  -moz-box-shadow: 0px 0px 20px 3px #d4d4d4;
-  -webkit-box-shadow: 0px 0px 20px 3px #d4d4d4;
-  -o-box-shadow: 0px 0px 20px 3px #d4d4d4;
-  box-shadow: 0px 0px 20px 3px #d4d4d4;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  background-color:#fff;
-  float:left;
-  overflow:hidden;
-}*/
 #members_details textarea {
   width:530px;
   height:120px;
@@ -203,14 +192,51 @@ a.label-important:hover{
 a.dotoggle {
   font-size:20px;
 }
-#members_details textarea {
-  width:650px;
-}
 textarea#member_hobbies, textarea#member_powers {
-  width:690px;
+  width:570px;
   height:38px;
 }
 input#member_presence {
-  width:690px;
+  width:570px;
+}
+.span3 .avatar {
+  text-align:right;
+}
+.labels {
+  width:200px;
+  padding-top:20px;
+  font-weight:bold;
+  text-align:right;
+}
+.organisation, .activity, .references {
+  height:40px;
+}
+.organisation p, .activity p, .references p {
+  padding:5px 0;
+}
+.hobbies, .powers {
+  height:50px;
+  padding:5px 0;
+}
+#baseline {
+  height:20px;
+  padding:5px 0;
+  border-top:1px solid #d4d4d4;
+  font-size:20px;
+  width:600px;
+}
+#description, #mail_me {
+  color:#666;
+  font-size:14px;
+  padding:5px 0;
+}
+.social_networks {
+  width:280px;
+  float:left;
+  margin-right:10px;
+}
+.social_networks img {
+  float:left;
+  margin-right:10px;
 }
 

@@ -1,3 +1,42 @@
-.span10
-  %p= "Can't edit"
+.span12
+  .span3
+    .avatar
+      = image_tag @member.avatar.thumb('180x180').url
+
+  .span8
+    %h1= @member.first_name
+    %h2= @member.last_name
+
+    #baseline= @member.baseline
+    #description= "#{@member.age} #{t('years_old')} #{@member.status.name}"
+    #mail_me= t('send_a_message')
+
+  .clear
+
+  .span2.labels
+    .organisation
+      = t('organisation')
+    .activity
+      = t('prestations')
+    .references
+      = t('references')
+    .hobbies
+      = t('hobbies')
+    .super_powers
+      = t('powers')
+  .span8
+    .well
+      .organisation
+        - if @member.website
+          = link_to @member.organisation, @member.http_website
+        - else
+          = @member.organisation
+      .activity
+        = @member.situation
+      .references
+        = @member.references
+      .hobbies
+        = simple_format @member.hobbies
+      .super_powers
+        = simple_format @member.powers
 

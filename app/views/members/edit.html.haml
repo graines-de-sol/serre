@@ -1,99 +1,83 @@
-= form_for @member, :html => {:multipart => true, :id=>'edit_member'} do |f|
+.span12.form
 
-  .span4
-    .avatar
-      = image_tag @member.avatar.thumb('180x180').url
-    - if is_admin
+  = form_for @member, :html => {:multipart => true, :id=>'edit_member'} do |f|
+
+    .span3
+      .avatar
+        = image_tag @member.avatar.thumb('180x180').url
+
+    .span8
+      %h1= f.text_field :first_name
+      %h2= f.text_field :last_name
+
+      #baseline= f.text_field :baseline
+      #description
+        %input{:type=>'text', :id=>'member_birthday_day', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>@member.birthday.day, :data=>{'required'=>'true', 'alert'=>t('warnings.member_birthday_day')}}
+        = select_month(@member.birthday, {:use_month_names=>t('date.month_names').shift}, {:style=>'width:125px;', :name=>'member[birthday][month]'})
+        = select_year(@member.birthday,  {:start_year => 1930, :end_year => Time.now.year}, {:style=>'width:80px;', :name=>'member[birthday][year]'})
+        = f.select(:status_id, Status.all.map{|l|[l.name,l.id]})
+
       = f.file_field :avatar
 
-  .span4
-    %label= t(:first_name)
-    = f.text_field :first_name, :data=>{'required'=>'true', 'alert'=>t('warnings.first_name')}
-    %br
-    %label= t(:last_name)
-    = f.text_field :last_name
-    %br
-    %label= t(:birthday)
-    %input{:type=>'text', :id=>'member_birthday_day', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>@member.birthday.day, :data=>{'required'=>'true', 'alert'=>t('warnings.member_birthday_day')}}
-    = select_month(@member.birthday, {:use_month_names=>t('date.month_names').shift}, {:style=>'width:185px;', :name=>'member[birthday][month]'})
-    %br
-    %label= t(:city)
-    = f.text_field :city
+    .clear
 
-  .span9#members_details
-    .clear.hr
-    %a.dotoggle{:href=>'#', :data=>{'target'=>'user_access'}}= t(:connexion_params)
-
-    #user_access{:style=>'display:none;'}
-      %br
+    .span2.labels
+      .organisation
+        %p= t('organisation')
+      .activity
+        %p= t('prestations')
+      .references
+        %p= t('references')
+      .hobbies
+        %p= t('hobbies')
+      .super_powers
+        %p= t('powers')
+    .span8
       .well
-        %label= t('devise.common.login')
-        = text_field_tag 'user[email]', @current_user.email
-        %br
-        %label= "#{t('devise.common.password')} #{t(:blank_if_no_change)}"
-        = password_field_tag 'user[password]'
-        %br
-        %label= t('devise.common.confirm_password')
-        = password_field_tag 'user[password_confirmation]'
-    .clear.hr
-    %a.dotoggle{:href=>'#', :data=>{'target'=>'pro_situation'}}= t(:pro_situation)
+        .organisation
+          - if @member.website
+            = link_to @member.organisation, @member.http_website
+          - else
+            = @member.organisation
+          |
+          = t('website')
+          = f.text_field :website
+        .activity
+          = f.text_field :situation
+        .references
+          = f.text_field :references
+        .hobbies
+          = f.text_area :hobbies
+        .super_powers
+          = f.text_area :powers
 
-    #pro_situation{:style=>'display:none;'}
-      %br
-      .well
-        %label= t(:pro_status)
-        = f.select(:status_id, Status.all.map{|l|[l.name,l.id]})
-        %br
-        %label= t(:prestations)
-        = f.text_area :prestations
-        %br
-        %label= t(:references)
-        = f.text_area :references
 
-    .clear.hr
-    %a.dotoggle{:href=>'#', :data=>{'target'=>'pro_social_networks'}}= t(:pro_social_networks)
+        .hr{:style=>'margin:10px auto 30px auto'}
 
-    #pro_social_networks{:style=>'display:none;'}
-      %br
-      - @pro_networks.each do |network|
-        .well
-          %label= t(network[:label])
-          = image_tag network[:icon], :style=>'float:left;margin-right:10px;'
-          = text_field_tag "profile[#{network[:id]}]", network[:url]
+        .social_networks#pro
+          %h4= t(:pro_social_networks)
+          %br
+          - @pro_networks.each do |network|
+            %label= t(network[:label])
+            = image_tag network[:icon]
+            = text_field_tag "profile[#{network[:id]}]", network[:url]
 
-    .clear.hr
-    %a.dotoggle{:href=>'#', :data=>{'target'=>'perso_social_networks'}}= t(:perso_social_networks)
 
-    #perso_social_networks{:style=>'display:none;'}
-      %br
-      - @perso_networks.each do |network|
-        .well
-          %label= t(network[:label])
-          = image_tag network[:icon], :style=>'float:left;margin-right:10px;'
-          = text_field_tag "profile[#{network[:id]}]", network[:url]
+        .social_networks#perso
+          %h4= t(:perso_social_networks)
+          %br
+          - @perso_networks.each do |network|
+            %label= t(network[:label])
+            = image_tag network[:icon]
+            = text_field_tag "profile[#{network[:id]}]", network[:url]
 
-    .clear.hr
-    %br
-    %label= t(:hobbies)
-    = f.text_area :hobbies
-    %br
-    %label= t(:powers)
-    = f.text_area :powers
-    %br
-    %label= t(:presence)
-    = f.text_field :presence
-    %br
+        .clear
 
-    - if is_admin
-      %label= t(:cordee_location)
-      = f.select(:location_id, Location.all.map{|l|[l.name,l.id]})
-      %br
+    .span10
+      = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right'
 
-    = submit_tag t(:save), :class=>'btn  btn-warning'
-
-    - if is_admin
-      %a{:href=>member_path(@member.user.id), :class=>'btn btn-danger destroy', :style=>'float:right;', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_member')}}
-        %i.icon-trash.icon-white
-        = t(:delete_member)
-.clear
+      - if is_admin
+        %a{:href=>member_path(@member.user.id), :class=>'btn btn-danger destroy', :style=>'float:left;', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_member')}}
+          %i.icon-trash.icon-white
+          = t(:delete_member)
 

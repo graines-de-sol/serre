@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220194103) do
+ActiveRecord::Schema.define(:version => 20120224212304) do
 
   create_table "locations", :force => true do |t|
     t.string "name"
@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(:version => 20120220194103) do
 
   create_table "members", :force => true do |t|
     t.integer "user_id"
-    t.string  "first_name",  :default => "anonyme"
+    t.string  "first_name",   :default => "anonyme"
     t.string  "last_name"
     t.date    "birthday"
     t.string  "city"
-    t.string  "avatar_uid",  :default => "default_avatar/default_avatar.png"
+    t.string  "avatar_uid",   :default => "default_avatar/default_avatar.png"
     t.text    "situation"
     t.text    "prestations"
     t.text    "references"
@@ -35,18 +35,12 @@ ActiveRecord::Schema.define(:version => 20120220194103) do
     t.string  "phone"
     t.integer "location_id"
     t.integer "status_id"
+    t.string  "organisation"
+    t.string  "website"
+    t.string  "baseline"
   end
 
   add_index "members", ["status_id"], :name => "index_members_on_status_id"
-
-  create_table "members_networks", :force => true do |t|
-    t.integer "member_id"
-    t.integer "network_id"
-    t.string  "url"
-  end
-
-  add_index "members_networks", ["member_id"], :name => "index_members_networks_on_member_id"
-  add_index "members_networks", ["network_id"], :name => "index_members_networks_on_network_id"
 
   create_table "networks", :force => true do |t|
     t.string  "name"
@@ -54,6 +48,15 @@ ActiveRecord::Schema.define(:version => 20120220194103) do
     t.boolean "is_pro"
     t.string  "label"
   end
+
+  create_table "profiles", :force => true do |t|
+    t.integer "member_id"
+    t.integer "network_id"
+    t.string  "url"
+  end
+
+  add_index "profiles", ["member_id"], :name => "index_profiles_on_member_id"
+  add_index "profiles", ["network_id"], :name => "index_profiles_on_network_id"
 
   create_table "status", :force => true do |t|
     t.string "name"

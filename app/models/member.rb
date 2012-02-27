@@ -18,18 +18,27 @@ class Member < ActiveRecord::Base
     (user_role == 'admin' || self.id == current_user)? true : false
   end
 
+  def age
+    now = Time.now.year - self.birthday.year
+  end
+
+  def http_website
+    "http://#{self.website}"
+  end
+
 private
 
   # Compose SQL date from day and month
   def compose_birthday
     self.birthday['day'] = 1 if (self.birthday['day'].strip.blank? || self.birthday['day'].to_i == 0)
-    self.birthday = "#{Time.now.year}-#{self.birthday['month']}-#{self.birthday['day']}"
+    self.birthday = "#{self.birthday['year']}-#{self.birthday['month']}-#{self.birthday['day']}"
   end
 
   # Force birthday to now on create
   def set_birthday_to_now
     self.birthday = Time.now
   end
+
 
 end
 

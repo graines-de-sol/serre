@@ -30,6 +30,7 @@ fr:
   birthday: "Anniversaire le"
   city: "Ville"
   avatar: "Photo"
+  organisation: "Mon entreprise"
   situation: "Situation professionnelle"
   prestations: "Prestations"
   references: "Mes réferences"
@@ -41,17 +42,18 @@ fr:
   delete_member: "Supprimer ce compte"
   connexion_params: "+ Paramètres de connexion"
   pro_situation: "+ Situation professionnelle"
-  pro_social_networks: "+ Réseaux sociaux professionnels"
-  perso_social_networks: "+ Réseaux sociaux personnels"
+  pro_social_networks: "Réseaux sociaux professionnels"
+  perso_social_networks: "Réseaux sociaux personnels"
   blank_if_no_change: "(laisser vide si inchangé)"
   pro_status: "Status professionnel"
   link_to_facebook: "Lien vers votre profil Facebook"
   link_to_twitter: "Lien vers votre compte Twitter"
   link_to_linkedin: "Lien vers votre profil LinkedIn"
   link_to_viadeo: "Lien vers votre profil Viadeo"
-  link_to_googleplus: "Lien vers votre compte Google+"
-
-
+  link_to_gplus: "Lien vers votre compte Google+"
+  years_old: "ans, "
+  send_a_message: "lui envoyer un message"
+  website: "Site Web"
 
   date:
     formats:
