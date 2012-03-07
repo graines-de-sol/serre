@@ -13,9 +13,11 @@ class Member < ActiveRecord::Base
   before_create :set_birthday_to_now
   before_update :compose_birthday
 
+  normalize_attributes :website, :organisation, :prestations, :references, :city, :hobbies, :powers
+  normalize_attribute :phone, :with=>:phone
 
-  def self.can_edit?(user_role, current_user)
-    (user_role == 'admin' || self.id == current_user)? true : false
+  def self.can_edit?(current_user, current_id)
+    (current_user.role == 'admin' || current_id == current_user.id)? true : false
   end
 
   def age
@@ -24,6 +26,16 @@ class Member < ActiveRecord::Base
 
   def http_website
     "http://#{self.website}"
+  end
+
+  # Searchable DB fields
+  def self.fields
+    fields = ['first_name', 'last_name', 'prestations', 'powers', 'organisation']
+
+    out = Hash.new
+    fields.each{|f|out.update(f => f)}
+
+    return out
   end
 
 private

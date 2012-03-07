@@ -6,8 +6,12 @@ Refuge::Application.routes.draw do
   root :to=> "dashboard#index"
 
   resources :dashboard, :only=>'index'
-  resources :messages, :only=>'index'
   resources :accounts, :only=>'index'
+
+  match '/members/search' => 'members#search', :via=>:post
+  match '/members/mail/:id' => 'members#mail_member', :via=>:post
+
   resources :members
+
 end
 

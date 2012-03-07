@@ -7,14 +7,20 @@
         = image_tag @member.avatar.thumb('180x180').url
 
     .span8
+      #mail_password_editor
+        .well
+          %a{:href=>'#edit_account', :data=>{'toggle'=>'modal'}, :id=>'mail_me'}
+            = t('edit_my_login_informations')
+
       %h1= f.text_field :first_name
       %h2= f.text_field :last_name
 
-      #baseline= f.text_field :baseline
+      #baseline= f.text_field :baseline, :style=>'width:570px;'
       #description
         %input{:type=>'text', :id=>'member_birthday_day', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>@member.birthday.day, :data=>{'required'=>'true', 'alert'=>t('warnings.member_birthday_day')}}
         = select_month(@member.birthday, {:use_month_names=>t('date.month_names').shift}, {:style=>'width:125px;', :name=>'member[birthday][month]'})
-        = select_year(@member.birthday,  {:start_year => 1930, :end_year => Time.now.year}, {:style=>'width:80px;', :name=>'member[birthday][year]'})
+        = select_year(@member.birthday,  {:start_year => 1930, :end_year => Time.now.year}, {:style=>'width:80px;margin-right:30px;', :name=>'member[birthday][year]'})
+        = t('status')
         = f.select(:status_id, Status.all.map{|l|[l.name,l.id]})
 
       = f.file_field :avatar
@@ -22,35 +28,38 @@
     .clear
 
     .span2.labels
-      .organisation
+      .one_row
         %p= t('organisation')
-      .activity
+      .one_row
         %p= t('prestations')
-      .references
+      .one_row
         %p= t('references')
-      .hobbies
+      .one_row
+        %p= t('phone')
+      .one_row
+        %p= t('city')
+      .two_rows
         %p= t('hobbies')
-      .super_powers
+      .two_rows
         %p= t('powers')
     .span8
       .well
-        .organisation
-          - if @member.website
-            = link_to @member.organisation, @member.http_website
-          - else
-            = @member.organisation
-          |
+        .one_row
+          = f.text_field :organisation, :style=>'margin-right:20px;'
           = t('website')
           = f.text_field :website
-        .activity
-          = f.text_field :situation
-        .references
-          = f.text_field :references
-        .hobbies
+        .one_row
+          = f.text_field :prestations, :style=>'width:570px;'
+        .one_row
+          = f.text_field :references, :style=>'width:570px;'
+        .one_row
+          = f.text_field :phone
+        .one_row
+          = f.text_field :city
+        .two_rows
           = f.text_area :hobbies
-        .super_powers
+        .two_rows
           = f.text_area :powers
-
 
         .hr{:style=>'margin:10px auto 30px auto'}
 
@@ -62,7 +71,6 @@
             = image_tag network[:icon]
             = text_field_tag "profile[#{network[:id]}]", network[:url]
 
-
         .social_networks#perso
           %h4= t(:perso_social_networks)
           %br
@@ -73,11 +81,34 @@
 
         .clear
 
-    .span10
-      = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right'
+    .span11
+      = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right; margin-right:20px;'
 
       - if is_admin
         %a{:href=>member_path(@member.user.id), :class=>'btn btn-danger destroy', :style=>'float:left;', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_member')}}
           %i.icon-trash.icon-white
           = t(:delete_member)
+
+- # Hidden content
+
+#edit_account.modal.hide
+  .modal-header
+    %a.close{:data=>{'dismiss'=>'modal'}}
+      = '×'
+    %h3= t('edit_my_login_informations')
+
+  .modal-body
+    #new_user_form
+      = form_tag member_path(@member.id), :method=>:put do
+        %label= t('email_address')
+        %input{:type=>'text', :name=>'user[email]', :value=>@member.user.email}
+
+        %label= t('new_password')
+        %input{:type=>'password', :name=>'user[password]'}
+
+        %label= t('confirm_password')
+        %input{:type=>'password', :name=>'user[password_confirmation]'}
+
+        %br
+        = submit_tag t(:modify), :class=>'btn  btn-warning'
 

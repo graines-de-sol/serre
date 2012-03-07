@@ -8,35 +8,96 @@
     %h2= @member.last_name
 
     #baseline= @member.baseline
-    #description= "#{@member.age} #{t('years_old')} #{@member.status.name}"
-    #mail_me= t('send_a_message')
+    #description= "#{@member.status.name if @member.status}"
+    %a{:href=>'#send_mail', :data=>{'toggle'=>'modal'}, :id=>'mail_me'}
+      = t('send_a_message')
 
   .clear
 
-  .span2.labels
-    .organisation
-      = t('organisation')
-    .activity
-      = t('prestations')
-    .references
-      = t('references')
-    .hobbies
-      = t('hobbies')
-    .super_powers
-      = t('powers')
-  .span8
-    .well
-      .organisation
-        - if @member.website
-          = link_to @member.organisation, @member.http_website
-        - else
-          = @member.organisation
-      .activity
-        = @member.situation
-      .references
-        = @member.references
-      .hobbies
-        = simple_format @member.hobbies
-      .super_powers
-        = simple_format @member.powers
+  - if member_has_infos?(@member) || member_has_profile?(@pro_networks) || member_has_profile?(@perso_networks)
+    .span2.labels
+      - if @member.organisation
+        .one_row
+          = t('organisation')
+      - if @member.prestations
+        .one_row
+          = t('prestations')
+      - if @member.references
+        .one_row
+          = t('references')
+      - if @member.phone
+        .one_row
+          = t('phone')
+      - if @member.city
+        .one_row
+          = t('I_live_in')
+      - if @member.hobbies
+        .two_rows
+          = t('hobbies')
+      - if @member.powers
+        .two_rows
+          = t('powers')
+      - if member_has_profile?(@pro_networks)
+        .two_rows
+          = t(:pro_social_networks)
+      - if member_has_profile?(@perso_networks)
+        .two_rows
+          = t(:perso_social_networks)
+
+    .span8
+      .well
+        - if @member.organisation
+          .one_row
+            - if @member.website
+              = link_to @member.organisation, @member.http_website
+            - else
+              = @member.organisation
+        - if @member.prestations
+          .one_row
+            = @member.prestations
+        - if @member.references
+          .one_row
+            = @member.references
+        - if @member.phone
+          .one_row
+            = phone_number(@member.phone)
+        - if @member.city
+          .one_row
+            = @member.city.capitalize if @member.city
+        - if @member.hobbies
+          .two_rows
+            = simple_format @member.hobbies
+        - if @member.powers
+          .two_rows
+            = simple_format @member.powers
+        - if member_has_profile?(@pro_networks)
+          .two_rows.social_profiles
+            = show_social_profiles(@pro_networks)
+        - if member_has_profile?(@perso_networks)
+          .two_rows.social_profiles
+            = show_social_profiles(@perso_networks)
+
+
+- # Hidden content
+
+#send_mail.modal.hide
+  .modal-header
+    %a.close{:data=>{'dismiss'=>'modal'}}
+      = '×'
+    %h3= t('send_email_to')
+    %span= @member.user.email
+
+  .modal-body
+    #email_form
+      = form_tag "/members/mail/#{@member.id}", :method=>:post do
+
+        %label= t('email_subject')
+        %input{:type=>'text', :name=>'email[subject]', :style=>'width:520px;'}
+        %br
+        %label= t('email_body')
+        %textarea{:name=>'email[body]', :style=>'width:520px;height:250px;'}
+
+        %br
+        = submit_tag t('send'), :class=>'btn  btn-warning', :style=>'float:right'
+      .clear
 

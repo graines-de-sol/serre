@@ -1,12 +1,12 @@
 #search_for_members
   %h3= t(:search_for_members)
-  %select{:name=>'category', :style=>'width:120px;float:left;margin-right:20px;'}
-    %option{:value=>'#'}= "Prénom"
-    %option{:value=>'#'}= "Super pouvoirs"
-    %option{:value=>'#'}= "Prénom"
+  = form_tag '/members/search' do
+    %select{:name=>'category', :style=>'width:120px;float:left;margin-right:20px;'}
+      - Member.fields.each do |field, name|
+        %option{:value=>field}= t(name)
 
-  %input{:type=>'text', :name=>'search_for_members'}
-  = submit_tag t(:search), :class=>'btn  btn-warning'
+    %input{:type=>'text', :name=>'keywords'}
+    = submit_tag t(:search), :class=>'btn  btn-warning'
 
 #members_list
   - @members.each do |member|

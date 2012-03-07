@@ -2,14 +2,17 @@ fr:
   app:
     title: "Le refuge, By la-cordee.net"
   warnings:
-    check_new_user_parameters: "Echec de la création du membre. Email en doublon ou mot de passe de moins de 6 lettres"
-    error: "Une erreur est survenue :-/"
+    check_new_user_parameters: "Echec de la création du membre. E-mail en doublon ou mot de passe de moins de 6 lettres"
+    check_user_parameters: "Echec de la mise à jour du compte. Les mots de passe ne correspondent pas et/ou doivent comporter au moins 6 lettres"
+    error: "Ooops :-/"
     member_birthday_day: "Merci de saisir une date d'anniversaire"
     first_name: "Merci de saisir votre prénom"
     email_required: "Merci de saisir une adresse E-Mail valide"
     password_required: "Merci de saisir votre mot de passe"
   confirms:
     delete_member: "Exclure définitivement ce membre du Refuge ?!"
+  email:
+    introduction_message: "vous a envoyé un mail depuis le Refuge. Son adresse mail pour lui répondre :"
   good_morning: "Bonjour"
   good_evening: "Bonsoir"
   dashboard: "Dashboard"
@@ -29,6 +32,9 @@ fr:
   last_name: "Nom"
   birthday: "Anniversaire le"
   city: "Ville"
+  zip: "Code Postal"
+  address: "Adresse"
+  phone: "Téléphone"
   avatar: "Photo"
   organisation: "Mon entreprise"
   situation: "Situation professionnelle"
@@ -54,6 +60,16 @@ fr:
   years_old: "ans, "
   send_a_message: "lui envoyer un message"
   website: "Site Web"
+  edit_my_login_informations: "Modifier mon E-Mail & mon mot de passe"
+  email_address: "Adresse E-Mail"
+  new_password: "Nouveau mot de passe"
+  confirm_password: "Confirmer le mot de passe"
+  modify: "Modifier"
+  I_live_in: "J'habite"
+  send_email_to: "Envoyer un E-Mail à :"
+  email_subject: "Sujet"
+  email_body: "Votre message..."
+  send: "Envoyer"
 
   date:
     formats:

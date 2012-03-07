@@ -34,5 +34,45 @@ module ApplicationHelper
     translations << "</script>"
   end
 
+  # Dummy phone numbers formating
+  def phone_number(number)
+    return "#{number[0..1]} #{number[2..3]} #{number[4..5]} #{number[6..7]} #{number[8..9]}" if @number
+  end
+
+  # Display socials networks links and icon if profile exists
+  def show_social_profiles(networks)
+    out = ''
+    @pro_networks.each do |network|
+      out << "<a href='#{h network[:url]}'><img src='/assets/#{network[:icon]}' /></a>" unless network[:url].blank?
+    end
+
+    out.html_safe
+  end
+
+  # Check if member has filled in some infos
+  def member_has_infos?(member)
+
+    fields = ['organisation', 'prestations', 'references', 'phone', 'city', 'hobbies', 'powers']
+    out = false
+
+    fields.each do |f|
+      out = true if !member[f].blank?
+    end
+
+    return out
+  end
+
+  # Check if member has some social networks profiles
+  def member_has_profile?(networks)
+
+    out = false
+
+    networks.each do |p|
+      out = true if p[:url]
+    end
+
+    return out
+  end
+
 end
 

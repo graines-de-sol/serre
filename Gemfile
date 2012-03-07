@@ -23,14 +23,17 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.10'
+gem 'attribute_normalizer'
 
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'rspec-rails'
 end
 
 group :development do
   gem "rails_best_practices"
   gem "ripper"
+  gem 'rspec-rails'
 end
 

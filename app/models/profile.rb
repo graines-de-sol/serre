@@ -16,7 +16,7 @@ class Profile < ActiveRecord::Base
         end
       else
         if !url.strip.blank?
-          Profile.create(:member_id=>member_id, :network_id=>id, :url=>url)
+          Profile.create!(:member_id=>member_id, :network_id=>id, :url=>url)
         end
       end
     end

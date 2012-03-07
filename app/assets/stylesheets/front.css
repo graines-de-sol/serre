@@ -208,15 +208,32 @@ input#member_presence {
   font-weight:bold;
   text-align:right;
 }
-.organisation, .activity, .references {
+#mail_password_editor {
+  width:340px;
+  height:60px;
+  padding:0px;
+  float:right;
+  margin:5px 20px auto auto;
+}
+a#mail_me {
+  padding-left:30px;
+  background:url('/assets/icon_mail_big.png') left no-repeat;
+}
+.one_row {
   height:40px;
 }
-.organisation p, .activity p, .references p {
+.one_row p, .two_rows p {
   padding:5px 0;
 }
-.hobbies, .powers {
-  height:50px;
+.well .two_rows p {
+  padding:0 !important;
+}
+.two_rows {
+  min-height:50px;
   padding:5px 0;
+}
+.social_profiles a {
+  margin-right:5px;
 }
 #baseline {
   height:20px;
@@ -238,5 +255,10 @@ input#member_presence {
 .social_networks img {
   float:left;
   margin-right:10px;
+}
+#email_form {
+  width:530px;
+  padding:0;
+  text-align:left;
 }
 
