@@ -70,6 +70,14 @@ fr:
   email_subject: "Sujet"
   email_body: "Votre message..."
   send: "Envoyer"
+  actual_occupation_of_location: "En ce moment à la Cordée de"
+  activerecord:
+    errors:
+      models:
+        member:
+          attributes:
+            first_name:
+              blank: "Doit être renseigné !"
 
   date:
     formats:

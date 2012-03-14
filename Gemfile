@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.10'
 gem 'attribute_normalizer'
+gem 'simple_form'
 
 group :test do
   # Pretty printed test output

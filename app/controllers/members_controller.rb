@@ -55,20 +55,24 @@ class MembersController < ApplicationController
   # --------------------------------------------------------
   def update
 
-    this_member = Member.find(params[:id])
+    @member = Member.find(params[:id])
 
     if params[:user]
-      this_user = User.find(this_member.user_id)
+      this_user = User.find(@member.user_id)
       request = this_user.update_attributes(params[:user])
 
-      flash[:notice] = t('warnings.check_user_parameters') if !request
     else
-      this_member.update_attributes(params[:member])
+      @member.update_attributes(params[:member])
 
-      Profile.update(params[:profile], this_member.id)
+      Profile.update(params[:profile], @member.id)
     end
 
-    redirect_to member_path(params[:id])
+    @user_profiles = @member.profiles.map{|p|{p.network_id=>p.url}}
+    @pro_networks = Network.with_urls(@user_profiles, :pro)
+    @perso_networks = Network.with_urls(@user_profiles, :perso)
+
+    render :template=>'/members/edit'
+
   end
 
   # DELETE /members/:id
@@ -80,7 +84,7 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
-  # POST /members/mail/:id
+  # POST /members/mail
   # Send an Email to member                         REDIRECT
   # --------------------------------------------------------
   def mail_member

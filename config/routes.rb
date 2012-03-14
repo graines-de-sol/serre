@@ -9,7 +9,7 @@ Refuge::Application.routes.draw do
   resources :accounts, :only=>'index'
 
   match '/members/search' => 'members#search', :via=>:post
-  match '/members/mail/:id' => 'members#mail_member', :via=>:post
+  match '/members/mail' => 'members#mail_member', :via=>:post
 
   resources :members
 

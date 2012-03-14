@@ -10,7 +10,7 @@ class Member < ActiveRecord::Base
 
   image_accessor :avatar
 
-  before_create :set_birthday_to_now
+  #before_create :set_birthday_to_now
   before_update :compose_birthday
 
   normalize_attributes :website, :organisation, :prestations, :references, :city, :hobbies, :powers
@@ -24,11 +24,7 @@ class Member < ActiveRecord::Base
     now = Time.now.year - self.birthday.year
   end
 
-  def http_website
-    "http://#{self.website}"
-  end
-
-  # Searchable DB fields
+  # DB fields we can search into for search patterns
   def self.fields
     fields = ['first_name', 'last_name', 'prestations', 'powers', 'organisation']
 
@@ -42,15 +38,12 @@ private
 
   # Compose SQL date from day and month
   def compose_birthday
-    self.birthday['day'] = 1 if (self.birthday['day'].strip.blank? || self.birthday['day'].to_i == 0)
-    self.birthday = "#{self.birthday['year']}-#{self.birthday['month']}-#{self.birthday['day']}"
+    begin
+      self.birthday = "#{birthday['day']}-#{birthday['month']}-#{birthday['year']}".to_date
+    rescue
+      self.birthday = nil
+    end
   end
-
-  # Force birthday to now on create
-  def set_birthday_to_now
-    self.birthday = Time.now
-  end
-
 
 end
 

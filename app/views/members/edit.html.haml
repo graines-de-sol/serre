@@ -1,6 +1,6 @@
 .span12.form
 
-  = form_for @member, :html => {:multipart => true, :id=>'edit_member'} do |f|
+  = simple_form_for @member, :html => {:multipart => true, :id=>'edit_member'} do |f|
 
     .span3
       .avatar
@@ -12,74 +12,91 @@
           %a{:href=>'#edit_account', :data=>{'toggle'=>'modal'}, :id=>'mail_me'}
             = t('edit_my_login_informations')
 
-      %h1= f.text_field :first_name
-      %h2= f.text_field :last_name
+      = f.input :first_name, :label=>false
+      = f.input :last_name, :required => false, :label=>false
 
-      #baseline= f.text_field :baseline, :style=>'width:570px;'
+      #baseline
+        = f.text_field :baseline, :style=>'width:570px;'
+
       #description
-        %input{:type=>'text', :id=>'member_birthday_day', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>@member.birthday.day, :data=>{'required'=>'true', 'alert'=>t('warnings.member_birthday_day')}}
-        = select_month(@member.birthday, {:use_month_names=>t('date.month_names').shift}, {:style=>'width:125px;', :name=>'member[birthday][month]'})
-        = select_year(@member.birthday,  {:start_year => 1930, :end_year => Time.now.year}, {:style=>'width:80px;margin-right:30px;', :name=>'member[birthday][year]'})
+        %input{:type=>'text', :id=>'member_birthday_day', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>birthday[:day], :data=>{'required'=>'true', 'alert'=>t('warnings.member_birthday_day')}}
+        = select_month(birthday[:month], {:use_month_names=>t('date.month_names').shift}, {:style=>'width:125px;', :name=>'member[birthday][month]'})
+        = select_year(birthday[:year],  {:start_year => 1930, :end_year => Time.now.year}, {:style=>'width:80px;margin-right:30px;', :name=>'member[birthday][year]'})
         = t('status')
         = f.select(:status_id, Status.all.map{|l|[l.name,l.id]})
 
-      = f.file_field :avatar
+      - if current_user.role == 'admin'
+        = f.file_field :avatar
 
     .clear
 
-    .span2.labels
-      .one_row
-        %p= t('organisation')
-      .one_row
-        %p= t('prestations')
-      .one_row
-        %p= t('references')
-      .one_row
-        %p= t('phone')
-      .one_row
-        %p= t('city')
-      .two_rows
-        %p= t('hobbies')
-      .two_rows
-        %p= t('powers')
-    .span8
-      .well
-        .one_row
-          = f.text_field :organisation, :style=>'margin-right:20px;'
-          = t('website')
-          = f.text_field :website
-        .one_row
-          = f.text_field :prestations, :style=>'width:570px;'
-        .one_row
-          = f.text_field :references, :style=>'width:570px;'
-        .one_row
-          = f.text_field :phone
-        .one_row
-          = f.text_field :city
-        .two_rows
-          = f.text_area :hobbies
-        .two_rows
-          = f.text_area :powers
+    .span7.well.editor#details
+      %table
+        %tr
+          %td
+            %p= t('organisation')
+          %td
+            %p
+              = f.text_field :organisation, :style=>'margin-right:10px;'
+              = t('website')
+              = f.text_field :website
+        %tr
+          %td
+            %p= t('prestations')
+          %td
+            %p= f.text_area :prestations, :class=>'expandable'
+        %tr
+          %td
+            %p= t('references')
+          %td
+            %p= f.text_area :references, :class=>'expandable'
+        %tr
+          %td
+            %p= t('phone')
+          %td
+            %p= f.text_field :phone
+        %tr
+          %td
+            %p= t('I_live_in')
+          %td
+            %p= f.text_field :city
+        %tr
+          %td
+            %p= t('hobbies')
+          %td
+            %p= f.text_area :hobbies, :class=>'expandable'
+        %tr
+          %td
+            %p= t('powers')
+          %td
+            %p= f.text_area :powers, :class=>'expandable'
+        %tr
+          %td
+            %p= t('presence')
+          %td
+            %p= f.text_field :presence
+        %tr
+          %td= ''
+          %td
+            .hr{:style=>'width:96%;margin:auto;margin-bottom:20px;'}
 
-        .hr{:style=>'margin:10px auto 30px auto'}
+            .social_networks#pro
+              %h4= t(:pro_social_networks)
+              %br
+              - @pro_networks.each do |network|
+                %label= t(network[:label])
+                = image_tag network[:icon]
+                = text_field_tag "profile[#{network[:id]}]", network[:url]
 
-        .social_networks#pro
-          %h4= t(:pro_social_networks)
-          %br
-          - @pro_networks.each do |network|
-            %label= t(network[:label])
-            = image_tag network[:icon]
-            = text_field_tag "profile[#{network[:id]}]", network[:url]
+            .social_networks#perso
+              %h4= t(:perso_social_networks)
+              %br
+              - @perso_networks.each do |network|
+                %label= t(network[:label])
+                = image_tag network[:icon]
+                = text_field_tag "profile[#{network[:id]}]", network[:url]
+      .clear
 
-        .social_networks#perso
-          %h4= t(:perso_social_networks)
-          %br
-          - @perso_networks.each do |network|
-            %label= t(network[:label])
-            = image_tag network[:icon]
-            = text_field_tag "profile[#{network[:id]}]", network[:url]
-
-        .clear
 
     .span11
       = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right; margin-right:20px;'

@@ -42,7 +42,7 @@ module ApplicationHelper
   # Display socials networks links and icon if profile exists
   def show_social_profiles(networks)
     out = ''
-    @pro_networks.each do |network|
+    networks.each do |network|
       out << "<a href='#{h network[:url]}'><img src='/assets/#{network[:icon]}' /></a>" unless network[:url].blank?
     end
 
@@ -72,6 +72,27 @@ module ApplicationHelper
     end
 
     return out
+  end
+
+  # Ouput a member's birthday whenever it is set or not
+  def birthday
+
+    @member.birthday ? obj = @member.birthday : obj = Time.now
+
+    begin
+      birthday = {
+        :day   => obj.day,
+        :month => obj.month,
+        :year  => obj.year
+      }
+    rescue
+      birthday = {
+        :day   => obj['day'].to_i,
+        :month => obj['month'].to_i,
+        :year  => obj['year'].to_i
+      }
+    end
+
   end
 
 end
