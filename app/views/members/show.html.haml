@@ -17,65 +17,76 @@
   - if member_has_infos?(@member) || member_has_profile?(@pro_networks) || member_has_profile?(@perso_networks)
     .span7.well#details
       %table
-        %tr
-          %td
-            %p= t('organisation')
-          %td
-            - if @member.website
-              %p= link_to @member.organisation, @member.website
-            - else
-              %p= @member.organisation
-        %tr
-          %td
-            %p= t('prestations')
-          %td
-            %p= @member.prestations
-        %tr
-          %td
-            %p= t('references')
-          %td
-            %p= @member.references
-        %tr
-          %td
-            %p= t('phone')
-          %td
-            %p= @member.phone
-        %tr
-          %td
-            %p= t('I_live_in')
-          %td
-            %p= @member.city.capitalize if @member.city
-        %tr
-          %td
-            %p= t('hobbies')
-          %td
-            %p= h(@member.hobbies).gsub!(/\n/, "<br />").html_safe
-        %tr
-          %td
-            %p= t('powers')
-          %td
-            %p= h(@member.powers).gsub!(/\n/, "<br />").html_safe
-        %tr
-          %td
-            %p= t('presence')
-          %td
-            %p= @member.presence
-        %tr
-          %td= ''
-          %td
-            .hr{:style=>'width:96%;margin:auto;margin-bottom:20px;'}
+        - if @member.organisation
+          %tr
+            %td
+              %p= t('organisation')
+            %td
+              - if @member.website
+                %p= link_to @member.organisation, @member.website
+              - else
+                %p= @member.organisation
+        - if @member.prestations
+          %tr
+            %td
+              %p= t('prestations')
+            %td
+              %p= @member.prestations
+        - if @member.references
+          %tr
+            %td
+              %p= t('references')
+            %td
+              %p= @member.references
+        - if @member.phone
+          %tr
+            %td
+              %p= t('phone')
+            %td
+              %p= @member.phone
+        - if @member.city
+          %tr
+            %td
+              %p= t('I_live_in')
+            %td
+              %p= @member.city.capitalize
+        - if @member.hobbies
+          %tr
+            %td
+              %p= t('hobbies')
+            %td
+              %p= h(@member.hobbies).gsub!(/\n/, "<br />").html_safe
+        - if @member.powers
+          %tr
+            %td
+              %p= t('powers')
+            %td
+              %p= h(@member.powers).gsub!(/\n/, "<br />").html_safe
+        - if @member.presence
+          %tr
+            %td
+              %p= t('presence')
+            %td
+              %p= @member.presence
+        - if member_has_profile?(@pro_networks) || member_has_profile?(@perso_networks)
+          %tr
+            %td= ''
+            %td
+              .hr{:style=>'width:96%;margin:auto;margin-bottom:20px;'}
 
-            .social_networks#pro
-              %strong= t(:pro_social_networks)
-              %br
-              %br
-              = show_social_profiles(@pro_networks)
+              - if member_has_profile?(@pro_networks)
+                .social_networks#pro
+                  %strong= t(:pro_social_networks)
+                  %br
+                  %br
+                  = show_social_profiles(@pro_networks)
 
-            .social_networks#perso
-              %strong= t(:perso_social_networks)
-              %br
-              %br
-              = show_social_profiles(@perso_networks)
+              - if member_has_profile?(@perso_networks)
+                .social_networks#perso
+                  %strong= t(:perso_social_networks)
+                  %br
+                  %br
+                  = show_social_profiles(@perso_networks)
 
 
       .clear
