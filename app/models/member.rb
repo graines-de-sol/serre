@@ -1,27 +1,24 @@
 class Member < ActiveRecord::Base
 
-  belongs_to :user
   belongs_to :location
   belongs_to :status
-  has_many :profiles
+  belongs_to :user
+
+  has_many :ads
   has_many :networks, :through=>:profiles
+  has_many :profiles
 
   validates_presence_of :first_name
+  before_update :compose_birthday
 
   image_accessor :avatar
-
-  #before_create :set_birthday_to_now
-  before_update :compose_birthday
 
   normalize_attributes :website, :organisation, :prestations, :references, :city, :hobbies, :powers
   normalize_attribute :phone, :with=>:phone
 
+  # Weither a user can edit or just view a given content
   def self.can_edit?(current_user, current_id)
-    (current_user.role == 'admin' || current_id == current_user.id)? true : false
-  end
-
-  def age
-    now = Time.now.year - self.birthday.year
+    (current_user.role == 'admin' || current_id == current_user.member.id)? true : false
   end
 
   # DB fields we can search into for search patterns

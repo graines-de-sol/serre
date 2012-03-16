@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
     redirect_to '/users/sign_in' unless user_signed_in?
   end
 
+  # Load global conf
+  def load_conf
+    $conf = Conf.find(1)
+  end
 
 end
 

@@ -13,7 +13,8 @@
     .member_resume
       .avatar
         %a{:href=>member_path(member.id)}
-          = image_tag member.avatar.thumb('101x101').url, :alt=>"#{member.first_name} #{member.last_name}"
+          = avatar(member, '101x101')
+
       %span= link_to member.first_name, member_path(member.id)
 
   .clear{:style=>'height:20px;'}

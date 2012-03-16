@@ -15,15 +15,17 @@ fr:
     introduction_message: "vous a envoyé un mail depuis le Refuge. Son adresse mail pour lui répondre :"
   good_morning: "Bonjour"
   good_evening: "Bonsoir"
-  dashboard: "Dashboard"
-  members: "Membres"
+  dashboard: "Le topo"
+  members: "Les encordés"
+  meetings: "Réunions"
+  events: "Evènements"
   account: "Mon compte"
   messages: "Messages"
   search_for_members: "Rechercher un ou des membres..."
   search: "Rechercher !"
   create_new_member: "+ Créer un nouveau membre"
   member: "Membre"
-  admin: "Administrateur"
+  administrator: "Administrateur"
   create: "Créer"
   anonymous: "Anonyme"
   logout: "Déconnexion"
@@ -78,10 +80,53 @@ fr:
           attributes:
             first_name:
               blank: "Doit être renseigné !"
+  create_ad: "Créer une annonce"
+  your_ad: "Votre annonce... (500 caractères maximum)"
+  category: "Catégorie"
+  valid_until: "Annonce valable jusqu'au"
+  reply_this_ad: "Répondre à cette annonce"
+  valid_until: "Affichée jusqu'au"
+  create_ad: "+ Créer une annonce"
+  edit_this_ad: "Modifier mon annonce"
+  ad_visibility: "Cette annonce est visible par les membres de"
+  all_locations: "toutes les cordées"
+  location_: "la cordée de "
+  default_avatar: "Avatar par défaut"
+  delete_category_confirm: "Supprimer cette catégorie ainsi que toutes les annonces qu'elle contient ?!"
+  create_category: "+ Créer une nouvelle catégorie"
+  delete_location_confirm: "Supprimer définitivement cette cordée et tout ce qui s'y référe ?!"
+  location_name: "Nom"
+  location_address: "Adresse"
+  location_zip: "Code postal"
+  location_city: "Ville"
+  create_location: "+ Ajouter une cordée"
+  create_new_survey: "+ Créer un nouveau sondage"
+
+  admin:
+    global_conf: "+ Configuration globale"
+    ads: "+ Petites annonces"
+    surveys: "+ Sondages"
+    locations: "+ Gestion des Cordées"
+    default_older_surveys_to_display: "Nombre de précédents sondages à afficher"
+    categories_management: "Catégories des petites annonces"
+    current_occupations: "Taux d'occupation des différents cordées"
+    admin_panel: "Admin"
+
 
   date:
     formats:
-      default: "%Y-%m-%d"
+      default: "%d-%m-%Y"
+      short: "%b %d"
+      long: "%A %d %B %Y"
+
+    day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
+    abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
+    month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
+    abbr_month_names: [~, Jan, Fev, Mar, Avr, Mai, Juin, Juil, Aout, Sep, Oct, Nov, Dec]
+
+  time:
+    formats:
+      default: "%d-%m-%Y"
       short: "%b %d"
       long: "%A %d %B %Y"
 

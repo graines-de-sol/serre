@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
 
-  before_filter :is_logged
+  before_filter :is_logged, :load_conf
 
   # GET /members
   # List all members                                    HTML
@@ -28,7 +28,7 @@ class MembersController < ApplicationController
     @pro_networks = Network.with_urls(@user_profiles, :pro)
     @perso_networks = Network.with_urls(@user_profiles, :perso)
 
-    if Member.can_edit?(current_user, @member.user_id)
+    if Member.can_edit?(current_user, @member.id)
       render :template=>'/members/edit'
     else
       render :template=>'/members/show'

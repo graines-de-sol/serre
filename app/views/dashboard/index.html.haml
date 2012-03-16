@@ -1,115 +1,94 @@
 .span11#dashboard
-  #ads
-    #categories
-      %ul
-        %li
-          %a{:href=>'#', :id=>'active'}= "Toutes"
-        %li
-          %a{:href=>'#'}= "Achat/ventes"
-        %li
-          %a{:href=>'#'}= "Job"
-        %li
-          %a{:href=>'#'}= "Divers"
+  .left
+    #ads
+      #categories
+        %ul
+          %li
+            %a{:href=>'#', :id=>'active', :data=>{'category_id'=>0}}= "Toutes"
+          - @categories.each do |category|
+            %li
+              %a{:href=>'#', :data=>{'category_id'=>category.id}}= category.name
 
-      %a{:href=>'#', :class=>'btn btn-warning', :style=>'float:right;color:#fff;'}= "+ Créer une annonce"
+        %a{:href=>'#create_ad', :id=>'toggle_ad_creator', :class=>'btn btn-warning', :data=>{'toggle'=>'modal'}}= t('create_ad')
 
-    .ad
-      .avatar
-        = image_tag @temp.member.avatar.thumb('50x50').url, :alt=>"#{@temp.member.first_name} #{@temp.member.last_name}"
-      %h3= "Je vends une machine à laver état neuf"
-      %p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      .action_bar
-        %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@temp.member.user.email, :recipient_id=>@temp.member.id}, :class=>'mail_me'}
-          = 'Répondre à cette annonce'
-        %span= "Annonce affichée jusqu'au 25 mars 2012"
+      - @ads.each do |ad|
+        .ad{:id=>"ad_id_#{ad.id}"}
+          %input{:type=>'hidden', :class=>'category_id', :value=>ad.category_id}
+          %input{:type=>'hidden', :class=>'location_id', :value=>ad.location_id}
+          %input{:type=>'hidden', :class=>'end_at', :value=>l(ad.end_at, :format=>:long)}
 
-    .ad
-      .avatar
-        = image_tag @temp.member.avatar.thumb('50x50').url, :alt=>"#{@temp.member.first_name} #{@temp.member.last_name}"
-      %h3= "Cherche une paire de bras pour virée à Ikea"
-      %p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      .action_bar
-        %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@temp.member.user.email, :recipient_id=>@temp.member.id}, :class=>'mail_me'}
-          = 'Répondre à cette annonce'
-        %span= "Annonce affichée jusqu'au 25 mars 2012"
+          .avatar
+            = avatar(ad.member, '50x50')
 
-    .ad
-      .avatar
-        = image_tag @temp.member.avatar.thumb('50x50').url, :alt=>"#{@temp.member.first_name} #{@temp.member.last_name}"
-      %h3= "Je cherche des développeurs Web vraiment bons"
-      %p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      .action_bar
-        %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@temp.member.user.email, :recipient_id=>@temp.member.id}, :class=>'mail_me'}
-          = 'Répondre à cette annonce'
-        %span= "Annonce affichée jusqu'au 25 mars 2012"
+          %h3= ad.subject
+          %pre= ad.body
 
-    .ad
-      .avatar
-        = image_tag @temp.member.avatar.thumb('50x50').url, :alt=>"#{@temp.member.first_name} #{@temp.member.last_name}"
-      %h3= "Une autre annonce"
-      %p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      .action_bar
-        %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@temp.member.user.email, :recipient_id=>@temp.member.id}, :class=>'mail_me'}
-          = 'Répondre à cette annonce'
-        %span= "Annonce affichée jusqu'au 25 mars 2012"
+          .action_bar
+            - if Member.can_edit?(current_user, ad.member_id)
+              %a{:href=>'#create_ad', :data=>{'toggle'=>'modal', :ad_id=>ad.id}, :class=>'edit_ad'}
+                %i.icon-pencil
+                = t('edit_this_ad')
+              %span= "#{t('valid_until')} #{l(ad.end_at, :format=>:long)}"
 
-    .ad
-      .avatar
-        = image_tag @temp.member.avatar.thumb('50x50').url, :alt=>"#{@temp.member.first_name} #{@temp.member.last_name}"
-      %h3= "Encore une autre ici ! "
-      %p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      .action_bar
-        %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@temp.member.user.email, :recipient_id=>@temp.member.id}, :class=>'mail_me'}
-          = 'Répondre à cette annonce'
-        %span= "Annonce affichée jusqu'au 25 mars 2012"
+            - else
+              %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@temp.member.user.email, :recipient_id=>@temp.member.id}, :class=>'mail_me'}
+                %i.icon-envelope
+                = t('reply_this_ad')
+              %span= "#{t('valid_until')} #{l(ad.end_at, :format=>:long)}"
 
 
-  #occupation
-    #top
-      = t('actual_occupation_of_location')
-      %select
-        %option{:name=>'location'}= "Charpennes"
-    #gauge
-      #rate
-        = "80%"
+  .right
+    #occupation
+      #top
+        = t('actual_occupation_of_location')
+        %select
+          %option{:name=>'location'}= "Charpennes"
+      #gauge
+        #rate
+          = "80%"
 
-    %span= "Dernière mise à jour le lundi 31 Février à 25h12"
+      %span= "Dernière mise à jour le lundi 31 Février à 25h12"
 
-  #last_ones
-    %h2= "Derniers arrivants"
+    #last_ones
+      %h2= "Derniers arrivants"
 
-    - @new_ones.each do |user|
-      %a{:href=>member_path(user.member.id)}
-        = image_tag user.member.avatar.thumb('50x50').url, :alt=>"#{user.member.first_name} #{user.member.last_name}"
+      - @new_ones.each do |user|
+        %a{:href=>member_path(user.member.id)}
+          = avatar(user.member, '50x50')
 
-  #survey
-    %h2= "Sondage"
+    #survey
+      %h2= "Sondage"
 
-    %p.well
-      = "Pour ou contre l'organisation de combat de poissons combattants à la cordée ?"
+      %p.well
+        = "Pour ou contre l'organisation de combat de poissons combattants à la cordée ?"
 
-    %p
-      %input{:type=>'checkbox'}
-      = "Oui"
+      %p
+        %input{:type=>'radio', :name=>'answer', :class=>'answer'}
+        = "Oui"
 
-      %br
-      %input{:type=>'checkbox'}
-      = "Non"
+        %br
+        %input{:type=>'radio', :name=>'answer', :class=>'answer'}
+        = "Non"
 
-      %br
-      %input{:type=>'checkbox'}
-      = "Peut-être"
+        %br
+        %input{:type=>'radio', :name=>'answer', :class=>'answer'}
+        = "Peut-être"
 
-    .clear
-    %span= "Pour connaitre les résultats ? Votez !"
+      .clear
+      %span= "Pour connaitre les résultats ? Votez !"
 
-    #older_surveys
-      %span= "Résultats des précédents sondage..."
-      %br
-      %a{:href=>'#'}= "&raquo;&nbsp;Pour ou contre l'organisation de combat de poissons combattants à la cordée ?".html_safe
-      %a{:href=>'#'}= "&raquo;&nbsp;Pour ou contre l'organisation de combat de poissons combattants à la cordée ?".html_safe
-      %a{:href=>'#'}= "&raquo;&nbsp;Pour ou contre l'organisation de combat de poissons combattants à la cordée ?".html_safe
+      #older_surveys
+        %span= "Résultats des précédents sondage..."
+        %br
+        %a{:href=>'#'}= "&raquo;&nbsp;Pour ou contre l'organisation de combat de poissons combattants à la cordée ?".html_safe
+        %a{:href=>'#'}= "&raquo;&nbsp;Pour ou contre l'organisation de combat de poissons combattants à la cordée ?".html_safe
+        %a{:href=>'#'}= "&raquo;&nbsp;Pour ou contre l'organisation de combat de poissons combattants à la cordée ?".html_safe
 
+- # hidden
+%input{:type=>'hidden', :id=>'default_category_id', :value=>@categories.first.id}
+%input{:type=>'hidden', :id=>'default_time', :value=>l(7.days.since(Time.now), :format=>:long)}
 
 = render :partial=>'shared/send_mail_modal'
+= render :partial=>'create_ad_modal'
+= render :partial=>'survey_modal'
 
