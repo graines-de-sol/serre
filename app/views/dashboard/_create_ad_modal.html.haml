@@ -1,0 +1,41 @@
+#create_ad.modal.hide
+  .modal-header
+    %a.close{:data=>{'dismiss'=>'modal'}}
+      = '×'
+    %h3= t('create_ad')
+
+  .modal-body
+    = form_tag '/dashboard', :method=>:post do
+
+      = hidden_field_tag 'id'
+
+      .well{:style=>'height:60px;overflow:hidden;'}
+        .left
+          %span= t('category')
+          %select{:style=>'width:120px;', :name=>'ad[category_id]', :id=>'category_id'}
+            - @categories.each do |category|
+              %option{:value=>category.id}= category.name
+
+        .right
+          %span= t('valid_until')
+          %input{:type=>'text', :class=>'datepicker', :id=>'end_at', :name=>'ad[end_at]', :value=>"", :style=>'width:170px;'}
+
+        .clear
+        %p
+          = t('ad_visibility')
+          %select{:name=>'ad[location_id]', :id=>'ad_location_id'}
+            %option{:value=>'0'}= t('all_locations')
+            - @locations.each do |location|
+              %option{:value=>location.id}= "#{t('location_')} #{location.name}"
+
+      %label= t('email_subject')
+      %input{:type=>'text', :name=>'ad[subject]', :id=>'ad_subject', :style=>'width:520px;'}
+      %br
+      %label= t('your_ad')
+      %textarea{:name=>'ad[body]', :id=>'ad_body', :style=>'width:520px;height:80px;', :class=>'expandable', :maxlength=>'500'}
+
+      %br
+      = submit_tag t('send'), :class=>'btn  btn-warning', :style=>'float:right'
+
+    .clear
+

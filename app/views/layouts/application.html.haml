@@ -3,7 +3,11 @@
   %meta{:charset=>"utf-8"}
   %title= t('app.title')
   = stylesheet_link_tag 'application'
+  = stylesheet_link_tag '/javascripts/jquery_lightness/css/ui-lightness/jquery-ui-1.8.16.custom.css'
+
   = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
+  = javascript_include_tag '/javascripts/jquery_lightness/js/jquery-ui-1.8.16.custom.min.js'
+  = javascript_include_tag '/javascripts/jquery_lightness/js/jquery.ui.datepicker-fr.js'
   = javascript_include_tag 'application'
   = csrf_meta_tags
 

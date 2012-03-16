@@ -1,0 +1,100 @@
+.span11
+
+  %a{:href=>'#', :class=>'dotoggle', :data=>{'block'=>'#locations_conf'}}= t('admin.locations')
+  #locations_conf.well.hide
+    %p.label= t('admin.current_occupations')
+    = form_tag '/admin/locations/update', :method=>:put do
+      %table#locations_mgt
+        %tr
+          %th{:style=>'width:20px;'}= ''
+          %th= t('location_name')
+          %th= t('location_address')
+          %th= t('location_zip')
+          %th= t('location_city')
+
+        - Location.all.each do |location|
+          %tr
+            %td
+              %a{:href=>"/admin/locations/delete/#{location.id}", :id=>location.id, :data=>{'method'=>'delete', 'confirm'=>t('delete_location_confirm')}}
+                %i.icon-remove
+            %td= text_field_tag "location[#{location.id}][name]", location.name
+            %td= text_field_tag "location[#{location.id}][address]", location.address
+            %td= text_field_tag "location[#{location.id}][zip]", location.zip
+            %td= text_field_tag "location[#{location.id}][city]", location.city
+
+      %br
+      = submit_tag t('save'), :class=>'btn  btn-warning'
+
+    %a{:href=>"/admin/locations/create", :data=>{'method'=>'post'}}
+      = t('create_location')
+
+  %br
+  %br
+
+  %a{:href=>'#', :class=>'dotoggle', :data=>{'block'=>'#global_conf'}}= t('admin.global_conf')
+  #global_conf.well.hide
+    %p.label= t('default_avatar')
+    .left
+      = image_tag $conf.default_avatar.thumb('50x50').url, :alt => t('default_avatar')
+    .right
+      = form_tag '/admin/conf', :multipart => true do
+        = file_field_tag "conf[default_avatar]"
+        = submit_tag t('send'), :class=>'btn  btn-warning'
+    .clear
+  %br
+  %br
+
+  %a{:href=>'#', :class=>'dotoggle', :data=>{'block'=>'#categories_management'}}= t('admin.ads')
+  #categories_management.well.hide
+    %p.label= t('admin.categories_management')
+    = form_tag '/admin/categories/update', :method=>:put do
+      %table
+        - Category.all.each do |category|
+          %tr
+            %td
+              %a{:href=>"/admin/categories/delete/#{category.id}", :id=>category.id, :data=>{'method'=>'delete', 'confirm'=>t('delete_category_confirm')}}
+                %i.icon-remove
+            %td
+              %input{:type=>'text', :name=>"category[#{category.id}][name]", :value=>category.name}
+      %br
+      = submit_tag t('send'), :class=>'btn  btn-warning'
+
+    %a{:href=>"/admin/categories/create", :data=>{'method'=>'post'}}
+      = t('create_category')
+  %br
+  %br
+
+  %a{:href=>'#', :class=>'dotoggle', :data=>{'block'=>'#surveys_management'}}= t('admin.surveys')
+  #surveys_management.well
+    %p.label= t('admin.current_occupations')
+    = form_tag '/admin/locations/update', :method=>:put do
+      %table#locations_mgt
+        %tr
+          %th{:style=>'width:20px;'}= ''
+          %th= t('location_name')
+          %th= t('location_address')
+
+        - @survey.children.each do |child|
+          %tr
+            %td
+              %a{:href=>"/admin/locations/delete/#{location.id}", :id=>location.id, :data=>{'method'=>'delete', 'confirm'=>t('delete_location_confirm')}}
+                %i.icon-remove
+            %td= text_field_tag "survey[#{survey.id}][question]", location.name
+            %td= text_field_tag "survey[#{survey.id}][answers]", location.address
+
+      %br
+      = submit_tag t('save'), :class=>'btn  btn-warning'
+
+    %a{:href=>"/admin/locations/create", :data=>{'method'=>'post'}}
+      = t('create_new_survey')
+    %br
+    %br
+    %p.label= t('admin.default_older_surveys_to_display')
+    = form_tag '/admin/conf' do
+      = text_field_tag "conf[max_surveys]", $conf.max_surveys, :style=>'width:30px;'
+      = submit_tag t('save'), :class=>'btn  btn-warning'
+    .clear
+
+  %br
+  %br
+

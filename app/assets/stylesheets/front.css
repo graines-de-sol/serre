@@ -1,11 +1,17 @@
 body {
-  background:url(/assets/body_bg_8.png) center;
+  background:url(/assets/body_bg_8.png) top center;
 }
 h1 {
   font-family: Georgia, 'Palatino Linotype', Impact;font-size:50px;font-style:italic;color:#2f2f2f;
 }
 h2 {
   font-family: Georgia, 'Palatino Linotype', Impact;font-size:30px;font-style:italic;color:#2f2f2f;
+}
+.left {
+  float:left;
+}
+.right{
+  float:right;
 }
 #top_bar {
   width:100%;
@@ -78,7 +84,7 @@ h2 {
   margin-top:2px;
 }
 #profil_link {
-  margin:8px auto auto 10px;
+  margin:10px auto auto 10px;
   float:left;
 }
 #profil_link a {
@@ -211,10 +217,6 @@ input#member_presence {
   float:right;
   margin:5px 20px auto auto;
 }
-a.mail_me {
-  padding-left:30px;
-  background:url('/assets/icon_mail_big.png') left no-repeat;
-}
 td.social_profiles {
   padding-top:30px;
 }
@@ -288,7 +290,6 @@ td.social_profiles {
 }
 #ads {
   width:600px;
-  float:left;
 }
 #ads #categories ul {
   float:left;
@@ -321,8 +322,11 @@ td.social_profiles {
   background-color:#d4d4d4;
   color:#fff;
 }
+#toggle_ad_creator {
+  float:right;
+  color:#fff;
+}
 .ad {
-  min-height:100px;
   width:560px;
   padding:10px;
   margin-bottom:10px;
@@ -345,8 +349,14 @@ td.social_profiles {
   height:51px;
   background-color:#fff;
 }
-.ad p {
-  margin-top:5px;
+.ad pre {
+  background-color:#fff;
+  border:none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  color: #333;
+  text-rendering: optimizelegibility;
 }
 .ad .action_bar {
   padding-top:5px;
@@ -362,7 +372,6 @@ td.social_profiles {
 }
 #occupation {
   width:340px;
-  float:right;
   height:120px;
   margin-right:20px;
 }
@@ -390,7 +399,6 @@ td.social_profiles {
   width:150px;
 }
 #last_ones {
-  float:right;
   width:360px;
   height:110px;
 }
@@ -414,7 +422,6 @@ td.social_profiles {
   float:left;
 }
 #survey {
-  float:right;
   width:360px;
 }
 #survey p.well{
@@ -444,5 +451,32 @@ td.social_profiles {
 #older_surveys span {
   color:#333;
   line-height:40px;
+}
+.modal-body .result {
+  background-color:#a7cc49;
+  height:20px;
+  width:300px;
+  padding: 5px;
+  color:#fff;
+  font-weight:bold;
+  margin-top:10px;
+  -moz-box-shadow: inset 0px 0px 5px 0px #656565;
+  -webkit-box-shadow: inset 0px 0px 5px 0px #656565;
+  -o-box-shadow: inset 0px 0px 5px 0px #656565;
+  box-shadow: inset 0px 0px 5px 0px #656565;
+}
+.modal-body span {
+  font-style:italic;
+}
+.modal-body #wait {
+  text-align:center;
+  padding-top:50px;
+  padding-bottom:50px;
+}
+table#locations_mgt input {
+  width:180px;
+}
+table#locations_mgt tr th {
+  text-align:left;
 }
 

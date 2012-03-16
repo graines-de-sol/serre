@@ -15,6 +15,14 @@ module ApplicationHelper
       {:name       => 'members',
        :icon       => 'icon-search icon-white',
        :controller => 'members'
+      },
+      {:name       => 'meetings',
+       :icon       => 'icon-time icon-white',
+       :controller => 'members'
+      },
+      {:name       => 'events',
+       :icon       => 'icon-glass icon-white',
+       :controller => 'members'
       }
     ]
   end
@@ -92,7 +100,15 @@ module ApplicationHelper
         :year  => obj['year'].to_i
       }
     end
+  end
 
+  # Show member avatar or default avatar
+  def avatar(member, size)
+    if member.avatar
+      image_tag member.avatar.thumb(size).url, :alt=>"#{member.first_name} #{member.last_name}"
+    else
+      image_tag $conf.default_avatar.thumb(size).url, :alt=>t('default_avatar')
+    end
   end
 
 end

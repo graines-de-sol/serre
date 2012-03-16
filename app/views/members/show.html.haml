@@ -1,7 +1,7 @@
 .span12
   .span3
     .avatar
-      = image_tag @member.avatar.thumb('180x180').url
+      = avatar(@member, '180x180')
 
   .span8
     %h1= @member.first_name
