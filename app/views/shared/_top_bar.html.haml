@@ -13,7 +13,7 @@
           %i{:class=>tab[:icon]}
           = t(tab[:name])
 
-    - if current_user.role != 'admin'
+    - if current_user.role == 'admin'
       %li
         %a{:href=>'/admin'}
           %i{:class=>'icon-ban-circle icon-white'}
