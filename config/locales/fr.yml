@@ -100,7 +100,24 @@ fr:
   location_zip: "Code postal"
   location_city: "Ville"
   create_location: "+ Ajouter une cordée"
-  create_new_survey: "+ Créer un nouveau sondage"
+  create_new_survey: "» Créer un nouveau sondage"
+  create_new_answer: "+ Ajouter une réponse"
+  survey_question: "Réponse possible"
+  survey_score: "Score"
+  delete_answer_confirm: "Supprimer cette question du sondage ?!"
+  current_survey: "Sondage en cours actuellement"
+  vote_to_know_the_results: "Pour connaitre les résultats ? Votez !"
+  older_surveys: "Résultats des précédents sondage..."
+  votes_since: "votes enregistrés depuis le"
+  last_update: "Dernière mise à jour "
+  survey: "Sondage"
+  newcomers: "Derniers arrivants"
+  all_categories: "Toutes"
+  content_visibility: "Cet article est visible par les membres de la Cordée de "
+  title: "Titre de l'article"
+  calendar: "Snippet Google Calendar"
+  video: "Code de partage Video (Youtube, DailyMotion ou Vimeo)"
+  content: "Votre article"
 
   admin:
     global_conf: "+ Configuration globale"
@@ -126,9 +143,9 @@ fr:
 
   time:
     formats:
-      default: "%d-%m-%Y"
+      default: "%A %d %B %Y"
       short: "%b %d"
-      long: "%A %d %B %Y"
+      long: "%A %d %B %Y %H:%M"
 
     day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
     abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]

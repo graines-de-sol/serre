@@ -1,0 +1,8 @@
+.span11
+
+  - if current_user.role == 'user'
+    = render :partial => 'edit'
+
+  - else
+    = render :partial => 'show'
+

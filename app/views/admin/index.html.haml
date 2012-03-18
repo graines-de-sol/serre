@@ -66,27 +66,36 @@
 
   %a{:href=>'#', :class=>'dotoggle', :data=>{'block'=>'#surveys_management'}}= t('admin.surveys')
   #surveys_management.well
-    %p.label= t('admin.current_occupations')
-    = form_tag '/admin/locations/update', :method=>:put do
-      %table#locations_mgt
+    %p.label= t('current_survey')
+    %h3= @survey.question
+    .hr
+    %a{:href=>"/admin/answers/create/#{@survey.id}", :data=>{'method'=>'post'}, :style=>'float:right;'}
+      = t('create_new_answer')
+    = form_tag '/admin/surveys/update', :method=>:put do
+      %table#survey_mgt
         %tr
           %th{:style=>'width:20px;'}= ''
-          %th= t('location_name')
-          %th= t('location_address')
+          %th= t('survey_question')
+          %th= t('survey_score')
 
-        - @survey.children.each do |child|
+        - @survey.children.each do |answer|
           %tr
             %td
-              %a{:href=>"/admin/locations/delete/#{location.id}", :id=>location.id, :data=>{'method'=>'delete', 'confirm'=>t('delete_location_confirm')}}
+              %a{:href=>"/admin/answers/delete/#{answer.id}", :id=>answer.id, :data=>{'method'=>'delete', 'confirm'=>t('delete_answer_confirm')}}
                 %i.icon-remove
-            %td= text_field_tag "survey[#{survey.id}][question]", location.name
-            %td= text_field_tag "survey[#{survey.id}][answers]", location.address
+            %td= text_field_tag "survey[#{answer.id}][question]", answer.question
+            %td= text_field_tag "survey[#{answer.id}][score]", answer.score
+
 
       %br
       = submit_tag t('save'), :class=>'btn  btn-warning'
 
-    %a{:href=>"/admin/locations/create", :data=>{'method'=>'post'}}
-      = t('create_new_survey')
+    = form_tag '/admin/surveys/create' do
+      %p
+        = t('create_new_survey')
+        %input{:type=>'text', :name=>'question'}
+        = submit_tag t('create'), :class=>'btn  btn-warning'
+
     %br
     %br
     %p.label= t('admin.default_older_surveys_to_display')

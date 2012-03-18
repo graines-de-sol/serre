@@ -1,12 +1,8 @@
-.result{:style=>'width:340px;'}= '10%'
-%span= "Oui"
+- @survey.children.each do |s|
 
-.result{:style=>'width:510px;'}= '100%'
-%span= "Non"
-
-.result{:style=>'width:220px;'}= '30%'
-%span= "Peut-être"
+  .result{:style=>"width:#{gauge(@results[s.id])}px;"}= "#{@results[s.id]}%"
+  %span= s.question
 
 .clear{:style=>'height:20px;'}
-%p= "42 votes enregistrés depuis le mercredi 25 Mars 2012"
+%p= "#{@survey.voters.length} #{t('votes_since')} #{l(@survey.created_at, :format=>:long)}"
 

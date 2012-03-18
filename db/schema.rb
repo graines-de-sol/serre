@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316141815) do
+ActiveRecord::Schema.define(:version => 20120318134004) do
 
   create_table "ads", :force => true do |t|
     t.string  "subject"
@@ -33,11 +33,12 @@ ActiveRecord::Schema.define(:version => 20120316141815) do
   end
 
   create_table "locations", :force => true do |t|
-    t.string  "name"
-    t.string  "address"
-    t.string  "city"
-    t.string  "zip"
-    t.integer "occupation"
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "zip"
+    t.integer  "occupation"
+    t.datetime "updated_at", :null => false
   end
 
   create_table "members", :force => true do |t|
@@ -70,6 +71,18 @@ ActiveRecord::Schema.define(:version => 20120316141815) do
     t.string  "label"
   end
 
+  create_table "pages", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "location_id"
+    t.integer  "position"
+    t.string   "category"
+    t.string   "title"
+    t.text     "content"
+    t.text     "calendar"
+    t.text     "video"
+  end
+
   create_table "profiles", :force => true do |t|
     t.integer "member_id"
     t.integer "network_id"
@@ -84,10 +97,12 @@ ActiveRecord::Schema.define(:version => 20120316141815) do
   end
 
   create_table "surveys", :force => true do |t|
-    t.string  "question"
-    t.integer "answers"
-    t.integer "parent_id"
-    t.integer "location.id"
+    t.string   "question"
+    t.integer  "score",       :default => 0, :null => false
+    t.integer  "parent_id",   :default => 0, :null => false
+    t.integer  "location_id"
+    t.datetime "created_at",                 :null => false
+    t.text     "voters",                     :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -66,15 +66,76 @@ $ ->
           $(this).hide()
     $(this).attr('id', 'active')
 
-  # Launch survey's modal
+  # Push vote and launch current survey's modal
   $('.answer').click ->
     $("#survey_modal").modal()
+    $("#survey_modal .modal-header h3").text $('#question').text()
 
     $.ajax
       url: '/dashboard/survey'
       type: 'PUT'
       data:
-        polling_id:2
+        survey_id:$('#current_survey_id').val()
+        vote:$(this).val()
       success : (data) ->
         $('#survey_modal .modal-body').html data
+
+  # Show survey's result in modal
+  $('#older_surveys ul li a').click ->
+    $("#survey_modal").modal()
+    $("#survey_modal .modal-header h3").text $(this).text()
+
+    $.ajax
+      url: '/dashboard/survey'
+      type: 'PUT'
+      data:
+        survey_id:$(this).data('survey_id')
+      success : (data) ->
+        $('#survey_modal .modal-body').html data
+
+  # Animate gauge when admin
+  $('#rate.draggable').draggable
+    axis : 'x',
+    containment: 'parent',
+    cursor: 'move',
+    start: (event,ui) ->
+      $('#rate').css('marginLeft':'0px')
+    stop : (event, ui) ->
+      $.ajax
+        url: '/admin/occupation'
+        type: 'PUT'
+        data:
+          location_id:$('#locations_select').val(),
+          rate:computeRate($(this))
+        success : (data) ->
+          $('#rate.draggable').text(computeRate($('#rate.draggable')))
+
+  # Position gauge on location selection
+  $('#locations_select').change ->
+    setGauge $(this).val()
+
+  # Position gauge on page loading
+  setGauge $('#locations_select').val()
+
+# Compute rate value
+computeRate = (e) ->
+  m_left = e.css('left').split('px')[0]
+  # 298 is the size of the gauge container
+  percentage = Math.round((m_left/298)*100)
+  out = percentage+'%'
+
+# Compute margin-left for rate from occupation
+computeMargin = (percentage) ->
+  percentage = Math.round((298*percentage)/100)
+
+# Move gauge for selected location
+setGauge = (id) ->
+  $('#rate').css('marginLeft':'0px')
+  $('.occupation').addClass('hide')
+  $('#location_id_'+id).removeClass('hide')
+  occupation =  $('#location_id_'+id).data('occupation')
+  $('#rate').animate(
+    'marginLeft':computeMargin(occupation)
+  )
+  $('#rate').text(occupation+'%')
 

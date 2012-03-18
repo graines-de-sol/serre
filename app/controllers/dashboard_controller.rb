@@ -21,6 +21,8 @@ class DashboardController < ApplicationController
       ]).order('created_at DESC').includes(:member)
 
     @locations = Location.all
+
+    @surveys = Survey.where(['location_id = ? AND parent_id = 0', $conf.default_location_id]).order('created_at DESC')
   end
 
   # POST /dashboard
@@ -41,9 +43,17 @@ class DashboardController < ApplicationController
   end
 
   # PUT /dashboard/:id
-  # Create/update adds                                 REDIRECT
+  # Update then output survey stats                         XHR
   # -----------------------------------------------------------
   def update
+
+    @survey = Survey.find(params[:survey_id])
+
+    if !@survey.voters.include?(current_user.member.id) && params[:vote]
+      Survey.vote(current_user.member.id, params[:vote])
+    end
+
+    @results = Survey.results(@survey)
 
     render :partial => '/dashboard/survey_response'
   end

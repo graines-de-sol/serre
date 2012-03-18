@@ -9,11 +9,11 @@
   %ul#main_menu
     - tabs.each do |tab|
       %li{:class=>('active' if params[:controller] == tab[:controller])}
-        %a{:href=>"/#{tab[:controller]}"}
+        %a{:href=>"/#{tab[:url]}"}
           %i{:class=>tab[:icon]}
           = t(tab[:name])
 
-    - if current_user.role == 'admin'
+    - if current_user.role != 'admin'
       %li
         %a{:href=>'/admin'}
           %i{:class=>'icon-ban-circle icon-white'}

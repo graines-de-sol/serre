@@ -8,21 +8,21 @@ module ApplicationHelper
   # Left menu tabs, remove/add you own here
   def tabs
     tabs = [
-      {:name       => 'dashboard',
-       :icon       => 'icon-home icon-white',
-       :controller => 'dashboard'
+      {:name   => 'dashboard',
+       :icon   => 'icon-home icon-white',
+       :url    => 'dashboard'
       },
-      {:name       => 'members',
-       :icon       => 'icon-search icon-white',
-       :controller => 'members'
+      {:name   => 'members',
+       :icon   => 'icon-search icon-white',
+       :url    => 'members'
       },
-      {:name       => 'meetings',
-       :icon       => 'icon-time icon-white',
-       :controller => 'members'
+      {:name   => 'meetings',
+       :icon   => 'icon-time icon-white',
+       :url    => 'pages/meetings'
       },
-      {:name       => 'events',
-       :icon       => 'icon-glass icon-white',
-       :controller => 'members'
+      {:name   => 'events',
+       :icon   => 'icon-glass icon-white',
+       :url    => 'pages/events'
       }
     ]
   end
@@ -109,6 +109,11 @@ module ApplicationHelper
     else
       image_tag $conf.default_avatar.thumb(size).url, :alt=>t('default_avatar')
     end
+  end
+
+  # Format gauge with for surveys
+  def gauge(percentage)
+    (((percentage.to_f/100.to_f)*490.to_f)+30.to_f).to_i
   end
 
 end

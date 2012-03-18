@@ -7,6 +7,9 @@ h1 {
 h2 {
   font-family: Georgia, 'Palatino Linotype', Impact;font-size:30px;font-style:italic;color:#2f2f2f;
 }
+table tr th {
+  text-align:left;
+}
 .left {
   float:left;
 }
@@ -389,14 +392,18 @@ td.social_profiles {
   width:40px;
   height:31px;
   background:url('/assets/alpha_bg_60.png');
-  margin:0px auto auto 250px;
-  float:left;
+  margin:0px;
   padding-top:10px;
   color:#fff;
   text-align:center;
 }
 #occupation #top select {
   width:150px;
+}
+a.occupation {
+  color:#d4d4d4;
+  text-decoration:none;
+  cursor:default;
 }
 #last_ones {
   width:360px;
@@ -432,8 +439,12 @@ td.social_profiles {
   font-weight:normal;
   font-style:italic;
 }
-#survey p {
-  margin:5px auto 5px 10px;
+#survey ul {
+  margin-left:0;
+}
+#survey ul li {
+  list-style-type: none;
+  margin-left:5px
 }
 #dashboard span {
   color:#999;
@@ -476,7 +487,22 @@ td.social_profiles {
 table#locations_mgt input {
   width:180px;
 }
-table#locations_mgt tr th {
-  text-align:left;
+table#survey_mgt tr td input {
+  width:300px;
+}
+table#survey_mgt tr td:last-child input {
+  width:30px;
+}
+#new_content input[type='text'], #new_content textarea {
+  width:870px;
+}
+#new_content textarea {
+  height:200px;
+}
+#contents input[type='text'], #contents textarea {
+  width:870px;
+}
+#contents textarea {
+  height:200px;
 }
 

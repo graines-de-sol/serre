@@ -4,7 +4,7 @@
       #categories
         %ul
           %li
-            %a{:href=>'#', :id=>'active', :data=>{'category_id'=>0}}= "Toutes"
+            %a{:href=>'#', :id=>'active', :data=>{'category_id'=>0}}= t('all_categories')
           - @categories.each do |category|
             %li
               %a{:href=>'#', :data=>{'category_id'=>category.id}}= category.name
@@ -36,56 +36,57 @@
                 = t('reply_this_ad')
               %span= "#{t('valid_until')} #{l(ad.end_at, :format=>:long)}"
 
-
   .right
     #occupation
       #top
         = t('actual_occupation_of_location')
-        %select
-          %option{:name=>'location'}= "Charpennes"
-      #gauge
-        #rate
-          = "80%"
+        %select#locations_select
+          - @locations.each do |location|
+            %option{:value=>location.id, :selected=>location.id == current_user.member.location_id}= location.name
 
-      %span= "Dernière mise à jour le lundi 31 Février à 25h12"
+      #gauge
+        #rate{:class=>('draggable' if current_user.role == 'user')}
+
+      - @locations.each do |location|
+        %a{:href=>'#', :class=>"occupation #{'hide' if location.id != current_user.member.location_id}", :id=>"location_id_#{location.id}", :data=>{'occupation'=>location.occupation}}
+          = "#{t('last_update')} #{l(location.updated_at, :format=>:long)}"
 
     #last_ones
-      %h2= "Derniers arrivants"
+      %h2= t('newcomers')
 
       - @new_ones.each do |user|
         %a{:href=>member_path(user.member.id)}
           = avatar(user.member, '50x50')
 
-    #survey
-      %h2= "Sondage"
+    - if @surveys
+      #survey
+        %h2= t('survey')
 
-      %p.well
-        = "Pour ou contre l'organisation de combat de poissons combattants à la cordée ?"
+        %p.well#question
+          = @surveys.first.question
 
-      %p
-        %input{:type=>'radio', :name=>'answer', :class=>'answer'}
-        = "Oui"
+        %ul
+          - @surveys.first.children.each do |s|
+            %li
+              %input{:type=>'radio', :name=>'answer', :class=>'answer', :value=>s.id}
+              = s.question
 
-        %br
-        %input{:type=>'radio', :name=>'answer', :class=>'answer'}
-        = "Non"
+        .clear
+        %span= t('vote_to_know_the_results')
 
-        %br
-        %input{:type=>'radio', :name=>'answer', :class=>'answer'}
-        = "Peut-être"
+        #older_surveys
+          %span= t('older_surveys')
+          %ul
+            - @surveys.offset(1).each do |survey|
+              %li
+                %a{:href=>'#', :data=>{'survey_id'=>survey.id}}= survey.question
 
-      .clear
-      %span= "Pour connaitre les résultats ? Votez !"
-
-      #older_surveys
-        %span= "Résultats des précédents sondage..."
-        %br
-        %a{:href=>'#'}= "&raquo;&nbsp;Pour ou contre l'organisation de combat de poissons combattants à la cordée ?".html_safe
-        %a{:href=>'#'}= "&raquo;&nbsp;Pour ou contre l'organisation de combat de poissons combattants à la cordée ?".html_safe
-        %a{:href=>'#'}= "&raquo;&nbsp;Pour ou contre l'organisation de combat de poissons combattants à la cordée ?".html_safe
 
 - # hidden
-%input{:type=>'hidden', :id=>'default_category_id', :value=>@categories.first.id}
+- if @categories
+  %input{:type=>'hidden', :id=>'default_category_id', :value=>(@categories.first.id if @categories)}
+- if @surveys
+  %input{:type=>'hidden', :id=>'current_survey_id', :value=>(@surveys.first.id if @surveys)}
 %input{:type=>'hidden', :id=>'default_time', :value=>l(7.days.since(Time.now), :format=>:long)}
 
 = render :partial=>'shared/send_mail_modal'

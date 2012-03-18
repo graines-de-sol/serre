@@ -1,0 +1,56 @@
+%a{:href=>'#', :class=>'dotoggle', :data=>{'block'=>'#new_content'}}= "+ Créer un article"
+
+#new_content.hide
+  = form_tag "/pages" do
+
+    = hidden_field_tag 'page[category]', params[:id]
+
+    %p.well
+      = t('content_visibility')
+      %select{:name=>'page[location_id]'}
+        %option{:value=>0}= t('all_locations')
+        - @locations.each do |location|
+          %option{:value=>location.id}= location.name
+
+    %label= t('title')
+    = text_field_tag 'page[title]'
+
+    %label= t('calendar')
+    = text_field_tag 'page[calendar]'
+
+    %label= t('video')
+    = text_field_tag 'page[video]'
+
+    %label= t('content')
+    = text_area_tag 'page[content]', {}, :class=>'expandable'
+    %br
+    = submit_tag t('save'), :class=>'btn  btn-warning'
+
+#contents
+  - @pages.each do |page|
+
+    = form_tag "/pages/#{page.id}" do
+
+      = hidden_field_tag 'page[category]', params[:id]
+
+      %p.well
+        = t('content_visibility')
+        %select{:name=>'page[location_id]'}
+          %option{:value=>0}= t('all_locations')
+          - @locations.each do |location|
+            %option{:value=>location.id}= location.name
+
+      %label= t('title')
+      = text_field_tag 'page[title]', page.title
+
+      %label= t('calendar')
+      = text_field_tag 'page[calendar]', page.calendar
+
+      %label= t('video')
+      = text_field_tag 'page[video]', page.video
+
+      %label= t('content')
+      = text_area_tag 'page[content]', page.content, :class=>'expandable'
+      %br
+      = submit_tag t('save'), :class=>'btn  btn-warning'
+
