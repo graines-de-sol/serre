@@ -45,7 +45,7 @@
             %option{:value=>location.id, :selected=>location.id == current_user.member.location_id}= location.name
 
       #gauge
-        #rate{:class=>('draggable' if current_user.role == 'user')}
+        #rate{:class=>('draggable' if current_user.role == 'admin')}
 
       - @locations.each do |location|
         %a{:href=>'#', :class=>"occupation #{'hide' if location.id != current_user.member.location_id}", :id=>"location_id_#{location.id}", :data=>{'occupation'=>location.occupation}}

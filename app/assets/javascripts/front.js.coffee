@@ -100,6 +100,7 @@ $ ->
     cursor: 'move',
     start: (event,ui) ->
       $('#rate').css('marginLeft':'0px')
+      $('#rate').text('0%')
     stop : (event, ui) ->
       $.ajax
         url: '/admin/occupation'
@@ -112,6 +113,8 @@ $ ->
 
   # Position gauge on location selection
   $('#locations_select').change ->
+    $('#rate').css('marginLeft':'0px')
+    $('#rate').text('0%')
     setGauge $(this).val()
 
   # Position gauge on page loading

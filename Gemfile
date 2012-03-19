@@ -26,6 +26,7 @@ gem 'dragonfly', '~>0.9.10'
 gem 'attribute_normalizer'
 gem 'simple_form'
 gem 'acts_as_tree_rails3'
+gem 'mercury-rails', :git => 'git://github.com/jejacks0n/mercury.git'
 
 group :test do
   # Pretty printed test output
