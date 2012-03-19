@@ -29,7 +29,7 @@ module ApplicationHelper
 
   # Which role are you playing ?
   def is_admin
-    current_user.role == 'admin' ? true : false
+    (current_user.role == 'admin' && !current_user.view_as_user) ? true : false
   end
 
   # Generate I18n for JS
@@ -116,5 +116,14 @@ module ApplicationHelper
     (((percentage.to_f/100.to_f)*490.to_f)+30.to_f).to_i
   end
 
+  # Fulfill Google calendar code
+  def show_calendar(cal)
+    '<iframe src="'+cal+'" style="border-width:0" width="875" height="600" frameborder="0" scrolling="no"></iframe>' if cal
+  end
+
+  # Fulfill Embed video snippet
+  def show_video(vid)
+    '<iframe width="560" height="315" src="http://'+vid+'" frameborder="0" allowfullscreen></iframe>' if vid
+  end
 end
 

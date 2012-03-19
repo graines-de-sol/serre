@@ -23,6 +23,8 @@ class DashboardController < ApplicationController
     @locations = Location.all
 
     @surveys = Survey.where(['location_id = ? AND parent_id = 0', $conf.default_location_id]).order('created_at DESC')
+
+    @birthdays = Member.birthday_today
   end
 
   # POST /dashboard
@@ -49,8 +51,12 @@ class DashboardController < ApplicationController
 
     @survey = Survey.find(params[:survey_id])
 
-    if !@survey.voters.include?(current_user.member.id) && params[:vote]
+    @voters_count = @survey.voters.length
+    @survey.voters.include?(current_user.member.id)? @already_voted = true : @already_voted = false
+
+    if !@already_voted && params[:vote]
       Survey.vote(current_user.member.id, params[:vote])
+      @voters_count += 1
     end
 
     @results = Survey.results(@survey)

@@ -7,9 +7,12 @@
     %h1= @member.first_name
     %h2= @member.last_name
 
-    #baseline= @member.baseline
+    - if @member.baseline
+      #baseline= @member.baseline
+
     #description= "#{@member.status.name if @member.status}"
     %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@member.user.email, :recipient_id=>@member.id}, :class=>'mail_me'}
+      %i.icon-envelope
       = t('send_a_message')
 
   .clear{:style=>'height:30px;'}

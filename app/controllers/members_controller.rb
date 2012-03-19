@@ -57,11 +57,15 @@ class MembersController < ApplicationController
 
     @member = Member.find(params[:id])
 
-    if params[:user]
-      this_user = User.find(@member.user_id)
-      request = this_user.update_attributes(params[:user])
+    if current_user.role == 'admin'
+      User.find(@member.user_id).update_attributes(:view_as_user=>params[:view_as_user])
+    end
 
+    if params[:user]
+      # Update Mail & password
+      User.find(@member.user_id).update_attributes(params[:user])
     else
+      # Update member's profile
       @member.update_attributes(params[:member])
 
       Profile.update(params[:profile], @member.id)

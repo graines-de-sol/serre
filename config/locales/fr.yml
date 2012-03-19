@@ -11,8 +11,15 @@ fr:
     password_required: "Merci de saisir votre mot de passe"
   confirms:
     delete_member: "Exclure définitivement ce membre du Refuge ?!"
+    delete_article: "Supprimer cet article ?!"
   email:
     introduction_message: "vous a envoyé un mail depuis le Refuge. Son adresse mail pour lui répondre :"
+  searchable_fields:
+    organisation: "Nom de l'entreprise"
+    first_name: "Prénom"
+    last_name: "Nom"
+    prestations: "Types de prestations"
+    powers: "Super-pouvoirs"
   good_morning: "Bonjour"
   good_evening: "Bonsoir"
   dashboard: "Le topo"
@@ -109,6 +116,8 @@ fr:
   vote_to_know_the_results: "Pour connaitre les résultats ? Votez !"
   older_surveys: "Résultats des précédents sondage..."
   votes_since: "votes enregistrés depuis le"
+  first_vote: "Vous êtes le premier à voter !"
+  already_voted: "Vous vous êtes déja exprimé concernant ce sondage"
   last_update: "Dernière mise à jour "
   survey: "Sondage"
   newcomers: "Derniers arrivants"
@@ -118,16 +127,28 @@ fr:
   calendar: "Snippet Google Calendar"
   video: "Code de partage Video (Youtube, DailyMotion ou Vimeo)"
   content: "Votre article"
+  today_is_birthday_of: "Aujourd'hui c'est l'anniversaire de "
+  view_as_user_label: "Je veux voir le site en tant qu'utilisateur (et non administrateur)"
+  handcrafted_with_love: "Handcrafted with love by "
+  guillaume_barillot: "Guillaume Barillot"
+  using: " using "
+  ror: "Ruby on Rails"
+  cmon: "C'mon, "
+  fork_me: "fork me on Github !"
+  and: " and "
+  twitter_bootstrap: "Twitter Boostrap"
 
   admin:
-    global_conf: "+ Configuration globale"
-    ads: "+ Petites annonces"
-    surveys: "+ Sondages"
-    locations: "+ Gestion des Cordées"
     default_older_surveys_to_display: "Nombre de précédents sondages à afficher"
     categories_management: "Catégories des petites annonces"
-    current_occupations: "Taux d'occupation des différents cordées"
+    current_locations: "Les différents cordées reliées au refuge"
     admin_panel: "Admin"
+    question_for_new_survey: "Question du nouveau sondage"
+    tabs:
+      surveys: "Sondages"
+      locations: "Cordées"
+      ads: "Annonces"
+      conf: "Configuration"
 
 
   date:

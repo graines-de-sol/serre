@@ -22,6 +22,6 @@ Refuge::Application.routes.draw do
   resources :members
   resources :pages
   resources :dashboard
-  resources :admin, :only=>'index'
+  resources :admin, :only=>'show'
 end
 

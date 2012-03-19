@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120318211750) do
+ActiveRecord::Schema.define(:version => 20120319150452) do
 
   create_table "ads", :force => true do |t|
     t.string  "subject"
@@ -27,18 +27,18 @@ ActiveRecord::Schema.define(:version => 20120318211750) do
   end
 
   create_table "confs", :force => true do |t|
+    t.date   "created_at"
     t.string "default_avatar_uid"
     t.string "default_location_id"
     t.string "max_surveys"
   end
 
   create_table "locations", :force => true do |t|
-    t.string   "name"
-    t.string   "address"
-    t.string   "city"
-    t.string   "zip"
-    t.integer  "occupation"
-    t.datetime "updated_at", :null => false
+    t.string  "name"
+    t.string  "address"
+    t.string  "city"
+    t.string  "zip"
+    t.integer "occupation"
   end
 
   create_table "members", :force => true do |t|
@@ -63,15 +63,6 @@ ActiveRecord::Schema.define(:version => 20120318211750) do
   end
 
   add_index "members", ["status_id"], :name => "index_members_on_status_id"
-
-  create_table "mercury_images", :force => true do |t|
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "networks", :force => true do |t|
     t.string  "name"
@@ -106,12 +97,11 @@ ActiveRecord::Schema.define(:version => 20120318211750) do
   end
 
   create_table "surveys", :force => true do |t|
-    t.string   "question"
-    t.integer  "score",       :default => 0, :null => false
-    t.integer  "parent_id",   :default => 0, :null => false
-    t.integer  "location_id"
-    t.datetime "created_at",                 :null => false
-    t.text     "voters",                     :null => false
+    t.string  "question"
+    t.integer "answers"
+    t.integer "parent_id"
+    t.integer "location_id"
+    t.date    "created_at"
   end
 
   create_table "users", :force => true do |t|
@@ -128,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20120318211750) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role",                                  :default => "user"
+    t.boolean  "view_as_user"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

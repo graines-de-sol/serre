@@ -131,7 +131,7 @@ computeRate = (e) ->
 computeMargin = (percentage) ->
   percentage = Math.round((298*percentage)/100)
 
-# Move gauge for selected location
+# Move gauge when location changes
 setGauge = (id) ->
   $('#rate').css('marginLeft':'0px')
   $('.occupation').addClass('hide')

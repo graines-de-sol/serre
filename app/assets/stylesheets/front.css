@@ -505,4 +505,21 @@ table#survey_mgt tr td:last-child input {
 #contents textarea {
   height:200px;
 }
+#bottom_margin {
+  height:30px;
+}
+#footer {
+  clear:both;
+  height:30px;
+  padding-top:5px;
+  width:960px;
+  margin:0 auto;
+  background-color:#fff;
+  color:#afafaf;
+  text-align:center;
+}
+#footer a {
+  color:#afafaf;
+  text-decoration:underline;
+}
 

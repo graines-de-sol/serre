@@ -25,7 +25,7 @@
         = t('status')
         = f.select(:status_id, Status.all.map{|l|[l.name, l.id]})
 
-      - if current_user.role == 'admin'
+      - if is_admin
         = f.file_field :avatar
 
     .clear
@@ -101,7 +101,11 @@
     .span11
       = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right; margin-right:20px;'
 
-      - if is_admin
+      - if current_user.role == 'admin'
+        .span6{:style=>'float:right'}
+          = check_box_tag 'view_as_user', 1, @member.user.view_as_user == true
+          %strong= t('view_as_user_label')
+
         %a{:href=>member_path(@member.user.id), :class=>'btn btn-danger destroy', :style=>'float:left;', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_member')}}
           %i.icon-trash.icon-white
           = t(:delete_member)

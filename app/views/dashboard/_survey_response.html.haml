@@ -4,5 +4,12 @@
   %span= s.question
 
 .clear{:style=>'height:20px;'}
-%p= "#{@survey.voters.length} #{t('votes_since')} #{l(@survey.created_at, :format=>:long)}"
+
+- if @voters_count == 1
+  %p= "#{t('first_vote')}"
+- else
+  %p= "#{@voters_count} #{t('votes_since')} #{l(@survey.created_at, :format=>:long)}"
+
+- if @already_voted
+  %strong= t('already_voted')
 

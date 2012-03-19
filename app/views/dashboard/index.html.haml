@@ -1,5 +1,10 @@
 .span11#dashboard
   .left
+    - unless @birthdays.empty?
+      %p.well{:style=>'width:545px;'}
+        = t('today_is_birthday_of')
+        - @birthdays.each do |member|
+          = link_to member.first_name, member_path(member)
     #ads
       #categories
         %ul
@@ -31,7 +36,7 @@
               %span= "#{t('valid_until')} #{l(ad.end_at, :format=>:long)}"
 
             - else
-              %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@temp.member.user.email, :recipient_id=>@temp.member.id}, :class=>'mail_me'}
+              %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>ad.member.user.email, :recipient_id=>ad.member.id}, :class=>'mail_me'}
                 %i.icon-envelope
                 = t('reply_this_ad')
               %span= "#{t('valid_until')} #{l(ad.end_at, :format=>:long)}"
@@ -45,7 +50,7 @@
             %option{:value=>location.id, :selected=>location.id == current_user.member.location_id}= location.name
 
       #gauge
-        #rate{:class=>('draggable' if current_user.role == 'admin')}
+        #rate{:class=>('draggable' if is_admin)}
 
       - @locations.each do |location|
         %a{:href=>'#', :class=>"occupation #{'hide' if location.id != current_user.member.location_id}", :id=>"location_id_#{location.id}", :data=>{'occupation'=>location.occupation}}
@@ -74,8 +79,11 @@
         .clear
         %span= t('vote_to_know_the_results')
 
+        %br
+        %br
+
+        %h2= t('older_surveys')
         #older_surveys
-          %span= t('older_surveys')
           %ul
             - @surveys.offset(1).each do |survey|
               %li

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   # Check we're admin
   def is_admin
-    redirect_to '/' unless current_user.role == 'admin'
+    redirect_to '/' unless (current_user.role == 'admin' && !current_user.view_as_user)
   end
 
   # Load global conf

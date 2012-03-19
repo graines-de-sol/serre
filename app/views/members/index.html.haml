@@ -1,9 +1,9 @@
 #search_for_members
   %h3= t(:search_for_members)
   = form_tag '/members/search' do
-    %select{:name=>'category', :style=>'width:120px;float:left;margin-right:20px;'}
-      - Member.fields.each do |field, name|
-        %option{:value=>field}= t(name)
+    %select{:name=>'category', :style=>'width:180px;float:left;margin-right:20px;'}
+      - Member.fields.each do |name, field|
+        %option{:value=>name, :selected=>params[:category] == name}= t(name)
 
     %input{:type=>'text', :name=>'keywords'}
     = submit_tag t(:search), :class=>'btn  btn-warning'
