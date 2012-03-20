@@ -99,7 +99,7 @@ $ ->
     containment: 'parent',
     cursor: 'move',
     start: (event,ui) ->
-      $('#rate').css('marginLeft':'0px')
+      $('#rate').css('left':'0px')
       $('#rate').text('0%')
     stop : (event, ui) ->
       $.ajax
@@ -113,7 +113,7 @@ $ ->
 
   # Position gauge on location selection
   $('#locations_select').change ->
-    $('#rate').css('marginLeft':'0px')
+    $('#rate').css('left':'0px')
     $('#rate').text('0%')
     setGauge $(this).val()
 
@@ -133,12 +133,12 @@ computeMargin = (percentage) ->
 
 # Move gauge when location changes
 setGauge = (id) ->
-  $('#rate').css('marginLeft':'0px')
+  $('#rate').css('left':'0px')
   $('.occupation').addClass('hide')
   $('#location_id_'+id).removeClass('hide')
   occupation =  $('#location_id_'+id).data('occupation')
   $('#rate').animate(
-    'marginLeft':computeMargin(occupation)
+    'left':computeMargin(occupation)
   )
   $('#rate').text(occupation+'%')
 
