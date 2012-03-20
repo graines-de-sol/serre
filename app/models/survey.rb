@@ -5,6 +5,8 @@ class Survey < ActiveRecord::Base
 
   acts_as_tree :order => 'id', :dependent=>:destroy
 
+  scope :questions, :conditions => "parent_id = 0"
+
   # Render survey's results as percents
   def self.results(survey)
     top = 0

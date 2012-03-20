@@ -12,6 +12,8 @@ fr:
   confirms:
     delete_member: "Exclure définitivement ce membre du Refuge ?!"
     delete_article: "Supprimer cet article ?!"
+    delete_survey: "Supprimer ce sondage et tous ses résultats ?!"
+    delete_answer: "Retirer cette réponse du sondage ?!"
   email:
     introduction_message: "vous a envoyé un mail depuis le Refuge. Son adresse mail pour lui répondre :"
   searchable_fields:
@@ -111,7 +113,6 @@ fr:
   create_new_answer: "+ Ajouter une réponse"
   survey_question: "Réponse possible"
   survey_score: "Score"
-  delete_answer_confirm: "Supprimer cette question du sondage ?!"
   current_survey: "Sondage en cours actuellement"
   vote_to_know_the_results: "Pour connaitre les résultats ? Votez !"
   older_surveys: "Résultats des précédents sondage..."
@@ -144,11 +145,13 @@ fr:
     current_locations: "Les différents cordées reliées au refuge"
     admin_panel: "Admin"
     question_for_new_survey: "Question du nouveau sondage"
+    older_surveys: "Sondage terminés"
     tabs:
       surveys: "Sondages"
       locations: "Cordées"
       ads: "Annonces"
       conf: "Configuration"
+
 
 
   date:
