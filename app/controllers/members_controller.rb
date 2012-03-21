@@ -94,7 +94,7 @@ class MembersController < ApplicationController
   def mail_member
 
     @from = Member.find(current_user.member.id)
-    @to = Member.find(params[:id])
+    @to = Member.find(params[:recipient_id])
 
     Notifier.mail_message({
       :reply_addr=>@from.user.email,
