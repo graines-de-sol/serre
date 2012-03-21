@@ -10,6 +10,7 @@
       = form_tag "/members/mail", :method=>:post do
 
         = hidden_field_tag 'recipient_id'
+        = hidden_field_tag 'origin', request.url
 
         %label= t('email_subject')
         %input{:type=>'text', :name=>'email[subject]', :style=>'width:520px;'}

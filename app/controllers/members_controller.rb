@@ -104,7 +104,7 @@ class MembersController < ApplicationController
       :body=>params[:email][:body]
     }).deliver
 
-    redirect_to member_path(params[:id])
+    redirect_to params[:origin]
   end
 end
 
