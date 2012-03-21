@@ -49,6 +49,9 @@ class PagesController < ApplicationController
 
   end
 
+  # POST /admin/pages/images/upload
+  # Upload an image for tinyMCE                              REDIRECT
+  # -----------------------------------------------------------------
   def upload
     Uploader.save(params[:image])
   end

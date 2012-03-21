@@ -18,7 +18,7 @@ class DashboardController < ApplicationController
         OR member_id = ?
       )',
       Time.now, current_user.member.location_id, current_user.member.id
-      ]).order('created_at DESC').includes(:member)
+      ]).order('ads.created_at DESC').includes(:member)
 
     @locations = Location.all
 

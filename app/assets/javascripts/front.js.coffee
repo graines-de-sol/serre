@@ -132,12 +132,11 @@ computeMargin = (percentage) ->
 
 # Move gauge when location changes
 setGauge = (id) ->
-  $('#rate').css('left':'0px')
   $('.occupation').addClass('hide')
   $('#location_id_'+id).removeClass('hide')
   occupation =  $('#location_id_'+id).data('occupation')
   $('#rate').animate(
-    'left':computeMargin(occupation)
+    'marginLeft':computeMargin(occupation)
   )
   $('#rate').text(occupation+'%')
 
