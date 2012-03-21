@@ -43,7 +43,9 @@ module ApplicationHelper
   end
 
   # Dummy phone numbers formating
+  # CODEREVIEW dead code => never called anywhere
   def phone_number(number)
+    # CODEREVIEW dead code => if @number + number param
     return "#{number[0..1]} #{number[2..3]} #{number[4..5]} #{number[6..7]} #{number[8..9]}" if @number
   end
 
@@ -67,6 +69,7 @@ module ApplicationHelper
       out = true if !member[f].blank?
     end
 
+    # CODEREVIEW return is not needed
     return out
   end
 
