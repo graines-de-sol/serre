@@ -34,6 +34,9 @@ GEM
     arel (2.2.1)
     attribute_normalizer (1.1.0)
     bcrypt-ruby (3.0.1)
+    birthday (0.2.0)
+      activerecord
+      activesupport
     builder (3.0.0)
     capistrano (2.9.0)
       highline
@@ -172,6 +175,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_tree_rails3
   attribute_normalizer
+  birthday (~> 0.2.0)
   capistrano
   coffee-rails (~> 3.1.1)
   devise

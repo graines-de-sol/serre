@@ -1,0 +1,16 @@
+#contents
+  - @articles.each do |article|
+
+    - if article.title
+      %h2= article.title
+      .hr
+
+    - if article.calendar
+      = show_calendar(article.calendar).html_safe
+
+    - if article.video
+      = show_video(article.video).html_safe
+
+    - if article.content
+      = sanitize article.content
+

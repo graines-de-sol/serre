@@ -25,6 +25,8 @@ gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.10'
 gem 'attribute_normalizer'
 gem 'simple_form'
+gem 'acts_as_tree_rails3'
+gem 'birthday', '~> 0.2.0'
 
 group :test do
   # Pretty printed test output

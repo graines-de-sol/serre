@@ -1,6 +1,6 @@
 .container
   #avatar
-    = image_tag current_user.member.avatar.thumb('32x32').url
+    = avatar(current_user.member, '32x32')
 
   #profil_link
     %span= hello
@@ -9,10 +9,15 @@
   %ul#main_menu
     - tabs.each do |tab|
       %li{:class=>('active' if params[:controller] == tab[:controller])}
-        %a{:href=>"/#{tab[:controller]}"}
+        %a{:href=>"/#{tab[:url]}"}
           %i{:class=>tab[:icon]}
           = t(tab[:name])
 
+    - if is_admin
+      %li
+        %a{:href=>'/admin/surveys'}
+          %i{:class=>'icon-ban-circle icon-white'}
+          = t('admin.admin_panel')
 
     %li
       %a{:href=>'/users/sign_out', :data=>{'method' => 'delete'}}

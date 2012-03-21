@@ -11,19 +11,30 @@ fr:
     password_required: "Merci de saisir votre mot de passe"
   confirms:
     delete_member: "Exclure définitivement ce membre du Refuge ?!"
+    delete_article: "Supprimer cet article ?!"
+    delete_survey: "Supprimer ce sondage et tous ses résultats ?!"
+    delete_answer: "Retirer cette réponse du sondage ?!"
   email:
     introduction_message: "vous a envoyé un mail depuis le Refuge. Son adresse mail pour lui répondre :"
+  searchable_fields:
+    organisation: "Nom de l'entreprise"
+    first_name: "Prénom"
+    last_name: "Nom"
+    prestations: "Types de prestations"
+    powers: "Super-pouvoirs"
   good_morning: "Bonjour"
   good_evening: "Bonsoir"
-  dashboard: "Dashboard"
-  members: "Membres"
+  dashboard: "Le topo"
+  members: "Les encordés"
+  meetings: "Réunions"
+  events: "Evènements"
   account: "Mon compte"
   messages: "Messages"
   search_for_members: "Rechercher un ou des membres..."
   search: "Rechercher !"
   create_new_member: "+ Créer un nouveau membre"
   member: "Membre"
-  admin: "Administrateur"
+  administrator: "Administrateur"
   create: "Créer"
   anonymous: "Anonyme"
   logout: "Déconnexion"
@@ -78,12 +89,87 @@ fr:
           attributes:
             first_name:
               blank: "Doit être renseigné !"
+  create_ad: "Créer une annonce"
+  your_ad: "Votre annonce... (500 caractères maximum)"
+  category: "Catégorie"
+  valid_until: "Annonce valable jusqu'au"
+  reply_this_ad: "Répondre à cette annonce"
+  valid_until: "Affichée jusqu'au"
+  create_ad: "+ Créer une annonce"
+  edit_this_ad: "Modifier mon annonce"
+  ad_visibility: "Cette annonce est visible par les membres de"
+  all_locations: "toutes les cordées"
+  location_: "la cordée de "
+  default_avatar: "Avatar par défaut"
+  delete_category_confirm: "Supprimer cette catégorie ainsi que toutes les annonces qu'elle contient ?!"
+  create_category: "+ Créer une nouvelle catégorie"
+  delete_location_confirm: "Supprimer définitivement cette cordée et tout ce qui s'y référe ?!"
+  location_name: "Nom"
+  location_address: "Adresse"
+  location_zip: "Code postal"
+  location_city: "Ville"
+  create_location: "+ Ajouter une cordée"
+  create_new_survey: "» Créer un nouveau sondage"
+  create_new_answer: "+ Ajouter une réponse"
+  survey_question: "Réponse possible"
+  survey_score: "Score"
+  current_survey: "Sondage en cours actuellement"
+  vote_to_know_the_results: "Pour connaitre les résultats ? Votez !"
+  older_surveys: "Résultats des précédents sondage..."
+  votes_since: "votes enregistrés depuis le"
+  first_vote: "Vous êtes le premier à voter !"
+  already_voted: "Vous vous êtes déja exprimé concernant ce sondage"
+  last_update: "Dernière mise à jour "
+  survey: "Sondage"
+  newcomers: "Derniers arrivants"
+  all_categories: "Toutes"
+  content_visibility: "Cet article est visible par les membres de la Cordée de "
+  title: "Titre de l'article"
+  calendar: "Snippet Google Calendar"
+  video: "Code de partage Video (Youtube, DailyMotion ou Vimeo)"
+  content: "Votre article"
+  today_is_birthday_of: "Aujourd'hui c'est l'anniversaire de "
+  view_as_user_label: "Je veux voir le site en tant qu'utilisateur (et non administrateur)"
+  handcrafted_with_love: "Handcrafted with love by "
+  guillaume_barillot: "Guillaume Barillot"
+  using: " using "
+  ror: "Ruby on Rails"
+  cmon: "C'mon, "
+  fork_me: "fork me on Github !"
+  and: " and "
+  twitter_bootstrap: "Twitter Boostrap"
+
+  admin:
+    default_older_surveys_to_display: "Nombre de précédents sondages à afficher"
+    categories_management: "Catégories des petites annonces"
+    current_locations: "Les différents cordées reliées au refuge"
+    admin_panel: "Admin"
+    question_for_new_survey: "Question du nouveau sondage"
+    older_surveys: "Sondage terminés"
+    tabs:
+      surveys: "Sondages"
+      locations: "Cordées"
+      ads: "Annonces"
+      conf: "Configuration"
+
+
 
   date:
     formats:
-      default: "%Y-%m-%d"
+      default: "%d-%m-%Y"
       short: "%b %d"
       long: "%A %d %B %Y"
+
+    day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
+    abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
+    month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
+    abbr_month_names: [~, Jan, Fev, Mar, Avr, Mai, Juin, Juil, Aout, Sep, Oct, Nov, Dec]
+
+  time:
+    formats:
+      default: "%A %d %B %Y"
+      short: "%b %d"
+      long: "%A %d %B %Y %H:%M"
 
     day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
     abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
