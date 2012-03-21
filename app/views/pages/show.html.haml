@@ -1,6 +1,6 @@
 .span11{:style=>'width:880px;'}
 
-  - if is_admin
+  - if !is_admin
     = render :partial => 'edit'
 
   - else

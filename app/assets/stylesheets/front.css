@@ -345,22 +345,15 @@ td.social_profiles {
   font-family:Georgia, 'Times new';
   border-bottom:1px solid #d4d4d4;
   margin-left:5px;
+  line-height:33px;
 }
 .ad .avatar {
   float:left;
-  width:60px;
-  height:51px;
+  width:44px;
+  height:34px;
   background-color:#fff;
 }
-.ad pre {
-  background-color:#fff;
-  border:none;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-  color: #333;
-  text-rendering: optimizelegibility;
-}
+
 .ad .action_bar {
   padding-top:5px;
   border-top:1px solid #d4d4d4;

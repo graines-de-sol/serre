@@ -125,5 +125,20 @@ module ApplicationHelper
   def show_video(vid)
     '<iframe width="560" height="315" src="http://'+vid+'" frameborder="0" allowfullscreen></iframe>' if vid
   end
+
+  # PHP, get out of this body !
+  def nl2br(s)
+    s.gsub(/\n/, '<br />')
+  end
+
+  # Clean-up all tags except <br />
+  def hard_clean(s)
+    sanitize nl2br(s), :tags => %w(br)
+  end
+
+  # Clean-up except tags potentially used in TinyMCE
+  def soft_clean(s)
+    sanitize s, :tags => %w(br p table tr td a src ul ol li h1 h2 h3 h4 h5 h6 b font), :attributes => %w(id class style color)
+  end
 end
 

@@ -1,6 +1,6 @@
 $ ->
   # Tooltip init
-  $('.tooltip').tooltip()
+  $("a[rel='tooltip']").tooltip()
 
   # Validation error messaging init
   $('.error_popover').each ->
@@ -46,7 +46,7 @@ $ ->
     $('#create_ad .modal-header h3').text($(this).text())
     $('#id').val ad_id
     $('#ad_subject').val $('#ad_id_'+ad_id+' h3').text()
-    $('#ad_body').val $('#ad_id_'+ad_id+' pre').text()
+    $('#ad_body').val $('#ad_id_'+ad_id+' p').text()
     $('#end_at').val $('#ad_id_'+ad_id+' input.end_at').val()
     $('#category_id option[value='+category_id+']').attr("selected", "selected")
     $('#ad_location_id option[value='+location_id+']').attr("selected", "selected")
@@ -99,8 +99,7 @@ $ ->
     containment: 'parent',
     cursor: 'move',
     start: (event,ui) ->
-      $('#rate').css('left':'0px')
-      $('#rate').text('0%')
+      $('#rate').text('<>')
     stop : (event, ui) ->
       $.ajax
         url: '/admin/occupation'

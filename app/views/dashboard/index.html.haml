@@ -23,10 +23,10 @@
           %input{:type=>'hidden', :class=>'end_at', :value=>l(ad.end_at, :format=>:long)}
 
           .avatar
-            = avatar(ad.member, '50x50')
+            = link_to avatar(ad.member, '32x32'), member_path(ad.member.id), :rel=>'tooltip', :title=>"#{ad.member.first_name} #{ad.member.last_name}"
 
           %h3= ad.subject
-          %pre= ad.body
+          %p= hard_clean ad.body
 
           .action_bar
             - if Member.can_edit?(current_user, ad.member_id)

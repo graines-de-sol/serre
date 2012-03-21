@@ -54,7 +54,7 @@
 
       %label= t('content')
       .content_container.hide
-        = sanitize article.content
+        = soft_clean article.content
       .textarea_container
       %br
       %a{:href=>"/pages/#{article.id}", :class=>'left', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_article')}}
@@ -69,7 +69,7 @@
 :javascript
 
   $('.content_container').each(function(){
-    $(this).next('.textarea_container').append("<textarea name='article[content]' class='expandable MCEeditable'>"+$(this).text()+"</textarea>")
+    $(this).next('.textarea_container').append("<textarea name='article[content]' class='expandable MCEeditable'>"+$(this).html()+"</textarea>")
   });
 
   tinyMCE.init({
