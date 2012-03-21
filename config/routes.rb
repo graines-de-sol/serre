@@ -18,6 +18,7 @@ Refuge::Application.routes.draw do
   match '/admin/answers/create/:id' => 'admin#answers_create', :via=>:post
   match '/admin/answers/delete/:id' => 'admin#answers_delete', :via=>:delete
   match '/admin/occupation' => 'admin#occupation', :via=>:put
+  match '/admin/pages/images/upload' => 'pages#upload', :via=>:post
 
   resources :members
   resources :pages

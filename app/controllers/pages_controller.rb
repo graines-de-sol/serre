@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
-  before_filter :is_logged, :load_conf
+  before_filter :is_admin, :except=>:upload
+  before_filter :load_conf
 
   # GET /pages/:id
   # Show pages in given category                                 HTML
@@ -46,6 +47,10 @@ class PagesController < ApplicationController
 
     redirect_to "/pages/#{delete_article.category}"
 
+  end
+
+  def upload
+    Uploader.save(params[:image])
   end
 
 end

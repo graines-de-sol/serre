@@ -28,7 +28,7 @@ private
 
   end
 
-  # Strip and filter video embed snipet
+  # Strip and filter video embed snippet
   def strip_video_snippet
 
     begin

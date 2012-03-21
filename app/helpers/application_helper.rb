@@ -43,9 +43,7 @@ module ApplicationHelper
   end
 
   # Dummy phone numbers formating
-  # CODEREVIEW dead code => never called anywhere
   def phone_number(number)
-    # CODEREVIEW dead code => if @number + number param
     return "#{number[0..1]} #{number[2..3]} #{number[4..5]} #{number[6..7]} #{number[8..9]}" if @number
   end
 
@@ -114,7 +112,7 @@ module ApplicationHelper
     end
   end
 
-  # Format gauge with for surveys
+  # Format gauge width for surveys
   def gauge(percentage)
     (((percentage.to_f/100.to_f)*490.to_f)+30.to_f).to_i
   end
