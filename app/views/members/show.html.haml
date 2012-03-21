@@ -58,13 +58,13 @@
             %td
               %p= t('hobbies')
             %td
-              %p= h(@member.hobbies).gsub!(/\n/, "<br />").html_safe
+              %p= hard_clean @member.hobbies
         - if @member.powers
           %tr
             %td
               %p= t('powers')
             %td
-              %p= h(@member.powers).gsub!(/\n/, "<br />").html_safe
+              %p= hard_clean @member.powers
         - if @member.presence
           %tr
             %td

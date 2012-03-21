@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  before_filter :is_admin, :except=>:upload
+  before_filter :is_logged, :except=>:upload
   before_filter :load_conf
 
   # GET /pages/:id
