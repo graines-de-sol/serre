@@ -34,13 +34,13 @@ group :test do
   gem 'rspec-rails'
 end
 
-group :development do
-  gem "rails_best_practices"
-  gem "ripper"
-  gem "flay"
-  gem "flog"
-  gem "excellent"
-  gem "brakeman"
-  gem 'rspec-rails'
-end
+#group :development do
+#  gem "rails_best_practices"
+#  gem "ripper"
+#  gem "flay"
+#  gem "flog"
+#  gem "excellent"
+#  gem "brakeman"
+#  gem 'rspec-rails'
+#end
 
