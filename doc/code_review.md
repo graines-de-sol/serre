@@ -46,6 +46,7 @@ find . -name \*.rb  | xargs flog
 ```
 Result:
 
+```
   1227.1: flog total
      9.8: flog/method average
 
@@ -69,7 +70,7 @@ Result:
     14.4: MembersController#search         ./app/controllers/members_controller.rb:15
     14.3: Member#none
     13.2: Survey::vote                     ./app/models/survey.rb:26
-
+```
 ###Complexity cane
 
 https://github.com/square/caner
@@ -98,6 +99,7 @@ No interesting result
 
 ## Security
 http://brakemanscanner.org/
+
 ```
 brakeman > doc/brakeman.txt
 ```
