@@ -3,15 +3,16 @@
     %h2= t('devise.common.hello')
 
     .clear{:style=>'height:20px;'}
+
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       %div
         = f.label t('devise.common.login')
-        %br
+        .clear
         = f.email_field :email, :data=>{'required'=>'true', 'alert'=>t('warnings.email_required')}
 
       %div
         = f.label t('devise.common.password')
-        %br
+        .clear
         = f.password_field :password, :data=>{'required'=>'true', 'alert'=>t('warnings.password_required')}
 
       - if devise_mapping.rememberable?
