@@ -14,6 +14,7 @@ fr:
     delete_article: "Supprimer cet article ?!"
     delete_survey: "Supprimer ce sondage et tous ses résultats ?!"
     delete_answer: "Retirer cette réponse du sondage ?!"
+    delete_image: "Supprimer cette image de la bibliothèque ?!"
   email:
     introduction_message: "vous a envoyé un mail depuis le Refuge. Son adresse mail pour lui répondre :"
   searchable_fields:

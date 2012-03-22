@@ -25,7 +25,7 @@
     %label= t('content')
     = text_area_tag 'article[content]', {}, :class=>'expandable MCEeditable'
     %br
-    = submit_tag t('save'), :class=>'btn  btn-warning'
+    = submit_tag t('save'), :class=>'btn  btn-warning', :style=>'float:right;'
 
 #contents
   - @articles.each do |article|
@@ -62,7 +62,7 @@
         = "Supprimer cet article"
 
       = submit_tag t('save'), :class=>'btn btn-warning right'
-
+    .clear
 
 = javascript_include_tag "/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js"
 

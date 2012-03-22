@@ -495,6 +495,10 @@ table#survey_mgt tr td:last-child input {
 #contents input[type='text'], #contents textarea {
   width:870px;
 }
+#contents {
+  margin-bottom:20px;
+  clear:both;
+}
 #contents textarea {
   height:200px;
 }

@@ -1,0 +1,18 @@
+= form_tag images_path, :multipart=>:true do
+
+  = file_field_tag 'image[image]', :style=>'border:1px solid #d4d4d4;'
+  %br
+  = submit_tag t('save'), :class=>'btn  btn-warning'
+
+.thumbnails
+  - @images.each do |image|
+    .thumbnail
+      %a{:href=>image_path(image.id), :class=>'remove', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_image')}}
+        %i.icon-remove
+      = image_tag image.image.thumb('220x220').url, :alt=>image.image_uid
+
+:javascript
+  $('.thumbnail img').click(function(){
+    window.parent.updateImage($(this).attr('alt'));
+  })
+

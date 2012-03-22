@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  before_filter :is_logged, :except=>:upload
+  before_filter :is_logged
   before_filter :load_conf
 
   # GET /pages/:id
@@ -47,13 +47,6 @@ class PagesController < ApplicationController
 
     redirect_to "/pages/#{delete_article.category}"
 
-  end
-
-  # POST /admin/pages/images/upload
-  # Upload an image for tinyMCE                              REDIRECT
-  # -----------------------------------------------------------------
-  def upload
-    Uploader.save(params[:image])
   end
 
 end

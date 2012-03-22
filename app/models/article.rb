@@ -1,8 +1,11 @@
 class Article < ActiveRecord::Base
   belongs_to :location
 
+  has_many :images, :dependent => :destroy
   before_create :strip_calendar_snippet, :strip_video_snippet
   before_update :strip_calendar_snippet, :strip_video_snippet
+  after_create  :link_images
+
   normalize_attributes :title, :content, :calendar, :video
 
 private
@@ -50,5 +53,6 @@ private
     end
 
   end
+
 end
 

@@ -6,6 +6,7 @@ Refuge::Application.routes.draw do
 
   match '/members/search' => 'members#search', :via=>:post
   match '/members/mail' => 'members#mail_member', :via=>:post
+
   match '/admin/conf' => 'admin#conf', :via=>:post
   match '/admin/categories/delete/:id' => 'admin#categories_delete', :via=>:delete
   match '/admin/categories/create' => 'admin#categories_create', :via=>:post
@@ -18,11 +19,11 @@ Refuge::Application.routes.draw do
   match '/admin/answers/create/:id' => 'admin#answers_create', :via=>:post
   match '/admin/answers/delete/:id' => 'admin#answers_delete', :via=>:delete
   match '/admin/occupation' => 'admin#occupation', :via=>:put
-  match '/admin/pages/images/upload' => 'pages#upload', :via=>:post
 
+  resources :images, :only => [:index, :create, :destroy]
   resources :members
   resources :pages
   resources :dashboard
-  resources :admin, :only=>'show'
+  resources :admin, :only => 'show'
 end
 

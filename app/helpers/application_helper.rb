@@ -139,7 +139,7 @@ module ApplicationHelper
 
   # Clean-up except tags potentially used in TinyMCE
   def soft_clean(s)
-    sanitize s, :tags => %w(br p table tr td a src ul ol li h1 h2 h3 h4 h5 h6 b font), :attributes => %w(id class style color)
+    sanitize s, :tags => %w(br p table tr td a img ul ol li h1 h2 h3 h4 h5 h6 b font), :attributes => %w(id class style color alt src)
   end
 end
 
