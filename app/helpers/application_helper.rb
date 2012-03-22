@@ -44,7 +44,7 @@ module ApplicationHelper
 
   # Dummy phone numbers formating
   def phone_number(number)
-    return "#{number[0..1]} #{number[2..3]} #{number[4..5]} #{number[6..7]} #{number[8..9]}" if @number
+    return "#{number[0..1]} #{number[2..3]} #{number[4..5]} #{number[6..7]} #{number[8..9]}" if number
   end
 
   # Display socials networks links and icon if profile exists
