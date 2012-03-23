@@ -144,8 +144,13 @@ setGauge = (id) ->
   $('.occupation').addClass('hide')
   $('#location_id_'+id).removeClass('hide')
   occupation =  $('#location_id_'+id).data('occupation')
-  $('#rate').animate(
-    'marginLeft':computeMargin(occupation)
-  )
+  if $('#rate').hasClass('draggable')
+    $('#rate').animate(
+      'left':computeMargin(occupation)
+    )
+  else
+    $('#rate').animate(
+      'marginLeft':computeMargin(occupation)
+    )
   $('#rate').text(occupation+'%')
 
