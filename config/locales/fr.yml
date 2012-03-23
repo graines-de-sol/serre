@@ -147,11 +147,15 @@ fr:
     admin_panel: "Admin"
     question_for_new_survey: "Question du nouveau sondage"
     older_surveys: "Sondage terminés"
+    name: "Prénom Nom"
+    cx: "Cx"
+    last_sign_in: "Dernière connexion"
     tabs:
       surveys: "Sondages"
       locations: "Cordées"
       ads: "Annonces"
       conf: "Configuration"
+      stats: "Stats"
 
 
 

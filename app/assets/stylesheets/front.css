@@ -519,4 +519,7 @@ table#survey_mgt tr td:last-child input {
   color:#afafaf;
   text-decoration:underline;
 }
+table#stats tr th {
+  border-bottom:1px solid #d4d4d4;
+}
 

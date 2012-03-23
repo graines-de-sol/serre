@@ -6,8 +6,11 @@ class AdminController < ApplicationController
   # Show app configurations items                          HTML
   # -----------------------------------------------------------
   def show
-    if params[:id] == 'surveys'
+    case
+    when params[:id] == 'surveys'
       @survey = Survey.where(['location_id = ? AND parent_id = 0', $conf.default_location_id]).order('created_at DESC').first
+    when params[:id] == 'stats'
+      @users = User.order('sign_in_count DESC').all
     end
   end
 
@@ -120,8 +123,8 @@ class AdminController < ApplicationController
   end
 
   # PUT /admin/occupation
-  # Set occupation rate for given location                                   AJAX
-  # -----------------------------------------------------------------------------
+  # Set occupation rate for given location                AJAX
+  # ----------------------------------------------------------
   def occupation
     Location.find(params[:location_id]).update_attributes(:occupation=>params[:rate].to_i)
 
