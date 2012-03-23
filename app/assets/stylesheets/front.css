@@ -522,4 +522,11 @@ table#survey_mgt tr td:last-child input {
 table#stats tr th {
   border-bottom:1px solid #d4d4d4;
 }
+#results h4 {
+  font-size:14px;
+  border-bottom:1px solid #d4d4d4;
+  padding-bottom:5px;
+  margin-bottom:5px;
+  margin-top:5px;
+}
 

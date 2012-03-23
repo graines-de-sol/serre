@@ -131,5 +131,14 @@ class AdminController < ApplicationController
     render :text=>'success'
   end
 
+  # GET /admin/show_results/:id
+  # Show surveys results                                  AJAX
+  # ----------------------------------------------------------
+  def show_results
+    @survey = Survey.find(params[:id])
+    @members = Member.where(['members.id IN (?)', @survey.voters])
+
+    render :layout=>false
+  end
 end
 

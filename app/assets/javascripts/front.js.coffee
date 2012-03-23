@@ -119,6 +119,15 @@ $ ->
   # Position gauge on page loading
   setGauge $('#locations_select').val()
 
+  # Show survey's results
+  $('.doshow_results').click ->
+    $('#show_results').modal()
+    $.ajax
+      url: '/admin/surveys/show_results/'+$(this).data('id')
+      type: 'GET'
+      success : (data) ->
+        $('.modal-body #results').html data
+
 # Compute rate value
 computeRate = (e) ->
   m_left = e.css('left').split('px')[0]

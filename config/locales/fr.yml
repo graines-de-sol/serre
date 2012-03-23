@@ -112,7 +112,7 @@ fr:
   create_location: "+ Ajouter une cordée"
   create_new_survey: "» Créer un nouveau sondage"
   create_new_answer: "+ Ajouter une réponse"
-  survey_question: "Réponse possible"
+  survey_question: "Réponses possibles"
   survey_score: "Score"
   current_survey: "Sondage en cours actuellement"
   vote_to_know_the_results: "Pour connaitre les résultats ? Votez !"
@@ -139,6 +139,8 @@ fr:
   fork_me: "fork me on Github !"
   and: " and "
   twitter_bootstrap: "Twitter Boostrap"
+  who_has_voted_what: "Qui a voté quoi ?"
+  no_vote: "Aucun vote pour cette réponse"
 
   admin:
     default_older_surveys_to_display: "Nombre de précédents sondages à afficher"
@@ -147,7 +149,7 @@ fr:
     admin_panel: "Admin"
     question_for_new_survey: "Question du nouveau sondage"
     older_surveys: "Sondage terminés"
-    name: "Prénom Nom"
+    name: "Nom"
     cx: "Cx"
     last_sign_in: "Dernière connexion"
     tabs:

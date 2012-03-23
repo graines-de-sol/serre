@@ -13,6 +13,9 @@
 
     = form_tag '/admin/surveys/update', :method=>:put do
       - unless @survey.children.empty?
+        %a{:href=>'#', :class=>'doshow_results', :data=>{'id'=>@survey.id}, :style=>'float:right;'}
+          = t('who_has_voted_what')
+
         %table#survey_mgt
           %tr
             %th{:style=>'width:20px;'}= ''
@@ -53,11 +56,24 @@
   %br
   %p.label= t('admin.older_surveys')
   %table
-    - Survey.questions.all.each do |survey|
+    - Survey.questions.offset(1).all.each do |survey|
       %tr
         %td
           %a{:href=>"/admin/answers/delete/#{survey.id}", :id=>survey.id, :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_survey')}}
             %i.icon-remove
-        %td
-          = survey.question
+        %td{:style=>'width:500px;'}= survey.question
+        %td{:style=>'width:215px;text-align:right;'}
+          %a{:href=>'#', :class=>'doshow_results', :data=>{'id'=>survey.id}}
+            = t('who_has_voted_what')
+
+- # Hidden content
+
+#show_results.modal.hide
+  .modal-header
+    %a.close{:data=>{'dismiss'=>'modal'}}
+      = '×'
+    %h3= t('who_has_voted_what')
+
+  .modal-body
+    #results
 

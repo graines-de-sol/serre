@@ -16,6 +16,7 @@ Refuge::Application.routes.draw do
   match '/admin/locations/update' => 'admin#locations_update', :via=>:put
   match '/admin/surveys/create' => 'admin#surveys_create', :via=>:post
   match '/admin/surveys/update' => 'admin#surveys_update', :via=>:put
+  match '/admin/surveys/show_results/:id' => 'admin#show_results'
   match '/admin/answers/create/:id' => 'admin#answers_create', :via=>:post
   match '/admin/answers/delete/:id' => 'admin#answers_delete', :via=>:delete
   match '/admin/occupation' => 'admin#occupation', :via=>:put
