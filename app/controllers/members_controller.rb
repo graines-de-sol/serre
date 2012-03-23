@@ -40,9 +40,17 @@ class MembersController < ApplicationController
   # Create a new user                               REDIRECT
   # --------------------------------------------------------
   def create
+
     new_user = User.create(params[:user])
 
     if new_user.id
+      unless params[:no_welcome_email]
+        Notifier.welcome_message({
+          :to   => params[:user][:email],
+          :body => params[:article][:content]
+        }).deliver
+      end
+
       redirect_to member_path(new_user.member.id)
     else
       flash[:notice] = t('warnings.check_new_user_parameters')

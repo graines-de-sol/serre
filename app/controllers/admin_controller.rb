@@ -18,6 +18,9 @@ class AdminController < ApplicationController
   # Update global conf params                          REDIRECT
   # -----------------------------------------------------------
   def conf
+    # !!!FIXME : there's should be a way to init TinyMCE with proper params to avoid this crap
+    params[:conf][:welcome_mail_body] = params[:article][:content]
+
     conf = Conf.find(1).update_attributes(params[:conf])
 
     redirect_to '/admin/conf'

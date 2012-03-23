@@ -82,7 +82,7 @@ fr:
   email_subject: "Sujet"
   email_body: "Votre message..."
   send: "Envoyer"
-  actual_occupation_of_location: "En ce moment à la Cordée de"
+  actual_occupation_of_location: "Remplitude de la Cordée de "
   activerecord:
     errors:
       models:
@@ -141,6 +141,10 @@ fr:
   twitter_bootstrap: "Twitter Boostrap"
   who_has_voted_what: "Qui a voté quoi ?"
   no_vote: "Aucun vote pour cette réponse"
+  welcome_mail: "E-Mail de bienvenue"
+  welcome_mail_subject: "Sujet du Mail de bienvenue"
+  welcome_mail_body: "Contenu du Mail de bienvenue"
+  no_welcome_email: "NE PAS ENVOYER le Mail de bienvenue, uniquement créer le membre"
 
   admin:
     default_older_surveys_to_display: "Nombre de précédents sondages à afficher"

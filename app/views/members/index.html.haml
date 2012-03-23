@@ -23,26 +23,5 @@
   %a{:href=>'#creation_modal', :class=>'label label-important', :data=>{'toggle'=>'modal'}, :style=>'margin-left:5px;'}
     = t(:create_new_member)
 
-  #creation_modal.modal.hide
-    .modal-header
-      %a.close{:data=>{'dismiss'=>'modal'}}
-        = '×'
-      %h3= t('new_account_creation')
-
-    .modal-body
-      #new_user_form
-        = form_tag "/members" do
-          %label= t(:login)
-          %input{:type=>'text', :name=>'user[email]'}
-
-          %label= t(:password)
-          %input{:type=>'password', :name=>'user[password]'}
-
-          %label= t(:role)
-          %select{:name=>'user[role]'}
-            %option{:value=>'user'}= t(:member)
-            %option{:value=>'admin'}= t(:admin)
-
-          %br
-          = submit_tag t(:create), :class=>'btn  btn-danger'
+  = render :partial => 'member_creation_modal'
 

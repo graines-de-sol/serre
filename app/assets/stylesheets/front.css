@@ -134,8 +134,11 @@ a.label-important:hover{
   color:#fff;
 }
 #new_user_form {
-  width:220px;
-  margin:0 auto;
+  width:800px;
+  margin:0;
+}
+#new_user_form .left {
+  margin-right:20px;
 }
 .member_resume{
   width:110px;
@@ -528,5 +531,10 @@ table#stats tr th {
   padding-bottom:5px;
   margin-bottom:5px;
   margin-top:5px;
+}
+#creation_modal {
+  width:770px;
+  margin-left:-385px;
+  overflow:hidden;
 }
 
