@@ -23,7 +23,7 @@
         .clear
         %p
           = t('ad_visibility')
-          %select{:name=>'ad[location_id]', :id=>'ad_location_id'}
+          %select{:name=>'ad[location_id]', :id=>'ad_location_id', :style=>'width:200px;'}
             %option{:value=>'0'}= t('all_locations')
             - @locations.each do |location|
               %option{:value=>location.id}= "#{t('location_')} #{location.name}"
