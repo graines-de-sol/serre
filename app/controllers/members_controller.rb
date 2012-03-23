@@ -58,7 +58,10 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
 
     if current_user.role == 'admin'
-      User.find(@member.user_id).update_attributes(:view_as_user=>params[:view_as_user])
+      User.find(@member.user_id).update_attributes(
+        :view_as_user => params[:user][:view_as_user],
+        :role         => params[:user][:role]
+      )
     end
 
     if params[:user]
