@@ -97,11 +97,12 @@
                 = text_field_tag "profile[#{network[:id]}]", network[:url]
       .clear
 
-    .span11{:style=>'text-align:right;'}
-      = t('role')
-      %select{:name=>'user[role]', :style=>'margin-right:20px;'}
-        %option{:value=>'user', :selected => @member.user.role == 'user'}= 'User'
-        %option{:value=>'admin', :selected => @member.user.role == 'admin'}= 'Admin'
+    - if current_user.role == 'admin'
+      .span11{:style=>'text-align:right;'}
+        = t('role')
+        %select{:name=>'user[role]', :style=>'margin-right:20px;'}
+          %option{:value=>'user', :selected => @member.user.role == 'user'}= 'User'
+          %option{:value=>'admin', :selected => @member.user.role == 'admin'}= 'Admin'
 
     .span11
       = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right; margin-right:20px;'
