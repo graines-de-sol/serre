@@ -18,7 +18,8 @@
 
         .right
           %span= t('valid_until')
-          %input{:type=>'text', :class=>'datepicker', :id=>'end_at', :name=>'ad[end_at]', :value=>"", :style=>'width:170px;'}
+          %input{:type=>'text', :class=>'datepicker', :id=>'show_end_date', :value=>"", :style=>'width:170px;'}
+          %input{:type=>'hidden', :id=>'end_at', :name=>'ad[end_at]', :value=>""}
 
         .clear
         %p

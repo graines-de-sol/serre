@@ -20,7 +20,7 @@
         .ad{:id=>"ad_id_#{ad.id}"}
           %input{:type=>'hidden', :class=>'category_id', :value=>ad.category_id}
           %input{:type=>'hidden', :class=>'location_id', :value=>ad.location_id}
-          %input{:type=>'hidden', :class=>'end_at', :value=>l(ad.end_at, :format=>:long)}
+          %input{:type=>'hidden', :class=>'end_at', :value=>ad.end_at.strftime('%Y-%m-%d')}
 
           .avatar
             = link_to avatar(ad.member, '32x32'), member_path(ad.member.id), :rel=>'tooltip', :title=>"#{ad.member.first_name} #{ad.member.last_name}"
@@ -95,7 +95,9 @@
   %input{:type=>'hidden', :id=>'default_category_id', :value=>(@categories.first.id if @categories)}
 - if @surveys
   %input{:type=>'hidden', :id=>'current_survey_id', :value=>(@surveys.first.id if @surveys)}
-%input{:type=>'hidden', :id=>'default_time', :value=>l(7.days.since(Time.now), :format=>:long)}
+
+
+%input{:type=>'hidden', :id=>'default_end_at', :value=>default_end_at}
 
 = render :partial=>'shared/send_mail_modal'
 = render :partial=>'create_ad_modal'
