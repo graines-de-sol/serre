@@ -64,5 +64,16 @@ class DashboardController < ApplicationController
     render :partial => '/dashboard/survey_response'
   end
 
+  # DELETE /dashboard/:id
+  # Deselete an ad                                     REDIRECT
+  # -----------------------------------------------------------
+  def destroy
+
+    Ad.find(params[:id]).update_attributes(
+      :end_at => Time.now
+    )
+
+    redirect_to  '/'
+  end
 end
 

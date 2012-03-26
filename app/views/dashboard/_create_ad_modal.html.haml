@@ -36,9 +36,10 @@
       %textarea{:name=>'ad[body]', :id=>'ad_body', :style=>'width:520px;height:80px;', :class=>'expandable', :maxlength=>'500'}
 
       %br
-      %a{:href=>'#', :id=>'delete_ad'}
+      %a{:href=>"/dashboard", :id=>'delete_ad', :data=>{'method'=>'delete', :confirm=>t('confirms.delete_this_ad')}}
         %i.icon-remove
-        = "Supprimer mon annonce"
+        = t('delete_my_ad')
+
       = submit_tag t('send'), :class=>'btn  btn-warning', :style=>'float:right'
 
     .clear

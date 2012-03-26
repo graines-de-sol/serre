@@ -15,6 +15,7 @@ fr:
     delete_survey: "Supprimer ce sondage et tous ses résultats ?!"
     delete_answer: "Retirer cette réponse du sondage ?!"
     delete_image: "Supprimer cette image de la bibliothèque ?!"
+    delete_this_ad: "Supprimer cette annonce ?!"
   email:
     introduction_message: "vous a envoyé un mail depuis le Refuge. Son adresse mail pour lui répondre :"
   searchable_fields:
@@ -145,6 +146,7 @@ fr:
   welcome_mail_subject: "Sujet du Mail de bienvenue"
   welcome_mail_body: "Contenu du Mail de bienvenue"
   no_welcome_email: "NE PAS ENVOYER le Mail de bienvenue, uniquement créer le membre"
+  delete_my_ad: "Supprimer mon annonce"
 
   admin:
     default_older_surveys_to_display: "Nombre de précédents sondages à afficher"

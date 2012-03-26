@@ -56,6 +56,7 @@ $ ->
 
     $('#show_end_date').val $.datepicker.formatDate('DD dd MM yy', default_end_at)
     $('#end_at').val $('#ad_id_'+ad_id+' input.end_at').val()
+    $('#delete_ad').attr('href', '/dashboard/'+ad_id)
     $('#category_id option[value='+category_id+']').attr("selected", "selected")
     $('#ad_location_id option[value='+location_id+']').attr("selected", "selected")
 
