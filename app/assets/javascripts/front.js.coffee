@@ -39,6 +39,7 @@ $ ->
 
     $('#show_end_date').val $.datepicker.formatDate('DD dd MM yy', default_end_at)
     $('#end_at').val $('#default_end_at').val()
+    $('#delete_ad').hide()
     $('#category_id option[value='+default_category_id+']').attr("selected", "selected")
     $('#ad_location_id option[value=0]').attr("selected", "selected")
 
