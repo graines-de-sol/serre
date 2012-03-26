@@ -36,6 +36,9 @@
       %textarea{:name=>'ad[body]', :id=>'ad_body', :style=>'width:520px;height:80px;', :class=>'expandable', :maxlength=>'500'}
 
       %br
+      %a{:href=>'#', :id=>'delete_ad'}
+        %i.icon-remove
+        = "Supprimer mon annonce"
       = submit_tag t('send'), :class=>'btn  btn-warning', :style=>'float:right'
 
     .clear

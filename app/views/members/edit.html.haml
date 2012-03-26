@@ -104,13 +104,12 @@
           %option{:value=>'user', :selected => @member.user.role == 'user'}= 'User'
           %option{:value=>'admin', :selected => @member.user.role == 'admin'}= 'Admin'
 
-    .span11
-      = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right; margin-right:20px;'
+      .span11
+        = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right; margin-right:20px;'
 
-      - if current_user.role == 'admin'
         - if current_user.member.id == @member.id
           .span6{:style=>'float:right'}
-            = check_box_tag 'user[view_as_user]', 1, @member.user.view_as_user == true
+            = check_box_tag 'user[view_as_user]', true, @member.user.view_as_user == true
             %strong= t('view_as_user_label')
 
         %a{:href=>member_path(@member.user.id), :class=>'btn btn-danger destroy', :style=>'float:left;', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_member')}}
