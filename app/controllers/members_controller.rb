@@ -65,24 +65,15 @@ class MembersController < ApplicationController
 
     @member = Member.find(params[:id])
 
-    if current_user.role == 'admin'
-      User.find(@member.user_id).update_attributes(
-        :view_as_user => params[:user][:view_as_user],
-        :role         => params[:user][:role]
-      )
-    end
+    # EMail, password & role
+    User.find(@member.user_id).update_attributes(params[:user])
 
-    if params[:user]
-      # Update Mail & password
-      User.find(@member.user_id).update_attributes(params[:user])
-    else
-      # Update member's profile
-      @member.update_attributes(params[:member])
+    # Member's profile
+    @member.update_attributes(params[:member])
 
-      Profile.update(params[:profile], @member.id)
-    end
-
+    Profile.update(params[:profile], @member.id)
     @user_profiles = @member.profiles.map{|p|{p.network_id=>p.url}}
+
     @pro_networks = Network.with_urls(@user_profiles, :pro)
     @perso_networks = Network.with_urls(@user_profiles, :perso)
 
