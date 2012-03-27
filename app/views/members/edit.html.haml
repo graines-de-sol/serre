@@ -125,7 +125,7 @@
     %h3= t('edit_my_login_informations')
 
   .modal-body
-    #new_user_form
+    #edit_user_form
       = form_tag member_path(@member.id), :method=>:put do
         %label= t('email_address')
         %input{:type=>'text', :name=>'user[email]', :value=>@member.user.email}
