@@ -19,7 +19,7 @@ class AdminController < ApplicationController
   # -----------------------------------------------------------
   def conf
     # !!!FIXME : there's should be a way to init TinyMCE with proper params to avoid this crap
-    params[:conf][:welcome_mail_body] = params[:article][:content]
+    params[:conf][:welcome_mail_body] = params[:article][:content] if params[:article]
 
     conf = Conf.find(1).update_attributes(params[:conf])
 

@@ -63,7 +63,7 @@
         %a{:href=>member_path(user.member.id)}
           = avatar(user.member, '50x50')
 
-    - if @surveys
+    - unless @surveys.empty?
       #survey
         %h2= t('survey')
 
@@ -91,9 +91,9 @@
 
 
 - # hidden
-- if @categories
+- unless @categories.empty?
   %input{:type=>'hidden', :id=>'default_category_id', :value=>(@categories.first.id if @categories)}
-- if @surveys
+- unless @surveys.empty?
   %input{:type=>'hidden', :id=>'current_survey_id', :value=>(@surveys.first.id if @surveys)}
 
 

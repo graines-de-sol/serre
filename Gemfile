@@ -40,6 +40,6 @@ end
 #  gem "flog"
 #  gem "excellent"
 #  gem "brakeman"
-#  gem 'rspec-rails'
+  gem 'rspec-rails'
 #end
 

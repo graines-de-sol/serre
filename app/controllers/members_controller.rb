@@ -72,9 +72,11 @@ class MembersController < ApplicationController
     end
 
     # Member's profile
-    @member.update_attributes(params[:member])
+    if params[:member]
+      @member.update_attributes(params[:member])
+      Profile.update(params[:profile], @member.id)
+    end
 
-    Profile.update(params[:profile], @member.id)
     @user_profiles = @member.profiles.map{|p|{p.network_id=>p.url}}
 
     @pro_networks = Network.with_urls(@user_profiles, :pro)

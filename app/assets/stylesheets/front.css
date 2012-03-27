@@ -137,6 +137,10 @@ a.label-important:hover{
   width:800px;
   margin:0;
 }
+#edit_user_form {
+  width:270px;
+  margin:0 auto;
+}
 #new_user_form .left {
   margin-right:20px;
 }
