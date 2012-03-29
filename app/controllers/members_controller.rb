@@ -67,7 +67,6 @@ class MembersController < ApplicationController
 
     # EMail, password & role
     if params[:user]
-      params[:user][:view_as_user] = false unless params[:user][:view_as_user]
       User.find(@member.user_id).update_attributes(params[:user])
     end
 

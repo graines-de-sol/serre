@@ -97,24 +97,27 @@
                 = text_field_tag "profile[#{network[:id]}]", network[:url]
       .clear
 
-    - if current_user.role == 'admin'
-      .span11{:style=>'text-align:right;'}
-        = t('role')
-        %select{:name=>'user[role]', :style=>'margin-right:20px;'}
-          %option{:value=>'user', :selected => @member.user.role == 'user'}= 'User'
-          %option{:value=>'admin', :selected => @member.user.role == 'admin'}= 'Admin'
+    - if current_user.member.id == @member.id || current_user.role == 'admin'
+      - if current_user.role == 'admin' && !current_user.view_as_user
+        .span11{:style=>'text-align:right;'}
+          = t('role')
+          %select{:name=>'user[role]', :style=>'margin-right:20px;'}
+            %option{:value=>'user', :selected => @member.user.role == 'user'}= 'User'
+            %option{:value=>'admin', :selected => @member.user.role == 'admin'}= 'Admin'
 
       .span11
         = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right; margin-right:20px;'
 
-        - if current_user.member.id == @member.id
+        - if current_user.member.id == @member.id && current_user.role == 'admin'
           .span6{:style=>'float:right'}
+            = hidden_field_tag 'user[view_as_user]', false
             = check_box_tag 'user[view_as_user]', true, @member.user.view_as_user == true
             %strong= t('view_as_user_label')
 
-        %a{:href=>member_path(@member.user.id), :class=>'btn btn-danger destroy', :style=>'float:left;', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_member')}}
-          %i.icon-trash.icon-white
-          = t(:delete_member)
+        - if current_user.role == 'admin' && !current_user.view_as_user
+          %a{:href=>member_path(@member.user.id), :class=>'btn btn-danger destroy', :style=>'float:left;', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_member')}}
+            %i.icon-trash.icon-white
+            = t(:delete_member)
 
 - # Hidden content
 
