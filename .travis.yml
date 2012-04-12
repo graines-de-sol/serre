@@ -1,0 +1,4 @@
+rvm:
+  - 1.8.7
+before_script: './script/before_script.sh'
+bundler_args: "--without development production heroku"

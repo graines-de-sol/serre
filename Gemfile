@@ -25,15 +25,19 @@ gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.10'
 gem 'attribute_normalizer'
 
-group :test do
+group :development, :test do
   # Pretty printed test output
   gem 'turn', :require => false
   gem 'rspec-rails'
+
+  gem 'capybara'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
 end
 
 group :development do
   gem "rails_best_practices"
-  gem "ripper"
-  gem 'rspec-rails'
+  gem "ripper", :platforms => :mri_18
 end
 
