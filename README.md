@@ -59,6 +59,7 @@ As an admin, you can create/delete accounts, and you also have access to the adm
 
 TODO
 ------
+Translations (I18n ready, PR are welcome !)
 Tests, tests, tests
 
 
