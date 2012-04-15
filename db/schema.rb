@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20120224212304) do
-=======
-ActiveRecord::Schema.define(:version => 20120322110347) do
->>>>>>> production
+ActiveRecord::Schema.define(:version => 1) do
 
   create_table "ads", :force => true do |t|
     t.string   "subject"
@@ -48,11 +44,13 @@ ActiveRecord::Schema.define(:version => 20120322110347) do
     t.string "default_avatar_uid"
     t.string "default_location_id"
     t.string "max_surveys"
+    t.string "welcome_mail_subject", :default => ""
+    t.text   "welcome_mail_body"
   end
 
   create_table "images", :force => true do |t|
-    t.string "name"
-    t.string "image_uid"
+    t.datetime "created_at", :null => false
+    t.string   "image_uid"
   end
 
   create_table "locations", :force => true do |t|
@@ -108,12 +106,12 @@ ActiveRecord::Schema.define(:version => 20120322110347) do
   end
 
   create_table "surveys", :force => true do |t|
-    t.string  "question"
-    t.integer "score",       :default => 0, :null => false
-    t.integer "parent_id"
-    t.integer "location_id"
-    t.date    "created_at"
-    t.text    "voters",                     :null => false
+    t.string   "question"
+    t.integer  "score",       :default => 0, :null => false
+    t.integer  "parent_id"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.text     "voters",                     :null => false
   end
 
   create_table "users", :force => true do |t|
