@@ -49,6 +49,7 @@ Usage
 Naviguate to your app's URL, then log in using the default account :
 
 *email : admin@refuge.com*
+
 *password : 123456*
 
 Once logged in, you should change your password and personnal informations by visiting your own account.
