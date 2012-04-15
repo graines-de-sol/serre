@@ -15,11 +15,11 @@ What it does :
 * Propose surveys/pollings to your members
 * Sharing Google agendas
 * Checking meeting rooms occupation rate and disponibility
-* Sending e-mail to other members
+* Sending e-mail across members
 
 Extra-bonus feature :
 
-* Wooohoo You can even manage multiples coworking places at the same time !
+* Wooohoo... you can also manage multiples coworking places at the same time !
 
 It is NOT a one-more-kinda-social-app for the masses. The refuge doesn't have any internal messaging system, and your account must be first created by one of the admin user.
 On the other hand, The Refuge tends to fit with non-profit organisations and coworking places who need to manage and deal with dozains of members who want to
@@ -45,7 +45,7 @@ Done !
 
 Note
 -----
-You may also check your Mail server configuration, since the Refuge sends E-Mail accross members and on account creations. Nonetheless, it is not required for application bootstrap.
+You may also check your Mail server configuration, since the Refuge sends E-Mail across members and on account creations. Nonetheless, it is not required for application bootstrap.
 
 Usage
 -----
