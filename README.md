@@ -12,18 +12,18 @@ What it does :
 * Allow members to post ads (buy, sell, collaborations propositions...)
 * Checking actual occupation rate of the coworking place
 * Checking news and actuality
-* Propose surveys/pollings to you members
+* Propose surveys/pollings to your members
 * Sharing Google agendas
 * Checking meeting rooms occupation rate and disponibility
 * Sending e-mail to other members
 
 Extra-bonus feature :
 
-* You can deal with multiples coworking places
+* Wooohoo You can even manage multiples coworking places at the same time !
 
-It is NOT a one-more-kinda-social-app. The refuge doesn't have any internal messaging system, and your account must be first created by one of the admin user.
-On the other hand, The Refuge tends to fit with associations and coworking places who need to coordinate and deal with dozains of members, and want to
-share their profiles across each others inside a private, secure yet Web accessible portal.
+It is NOT a one-more-kinda-social-app for the masses. The refuge doesn't have any internal messaging system, and your account must be first created by one of the admin user.
+On the other hand, The Refuge tends to fit with non-profit organisations and coworking places who need to manage and deal with dozains of members who want to
+share their profiles and know about each others' inside a private, secure yet Web accessible portal.
 
 Installation
 ----------------
@@ -37,11 +37,15 @@ Install dependencies :
 `bundle install`
 
 Don't forget to fill-in your DataBase parameters in '/conf/database.yml',
-then create the DB and populate it with a user, a configuration and a location :
+then generate the basic DB stuff :
 
 `rake db:setup`
 
 Done !
+
+Note
+-----
+You may also check your Mail server configuration, since the Refuge sends E-Mail accross members and on account creations. Nonetheless, it is not required for application bootstrap.
 
 Usage
 -----
@@ -55,12 +59,13 @@ Naviguate to your app's URL, then log in using the default account :
 Once logged in, you should change your password and personnal informations by visiting your own account.
 
 By design, there is no real dedicated "admin interface". Each user can edit its own account by visiting its profile, and admins can edit all users.
-As an admin, you can create/delete accounts, and you also have access to the admin tab, which allows you to customize your default avatar, create/update/delete places...
+As an admin, you also have access to the admin top tab, which allows you to customize the default avatar, create/update/delete places, manage surveys...
 
 TODO
 ------
-Translations (I18n ready, PR are welcome !)
-Tests, tests, tests
+
+* Translations (Actually French and English are supported but PR are welcome !)
+* Tests, tests, tests
 
 
 Author
