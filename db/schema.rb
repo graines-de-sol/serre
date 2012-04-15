@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 1) do
 
-  create_table "ads", :force => true do |t|
+  create_table "ads" do |t|
     t.string   "subject"
     t.text     "body"
     t.date     "end_at"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer  "location_id"
   end
 
-  create_table "articles", :force => true do |t|
+  create_table "articles" do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "location_id"
@@ -35,25 +35,25 @@ ActiveRecord::Schema.define(:version => 1) do
     t.text     "video"
   end
 
-  create_table "categories", :force => true do |t|
+  create_table "categories" do |t|
     t.string "name"
   end
 
-  create_table "confs", :force => true do |t|
-    t.date   "created_at"
-    t.string "default_avatar_uid"
-    t.string "default_location_id"
-    t.string "max_surveys"
-    t.string "welcome_mail_subject", :default => ""
-    t.text   "welcome_mail_body"
+  create_table "confs" do |t|
+    t.date    "created_at"
+    t.string  "default_avatar_uid"
+    t.integer "default_location_id", :default => 1
+    t.integer "max_surveys", :default => 5
+    t.string  "welcome_mail_subject", :default => ""
+    t.text    "welcome_mail_body"
   end
 
-  create_table "images", :force => true do |t|
+  create_table "images" do |t|
     t.datetime "created_at", :null => false
     t.string   "image_uid"
   end
 
-  create_table "locations", :force => true do |t|
+  create_table "locations" do |t|
     t.string   "name"
     t.string   "address"
     t.string   "city"
@@ -62,13 +62,13 @@ ActiveRecord::Schema.define(:version => 1) do
     t.datetime "updated_at",                :null => false
   end
 
-  create_table "members", :force => true do |t|
+  create_table "members" do |t|
     t.integer "user_id"
     t.string  "first_name",   :default => "anonyme"
     t.string  "last_name"
     t.date    "birthday"
     t.string  "city"
-    t.string  "avatar_uid",   :default => "default_avatar/default_avatar.png"
+    t.string  "avatar_uid"
     t.text    "situation"
     t.text    "prestations"
     t.text    "references"
@@ -85,14 +85,14 @@ ActiveRecord::Schema.define(:version => 1) do
 
   add_index "members", ["status_id"], :name => "index_members_on_status_id"
 
-  create_table "networks", :force => true do |t|
+  create_table "networks" do |t|
     t.string  "name"
     t.string  "icon"
     t.boolean "is_pro"
     t.string  "label"
   end
 
-  create_table "profiles", :force => true do |t|
+  create_table "profiles" do |t|
     t.integer "member_id"
     t.integer "network_id"
     t.string  "url"
@@ -101,11 +101,11 @@ ActiveRecord::Schema.define(:version => 1) do
   add_index "profiles", ["member_id"], :name => "index_profiles_on_member_id"
   add_index "profiles", ["network_id"], :name => "index_profiles_on_network_id"
 
-  create_table "status", :force => true do |t|
+  create_table "status" do |t|
     t.string "name"
   end
 
-  create_table "surveys", :force => true do |t|
+  create_table "surveys" do |t|
     t.string   "question"
     t.integer  "score",       :default => 0, :null => false
     t.integer  "parent_id"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.text     "voters",                     :null => false
   end
 
-  create_table "users", :force => true do |t|
+  create_table "users" do |t|
     t.string   "email",                                 :default => "",     :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "",     :null => false
     t.string   "reset_password_token"
@@ -135,3 +135,4 @@ ActiveRecord::Schema.define(:version => 1) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
+

@@ -27,12 +27,12 @@ class InitialMigration < ActiveRecord::Migration
     end
 
     create_table "confs" do |t|
-      t.date   "created_at"
-      t.string "default_avatar_uid"
-      t.string "default_location_id"
-      t.string "max_surveys"
-      t.string "welcome_mail_subject", :default => ""
-      t.text   "welcome_mail_body"
+      t.date    "created_at"
+      t.string  "default_avatar_uid"
+      t.integer "default_location_id",   :default => 1
+      t.integer "max_surveys",   :default => 5
+      t.string  "welcome_mail_subject", :default => ""
+      t.text    "welcome_mail_body"
     end
 
     create_table "images" do |t|
@@ -55,7 +55,7 @@ class InitialMigration < ActiveRecord::Migration
       t.string  "last_name"
       t.date    "birthday"
       t.string  "city"
-      t.string  "avatar_uid",   :default => "default_avatar/default_avatar.png"
+      t.string  "avatar_uid"
       t.text    "situation"
       t.text    "prestations"
       t.text    "references"
