@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120306130537) do
+ActiveRecord::Schema.define(:version => 20120224212304) do
 
   create_table "locations", :force => true do |t|
     t.string "name"
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20120306130537) do
     t.string  "first_name",   :default => "anonyme"
     t.string  "last_name"
     t.date    "birthday"
+    t.string  "city"
     t.string  "avatar_uid",   :default => "default_avatar/default_avatar.png"
     t.text    "situation"
     t.text    "prestations"
@@ -31,15 +33,12 @@ ActiveRecord::Schema.define(:version => 20120306130537) do
     t.text    "hobbies"
     t.text    "powers"
     t.text    "presence"
+    t.string  "phone"
     t.integer "location_id"
     t.integer "status_id"
     t.string  "organisation"
     t.string  "website"
     t.string  "baseline"
-    t.string  "phone"
-    t.string  "address"
-    t.string  "zip"
-    t.string  "city"
   end
 
   add_index "members", ["status_id"], :name => "index_members_on_status_id"
