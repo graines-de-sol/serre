@@ -1,0 +1,27 @@
+#locations_conf.well
+  %p.label= t('admin.current_locations')
+  = form_tag '/admin/locations/update', :method=>:put do
+    %table#locations_mgt
+      %tr
+        %th{:style=>'width:20px;'}= ''
+        %th= t('location_name')
+        %th= t('location_address')
+        %th= t('location_zip')
+        %th= t('location_city')
+
+      - Location.all.each do |location|
+        %tr
+          %td
+            %a{:href=>"/admin/locations/delete/#{location.id}", :id=>location.id, :data=>{'method'=>'delete', 'confirm'=>t('delete_location_confirm')}}
+              %i.icon-remove
+          %td= text_field_tag "location[#{location.id}][name]", location.name
+          %td= text_field_tag "location[#{location.id}][address]", location.address
+          %td= text_field_tag "location[#{location.id}][zip]", location.zip, :style=>'width:90px !important;'
+          %td= text_field_tag "location[#{location.id}][city]", location.city
+
+    %a{:href=>"/admin/locations/create", :data=>{'method'=>'post'}}
+      = t('create_location')
+    %br
+    %br
+    = submit_tag t('save'), :class=>'btn  btn-warning'
+

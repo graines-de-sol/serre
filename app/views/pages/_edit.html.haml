@@ -1,0 +1,69 @@
+%h2
+  %a{:href=>'#', :class=>'dotoggle', :data=>{'block'=>'#new_content'}}= "+ Créer un article"
+
+#new_content.hide
+  = form_tag "/pages" do
+
+    = hidden_field_tag 'article[category]', params[:id]
+
+    %p.well
+      = t('content_visibility')
+      %select{:name=>'article[location_id]'}
+        %option{:value=>0}= t('all_locations')
+        - @locations.each do |location|
+          %option{:value=>location.id}= location.name
+
+    %label= t('title')
+    = text_field_tag 'article[title]'
+
+    %label= t('calendar')
+    = text_field_tag 'article[calendar]'
+
+    %label= t('video')
+    = text_field_tag 'article[video]'
+
+    %label= t('content')
+    = text_area_tag 'article[content]', {}, :class=>'expandable MCEeditable'
+    %br
+    = submit_tag t('save'), :class=>'btn  btn-warning', :style=>'float:right;'
+
+#contents
+  - @articles.each do |article|
+
+    .hr{:style=>'border-bottom:5px solid #d4d4d4;margin-bottom:30px;'}
+
+    = form_tag "/pages/#{article.id}", :method=>:put do
+
+      = hidden_field_tag 'article[category]', params[:id]
+
+      %p.well
+        = t('content_visibility')
+        %select{:name=>'article[location_id]'}
+          %option{:value=>0}= t('all_locations')
+          - @locations.each do |location|
+            %option{:value=>location.id}= location.name
+
+      %label= t('title')
+      = text_field_tag 'article[title]', article.title
+
+      %label= t('calendar')
+      = text_field_tag 'article[calendar]', show_calendar(article.calendar)
+
+      %label= t('video')
+      = text_field_tag 'article[video]', show_video(article.video)
+
+      %label= t('content')
+      .content_container.hide
+        = soft_clean article.content
+      .textarea_container
+      %br
+      %a{:href=>"/pages/#{article.id}", :class=>'left', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_article')}}
+        %i.icon-remove
+        = "Supprimer cet article"
+
+      = submit_tag t('save'), :class=>'btn btn-warning right'
+    .clear
+
+= javascript_include_tag "/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js"
+= javascript_include_tag "/javascripts/tinymce/init.js"
+

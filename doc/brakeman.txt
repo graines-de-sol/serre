@@ -1,0 +1,60 @@
+
++BRAKEMAN REPORT+
+
+Application path: /Users/jeanmichel/Projects/refuge
+Rails version: 3.1.1
+Generated at Wed Mar 21 14:28:04 +0100 2012
+Checks run: BasicAuth, CrossSiteScripting, DefaultRoutes, EscapeFunction, Evaluation, Execute, FileAccess, FilterSkipping, ForgerySetting, LinkTo, LinkToHref, MailTo, MassAssignment, ModelAttributes, NestedAttributes, QuoteTableName, Redirect, Render, ResponseSplitting, SQL, SafeBufferManipulation, SelectVulnerability, SendFile, SessionSettings, SkipBeforeFilter, StripTags, TranslateBug, ValidationRegex, WithoutProtection
+
++SUMMARY+
++----------------------------+
+| Scanned/Reported  | Total  |
++----------------------------+
+| Controllers       |      5 |
+| Models            |     11 |
+| Templates         |     32 |
+| Errors            |      0 |
+| Security Warnings | 18 (9) |
++----------------------------+
+
++-------------------------------+
+|     Warning Type      | Total |
++-------------------------------+
+| Attribute Restriction |     1 |
+| Cross Site Scripting  |     2 |
+| Mass Assignment       |    11 |
+| Redirect              |     3 |
+| SQL Injection         |     1 |
++-------------------------------+
+
++SECURITY WARNINGS+
++---------------------------------------------------------------------------------------------------------------------------------------------------------->>
+| Confidence |        Class        |     Method     |     Warning Type     |                                                                               >>
++---------------------------------------------------------------------------------------------------------------------------------------------------------->>
+| High       |                     |                | Cross Site Scripting | Versions before 3.1.2 have a vulnerability in the translate helper.           >>
+| High       | AdminController     | conf           | Mass Assignment      | Unprotected mass assignment near line 18: Conf.find(1).update_attributes(param>>
+| High       | DashboardController | create         | Mass Assignment      | Unprotected mass assignment near line 41: Ad.find(params[:id]).update_attribut>>
+| High       | DashboardController | create         | Mass Assignment      | Unprotected mass assignment near line 38: Ad.create(params[:ad])              >>
+| High       | MembersController   | update         | Mass Assignment      | Unprotected mass assignment near line 69: Member.find(params[:id]).update_attr>>
+| High       | PagesController     | update         | Mass Assignment      | Unprotected mass assignment near line 35: Article.find(params[:id]).update_att>>
+| High       | PagesController     | create         | Mass Assignment      | Unprotected mass assignment near line 24: Article.create(params[:article])    >>
+| High       | MembersController   | search         | SQL Injection        | Possible SQL injection near line 16: Member.where(["#{Member.fields[params[:ca>>
+| Medium     |                     |                | Cross Site Scripting | Rails 3.1.1 has a vulnerabilty in SafeBuffer. Upgrade to 3.1.4 or apply patche>>
+| Weak       | AdminController     | occupation     | Mass Assignment      | Unprotected mass assignment near line 126: Location.find(params[:location_id])>>
+| Weak       | AdminController     | answers_create | Mass Assignment      | Unprotected mass assignment near line 104: Survey.create(:parent_id => (params>>
+| Weak       | AdminController     | surveys_create | Mass Assignment      | Unprotected mass assignment near line 81: Survey.create(:question => (params[:>>
+| Weak       | Survey              | Survey.vote    | Mass Assignment      | Unprotected mass assignment near line 30: Survey.find((local vote)).update_att>>
+| Weak       | Survey              | Survey.vote    | Mass Assignment      | Unprotected mass assignment near line 35: Survey.find((local vote)).parent.upd>>
+| Weak       | PagesController     | update         | Redirect             | Possible unprotected redirect near line 39: redirect_to("/pages/#{params[:arti>>
+| Weak       | PagesController     | destroy        | Redirect             | Possible unprotected redirect near line 49: redirect_to("/pages/#{Article.dest>>
+| Weak       | PagesController     | create         | Redirect             | Possible unprotected redirect near line 28: redirect_to("/pages/#{params[:arti>>
++---------------------------------------------------------------------------------------------------------------------------------------------------------->>
+
+Model Warnings:
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------->>
+| Confidence |                                      Model                                      |     Warning Type      |                         Message   >>
++---------------------------------------------------------------------------------------------------------------------------------------------------------->>
+| High       | Ad, Article, Category, Conf, Location, Member, Network, Profile, Status, Survey | Attribute Restriction | Mass assignment is not restricted >>
++---------------------------------------------------------------------------------------------------------------------------------------------------------->>
+

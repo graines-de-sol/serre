@@ -1,3 +1,105 @@
-.span8
-  %h1= 'Dashboard'
+.span11#dashboard
+  .left{:style=>'width:598px;'}
+    - unless @birthdays.empty?
+      %p.well{:style=>'width:545px;'}
+        = t('today_is_birthday_of')
+        - @birthdays.each do |member|
+          = link_to member.first_name, member_path(member)
+    #ads
+      #categories
+        %ul
+          %li
+            %a{:href=>'#', :id=>'active', :data=>{'category_id'=>0}}= t('all_categories')
+          - @categories.each do |category|
+            %li
+              %a{:href=>'#', :data=>{'category_id'=>category.id}}= category.name
+
+        %a{:href=>'#create_ad', :id=>'toggle_ad_creator', :class=>'btn btn-warning', :data=>{'toggle'=>'modal'}}= t('create_ad')
+
+      - @ads.each do |ad|
+        .ad{:id=>"ad_id_#{ad.id}"}
+          %input{:type=>'hidden', :class=>'category_id', :value=>ad.category_id}
+          %input{:type=>'hidden', :class=>'location_id', :value=>ad.location_id}
+          %input{:type=>'hidden', :class=>'end_at', :value=>ad.end_at.strftime('%Y-%m-%d')}
+
+          .avatar
+            = link_to avatar(ad.member, '32x32'), member_path(ad.member.id), :rel=>'tooltip', :title=>"#{ad.member.first_name} #{ad.member.last_name}"
+
+          %h3= ad.subject
+          %p= hard_clean ad.body
+
+          .action_bar
+            - if Member.can_edit?(current_user, ad.member_id)
+              %a{:href=>'#create_ad', :data=>{'toggle'=>'modal', :ad_id=>ad.id}, :class=>'edit_ad'}
+                %i.icon-pencil
+                = t('edit_this_ad')
+              %span= "#{t('valid_until')} #{l(ad.end_at, :format=>:long)}"
+
+            - else
+              %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>ad.member.user.email, :recipient_id=>ad.member.id}, :class=>'mail_me'}
+                %i.icon-envelope
+                = t('reply_this_ad')
+              %span= "#{t('valid_until')} #{l(ad.end_at, :format=>:long)}"
+
+  .right
+    #occupation
+      #top
+        = t('actual_occupation_of_location')
+        %select#locations_select
+          - @locations.each do |location|
+            %option{:value=>location.id, :selected=>location.id == current_user.member.location_id}= location.name
+
+      #gauge
+        #rate{:class=>('draggable' if is_admin)}
+
+      - @locations.each do |location|
+        %a{:href=>'#', :class=>"occupation #{'hide' if location.id != current_user.member.location_id}", :id=>"location_id_#{location.id}", :data=>{'occupation'=>location.occupation}}
+          = "#{t('last_update')} #{l(location.updated_at, :format=>:long)}"
+
+    #last_ones
+      %h2= t('newcomers')
+
+      - @new_ones.each do |user|
+        %a{:href=>member_path(user.member.id)}
+          = avatar(user.member, '50x50')
+
+    - unless @surveys.empty?
+      #survey
+        %h2= t('survey')
+
+        %p.well#question
+          = @surveys.first.question
+
+        %ul
+          - @surveys.first.children.each do |s|
+            %li
+              %input{:type=>'radio', :name=>'answer', :class=>'answer', :value=>s.id}
+              = s.question
+
+        .clear
+        %span= t('vote_to_know_the_results')
+
+        %br
+        %br
+
+        %h2= t('older_surveys')
+        #older_surveys
+          %ul
+            - @surveys.offset(1).each do |survey|
+              %li
+                %a{:href=>'#', :data=>{'survey_id'=>survey.id}}= survey.question
+
+
+- # hidden
+- unless @categories.empty?
+  %input{:type=>'hidden', :id=>'default_category_id', :value=>(@categories.first.id if @categories)}
+- unless @surveys.empty?
+  %input{:type=>'hidden', :id=>'current_survey_id', :value=>(@surveys.first.id if @surveys)}
+
+
+%input{:type=>'hidden', :id=>'default_end_at', :value=>default_end_at}
+
+= render :partial=>'shared/send_mail_modal'
+= render :partial=>'create_ad_modal'
+= render :partial=>'survey_modal'
 

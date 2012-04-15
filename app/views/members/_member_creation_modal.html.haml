@@ -1,0 +1,37 @@
+#creation_modal.modal.hide.fade
+  .modal-header
+    %a.close{:data=>{'dismiss'=>'modal'}}
+      = '×'
+    %h3= t('new_account_creation')
+
+  .modal-body
+    = form_tag "/members" do
+      #new_user_form
+
+        .left
+          %label= t(:login)
+          %input{:type=>'text', :name=>'user[email]'}
+        .left
+          %label= t(:password)
+          %input{:type=>'password', :name=>'user[password]'}
+
+        .left
+          %label= t(:role)
+          %select{:name=>'user[role]'}
+            %option{:value=>'user'}= t('member')
+            %option{:value=>'administrator'}= t('administrator')
+      .clear
+
+      %label= "Mail de bienvenue"
+      .content_container.hide
+        = $conf.welcome_mail_body
+      .textarea_container
+      %br
+      = submit_tag t(:create), :class=>'btn  btn-danger', :style=>'float:right;margin-right:10px;'
+      = check_box_tag 'no_welcome_email'
+      = t('no_welcome_email')
+
+
+= javascript_include_tag "/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js"
+= javascript_include_tag "/javascripts/tinymce/small.js"
+

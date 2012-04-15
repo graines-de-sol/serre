@@ -1,0 +1,31 @@
+./app/controllers/members_controller.rb:18 - simplify render in controllers
+./app/controllers/members_controller.rb:32 - simplify render in controllers
+./app/controllers/members_controller.rb:34 - simplify render in controllers
+./app/controllers/members_controller.rb:78 - simplify render in controllers
+./app/helpers/application_helper.rb:36 - remove unused methods (ApplicationHelper#translate_to_client)
+./app/helpers/application_helper.rb:47 - remove unused methods (ApplicationHelper#phone_number)
+./app/controllers/members_controller.rb:56 - move model logic into model ( use_count > 4)
+./config/routes.rb:22 - restrict auto-generated routes (:only => [:show, :create, :update, :destroy, :index])
+./config/routes.rb:23 - restrict auto-generated routes (:only => [:show, :create, :update, :destroy])
+./db/schema.rb:99 - always add db index (surveys => [parent_id])
+./db/schema.rb:99 - always add db index (surveys => [location_id])
+./db/schema.rb:15 - always add db index (ads => [category_id])
+./db/schema.rb:15 - always add db index (ads => [member_id])
+./db/schema.rb:15 - always add db index (ads => [location_id])
+./db/schema.rb:74 - always add db index (pages => [location_id])
+./db/schema.rb:29 - always add db index (confs => [default_location_id])
+./db/schema.rb:44 - always add db index (members => [user_id])
+./db/schema.rb:44 - always add db index (members => [location_id])
+./app/controllers/members_controller.rb:25 - move finder to named_scope
+./app/views/admin/show.html.haml:13 - simplify render in views
+./app/views/admin/show.html.haml:15 - simplify render in views
+./app/views/admin/show.html.haml:17 - simplify render in views
+./app/views/admin/show.html.haml:19 - simplify render in views
+./app/views/dashboard/index.html.haml:101 - simplify render in views
+./app/views/dashboard/index.html.haml:102 - simplify render in views
+./app/views/pages/show.html.haml:4 - simplify render in views
+./app/views/pages/show.html.haml:7 - simplify render in views
+
+Please go to http://rails-bestpractices.com to see more useful Rails Best Practices.
+
+Found 27 warnings.

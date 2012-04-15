@@ -1,39 +1,35 @@
 class Member < ActiveRecord::Base
 
-  belongs_to :user
   belongs_to :location
   belongs_to :status
-  has_many :profiles
+  belongs_to :user
+
+  has_many :ads
   has_many :networks, :through=>:profiles
+  has_many :profiles
 
   validates_presence_of :first_name
+  before_update :compose_birthday
 
   image_accessor :avatar
 
-  before_create :set_birthday_to_now
-  before_update :compose_birthday
-
-  normalize_attributes :website, :organisation, :prestations, :references, :city, :hobbies, :powers
+  normalize_attributes :website, :baseline, :organisation, :prestations, :references, :city, :hobbies, :powers
   normalize_attribute :phone, :with=>:phone
 
+  acts_as_birthday :birthday
+
+  # Weither a user can edit or just view a given content
   def self.can_edit?(current_user, current_id)
-    (current_user.role == 'admin' || current_id == current_user.id)? true : false
+    ((current_user.role == 'admin' && !current_user.view_as_user)|| current_id == current_user.member.id)? true : false
   end
 
-  def age
-    now = Time.now.year - self.birthday.year
-  end
-
-  def http_website
-    "http://#{self.website}"
-  end
-
-  # Searchable DB fields
+  # DB fields we can search into for search patterns
   def self.fields
     fields = ['first_name', 'last_name', 'prestations', 'powers', 'organisation']
 
     out = Hash.new
-    fields.each{|f|out.update(f => f)}
+    # front label in select => DB column name
+    fields.each{|f|out.update("searchable_fields.#{f}" => f)}
 
     return out
   end
@@ -42,15 +38,12 @@ private
 
   # Compose SQL date from day and month
   def compose_birthday
-    self.birthday['day'] = 1 if (self.birthday['day'].strip.blank? || self.birthday['day'].to_i == 0)
-    self.birthday = "#{self.birthday['year']}-#{self.birthday['month']}-#{self.birthday['day']}"
+    begin
+      self.birthday = "#{birthday['day']}-#{birthday['month']}-#{birthday['year']}".to_date
+    rescue
+      self.birthday = nil
+    end
   end
-
-  # Force birthday to now on create
-  def set_birthday_to_now
-    self.birthday = Time.now
-  end
-
 
 end
 

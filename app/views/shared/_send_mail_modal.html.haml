@@ -1,0 +1,25 @@
+#send_mail.modal.hide.fade
+  .modal-header
+    %a.close{:data=>{'dismiss'=>'modal'}}
+      = '×'
+    %h3= t('send_email_to')
+    %span#recipient= ''
+
+  .modal-body
+    #email_form
+      = form_tag "/members/mail", :method=>:post do
+
+        = hidden_field_tag 'recipient_id'
+        = hidden_field_tag 'origin', request.url
+
+        %label= t('email_subject')
+        %input{:type=>'text', :name=>'email[subject]', :style=>'width:520px;'}
+        %br
+        %label= t('email_body')
+        %textarea{:name=>'email[body]', :style=>'width:520px;height:250px;'}
+
+        %br
+        = submit_tag t('send'), :class=>'btn  btn-warning', :style=>'float:right'
+
+      .clear
+

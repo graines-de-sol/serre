@@ -4,4 +4,9 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+task(:default).clear
+task :test => :spec
+
 Refuge::Application.load_tasks
+#Rake::Task[:default].prerequisites.clear
+

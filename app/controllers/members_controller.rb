@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
 
-  before_filter :is_logged
+  before_filter :is_logged, :load_conf
 
   # GET /members
   # List all members                                    HTML
@@ -28,7 +28,7 @@ class MembersController < ApplicationController
     @pro_networks = Network.with_urls(@user_profiles, :pro)
     @perso_networks = Network.with_urls(@user_profiles, :perso)
 
-    if Member.can_edit?(current_user, @member.user_id)
+    if Member.can_edit?(current_user, @member.id)
       render :template=>'/members/edit'
     else
       render :template=>'/members/show'
@@ -40,9 +40,17 @@ class MembersController < ApplicationController
   # Create a new user                               REDIRECT
   # --------------------------------------------------------
   def create
+
     new_user = User.create(params[:user])
 
     if new_user.id
+      unless params[:no_welcome_email]
+        Notifier.welcome_message({
+          :to   => params[:user][:email],
+          :body => params[:article][:content]
+        }).deliver
+      end
+
       redirect_to member_path(new_user.member.id)
     else
       flash[:notice] = t('warnings.check_new_user_parameters')
@@ -55,20 +63,26 @@ class MembersController < ApplicationController
   # --------------------------------------------------------
   def update
 
-    this_member = Member.find(params[:id])
+    @member = Member.find(params[:id])
 
+    # EMail, password & role
     if params[:user]
-      this_user = User.find(this_member.user_id)
-      request = this_user.update_attributes(params[:user])
-
-      flash[:notice] = t('warnings.check_user_parameters') if !request
-    else
-      this_member.update_attributes(params[:member])
-
-      Profile.update(params[:profile], this_member.id)
+      User.find(@member.user_id).update_attributes(params[:user])
     end
 
-    redirect_to member_path(params[:id])
+    # Member's profile
+    if params[:member]
+      @member.update_attributes(params[:member])
+      Profile.update(params[:profile], @member.id)
+    end
+
+    @user_profiles = @member.profiles.map{|p|{p.network_id=>p.url}}
+
+    @pro_networks = Network.with_urls(@user_profiles, :pro)
+    @perso_networks = Network.with_urls(@user_profiles, :perso)
+
+    render :template=>'/members/edit'
+
   end
 
   # DELETE /members/:id
@@ -80,13 +94,13 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
-  # POST /members/mail/:id
+  # POST /members/mail
   # Send an Email to member                         REDIRECT
   # --------------------------------------------------------
   def mail_member
 
     @from = Member.find(current_user.member.id)
-    @to = Member.find(params[:id])
+    @to = Member.find(params[:recipient_id])
 
     Notifier.mail_message({
       :reply_addr=>@from.user.email,
@@ -96,7 +110,7 @@ class MembersController < ApplicationController
       :body=>params[:email][:body]
     }).deliver
 
-    redirect_to member_path(params[:id])
+    redirect_to params[:origin]
   end
 end
 

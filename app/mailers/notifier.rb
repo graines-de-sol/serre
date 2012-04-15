@@ -10,5 +10,18 @@ class Notifier < ActionMailer::Base
     )
   end
 
+  def welcome_message(datas)
+    @datas = datas
+    mail(
+      :from    => "la-cordee@refuge.la-cordee.net",
+      :to      => @datas[:to],
+      :subject => $conf.welcome_mail_subject,
+      :body    => @datas[:body]) do |format|
+        format.html
+    end
+
+  end
+
+
 end
 
