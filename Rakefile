@@ -8,5 +8,4 @@ task(:default).clear
 task :test => :spec
 
 Refuge::Application.load_tasks
-#Rake::Task[:default].prerequisites.clear
 
