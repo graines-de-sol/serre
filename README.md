@@ -30,16 +30,12 @@ Installation
 
 Clone the repo :
 
-`git clone git@github.com:la-cordee/refuge.git`
+`git clone git@github.com:la-cordee/refuge.git
+cd refuge`
 
-Install dependencies :
+Run the bootstrap script to check that you have all dependencies installed and set up a development environment:
 
-`bundle install`
-
-Don't forget to fill-in your DataBase parameters in '/conf/database.yml',
-then generate the basic DB stuff :
-
-`rake db:setup`
+`script/bootstrap`
 
 Done !
 

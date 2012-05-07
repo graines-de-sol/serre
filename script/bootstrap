@@ -1,0 +1,169 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+# This command will help a new developer to contribute, see github http://zachholman.com/talk/ruby-patterns
+
+# GOTO line 61 for the script itself
+
+# Just for fun, a micro RSpec framework to run and document bootstrap process ;)
+module Kernel
+  def bootstrap(description, &block)
+    examples = Bootstrap::Dsl.new.parse(description, block)
+    examples.execute
+  end
+end
+class Object
+  def should
+    self
+  end
+end
+module Bootstrap
+  class Dsl
+    def initialize
+      @examples = []
+    end
+
+    def parse(description, block)
+      self.instance_eval(&block)
+      ExamplesRunner.new(description, @examples)
+    end
+
+    def it(specification, &block)
+      @examples << Example.new(specification, &block)
+    end
+  end
+  class Example
+    attr_reader :specification, :block
+
+    def initialize(specification, &block)
+      @specification, @block = specification, block
+    end
+  end
+  class ExamplesRunner
+    def initialize(description, examples)
+      @description = description
+      @examples = examples
+    end
+
+    def execute
+      puts "Bootstraping #{@description} ..."
+      @examples.each do |example|
+        print "- #{example.specification}"
+        unless example.block
+          puts " ✔"
+          next
+        end
+
+        result = example.block.call
+        if result
+          puts " ✔"
+        else
+          puts " FAILED"
+          exit
+        end
+      end
+    end
+  end
+end
+
+bootstrap "Refuge" do
+
+  it "ruby 1.9.2" do
+    RUBY_VERSION.should == "1.9.2"
+  end
+
+  it "you might want to use rvm and a gemset to automate your development process" do
+    check_dependency("rvm", :help => "Go to https://rvm.io/")
+    true.should == true # optionnal dependency
+  end
+
+  it "bundler" do
+    check_dependency("bundle", :help => "gem install bundler").should == true
+  end
+
+  it "mysql" do
+    check_dependency("mysql", :help => "Run 'brew install mysql', see http://mxcl.github.com/homebrew/"
+    ).should == true
+  end
+
+  it "imagemagick" do
+    check_dependency("convert", :help => "Run 'brew install imagemagick', see http://mxcl.github.com/homebrew/"
+    ).should == true
+  end
+
+  it "gems" do
+    run("bundle").should == true
+  end
+
+  it "creates a config/database.yml with user 'root' and no password." do
+    database_yml = File.join('config', 'database.yml')
+    create_file_unless_exists database_yml, <<DBCONFIG
+development: &DEVELOPMENT
+  adapter: mysql2
+  database: cordee_development
+  username: root
+  password:
+  encoding: utf8
+test:
+  <<: *DEVELOPMENT
+  database: cordee_test
+DBCONFIG
+
+    File.exist?(database_yml).should == true
+  end
+
+  it "checks it can connect to mysql with configuration in database.yml" do
+    # Returns the standard output of running cmd in a subshell
+    %x{mysql -u root --execute 'SELECT 1;'}.include?("1").should == true
+  end
+
+  it "databases creation" do
+    rake("db:create:all").should == true
+  end
+
+  it "databases migration" do
+    rake("db:migrate").should == true
+    rake("db:test:load").should == true
+  end
+
+  it "run specs" do
+    rake.should == true
+  end
+
+  it "seeds development DB" do
+    rake('db:seed').should == true
+  end
+
+  it "run 'rails server' && open http://localhost:3000/ connect with admin@refuge.com / 12456"
+
+  # Helper methods
+  def rake(task = "")
+    run "rake #{task} 2>&1" # does not print to the console as well while the command is executing
+  end
+
+  def run(command)
+    output = %x{#{command}}
+    success = $?.exitstatus == 0
+    puts output unless success
+    success
+  end
+
+  def check_dependency(executable, args)
+    present = present?(executable)
+    puts(args[:help]) unless present
+    present
+  end
+
+  def present?(executable)
+    `which #{executable}`.include?(executable)
+  end
+
+  def create_file_unless_exists(file, content)
+    return if File.exist?(file)
+    File.open(file, 'w') do |f|
+      f.write content
+    end
+  end
+end
+
+
+
