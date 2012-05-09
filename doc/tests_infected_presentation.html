@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html;charset=utf-8"> 
+   <title>Untitled Slide Show</title>
+
+<meta name="generator" content="- generator not found -">
+<meta name="author"    content="- author not found -" >
+
+<!-- helper/macro that lets you add (CSS3) gradient using headers
+     see http://slideshow.rubyforge.org/themes.html
+     
+     -->
+
+<!-- S6 style sheet links -->
+<link rel="stylesheet" href="tests_infected_presentation.css" media="projection" id="styleProjection">
+<link rel="stylesheet" href="s6/screen.css"         media="screen"     id="styleScreen">
+<link rel="stylesheet" href="s6/print.css"          media="print">
+
+<!-- S6 JS -->
+<script src="s6/jquery.js"></script>
+<script src="s6/jquery.slideshow.js"></script>
+<script>
+  $(document).ready( function() {
+    Slideshow.init();
+  } );
+
+  
+</script>
+
+<!-- Better Browser Banner for Microsoft Internet Explorer (IE) -->
+<!--[if IE]>
+<script src="s6/jquery.microsoft.js"></script>
+<![endif]-->
+
+
+
+</head>
+<body>
+
+<div class="layout"> 
+  <div id="header"></div>
+  <div id="footer">
+    <h1></h1>
+    <h2></h2>
+  </div>
+</div>
+
+<div class="presentation">
+   
+<div class='slide '>
+<h1 id="tests-infected-introduction">1. Tests infected introduction</h1><p>Jean-Michel Garnier, <a href="http://lyonrb.fr/">http://lyonrb.fr/</a> - apéro Ruby mai 2012</p>
+
+<p>Built with <a href="https://github.com/nakajima/slidedown">https://github.com/nakajima/slidedown</a></p>
+
+
+</div>
+<div class='slide '>
+<h1 id="histoire">2. Histoire</h1><ul>
+  <li>1994: Kent Beck describes SUnit testing framework for Smalltalk</li>
+  <li>2001: <a href="http://agilemanifesto.org/">http://agilemanifesto.org/</a> + First test written by JM</li>
+  <li>2004: Rails</li>
+  <li>2006: BDD, RSpec</li>
+  <li>2011: travisci</li>
+</ul>
+
+<h2 id="links">Links</h2>
+
+<ul>
+  <li><a href="http://guide.agilealliance.org/timeline.html">http://guide.agilealliance.org/timeline.html</a></li>
+  <li><a href="http://21croissants.github.com/testing-rails-workshop">http://21croissants.github.com/testing-rails-workshop</a></li>
+</ul>
+
+
+</div>
+<div class='slide '>
+<h1 id="vocabulaire">3. Vocabulaire</h1><h2 id="unit">Unit</h2>
+
+<h2 id="integration">Integration</h2>
+
+<h2 id="acceptance">Acceptance</h2>
+
+
+</div>
+<div class='slide '>
+<h1 id="anatomie-rspec">4. Anatomie RSpec</h1><pre><code>require 'spec_helper'
+
+describe "Class" do
+  before :each do
+    # test data set up
+  end
+
+  describe "#method" do
+
+    it "should specify the method under test behaviour" do
+      # example and assertion using should
+    end
+
+  end
+
+end
+</code></pre>
+
+<h2 id="links-1">Links</h2>
+
+<ul>
+  <li><a href="http://blog.josephwilk.net/cucumber/examples-are-not-a-specification.html">http://blog.josephwilk.net/cucumber/examples-are-not-a-specification.html</a></li>
+  <li><a href="http://eggsonbread.com/2010/03/28/my-rspec-best-practices-and-tips/">http://eggsonbread.com/2010/03/28/my-rspec-best-practices-and-tips/</a></li>
+  <li><a href="https://www.relishapp.com/rspec/">https://www.relishapp.com/rspec/</a></li>
+</ul>
+
+
+</div>
+<div class='slide '>
+<h1 id="example">5. Example</h1><pre><code>require 'spec_helper'
+
+describe Member do
+  before :each do
+    @member = Member.new
+  end
+
+  describe "to be valid" do
+
+    it "requires at least a first name " do
+      @user.first_name = "Guillaume"
+      @user.valid?.should == true
+    end
+
+  end
+
+end
+</code></pre>
+
+</div>
+
+
+</div><!-- presentation -->
+</body>
+</html>
