@@ -68,14 +68,7 @@ module ApplicationHelper
 
   # Check if member has some social networks profiles
   def member_has_profile?(networks)
-
-    out = false
-
-    networks.each do |p|
-      out = true if p[:url]
-    end
-
-    return out
+    networks.find { |network| network.key?(:url) }
   end
 
   # Ouput a member's birthday whenever it is set or not
@@ -141,5 +134,7 @@ module ApplicationHelper
   def default_end_at
     (7.days.since(Time.now)).strftime('%Y-%m-%d')
   end
+  
+  extend self
 end
 
