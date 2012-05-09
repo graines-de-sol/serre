@@ -1,15 +1,35 @@
 # -*- coding: utf-8 -*-
-require "spec_helper"
+require 'spec_helper'
 
 describe ApplicationHelper do
   describe "#member_has_infos?" do
-    before :each do
-      @member = Member.new  organisation: "la cordée"
+    context "member is empty" do
+      before :each do
+        @member = Member.new
+      end
+      it "returns false" do
+        helper.member_has_infos?(@member).should == false
+      end
     end
 
-    it "returns true if organisation is present" do
-      helper.member_has_infos?(@member).should == true
+    context "member expected attributes are present" do
+      before :each do
+        @member = Member.new  organisation: "la cordée"
+      end
+      it "returns true if organisation is present" do
+        helper.member_has_infos?(@member).should == true
+      end
     end
+
+    context "member unexpected attributes are present" do
+      before :each do
+        @member = Member.new  website: "la cordée"
+      end
+      it "returns false if website is present" do
+        helper.member_has_infos?(@member).should == false
+      end
+    end
+
   end
 
   describe "hello" do
@@ -47,3 +67,4 @@ describe ApplicationHelper do
     
   end
 end
+
