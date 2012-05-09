@@ -28,10 +28,9 @@ share their profiles and know about each others' inside a private, secure yet We
 Installation
 ----------------
 
-Clone the repo :
+Clone or Fork the repo :
 
-`git clone git@github.com:la-cordee/refuge.git
-cd refuge`
+`git clone git@github.com:la-cordee/refuge.git && cd refuge`
 
 Run the bootstrap script to check that you have all dependencies installed and set up a development environment:
 
