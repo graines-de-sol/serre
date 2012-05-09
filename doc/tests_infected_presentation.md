@@ -1,10 +1,5 @@
 #1. Tests infected introduction
 
-## Déroulé
-
-* 19h00
-
-
 Jean-Michel Garnier, <http://lyonrb.fr/> - apéro Ruby mai 2012
 
 Built with <https://github.com/nakajima/slidedown>
@@ -52,8 +47,8 @@ Built with <https://github.com/nakajima/slidedown>
 ##Links
 
 * <http://blog.josephwilk.net/cucumber/examples-are-not-a-specification.html>
-* <https://www.relishapp.com/rspec/>
 * <http://eggsonbread.com/2010/03/28/my-rspec-best-practices-and-tips/>
+* <https://www.relishapp.com/rspec/>
 
 #5. Example
 
@@ -73,7 +68,6 @@ Built with <https://github.com/nakajima/slidedown>
 
       end
 
-      end
     end
 
 
