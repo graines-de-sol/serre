@@ -27,15 +27,13 @@ class Survey < ActiveRecord::Base
 
     answer = Survey.find(vote)
 
-    answer.update_attributes(
-      :score => answer.score += 1,
-      :voters=> answer.voters.push(member_id)
-    )
+    answer.score += 1
+    answer.voters << member_id
+    
+    answer.parent.voters << member_id
 
-    answer.parent.update_attributes(
-      :voters=> answer.parent.voters.push(member_id)
-    )
-
+    answer.save
+    answer.parent.save
   end
 end
 
