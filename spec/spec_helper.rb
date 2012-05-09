@@ -1,5 +1,10 @@
 ENV["RAILS_ENV"] ||= 'test'
 
+if ENV["COVERAGE"]
+  require 'simplecov'
+  SimpleCov.start
+end
+
 def load_all(*patterns)
   patterns.each { |pattern| Dir[pattern].sort.each { |path| load File.expand_path(path) } }
 end
