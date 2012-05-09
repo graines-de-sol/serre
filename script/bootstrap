@@ -67,8 +67,8 @@ end
 
 bootstrap "Refuge" do
 
-  it "ruby 1.9.2" do
-    RUBY_VERSION.should == "1.9.2"
+  it "ruby >= 1.9.2" do
+    RUBY_VERSION.should >= "1.9.2"
   end
 
   it "you might want to use rvm and a gemset to automate your development process" do
