@@ -26,4 +26,24 @@ describe ApplicationHelper do
       end
     end
   end
+  
+  describe "is_admin" do
+    let(:current_user) { @current_user }
+    
+    it "should not idenity a dumb user as an admin" do
+      @current_user = Factory.build(:user)
+      is_admin.should be_false
+    end
+    
+    it "should identify an admin" do
+      @current_user = Factory.build(:admin)
+      is_admin.should be_true
+    end
+    
+    it "should not identify an admin when view as user" do
+      @current_user = Factory.build(:admin, view_as_user: true)
+      is_admin.should be_false
+    end
+    
+  end
 end
