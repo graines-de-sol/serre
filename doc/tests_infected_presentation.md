@@ -62,8 +62,8 @@ Built with <https://github.com/nakajima/slidedown>
       describe "to be valid" do
 
         it "requires at least a first name " do
-          @user.first_name = "Guillaume"
-          @user.valid?.should == true
+          @member.first_name = "Guillaume"
+          @member.valid?.should == true # One can also write: @member.should be_valid
         end
 
       end
