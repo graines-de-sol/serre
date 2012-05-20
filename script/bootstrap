@@ -133,7 +133,7 @@ DBCONFIG
     rake('db:seed').should == true
   end
 
-  it "run 'rails server' && open http://localhost:3000/ connect with admin@refuge.com / 12456"
+  it "run 'rails server' && open http://localhost:3000/ connect with admin@refuge.com / 123456"
 
   # Helper methods
   def rake(task = "")
