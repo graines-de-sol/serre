@@ -7,9 +7,9 @@ set :scm, 'git'
 set :default_stage, 'development'
 set :branch, fetch(:branch, "production")
 
-role :web, "s15367251.onlinehome-server.info"
-role :app, "s15367251.onlinehome-server.info"
-role :db,  "s15367251.onlinehome-server.info", :primary => true
+role :web, "ns382592.ovh.net"
+role :app, "ns382592.ovh.net"
+role :db,  "ns382592.ovh.net", :primary => true
 
 namespace :deploy do
   task :start do ; end
