@@ -27,19 +27,24 @@ gem 'attribute_normalizer'
 gem 'simple_form'
 gem 'acts_as_tree_rails3'
 gem 'birthday', '~> 0.2.0'
+gem 'multi_json'
 
-group :test do
+group :development, :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'simplecov', :require => false
+  gem 'timecop'
 end
 
-#group :development do
-#  gem "rails_best_practices"
-#  gem "ripper"
-#  gem "flay"
-#  gem "flog"
-#  gem "excellent"
-#  gem "brakeman"
-#  gem 'rspec-rails'
-#end
+group :development do
+  gem "rails_best_practices"
+  gem "ripper", :platforms => :mri_18
+  gem 'guard-rspec'
+  gem 'guard-spork'
+end
 

@@ -32,21 +32,6 @@ module ApplicationHelper
     (current_user.role == 'admin' && !current_user.view_as_user) ? true : false
   end
 
-  # Generate I18n for JS
-  def translate_to_client(strings)
-    translations = "<script>"
-    translations << "if(!I18n){var I18n = {};};"
-    strings.each do |s|
-      translations << 'I18n["'+s+'"] = "'+t('warnings.'+s)+'";'
-    end
-    translations << "</script>"
-  end
-
-  # Dummy phone numbers formating
-  def phone_number(number)
-    return "#{number[0..1]} #{number[2..3]} #{number[4..5]} #{number[6..7]} #{number[8..9]}" if number
-  end
-
   # Display socials networks links and icon if profile exists
   def show_social_profiles(networks)
     out = ''
@@ -73,14 +58,7 @@ module ApplicationHelper
 
   # Check if member has some social networks profiles
   def member_has_profile?(networks)
-
-    out = false
-
-    networks.each do |p|
-      out = true if p[:url]
-    end
-
-    return out
+    networks.find { |network| network.key?(:url) }
   end
 
   # Ouput a member's birthday whenever it is set or not
@@ -146,5 +124,7 @@ module ApplicationHelper
   def default_end_at
     (7.days.since(Time.now)).strftime('%Y-%m-%d')
   end
+  
+  extend self
 end
 

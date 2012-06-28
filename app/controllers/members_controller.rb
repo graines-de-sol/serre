@@ -13,7 +13,7 @@ class MembersController < ApplicationController
   # Search for members                                  HTML
   # --------------------------------------------------------
   def search
-    @members = Member.where(["#{Member.fields[params[:category]]} LIKE ?", "%#{params[:keywords]}%"]).order('first_name ASC')
+    @members = Member.search_by params[:category], params[:keywords]
 
     render :template=>'members/index'
   end
