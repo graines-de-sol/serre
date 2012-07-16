@@ -35,16 +35,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'shoulda-matchers'
-  gem 'database_cleaner'
-  gem 'factory_girl_rails'
   gem 'simplecov', :require => false
   gem 'timecop'
-end
-
-group :development do
-  gem "rails_best_practices"
-  gem "ripper", :platforms => :mri_18
-  gem 'guard-rspec'
-  gem 'guard-spork'
 end
 

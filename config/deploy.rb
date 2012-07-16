@@ -1,7 +1,7 @@
-set :application, "refuge"
-set :repository,  "git@github.com:la-cordee/refuge.git"
+set :application, "serre"
+set :repository,  "git@github.com:graines-de-sol/serre.git"
 set :keep_releases, 2
-set :deploy_to, "/home/refuge"
+set :deploy_to, "/home/serre"
 set :use_sudo, false
 set :scm, 'git'
 set :default_stage, 'development'
