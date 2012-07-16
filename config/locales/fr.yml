@@ -1,6 +1,6 @@
 fr:
   app:
-    title: "Le refuge, By la-cordee.net"
+    title: "La serre, l'Intranet de Graines de Sol"
   warnings:
     check_new_user_parameters: "Echec de la création du membre. E-mail en doublon ou mot de passe de moins de 6 lettres"
     check_user_parameters: "Echec de la mise à jour du compte. Les mots de passe ne correspondent pas et/ou doivent comporter au moins 6 lettres"
@@ -10,14 +10,14 @@ fr:
     email_required: "Merci de saisir une adresse E-Mail valide"
     password_required: "Merci de saisir votre mot de passe"
   confirms:
-    delete_member: "Exclure définitivement ce membre du Refuge ?!"
+    delete_member: "Exclure définitivement ce membre de la serre ?!"
     delete_article: "Supprimer cet article ?!"
     delete_survey: "Supprimer ce sondage et tous ses résultats ?!"
     delete_answer: "Retirer cette réponse du sondage ?!"
     delete_image: "Supprimer cette image de la bibliothèque ?!"
     delete_this_ad: "Supprimer cette annonce ?!"
   email:
-    introduction_message: "vous a envoyé un mail depuis le Refuge. Son adresse mail pour lui répondre :"
+    introduction_message: "vous a envoyé un mail depuis la serre. Son adresse mail pour lui répondre :"
   searchable_fields:
     organisation: "Nom de l'entreprise"
     first_name: "Prénom"
@@ -26,10 +26,11 @@ fr:
     powers: "Super-pouvoirs"
   good_morning: "Bonjour"
   good_evening: "Bonsoir"
-  dashboard: "Le Topo"
-  members: "Les Encordés"
-  meetings: "Réunions"
-  events: "Evènements"
+  dashboard: "Actualité"
+  members: "Les entrepreneurs"
+  meetings: "Agenda"
+  events: "Entre nous"
+  medias: "Bibliothèque"
   account: "Mon compte"
   messages: "Messages"
   search_for_members: "Rechercher un ou des membres..."
@@ -150,7 +151,7 @@ fr:
   admin:
     default_older_surveys_to_display: "Nombre de précédents sondages à afficher"
     categories_management: "Catégories des petites annonces"
-    current_locations: "Les différents cordées reliées au refuge"
+    current_locations: "Les différentes serres"
     admin_panel: "Admin"
     question_for_new_survey: "Question du nouveau sondage"
     older_surveys: "Sondage terminés"

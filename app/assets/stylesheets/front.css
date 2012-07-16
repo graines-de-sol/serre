@@ -1,5 +1,17 @@
 body {
-  background:url(/assets/body_bg_8.png) top center;
+  background:url(/assets/bg_body.jpg);
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-position: bottom;
+}
+#sky_bg {
+  width: 100%;
+  height: 130px;
+  background:url(/assets/bg_sky.png);
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-position: top;
+  top: 0;
 }
 h1 {
   font-family: Georgia, 'Palatino Linotype', Impact;font-size:50px;font-style:italic;color:#2f2f2f;
@@ -19,8 +31,9 @@ table tr th {
 #top_bar {
   width:100%;
   height:40px;
-  background:url(/assets/alpha_bg_80.png);
+  background:url(/assets/alpha_bg_60.png);
   position:fixed;
+  top: 0;
   -moz-box-shadow: 0px 0px 20px 3px #2f2f2f;
   -webkit-box-shadow: 0px 0px 20px 3px #2f2f2f;
   -o-box-shadow: 0px 0px 20px 3px #2f2f2f;
@@ -31,13 +44,14 @@ table tr th {
   padding:0;
   width:960px;
 }
-.container {
+#main.container {
   background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#fff));
   background: -moz-linear-gradient(top,#f0f0f0,#fff);
   background-color:#fff;
   background-color:#fff;
-  padding:60px 10px 10px 10px;
+  padding:70px 10px 10px 10px;
   width:940px;
+  margin-top: -130px;
 }
 .clear {
   clear:both;
@@ -46,7 +60,7 @@ table tr th {
 }
 #login_box {
   border:1px solid #d4d4d4;
-  margin-top:100px;
+  margin-top:10px;
   padding-top:20px;
   padding-bottom:20px;
   padding-left:40px;
@@ -76,6 +90,7 @@ table tr th {
 }
 #top_bar a:hover {
   color:#fff;
+  text-decoration: none
 }
 #avatar {
   float:left;
@@ -91,7 +106,7 @@ table tr th {
   float:left;
 }
 #profil_link a {
-  text-decoration:underline;
+  text-decoration: none;
 }
 ul#main_menu {
   float:right;
@@ -521,10 +536,19 @@ table#survey_mgt tr td:last-child input {
   background-color:#fff;
   color:#afafaf;
   text-align:center;
+  -webkit-border-bottom-right-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 #footer a {
   color:#afafaf;
   text-decoration:underline;
+}
+.footer_spacer {
+  height:40px;
 }
 table#stats tr th {
   border-bottom:1px solid #d4d4d4;

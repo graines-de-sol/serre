@@ -21,7 +21,11 @@ module ApplicationHelper
        :url    => 'pages/meetings'
       },
       {:name   => 'events',
-       :icon   => 'icon-glass icon-white',
+       :icon   => 'icon-random icon-white',
+       :url    => 'pages/events'
+      },
+      {:name   => 'medias',
+       :icon   => 'icon-book icon-white',
        :url    => 'pages/events'
       }
     ]
@@ -124,7 +128,7 @@ module ApplicationHelper
   def default_end_at
     (7.days.since(Time.now)).strftime('%Y-%m-%d')
   end
-  
+
   extend self
 end
 

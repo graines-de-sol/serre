@@ -12,10 +12,11 @@
   = csrf_meta_tags
 
 %body
+  #sky_bg
   #top_bar
     = render :partial=>'shared/top_bar'
 
-  .container
+  #main.container
     .row
       .span12
         = yield
@@ -37,6 +38,8 @@
       = t('cmon')
       %a{:href=>'https://github.com/la-cordee/refuge', :target=>'blank'}
         = t('fork_me')
+
+  .clear.footer_spacer
 
 - #### Flash messages handler ####
 - if flash[:error] && !flash[:error].strip.blank?
