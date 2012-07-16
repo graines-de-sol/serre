@@ -5,7 +5,7 @@ set :deploy_to, "/home/serre"
 set :use_sudo, false
 set :scm, 'git'
 set :default_stage, 'development'
-set :branch, fetch(:branch, "production")
+set :branch, fetch(:branch, "master")
 
 role :web, "ns382592.ovh.net"
 role :app, "ns382592.ovh.net"
