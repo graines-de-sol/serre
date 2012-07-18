@@ -1,0 +1,31 @@
+- unless Survey.surveys.empty?
+  #survey
+    %h2.ribbon= t('survey')
+
+    %p.well#question
+      = Survey.surveys.first.question
+
+    %ul
+      - Survey.surveys.first.children.each do |survey|
+        %li
+          %input{:type=>'radio', :name => 'answer', :class => 'answer', :value => survey.id}
+          = survey.question
+
+    .clear
+    %span= t('vote_to_know_the_results')
+
+    %br
+    %br
+
+    %h2.ribbon= t('older_surveys')
+    #older_surveys
+      %ul
+        - Survey.surveys.offset(1).each do |survey|
+          %li
+            %a{:href=>'#', :data=>{'survey_id' => survey.id}}= survey.question
+
+
+  %input{:type => 'hidden', :id => 'current_survey_id', :value => Survey.surveys.first.id}
+
+  = render :partial => '/modals/show_survey_modal'
+

@@ -1,0 +1,28 @@
+#create_post_modal.modal.hide.fade
+  .modal-header
+    %a.close{:data=>{'dismiss'=>'modal'}}
+      = '×'
+    %h3= @post ? t('blog.update_post') : t('blog.create_post')
+
+  .modal-body
+    = form_tag '/blog' do
+      - if @post
+        = hidden_field_tag 'post_id', @post.id
+
+      %label= t('blog.post_title')
+      = text_field_tag 'post[title]', (@post.title if @post)
+      %br
+      %label= t('blog.post_content')
+      .content_container.hide
+        = @post.content if @post
+      .textarea_container
+      %br
+      - if current_user.role == 'admin' && @post
+        %a.left.delete{:href => blog_path(@post.id), :data => {:method => :delete, :confirm => t('confirms.delete_this_post')}}= t('delete')
+
+      = submit_tag t('save'), :class=>'btn  btn-danger right'
+
+
+= javascript_include_tag "/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js"
+= javascript_include_tag "/javascripts/tinymce/blog.js"
+

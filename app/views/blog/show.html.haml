@@ -1,0 +1,37 @@
+.span11#dashboard
+  .left
+    .blog
+      %h2= @post.title.capitalize
+      = soft_clean @post.content
+      .clear
+      %br
+      - if current_user.role == 'admin'
+        %a.right.label.label-important{:href => '#create_post_modal', :data=>{'toggle'=>'modal'}}= t('edit_this_post')
+        %br
+
+      .comments
+        %h4= t('blog.leave_a_comment')
+        .clear
+        = form_tag "/blog/#{@post.id}", :method => :put do
+          = text_area_tag "comment"
+          = submit_tag t('save'), :class => 'btn btn-warning right'
+
+        - @post.comments.each do |comment|
+          .comment
+            .left.avatar
+              %a{:href=>member_path(comment.member_id)}= avatar(comment.member, '50x50')
+            .left.date
+              %strong= "#{t('the')} #{l(comment.created_at, :format => :long)} #{t('by')} #{comment.member.first_name}"
+              %p= simple_format comment.content
+
+            - if current_user.role == 'admin'
+              .clear
+              %a.right.label.label-important{:href => comment_path(comment), :data => {:method => :delete, :confirm => t('confirms.delete_this_comment')}}= t('delete')
+        .clear
+
+  .right
+    = render :partial => '/dashboard/right_column'
+
+- if current_user.role == 'admin'
+  = render :partial => '/modals/edit_post'
+

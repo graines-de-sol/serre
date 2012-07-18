@@ -22,9 +22,13 @@ Refuge::Application.routes.draw do
   match '/admin/occupation' => 'admin#occupation', :via=>:put
 
   resources :images, :only => [:index, :create, :destroy]
+  resources :surveys, :only => [:create]
+  resources :comments, :only => [:destroy]
+  resources :blog
   resources :members
   resources :pages
   resources :dashboard
   resources :admin, :only => 'show'
+
 end
 

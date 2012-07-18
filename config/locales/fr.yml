@@ -16,6 +16,8 @@ fr:
     delete_answer: "Retirer cette réponse du sondage ?!"
     delete_image: "Supprimer cette image de la bibliothèque ?!"
     delete_this_ad: "Supprimer cette annonce ?!"
+    delete_this_comment: "Supprimer définitivement ce commentaire ?!"
+    delete_this_post: "Supprimer définitivement cette actu ?!"
   email:
     introduction_message: "vous a envoyé un mail depuis la serre. Son adresse mail pour lui répondre :"
   searchable_fields:
@@ -24,6 +26,8 @@ fr:
     last_name: "Nom"
     prestations: "Types de prestations"
     powers: "Super-pouvoirs"
+  the: "Le"
+  by: "par"
   good_morning: "Bonjour"
   good_evening: "Bonsoir"
   dashboard: "Actualité"
@@ -60,6 +64,7 @@ fr:
   cordee_location: "Membre de la cordée"
   new_account_creation: "Création d'un nouveau membre"
   delete_member: "Supprimer ce compte"
+  delete: "Supprimer"
   connexion_params: "+ Paramètres de connexion"
   pro_situation: "+ Situation professionnelle"
   pro_social_networks: "Réseaux sociaux professionnels"
@@ -99,6 +104,7 @@ fr:
   valid_until: "Affichée jusqu'au"
   create_ad: "+ Créer une annonce"
   edit_this_ad: "Modifier mon annonce"
+  edit_this_post: "Modifier cette actu"
   ad_visibility: "Cette annonce est visible par les membres de"
   all_locations: "toutes les cordées"
   location_: "la cordée de "
@@ -123,7 +129,8 @@ fr:
   already_voted: "Vous vous êtes déja exprimé concernant ce sondage"
   last_update: "Dernière mise à jour "
   survey: "Sondage"
-  newcomers: "Derniers arrivants"
+  users_incoming: "Derniers arrivants"
+  users_outgoing: "Il nous quittent..."
   all_categories: "Toutes"
   content_visibility: "Cet article est visible par les membres de la Cordée de "
   title: "Titre de l'article"
@@ -148,6 +155,15 @@ fr:
   no_welcome_email: "NE PAS ENVOYER le Mail de bienvenue, uniquement créer le membre"
   delete_my_ad: "Supprimer mon annonce"
 
+  blog:
+    create_post: "+ Ajouter une actu"
+    update_post: "Modifier une actu"
+    post_title: "Titre de l'actu"
+    post_content: "Contenu de l'actu"
+    comment: "un commentaire"
+    comments: "commentaires"
+    no_comment: "Aucun commentaire, pour le moment..."
+    leave_a_comment: "Une envie de répondre ? Ajouter votre commentaire"
   admin:
     default_older_surveys_to_display: "Nombre de précédents sondages à afficher"
     categories_management: "Catégories des petites annonces"
@@ -165,8 +181,6 @@ fr:
       conf: "Configuration"
       stats: "Stats"
 
-
-
   date:
     formats:
       default: "%d-%m-%Y"
@@ -183,6 +197,7 @@ fr:
       default: "%A %d %B %Y"
       short: "%b %d"
       long: "%A %d %B %Y %H:%M"
+      archives_month: "%B %Y"
 
     day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
     abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]

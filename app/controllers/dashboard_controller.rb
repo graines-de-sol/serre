@@ -6,25 +6,6 @@ class DashboardController < ApplicationController
   # Show dashboard main root page                                HTML
   # -----------------------------------------------------------------
   def index
-    @new_ones = User.order('created_at DESC').limit(6).includes(:member)
-
-    @categories = Category.all
-
-    @ads = Ad.where(['
-      end_at > ?
-      AND (
-        location_id = 0
-        OR location_id = ?
-        OR member_id = ?
-      )',
-      Time.now, current_user.member.location_id, current_user.member.id
-      ]).order('ads.created_at DESC').includes(:member)
-
-    @locations = Location.all
-
-    @surveys = Survey.where(['location_id = ? AND parent_id = 0', $conf.default_location_id]).order('created_at DESC')
-
-    @birthdays = Member.birthday_today
   end
 
   # POST /dashboard

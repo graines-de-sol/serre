@@ -1,0 +1,17 @@
+.blog
+  %a{:href=>'#create_post_modal', :class=>'label label-important right', :data=>{'toggle'=>'modal'}}
+    = t('blog.create_post')
+
+  - Post.last_posts.each do |post|
+    .post
+      %h2
+        = link_to post.title.capitalize, blog_path(post)
+      = soft_clean post.content
+      .has_comments
+        - comment_count = post.comments.length if post.comments.length > 1
+        - comment_label = post.comments.length > 0 ? (post.comments.length > 1 ? t('blog.comments') : t('blog.comment')) : t('blog.no_comment')
+        = link_to "#{comment_count} #{comment_label}", blog_path(post)
+
+- if current_user.role == 'admin'
+  = render :partial => '/modals/edit_post'
+

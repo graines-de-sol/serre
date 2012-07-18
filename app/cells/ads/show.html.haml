@@ -1,0 +1,44 @@
+#ads
+  #categories
+    %ul
+      %li
+        %a{:href=>'#', :id=>'active', :data=>{'category_id'=>0}}= t('all_categories')
+      - @categories.each do |category|
+        %li
+          %a{:href=>'#', :data=>{'category_id'=>category.id}}= category.name
+
+    %a{:href=>'#create_ad', :id=>'toggle_ad_creator', :class=>'btn btn-warning', :data=>{'toggle'=>'modal'}}= t('create_ad')
+
+  - @ads.each do |ad|
+    .ad{:id=>"ad_id_#{ad.id}"}
+      %input{:type=>'hidden', :class=>'category_id', :value=>ad.category_id}
+      %input{:type=>'hidden', :class=>'location_id', :value=>ad.location_id}
+      %input{:type=>'hidden', :class=>'end_at', :value=>ad.end_at.strftime('%Y-%m-%d')}
+
+      .avatar
+        = link_to avatar(ad.member, '32x32'), member_path(ad.member.id), :rel=>'tooltip', :title=>"#{ad.member.first_name} #{ad.member.last_name}"
+
+      %h3= ad.subject
+      %p= hard_clean ad.body
+
+      .action_bar
+        - if Member.can_edit?(current_user, ad.member_id)
+          %a{:href=>'#create_ad', :data=>{'toggle'=>'modal', :ad_id=>ad.id}, :class=>'edit_ad'}
+            %i.icon-pencil
+            = t('edit_this_ad')
+          %span= "#{t('valid_until')} #{l(ad.end_at, :format=>:long)}"
+
+        - else
+          %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>ad.member.user.email, :recipient_id=>ad.member.id}, :class=>'mail_me'}
+            %i.icon-envelope
+            = t('reply_this_ad')
+          %span= "#{t('valid_until')} #{l(ad.end_at, :format=>:long)}"
+
+- unless @categories.empty?
+  %input{:type => 'hidden', :id => 'default_category_id', :value => (@categories.first.id if @categories)}
+
+%input{:type => 'hidden', :id=>'default_end_at', :value => (7.days.since(Time.now)).strftime('%Y-%m-%d')}
+
+= render :partial => 'create_modal'
+= render :partial => '/modals/send_mail_modal'
+

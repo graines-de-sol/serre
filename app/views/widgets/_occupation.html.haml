@@ -1,0 +1,14 @@
+#occupation
+  #top
+    = t('actual_occupation_of_location')
+    %select#locations_select
+      - Location.all.each do |location|
+        %option{:value=>location.id, :selected=>location.id == current_user.member.location_id}= location.name
+
+  #gauge
+    #rate{:class=>('draggable' if is_admin)}
+
+  - Location.all.each do |location|
+    %a{:href=>'#', :class=>"occupation #{'hide' if location.id != current_user.member.location_id}", :id=>"location_id_#{location.id}", :data=>{'occupation'=>location.occupation}}
+      = "#{t('last_update')} #{l(location.updated_at, :format=>:long)}"
+

@@ -1,0 +1,7 @@
+- unless Member.birthday_today.empty?
+
+  %p.well{:style=>'width:545px;'}
+    = t('today_is_birthday_of')
+    - Member.birthday_today.each do |member|
+      = link_to member.first_name, member_path(member)
+

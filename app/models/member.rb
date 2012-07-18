@@ -7,6 +7,7 @@ class Member < ActiveRecord::Base
   has_many :ads
   has_many :networks, :through=>:profiles
   has_many :profiles
+  has_many :comments
 
   validates_presence_of :first_name
   before_update :compose_birthday

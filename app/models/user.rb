@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   before_create :build_default_member
   before_update :confirm_password
 
+  scope :new_comers, self.where(['users.role != ?', 'gone']).order('created_at DESC').limit(6).includes(:member)
+  scope :new_outers, self.where(['users.role = ?', 'gone']).order('created_at DESC').limit(6).includes(:member)
+
 private
   def build_default_member
     build_member
@@ -22,3 +25,4 @@ private
   end
 
 end
+
