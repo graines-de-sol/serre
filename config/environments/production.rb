@@ -31,7 +31,7 @@ Refuge::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { :host => 'refuge.la-cordee.net' }
+  config.action_mailer.default_url_options = { :host => 'serre.grainesdesol.fr' }
   config.action_mailer.delivery_method = :sendmail
 
 #  # Settings specified here will take precedence over those in config/application.rb

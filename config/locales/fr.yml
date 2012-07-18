@@ -130,7 +130,7 @@ fr:
   last_update: "Dernière mise à jour "
   survey: "Sondage"
   users_incoming: "Derniers arrivants"
-  users_outgoing: "Il nous quittent..."
+  users_outgoing: "Vers d'autres horizons"
   all_categories: "Toutes"
   content_visibility: "Cet article est visible par les membres de la Cordée de "
   title: "Titre de l'article"
@@ -164,6 +164,7 @@ fr:
     comments: "commentaires"
     no_comment: "Aucun commentaire, pour le moment..."
     leave_a_comment: "Une envie de répondre ? Ajouter votre commentaire"
+    archives: "Archives"
   admin:
     default_older_surveys_to_display: "Nombre de précédents sondages à afficher"
     categories_management: "Catégories des petites annonces"
