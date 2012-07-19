@@ -36,6 +36,5 @@ Refuge::Application.configure do
     :domain => "free.fr"
   }
 
-
 end
 

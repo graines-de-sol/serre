@@ -6,6 +6,7 @@ class DashboardController < ApplicationController
   # Show dashboard main root page                                HTML
   # -----------------------------------------------------------------
   def index
+    @posts = Post.last_posts
   end
 
   # POST /dashboard

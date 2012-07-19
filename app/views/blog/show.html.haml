@@ -5,7 +5,7 @@
       = soft_clean @post.content
       .clear
       %br
-      - if current_user.role == 'admin'
+      - if is_admin
         %a.right.label.label-important{:href => '#create_post_modal', :data=>{'toggle'=>'modal'}}= t('edit_this_post')
         %br
 
@@ -24,7 +24,7 @@
               %strong= "#{t('the')} #{l(comment.created_at, :format => :long)} #{t('by')} #{comment.member.first_name}"
               %p= simple_format comment.content
 
-            - if current_user.role == 'admin'
+            - if is_admin
               .clear
               %a.right.label.label-important{:href => comment_path(comment), :data => {:method => :delete, :confirm => t('confirms.delete_this_comment')}}= t('delete')
         .clear
@@ -32,6 +32,6 @@
   .right
     = render :partial => '/dashboard/right_column'
 
-- if current_user.role == 'admin'
+- if is_admin
   = render :partial => '/modals/edit_post'
 

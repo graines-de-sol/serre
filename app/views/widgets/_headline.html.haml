@@ -1,0 +1,8 @@
+- if $conf.headline_published
+
+  .well.orange{:style=>'width:545px;'}
+    = soft_clean $conf.headline
+
+    - if is_admin
+      = link_to t('edit_headline'), admin_headlines_path, :class => 'right'
+

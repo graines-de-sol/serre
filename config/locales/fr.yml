@@ -18,6 +18,9 @@ fr:
     delete_this_ad: "Supprimer cette annonce ?!"
     delete_this_comment: "Supprimer définitivement ce commentaire ?!"
     delete_this_post: "Supprimer définitivement cette actu ?!"
+    delete_this_media_category: "Supprimer définitivement cette catégorie de la bibliothèque ?!"
+    delete_media: "Supprimer ce document de la base documentaire ?!"
+    delete_blog_category: "Supprimer cette catégorie ainsi que toutes les actus qui lui sont rattachées ?!"
   email:
     introduction_message: "vous a envoyé un mail depuis la serre. Son adresse mail pour lui répondre :"
   searchable_fields:
@@ -33,8 +36,12 @@ fr:
   dashboard: "Actualité"
   members: "Les entrepreneurs"
   meetings: "Agenda"
+  headlines: "Message"
+  edit_headline: "» Modifier ce message"
+  update: "Mise à jour"
+  published: " Afficher"
+  welcome_headline: "Message d'accueil"
   events: "Entre nous"
-  medias: "Bibliothèque"
   account: "Mon compte"
   messages: "Messages"
   search_for_members: "Rechercher un ou des membres..."
@@ -154,6 +161,10 @@ fr:
   welcome_mail_body: "Contenu du Mail de bienvenue"
   no_welcome_email: "NE PAS ENVOYER le Mail de bienvenue, uniquement créer le membre"
   delete_my_ad: "Supprimer mon annonce"
+  create_blog_category: "+ Ajouter une thématique"
+  blog_category_name: "Thématique"
+  manage_medias_categories: "» Gérer les catégories"
+  manage_blog_categories: "» Gérer les thématiques"
 
   blog:
     create_post: "+ Ajouter une actu"
@@ -165,6 +176,11 @@ fr:
     no_comment: "Aucun commentaire, pour le moment..."
     leave_a_comment: "Une envie de répondre ? Ajouter votre commentaire"
     archives: "Archives"
+    categories: "Thématiques"
+  medias:
+    title: "Bibliothèque"
+    choose_file: "Choisissez un fichier"
+    file_name: "Nom du fichier"
   admin:
     default_older_surveys_to_display: "Nombre de précédents sondages à afficher"
     categories_management: "Catégories des petites annonces"
@@ -181,6 +197,15 @@ fr:
       ads: "Annonces"
       conf: "Configuration"
       stats: "Stats"
+      medias: "Bibliothèque"
+      headlines: "Message"
+      blog_categories: "Thématiques"
+    medias:
+      category_name: "Catégorie"
+      create_category: "Ajouter une catégorie"
+      category_description: "Description"
+      toggle_description: "+ Modifier la description de cette catégorie"
+      categories_title: "Catégories de documents dans la bibliothèque"
 
   date:
     formats:

@@ -2,33 +2,50 @@ Refuge::Application.routes.draw do
 
   devise_for :users
 
-  root :to=> "dashboard#index"
+  root :to=> "blog#index"
 
   match '/members/search' => 'members#search', :via=>:post
   match '/members/mail' => 'members#mail_member', :via=>:post
 
-  match '/admin/conf' => 'admin#conf', :via=>:post
-  match '/admin/categories/delete/:id' => 'admin#categories_delete', :via=>:delete
-  match '/admin/categories/create' => 'admin#categories_create', :via=>:post
-  match '/admin/categories/update' => 'admin#categories_update', :via=>:put
-  match '/admin/locations/delete/:id' => 'admin#locations_delete', :via=>:delete
-  match '/admin/locations/create' => 'admin#locations_create', :via=>:post
-  match '/admin/locations/update' => 'admin#locations_update', :via=>:put
-  match '/admin/surveys/create' => 'admin#surveys_create', :via=>:post
-  match '/admin/surveys/update' => 'admin#surveys_update', :via=>:put
-  match '/admin/surveys/show_results/:id' => 'admin#show_results'
-  match '/admin/answers/create/:id' => 'admin#answers_create', :via=>:post
-  match '/admin/answers/delete/:id' => 'admin#answers_delete', :via=>:delete
-  match '/admin/occupation' => 'admin#occupation', :via=>:put
+#  match '/admin/occupation' => 'admin#occupation', :via=>:put
 
-  resources :images, :only => [:index, :create, :destroy]
-  resources :surveys, :only => [:create]
+  resources :images,   :only => [:index, :create, :destroy]
+  resources :surveys,  :only => [:create]
   resources :comments, :only => [:destroy]
+
+  match 'blog/category/:id' => 'blog#show_category', :as => :blog_category, :via => :get
+  match 'blog/archives/:year/:month' => 'blog#show_archives', :as => :blog_archives, :via => :get
   resources :blog
   resources :members
+
   resources :pages
   resources :dashboard
-  resources :admin, :only => 'show'
+
+  match 'medias/download/:id' => 'medias#download', :as => :media_download, :via => :get
+  resources :medias, :only => [:index, :show, :create]
+
+  namespace :admin do
+    resources :conf,            :only => [:index, :create]
+    resources :headlines,       :only => [:index, :create]
+    resources :stats,           :only => [:index]
+    resources :locations,       :only => [:index, :create, :update, :destroy]
+    resources :blog_categories, :only => [:index, :create, :update, :destroy]
+    resources :ads,             :only => [:index, :create, :update, :destroy]
+
+    match 'medias/media/:id' => 'medias#delete_media', :as => :delete_media, :via => :delete
+    resources :medias,     :only => [:index, :create, :update, :destroy] do
+      member do
+        post :upload
+      end
+    end
+
+    resources :surveys,    :only => [:index, :create, :update, :destroy] do
+      member do
+        post   :create_answer
+        delete :delete_answer
+      end
+    end
+  end
 
 end
 

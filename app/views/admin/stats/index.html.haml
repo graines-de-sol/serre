@@ -1,0 +1,16 @@
+= render :partial => '/admin/shared/left_column'
+
+.span10
+  #global_conf.well
+    %table#stats
+      %tr
+        %th{:style=>'width:300px;'}= t('admin.name')
+        %th{:style=>'width:30px;'}= t('cx')
+        %th{:style=>'width:300px;'}= t('admin.last_sign_in')
+
+      - @users.each do |user|
+        %tr
+          %td= link_to "#{user.member.first_name} #{user.member.last_name}", member_path(user.member.id)
+          %td= user.sign_in_count
+          %td= l(user.last_sign_in_at, :format=>:long) if user.last_sign_in_at
+

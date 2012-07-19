@@ -1,0 +1,34 @@
+= render :partial => '/admin/shared/left_column'
+
+.span10
+  #medias_categories.well
+    %p.label= t('admin.medias.categories_title')
+
+    %a.label.label-important.right{:href => admin_medias_path, :data => {'method' => 'post'}}= t('admin.medias.create_category')
+    .clear
+    %br
+    = form_tag admin_media_path('all'), :method=>:put do
+      - MediaCategory.published.each do |category|
+        .row
+          .col
+            %a{:href => admin_media_path(category.id), :data => {'method' => 'delete', 'confirm' => t('confirms.delete_this_media_category')}}
+              %i.icon-remove
+          .col.w90
+            %label= t('admin.medias.category_name')
+          .col
+            = text_field_tag "category[#{category.id}][name]", category.name
+          .col
+            %a.doToggleMediaDescription= t('admin.medias.toggle_description')
+
+          .category_description.hide
+            .col
+            .col.w90
+              %label= t('admin.medias.category_description')
+            .col
+              = text_area_tag "category[#{category.id}][description]", category.description
+
+
+      %br
+      %br
+      = submit_tag t('save'), :class => 'btn  btn-warning'
+

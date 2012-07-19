@@ -1,0 +1,18 @@
+= render :partial => '/admin/shared/left_column'
+
+.span10
+  #global_conf.well
+
+    %p.label= t('welcome_headline')
+    = form_tag admin_headlines_path do
+      .content_container.hide
+        = soft_clean $conf.headline
+      .textarea_container
+      %br
+      = check_box("conf", "headline_published", {:checked => $conf.headline_published, :class => 'left'}, "true", "false")
+      = t('published')
+      = submit_tag t('update'), :class => 'btn btn-danger', :style => 'float:right;margin-right:10px;'
+
+= javascript_include_tag "/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js"
+= javascript_include_tag "/javascripts/tinymce/headline.js"
+

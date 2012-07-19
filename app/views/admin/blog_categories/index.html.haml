@@ -1,0 +1,22 @@
+= render :partial => '/admin/shared/left_column'
+
+.span10
+  #locations_conf.well
+    %p.label= t('admin.current_locations')
+    = form_tag admin_blog_category_path('all'), :method=>:put do
+      %table#locations_mgt
+        %tr
+
+        - BlogCategory.all.each do |category|
+          %tr
+            %td
+              %a{:href => admin_blog_category_path(category.id), :data => {'method' => 'delete', 'confirm' => t('confirms.delete_blog_category')}}
+                %i.icon-remove
+            %td= text_field_tag "category[#{category.id}][name]", category.name
+
+      %a{:href => admin_blog_categories_path, :data => {'method' => 'post'}}
+        = t('create_blog_category')
+      %br
+      %br
+      = submit_tag t('save'), :class => 'btn  btn-warning'
+

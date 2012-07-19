@@ -28,6 +28,10 @@ h2
 table th
   text-align: left
 
+.orange
+  background-color: #ffa200
+  a
+    color: #000 !important
 .left
   float: left
 
@@ -450,4 +454,55 @@ table#stats th
   width: 770px
   margin-left: -385px
   overflow: hidden
+
+table#uploader
+  tr
+    td
+      padding: 5px
+      label
+        font-weight: bold
+ul.medias_list
+  margin-left: 0
+  li
+    list-style-type: none
+    clear: both
+    a
+      padding: 5px 5px 5px 25px
+      background-position: 5px !important
+      display: block
+      float: left
+      background-color: #d5edf7
+      border-: 1px solid #b1d7e5
+      margin-bottom: 10px
+      color: #2f2f2f
+      width: 550px
+      &.delete
+        width: 10px
+        height: 20px
+        overflow: hidden
+        background: #fff url('/assets/cross.png') center no-repeat
+      &.delete:hover
+        background-color: #fff
+
+      &.word
+        background: #d5edf7 url('/assets/word.png') left no-repeat
+      &.excel
+        background: #d5edf7 url('/assets/excel.png') left no-repeat
+      &.pdf
+        background: #d5edf7 url('/assets/pdf.png') left no-repeat
+      &.ruby
+        background: #d5edf7 url('/assets/ruby.png') left no-repeat
+      &.powerpoint
+        background: #d5edf7 url('/assets/powerpoint.png') left no-repeat
+      &.compressed
+        background: #d5edf7 url('/assets/compressed.png') left no-repeat
+      &.text
+        background: #d5edf7 url('/assets/word.png') left no-repeat
+      &.picture
+        background: #d5edf7 url('/assets/picture.png') left no-repeat
+      &.package
+        background: #d5edf7 url('/assets/package.png') left no-repeat
+    a:hover
+      background-color: #e3f1f7
+      text-decoration: none
 

@@ -23,6 +23,8 @@ namespace :deploy do
     run "rm -rf #{release_path}/public && ln -s #{shared_path}/public #{release_path}/public"
   end
 
+  run "ln -s #{shared_path}/medias/"
+
 end
 
 namespace :dragonfly do

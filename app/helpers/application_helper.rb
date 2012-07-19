@@ -5,12 +5,12 @@ module ApplicationHelper
     Time.now.hour > 18 ? t(:good_evening) : t(:good_morning)
   end
 
-  # Left menu tabs, remove/add you own here
+  # Top main menu tabs, remove/add you own here
   def tabs
     tabs = [
       {:name   => 'dashboard',
        :icon   => 'icon-home icon-white',
-       :url    => 'dashboard'
+       :url    => 'blog'
       },
       {:name   => 'members',
        :icon   => 'icon-search icon-white',
@@ -24,9 +24,9 @@ module ApplicationHelper
        :icon   => 'icon-random icon-white',
        :url    => 'pages/events'
       },
-      {:name   => 'medias',
+      {:name   => 'medias.title',
        :icon   => 'icon-book icon-white',
-       :url    => 'pages/events'
+       :url    => 'medias'
       }
     ]
   end

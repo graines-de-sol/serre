@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717190358) do
+ActiveRecord::Schema.define(:version => 20120719111645) do
 
   create_table "ads", :force => true do |t|
     t.string   "subject"
@@ -34,6 +34,12 @@ ActiveRecord::Schema.define(:version => 20120717190358) do
     t.text     "video"
   end
 
+  create_table "blog_categories", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "name"
+  end
+
   create_table "categories", :force => true do |t|
     t.string "name"
   end
@@ -47,12 +53,14 @@ ActiveRecord::Schema.define(:version => 20120717190358) do
   end
 
   create_table "confs", :force => true do |t|
-    t.date   "created_at"
-    t.string "default_avatar_uid"
-    t.string "default_location_id"
-    t.string "max_surveys"
-    t.string "welcome_mail_subject", :default => ""
-    t.text   "welcome_mail_body"
+    t.date    "created_at"
+    t.string  "default_avatar_uid"
+    t.string  "default_location_id"
+    t.string  "max_surveys"
+    t.string  "welcome_mail_subject", :default => ""
+    t.text    "welcome_mail_body"
+    t.text    "headline"
+    t.boolean "headline_published",   :default => true
   end
 
   create_table "images", :force => true do |t|
@@ -67,6 +75,26 @@ ActiveRecord::Schema.define(:version => 20120717190358) do
     t.string   "zip"
     t.integer  "occupation", :default => 0
     t.datetime "updated_at",                :null => false
+  end
+
+  create_table "media_categories", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "name"
+    t.text     "description"
+    t.boolean  "published",   :default => true
+  end
+
+  create_table "medias", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "filename"
+    t.text     "description"
+    t.string   "mime_type"
+    t.string   "locator"
+    t.integer  "filesize"
+    t.integer  "media_category_id"
   end
 
   create_table "members", :force => true do |t|
@@ -104,7 +132,7 @@ ActiveRecord::Schema.define(:version => 20120717190358) do
     t.datetime "updated_at"
     t.text     "title"
     t.text     "content"
-    t.integer  "post_category_id"
+    t.integer  "blog_category_id"
     t.boolean  "published"
   end
 

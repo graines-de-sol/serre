@@ -1,8 +1,8 @@
 %h2.ribbon= t('blog.archives')
 %br
 %ul.archives_month
-  - Post.archives_by_month.each do |month_name, posts|
+  - Post.archives_by_month.each do |month_name, post|
     %li
-      %a{:href =>"/blog/month"}
+      %a{:href => "/blog/archives/#{post.first.created_at.year}/#{post.first.created_at.month}"}
         = l(month_name, :format=>:archives_month)
 

@@ -12,6 +12,8 @@
       %label= t('blog.post_title')
       = text_field_tag 'post[title]', (@post.title if @post)
       %br
+      %label= "Catégorie"
+      = select_tag 'post[blog_category_id]', options_from_collection_for_select(BlogCategory.all, 'id', 'name', (@post.blog_category_id if @post))
       %label= t('blog.post_content')
       .content_container.hide
         = @post.content if @post
