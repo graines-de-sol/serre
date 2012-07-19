@@ -16,7 +16,6 @@ class MediasController < ApplicationController
   # -----------------------------------------------------------
   def show
     @category = MediaCategory.find(params[:id])
-
   end
 
   # POST /medias

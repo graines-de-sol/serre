@@ -18,7 +18,11 @@ class Admin::ConfController < ApplicationController
 
     conf = Conf.find(1).update_attributes(params[:conf])
 
-    params[:from] ? redirect_to params[:from] : redirect_to admin_conf_index_path
+    if params[:from]
+      redirect_to params[:from]
+    else
+      redirect_to admin_conf_index_path
+    end
   end
 
 end
