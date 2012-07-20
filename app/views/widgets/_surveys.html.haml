@@ -6,7 +6,7 @@
       = Survey.surveys.first.question
 
     %ul
-      - Survey.surveys.first.children.each do |survey|
+      - @surveys.first.children.each do |survey|
         %li
           %input{:type=>'radio', :name => 'answer', :class => 'answer', :value => survey.id}
           = survey.question

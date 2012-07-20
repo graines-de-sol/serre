@@ -2,6 +2,13 @@ class SurveysController < ApplicationController
 
   before_filter :is_logged, :load_conf
 
+  # GET /surveys
+  # Show dashboard main root page                                HTML
+  # -----------------------------------------------------------------
+  def index
+    @surveys = Survey.for_location($conf.default_location_id)
+  end
+
   # PUT /surveys/:id
   # Update then output survey stats                         XHR
   # -----------------------------------------------------------

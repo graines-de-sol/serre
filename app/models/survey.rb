@@ -6,7 +6,9 @@ class Survey < ActiveRecord::Base
   acts_as_tree :order => 'id', :dependent=>:destroy
 
   scope :questions, :conditions => "parent_id = 0", :order => 'created_at DESC'
-  scope :surveys, self.where(['location_id = ? AND parent_id = 0', $conf.default_location_id]).order('created_at DESC')
+  scope :surveys_for_location, lambda {|location_id|
+    self.where(['location_id = ? AND parent_id = 0', location_id]).order('created_at DESC')
+  }
 
   # Render survey's results as percents
   def self.results(survey)
