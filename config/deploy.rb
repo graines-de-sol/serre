@@ -41,7 +41,7 @@ namespace :dragonfly do
   end
 end
 
-before 'deploy:restart',     'deploy:symlink_shared'
+after  'deploy:update_code', 'deploy:symlink_shared'
 after  'deploy:update_code', 'dragonfly:symlink'
 after  'deploy:update_code', 'deploy:precompile_assets'
 before 'deploy:restart',     'deploy:migrate'
