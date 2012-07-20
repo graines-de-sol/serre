@@ -44,7 +44,7 @@ class Admin::MediasController < ApplicationController
   # -----------------------------------------------------------
   def delete_media
     media_category = Media.find(params[:id]).media_category_id
-    Media.find(params[:id]).delete
+    Media.find(params[:id]).destroy
 
     redirect_to media_path(media_category)
   end

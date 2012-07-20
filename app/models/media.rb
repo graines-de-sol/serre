@@ -10,7 +10,7 @@ class Media < ActiveRecord::Base
   validate :upload
   before_save :upload
   after_save :write_to_disk
-  around_destroy :remove_from_fs
+  before_destroy :remove_from_fs
   validates :filename, :uniqueness => { :scope => :media_category_id, :message => "already_uploaded" }
 
 private
