@@ -7,10 +7,12 @@ set :user, "serre"
 set :scm, 'git'
 set :default_stage, 'production'
 set :branch, fetch(:branch, "master")
+set :normalize_asset_timestamps, false
 
 role :web, "ns382592.ovh.net"
 role :app, "ns382592.ovh.net"
 role :db,  "ns382592.ovh.net", :primary => true
+default_environment["PATH"] = "$PATH:/opt/ree/bin/"
 
 namespace :deploy do
   task :start do ; end
@@ -26,6 +28,10 @@ namespace :deploy do
     run "rm -rf #{release_path}/public && ln -s #{shared_path}/public #{release_path}/public"
   end
 
+  task :precompile_assets do
+    run "cd #{release_path}; rake assets:precompile RAILS_ENV=production "
+  end
+
 end
 
 namespace :dragonfly do
@@ -35,8 +41,9 @@ namespace :dragonfly do
   end
 end
 
-before 'deploy:restart', 'deploy:symlink_shared'
+before 'deploy:restart',     'deploy:symlink_shared'
 after  'deploy:update_code', 'dragonfly:symlink'
-after  'deploy:update_code', 'deploy:migrate'
-after  'deploy:restart', 'deploy:cleanup'
+after  'deploy:update_code', 'deploy:precompile_assets'
+before 'deploy:restart',     'deploy:migrate'
+after  'deploy:restart',     'deploy:cleanup'
 
