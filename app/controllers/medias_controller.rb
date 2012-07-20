@@ -31,11 +31,11 @@ class MediasController < ApplicationController
   def download
     file = Media.find(params[:id])
 
-    #send_file "#{Rails.root}/medias/#{file.id}/#{file.locator}",
-    #  :type        => file.mime_type,
-    #  :filename    => file.filename,
-    #  :x_sendfile  => true,
-    #  :disposition => 'attachment'
+    send_file "#{Rails.root}/medias/#{file.id}/#{file.locator}",
+      :type        => file.mime_type,
+      :filename    => file.filename,
+      :x_sendfile  => true,
+      :disposition => 'attachment'
   end
 
 

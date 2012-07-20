@@ -30,17 +30,17 @@ private
   end
 
   def write_to_disk
-    #begin
-    #  Dir.mkdir("#{Rails.root}/medias/#{self.id.to_i}")
-    #  File.open("#{Rails.root}/medias/#{self.id.to_i}/#{self.locator}", 'wb') { |f| f.write(self.file.read) }
-    #rescue
-    #  self.destroy
-    #  errors.add(:filename, 'error_occured_while_uploading')
-    #end
+    begin
+      Dir.mkdir("#{Rails.root}/medias/#{self.id.to_i}")
+      File.open("#{Rails.root}/medias/#{self.id.to_i}/#{self.locator}", 'wb') { |f| f.write(self.file.read) }
+    rescue
+      self.destroy
+      errors.add(:filename, 'error_occured_while_uploading')
+    end
   end
 
   def remove_from_fs
-    #FileUtils.rm_rf("#{Rails.root}/medias/#{self.id.to_i}")
+    FileUtils.rm_rf("#{Rails.root}/medias/#{self.id.to_i}")
   end
 end
 
