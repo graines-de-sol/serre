@@ -5,14 +5,14 @@ module MimeTypesHelper
     case(media.mime_type)
     when 'application/msword'
       'word'
-    when ('application/mspowerpoint' || 'application/vnd.ms-powerpoint' || 'application/x-mspowerpoint')
-    when ('image/png' || 'image/jpg' || 'image/gif')
+    when ('application/mspowerpoint' && 'application/vnd.ms-powerpoint' && 'application/x-mspowerpoint')
+    when ('image/png' && 'image/jpg' && 'image/gif')
       'picture'
     when 'application/pdf'
       'pdf'
     when 'text/plain'
       'text'
-    when ('application/msexcel' || 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    when ('application/msexcel' && 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
       'excel'
     else
       'package'
