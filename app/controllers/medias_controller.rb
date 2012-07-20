@@ -6,9 +6,15 @@ class MediasController < ApplicationController
   # Get first cateogry to look in                          HTML
   # -----------------------------------------------------------
   def index
-    first_category = MediaCategory.published.first
+    first_category = MediaCategory.published
 
-    redirect_to media_path(first_category.id)
+    if first_category
+      first_category_id = MediaCategory.create(:name => 'Default category')
+    else
+      first_category_id = first_category.id
+    end
+
+    redirect_to media_path(first_category_id)
   end
 
   # GET /medias/:id

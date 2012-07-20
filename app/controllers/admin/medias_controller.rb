@@ -32,7 +32,7 @@ class Admin::MediasController < ApplicationController
   # POST /admin/medias/:id/upload
   # Update all cateogries' attributes                  REDIRECT
   # -----------------------------------------------------------
-  def upload
+  def upload_media
     params[:media][:media_category_id] = params[:id]
     Media.create(params[:media])
 

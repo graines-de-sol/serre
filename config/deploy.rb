@@ -15,6 +15,7 @@ role :db,  "ns382592.ovh.net", :primary => true
 namespace :deploy do
   task :start do ; end
   task :stop do ; end
+
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
@@ -34,6 +35,7 @@ namespace :dragonfly do
   end
 end
 
-after 'deploy:update_code', 'dragonfly:symlink'
 before "deploy:restart", "deploy:symlink_shared"
+after 'deploy:update_code', 'dragonfly:symlink'
+after "deploy:update_code", "deploy:migrate"
 

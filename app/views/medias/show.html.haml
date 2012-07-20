@@ -13,7 +13,7 @@
   %br
   - if is_admin
     .well{:style => 'height:130px;overflow: hidden'}
-      = form_tag upload_admin_media_path(@category), :multipart => true do
+      = form_tag upload_media_admin_media_path(@category), :multipart => true do
         %table#uploader
           %tr
             %td

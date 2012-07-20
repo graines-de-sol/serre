@@ -35,7 +35,7 @@ Refuge::Application.routes.draw do
     match 'medias/media/:id' => 'medias#delete_media', :as => :delete_media, :via => :delete
     resources :medias,     :only => [:index, :create, :update, :destroy] do
       member do
-        post :upload
+        post :upload_media
       end
     end
 
