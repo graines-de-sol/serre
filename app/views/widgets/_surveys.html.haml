@@ -1,9 +1,12 @@
-- unless Survey.surveys.empty?
+- # Holly MVC crap, cannot do anything else but this for now
+- @surveys = Survey.for_location($conf.default_location_id)
+
+- unless @surveys.empty?
   #survey
     %h2.ribbon= t('survey')
 
     %p.well#question
-      = Survey.surveys.first.question
+      = @surveys.first.question
 
     %ul
       - @surveys.first.children.each do |survey|
@@ -20,12 +23,12 @@
     %h2.ribbon= t('older_surveys')
     #older_surveys
       %ul
-        - Survey.surveys.offset(1).each do |survey|
+        - @surveys.offset(1).each do |survey|
           %li
             %a{:href=>'#', :data=>{'survey_id' => survey.id}}= survey.question
 
 
-  %input{:type => 'hidden', :id => 'current_survey_id', :value => Survey.surveys.first.id}
+  %input{:type => 'hidden', :id => 'current_survey_id', :value => @surveys.first.id}
 
   = render :partial => '/modals/show_survey_modal'
 

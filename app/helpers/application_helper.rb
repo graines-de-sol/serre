@@ -22,7 +22,7 @@ module ApplicationHelper
       },
       {:name   => 'events',
        :icon   => 'icon-random icon-white',
-       :url    => 'pages/events'
+       :url    => 'ads'
       },
       {:name   => 'medias.title',
        :icon   => 'icon-book icon-white',

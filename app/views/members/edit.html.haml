@@ -1,40 +1,55 @@
 .span12.form
 
+  .outline
+    %p= t('will_be_www_published')
+
   = simple_form_for @member, :html => {:multipart => true, :id=>'edit_member'} do |f|
 
     .span3
       .avatar
         = avatar(@member, '180x180')
-
+      - if is_admin
+        = f.file_field :avatar
     .span8
       #mail_password_editor
         .well
           %a{:href=>'#edit_account', :data=>{'toggle'=>'modal'}, :id=>'mail_me'}
             = t('edit_my_login_informations')
 
+      %label= t('first_name')
       = f.input :first_name, :label=>false
+      %label= t('last_name')
       = f.input :last_name, :required => false, :label=>false
 
       #baseline
+        %label= t('baseline')
         = f.text_field :baseline, :style=>'width:570px;'
 
       #description
-        %input{:type=>'text', :id=>'member_birthday_day', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>birthday[:day], :data=>{'required'=>'true', 'alert'=>t('warnings.member_birthday_day')}}
-        = select_month(birthday[:month], {:use_month_names=>t('date.month_names').shift}, {:style=>'width:125px;', :name=>'member[birthday][month]'})
-        = select_year(birthday[:year],  {:start_year => 1930, :end_year => Time.now.year}, {:style=>'width:80px;margin-right:30px;', :name=>'member[birthday][year]'})
-        = t('status')
-        = f.select(:status_id, Status.all.map{|l|[l.name, l.id]})
-
-      - if is_admin
-        = f.file_field :avatar
+        /%input{:type=>'text', :id=>'member_birthday_day', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>birthday[:day], :data=>{'required'=>'true', 'alert'=>t('warnings.member_birthday_day')}}
+        /= select_month(birthday[:month], {:use_month_names=>t('date.month_names').shift}, {:style=>'width:125px;', :name=>'member[birthday][month]'})
+        /= select_year(birthday[:year],  {:start_year => 1930, :end_year => Time.now.year}, {:style=>'width:80px;margin-right:30px;', :name=>'member[birthday][year]'})
 
     .clear
 
-    .span7.well.editor#details
+    .span7.well.editor.details
       %table
         %tr
           %td
-            %p= t('organisation')
+            %p= t('status')
+          %td
+            %p= f.select(:status_id, Status.all.map{|l|[l.name, l.id]})
+        %tr
+          %td
+            %p= t('activity_1')
+          %td
+            %p
+              = f.text_field :organisation, :style=>'margin-right:10px;'
+              = t('website')
+              = f.text_field :website
+        %tr
+          %td
+            %p= t('activity_2')
           %td
             %p
               = f.text_field :organisation, :style=>'margin-right:10px;'
@@ -47,14 +62,33 @@
             %p= f.text_area :prestations, :class=>'expandable'
         %tr
           %td
-            %p= t('references')
+            %p= t('specificities')
           %td
             %p= f.text_area :references, :class=>'expandable'
         %tr
           %td
             %p= t('phone')
           %td
-            %p= f.text_field :phone
+            %p
+              = f.text_field :phone
+              = t('www_published')
+        %tr
+          %td
+            %p= ""
+          %td
+            %p
+              = check_box_tag 'www_published'
+              = t('ok_www_published')
+
+    .span7.well.editor.details
+      %table
+        %tr
+          %td
+            %p= t('phone')
+          %td
+            %p
+              = f.text_field :phone
+              = t('non_www_published')
         %tr
           %td
             %p= t('I_live_in')
@@ -97,9 +131,14 @@
                 = text_field_tag "profile[#{network[:id]}]", network[:url]
       .clear
 
-    - if current_user.member.id == @member.id || current_user.role == 'admin'
-      - if current_user.role == 'admin' && !current_user.view_as_user
-        .span11{:style=>'text-align:right;'}
+    - if is_admin
+      .span11.admin_member_controls
+        .span3.right
+          = radio_button_tag 'is_active', true
+          = "Actif"
+          = radio_button_tag 'is_active', false
+          = "Inactif"
+        .span4.right
           = t('role')
           %select{:name=>'user[role]', :style=>'margin-right:20px;'}
             %option{:value=>'user', :selected => @member.user.role == 'user'}= 'User'
@@ -114,10 +153,11 @@
             = check_box_tag 'user[view_as_user]', true, @member.user.view_as_user == true
             %strong= t('view_as_user_label')
 
-        - if current_user.role == 'admin' && !current_user.view_as_user
+        - if is_admin
           %a{:href=>member_path(@member.user.id), :class=>'btn btn-danger destroy', :style=>'float:left;', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_member')}}
             %i.icon-trash.icon-white
             = t(:delete_member)
+
 
 - # Hidden content
 

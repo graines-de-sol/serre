@@ -32,6 +32,7 @@ table th
   background-color: #ffa200
   a
     color: #000 !important
+
 .left
   float: left
 
@@ -39,6 +40,8 @@ table th
   float: right
 
 #top_bar
+  position: relative
+  z-index: 10000
   width: 100%
   height: 40px
   background: url(/assets/alpha_bg_60.png)
@@ -128,87 +131,6 @@ ul#main_menu
       &:hover
         background-color: #444
 
-#search_for_members
-  width: 750px
-  height: 60px
-  padding: 10px 10px 10px 5px
-  input[type='text']
-    width: 420px
-    height: 20px
-    float: left
-    margin-right: 10px
-  .btn
-    width: 100px
-    height: auto
-    overflow: hidden
-    float: left
-
-a
-  &.label
-    padding: 5px
-    color: #dfdfdf
-  &.label-important:hover
-    color: #fff
-
-#new_user_form
-  width: 800px
-  margin: 0
-
-#edit_user_form
-  width: 270px
-  margin: 0 auto
-
-#new_user_form .left
-  margin-right: 20px
-
-.member_resume
-  width: 110px
-  height: 135px
-  padding: 0px
-  margin: 10px 1px 0 6px
-  -moz-box-shadow: 0px 0px 10px 0px #d4d4d4
-  -webkit-box-shadow: 0px 0px 10px 0px #d4d4d4
-  -o-box-shadow: 0px 0px 10px 0px #d4d4d4
-  box-shadow: 0px 0px 10px 0px #d4d4d4
-  -moz-border-radius: 2px
-  -webkit-border-radius: 2px
-  border-radius: 2px
-  background-color: #fff
-  float: left
-  .avatar
-    width: 100px
-    height: 100px
-    margin: 5px
-    padding: 0px
-    overflow: hidden !important
-    -moz-box-shadow: 0
-    -webkit-box-shadow: none
-    -o-box-shadow: none
-    box-shadow: none
-    -moz-border-radius: 0
-    -webkit-border-radius: 0
-    border-radius: 0
-    text-align: center
-    img
-      margin: auto
-      width: 100px
-      height: 100px
-      &:hover
-        margin: 0
-        width: 102px
-        height: 102px
-    &:hover
-      width: 102px
-      height: 102px
-      margin: 4px
-      padding: 0
-  span
-    margin-left: 5px
-
-#details textarea
-  width: 560px
-  height: 38px
-
 #error_modal h3
   color: red
 
@@ -220,9 +142,6 @@ a
 a.dotoggle
   font-size: 20px
 
-input#member_presence
-  width: 570px
-
 .span3 .avatar
   text-align: right
 
@@ -232,139 +151,9 @@ input#member_presence
   font-weight: bold
   text-align: right
 
-#mail_password_editor
-  width: 340px
-  height: 60px
-  padding: 0px
-  float: right
-  margin: 5px 20px auto auto
-
-td.social_profiles
-  padding-top: 30px
-
-.social_profiles a
-  &:first-child
-    margin-left: 20px
-  margin-right: 5px
-
-#baseline
-  height: 20px
-  padding: 5px 0
-  border-top: 1px solid #d4d4d4
-  font-size: 20px
-  width: 600px
-
-#description, #mail_me
-  color: #666
-  font-size: 14px
-  padding: 5px 0
-
-.social_networks
-  width: 270px
-  float: left
-  margin-left: 20px
-  img
-    float: left
-    margin-right: 10px
-
-#email_form
-  width: 530px
-  padding: 0
-  text-align: left
-
-#details
-  width: 560px
-  margin-left: 260px
-  text-align: left
-  table
-    float: left
-    margin-left: -280px
-    width: 860px
-    table-layout: fixed
-    tr td:first-child
-      width: 260px
-      text-align: right
-      p
-        margin-right: 20px
-        font-weight: normal
-        font-style: italic
-
-.editor p
-  padding-top: 5px
-
-#details td
-  text-align: left
-  vertical-align: top
-  width: 600px
-  p
-    margin-left: 20px
-
 #dashboard
   width: 960px
   margin: 0px auto auto 5px
-
-#ads
-  width: 600px
-  #categories
-    ul
-      float: left
-      margin: 10px auto auto 5px
-      li
-        height: 16px
-        float: left
-        list-style-type: none
-        margin: 0 !important
-        a
-          padding: 7px 10px
-          text-decoration: none
-          &#active
-            padding: 8px 10px
-            background-color: #2f2f2f
-            color: #fff
-          &:hover
-            padding: 8px 10px
-            background-color: #d4d4d4
-            color: #fff
-    height: 35px
-    width: 580px
-    border-bottom: 1px solid #2f2f2f
-    margin: 0 auto 10px 2px
-    padding-bottom: 0
-
-#toggle_ad_creator
-  float: right
-  color: #fff
-
-.ad
-  width: 560px
-  padding: 10px
-  margin-bottom: 10px
-  border: 1px solid #d4d4d4
-  background-color: #fff
-  -moz-box-shadow: 0px 0px 10px 0px #d4d4d4
-  -webkit-box-shadow: 0px 0px 10px 0px #d4d4d4
-  -o-box-shadow: 0px 0px 10px 0px #d4d4d4
-  box-shadow: 0px 0px 10px 0px #d4d4d4
-  h3
-    font-size: 16px
-    font-family: Georgia, 'Times new'
-    border-bottom: 1px solid #d4d4d4
-    margin-left: 5px
-    line-height: 33px
-  .avatar
-    float: left
-    width: 44px
-    height: 34px
-    background-color: #fff
-  .action_bar
-    padding-top: 5px
-    border-top: 1px solid #d4d4d4
-    a
-      float: right
-    span
-      line-height: 12px !important
-      margin: 0 !important
-      padding: 0 !important
 
 #dashboard span
   color: #999
@@ -454,55 +243,4 @@ table#stats th
   width: 770px
   margin-left: -385px
   overflow: hidden
-
-table#uploader
-  tr
-    td
-      padding: 5px
-      label
-        font-weight: bold
-ul.medias_list
-  margin-left: 0
-  li
-    list-style-type: none
-    clear: both
-    a
-      padding: 5px 5px 5px 25px
-      background-position: 5px !important
-      display: block
-      float: left
-      background-color: #d5edf7
-      border-: 1px solid #b1d7e5
-      margin-bottom: 10px
-      color: #2f2f2f
-      width: 550px
-      &.delete
-        width: 10px
-        height: 20px
-        overflow: hidden
-        background: #fff url('/assets/cross.png') center no-repeat
-      &.delete:hover
-        background-color: #fff
-
-      &.word
-        background: #d5edf7 url('/assets/word.png') left no-repeat
-      &.excel
-        background: #d5edf7 url('/assets/excel.png') left no-repeat
-      &.pdf
-        background: #d5edf7 url('/assets/pdf.png') left no-repeat
-      &.ruby
-        background: #d5edf7 url('/assets/ruby.png') left no-repeat
-      &.powerpoint
-        background: #d5edf7 url('/assets/powerpoint.png') left no-repeat
-      &.compressed
-        background: #d5edf7 url('/assets/compressed.png') left no-repeat
-      &.text
-        background: #d5edf7 url('/assets/word.png') left no-repeat
-      &.picture
-        background: #d5edf7 url('/assets/picture.png') left no-repeat
-      &.package
-        background: #d5edf7 url('/assets/package.png') left no-repeat
-    a:hover
-      background-color: #e3f1f7
-      text-decoration: none
 
