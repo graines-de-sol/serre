@@ -1,6 +1,6 @@
 $ ->
   # Tooltip init
-  #$("a[rel='tooltip']").tooltip()
+  $("a[rel='tooltip']").tooltip()
 
   # Validation error messaging init
   $('.error_popover').each ->
