@@ -24,16 +24,23 @@ class Member < ActiveRecord::Base
     ((current_user.role == 'admin' && !current_user.view_as_user)|| current_id == current_user.member.id)? true : false
   end
 
-#  # Search member by column and keywords
-#  #def self.search_by(category, keywords)
-#  #  column = self.fields[category]
-##
-#    if column
-#      self.where(["#{column} LIKE ?", "%#{keywords}%"]).order("#{column} ASC")
-#    else
-#      Array.new
-#    end
-#  end
+  # Search member by column and keywords
+  def self.search_by(category, keywords, is_active)
+    column = self.fields[category]
+
+    if column
+      case is_active
+      when 'true'
+        self.where(["#{column} LIKE ? AND members.is_active = ?", "%#{keywords}%", true]).order("#{column} ASC")
+      when 'false'
+        self.where(["#{column} LIKE ? AND members.is_active = ?", "%#{keywords}%", false]).order("#{column} ASC")
+      else
+        self.where(["#{column} LIKE ?", "%#{keywords}%"]).order("#{column} ASC")
+      end
+    else
+      Array.new
+    end
+  end
 
   # DB fields we can search into for search patterns
   def self.fields

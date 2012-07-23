@@ -13,7 +13,7 @@ class MembersController < ApplicationController
   # Search for members                                  HTML
   # --------------------------------------------------------
   def search
-    @members = Member.search_by params[:category], params[:keywords]
+    @members = Member.search_by params[:category], params[:keywords], params[:is_active]
 
     render :template=>'members/index'
   end

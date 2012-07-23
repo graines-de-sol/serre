@@ -4,7 +4,7 @@ Refuge::Application.routes.draw do
 
   root :to=> "blog#index"
 
-  match '/members/search' => 'members#search', :via => :get
+  match '/members/search' => 'members#search', :via => :post
   match '/members/mail' => 'members#mail_member', :via => :post
   match 'blog/category/:id' => 'blog#show_category',          :as => :blog_category, :via => :get
   match 'blog/archives/:year/:month' => 'blog#show_archives', :as => :blog_archives, :via => :get

@@ -1,19 +1,19 @@
-#search_for_members
+#search_for_members.well
   %h3= t(:search_for_members)
   = form_tag '/members/search' do
     %select{:name => 'category', :style=>'width:180px;float:left;margin-right:20px;'}
       - Member.fields.each do |name, field|
         %option{:value => name, :selected => params[:category] == name}= t(name)
 
-    %input{:type => 'text', :name => 'keywords'}
+    %input{:type => 'text', :name => 'keywords', :value => params[:keywords]}
     = submit_tag t(:search), :class => 'btn  btn-warning'
-    .clear
-    = check_box_tag 'is_active'
-    = "Membres actifs"
-    = check_box_tag 'is_active'
-    = "Anciens"
-    = check_box_tag 'is_active'
-    = "Tous"
+    %p
+      = radio_button_tag 'is_active', 'true', (params[:is_active] == 'true')
+      = t('active_members')
+      = radio_button_tag 'is_active', 'false', (params[:is_active] == 'false')
+      = t('inactive_members')
+      = radio_button_tag 'is_active', 'all', (params[:is_active] == 'all')
+      = t('all_members')
 
 #members_list
   - @members.each do |member|
