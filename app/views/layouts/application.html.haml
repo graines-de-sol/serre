@@ -6,8 +6,8 @@
   = stylesheet_link_tag '/javascripts/jquery_lightness/css/ui-lightness/jquery-ui-1.8.16.custom.css'
 
   = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
-  = javascript_include_tag '/javascripts/jquery_lightness/js/jquery-ui-1.8.16.custom.min.js'
-  = javascript_include_tag '/javascripts/jquery_lightness/js/jquery.ui.datepicker-fr.js'
+  %script{:src => '/javascripts/jquery_lightness/js/jquery-ui-1.8.16.custom.min.js'}
+  %script{:src => '/javascripts/jquery_lightness/js/jquery.ui.datepicker-fr.js'}
   = javascript_include_tag 'application'
   = javascript_include_tag 'jquery-ui-1.8.11.custom.min.js'
   = javascript_include_tag 'fullcalendar.js'
