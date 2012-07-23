@@ -16,11 +16,11 @@ module ApplicationHelper
        :icon   => 'icon-search icon-white',
        :url    => 'members'
       },
-      {:name   => 'meetings',
-       :icon   => 'icon-time icon-white',
-       :url    => 'pages/meetings'
-      },
       {:name   => 'events',
+       :icon   => 'icon-time icon-white',
+       :url    => 'events'
+      },
+      {:name   => 'lets_share',
        :icon   => 'icon-random icon-white',
        :url    => 'ads'
       },

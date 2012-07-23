@@ -70,6 +70,18 @@
                 = t('www_published')
           %tr
             %td
+              %p= t('organisation_logo')
+            %td
+              %p
+                %span.logo.left= (image_tag @member.logo.thumb('x75').url, :alt=>"logo") if @member.logo
+                %a.delete.left{:href => '#', :id => 'remove_logo', :data => {'message' => t('confirms.delete_logo')}}= "Supprimer le logo"
+                = hidden_field_tag 'logo_reset', 'false'
+                %br
+                %br
+                = f.file_field :logo
+                .clear.h-10
+          %tr
+            %td
               %p= ""
             %td
               %p

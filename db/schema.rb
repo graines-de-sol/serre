@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120722194306) do
+ActiveRecord::Schema.define(:version => 20120723151942) do
 
   create_table "ads", :force => true do |t|
     t.string   "subject"
@@ -99,11 +99,11 @@ ActiveRecord::Schema.define(:version => 20120722194306) do
 
   create_table "members", :force => true do |t|
     t.integer "user_id"
-    t.string  "first_name",    :default => "anonyme"
+    t.string  "first_name",     :default => "anonyme"
     t.string  "last_name"
     t.date    "birthday"
     t.string  "city"
-    t.string  "avatar_uid",    :default => "default_avatar/default_avatar.png"
+    t.string  "avatar_uid",     :default => "default_avatar/default_avatar.png"
     t.text    "situation"
     t.text    "prestations"
     t.text    "references"
@@ -116,11 +116,12 @@ ActiveRecord::Schema.define(:version => 20120722194306) do
     t.string  "organisation"
     t.string  "website"
     t.string  "baseline"
-    t.text    "organsation_2"
+    t.text    "organisation_2"
     t.text    "website_2"
     t.text    "mobile"
-    t.boolean "www_published", :default => true
-    t.boolean "is_active",     :default => true
+    t.boolean "www_published",  :default => false
+    t.boolean "is_active",      :default => true
+    t.string  "logo_uid"
   end
 
   add_index "members", ["status_id"], :name => "index_members_on_status_id"

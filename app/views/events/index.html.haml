@@ -1,0 +1,48 @@
+.span11{:style=>'width:880px;'}
+
+  #calendar
+
+:javascript
+  $(document).ready(function() {
+    $('#calendar').fullCalendar({
+      events: 'https://www.google.com/calendar/feeds/gbarillot%40gmail.com/public/basic',
+
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,basicWeek,basicDay'
+      },
+      defaultView: 'month',
+      timeFormat: '(HH:mm)',
+      eventColor: '#378006',
+
+      eventClick: function(calEvent, jsEvent, view) {
+
+          months = #{I18n.t('date.month_names').to_json};
+          start_date = new Date(calEvent.start);
+          formated_date = start_date.getDate() +' '+ months[start_date.getMonth()] +' '+ start_date.getFullYear();
+          formated_hour = start_date.getHours() +':'+ start_date.getMinutes();
+
+          $('#toggle_event #event_details').empty();
+          $('#toggle_event #event_details').append(formated_date +', '+ formated_hour);
+
+          $('#toggle_event .modal-body #event_description').empty();
+          $('#toggle_event .modal-body #event_description').append(calEvent.title +'<br /><br /><strong>'+ calEvent.location +'</strong><br /><br />'+ calEvent.description);
+
+          $('#toggle_event').modal('toggle');
+          //$(this).css('border-color', 'red');
+
+          // #Prevent gcal linking by default
+          return false;
+      },
+
+      monthNames: #{I18n.t('date.month_names').to_json},
+      monthNamesShort: #{I18n.t('date.abbr_month_names').to_json},
+      dayNames: #{I18n.t('date.day_names').to_json},
+      dayNamesShort: #{I18n.t('date.abbr_day_names').to_json}
+
+    })
+  });
+
+= render :partial => '/modals/toggle_event_modal'
+

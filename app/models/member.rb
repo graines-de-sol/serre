@@ -13,9 +13,10 @@ class Member < ActiveRecord::Base
   before_update :compose_birthday
 
   image_accessor :avatar
+  image_accessor :logo
 
   normalize_attributes :website, :baseline, :organisation, :prestations, :references, :city, :hobbies, :powers
-  normalize_attribute :phone, :with=>:phone
+  normalize_attribute :phone, :mobile, :with=>:phone
 
   acts_as_birthday :birthday
 
@@ -44,7 +45,7 @@ class Member < ActiveRecord::Base
 
   # DB fields we can search into for search patterns
   def self.fields
-    fields = ['first_name', 'last_name', 'prestations', 'powers', 'organisation']
+    fields = ['first_name', 'last_name', 'organisation', 'prestations', 'powers', 'city']
 
     out = Hash.new
     # front label in select => DB column name

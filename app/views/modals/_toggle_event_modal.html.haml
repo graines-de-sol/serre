@@ -1,0 +1,16 @@
+#toggle_event.modal.hide.fade
+  .modal-header
+    %a.close{:data=>{'dismiss'=>'modal'}}
+      = '×'
+    %h3
+      = t('event_details_modal_title')
+      %span#event_details
+
+  .modal-body
+    #event_description
+
+    %br
+    %a{:href => '#'}
+      .icon-pencil
+      = t('register_this_event')
+

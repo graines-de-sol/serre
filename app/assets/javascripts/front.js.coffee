@@ -27,3 +27,9 @@ $ ->
     $('#recipient').html $(this).data('recipient')
     $('#recipient_id').val $(this).data('recipient_id')
 
+  $('#remove_logo').click ->
+    if confirm $(this).attr('data-message')
+      $('.logo').empty()
+      $('#logo_reset').val('true')
+    return false
+

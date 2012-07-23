@@ -15,7 +15,7 @@ class MembersController < ApplicationController
   def search
     @members = Member.search_by params[:category], params[:keywords], params[:is_active]
 
-    render :template=>'members/index'
+    render :template => 'members/index'
   end
 
   # GET /member/:id
@@ -29,9 +29,9 @@ class MembersController < ApplicationController
     @perso_networks = Network.with_urls(@user_profiles, :perso)
 
     if Member.can_edit?(current_user, @member.id)
-      render :template=>'/members/edit'
+      render :template => '/members/edit'
     else
-      render :template=>'/members/show'
+      render :template => '/members/show'
     end
 
   end
@@ -62,6 +62,7 @@ class MembersController < ApplicationController
   # Update a member                                 REDIRECT
   # --------------------------------------------------------
   def update
+    params[:member][:logo] = nil if params[:logo_reset] == 'true'
 
     @member = Member.find(params[:id])
 
@@ -81,7 +82,7 @@ class MembersController < ApplicationController
     @pro_networks = Network.with_urls(@user_profiles, :pro)
     @perso_networks = Network.with_urls(@user_profiles, :perso)
 
-    render :template=>'/members/edit'
+    render :template => '/members/edit'
 
   end
 
