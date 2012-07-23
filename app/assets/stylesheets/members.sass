@@ -3,7 +3,7 @@ input#member_presence
 
 #search_for_members
   width: 750px
-  height: 60px
+  height: 90px
   padding: 10px 10px 10px 5px
   input[type='text']
     width: 420px
@@ -36,7 +36,7 @@ a
 
 .member_resume
   width: 110px
-  height: 135px
+  height: 110px
   padding: 0px
   margin: 10px 1px 0 6px
   -moz-box-shadow: 0px 0px 10px 0px #d4d4d4
@@ -48,9 +48,13 @@ a
   border-radius: 2px
   background-color: #fff
   float: left
-  .avatar
+  &:hover
+    background-color: #57a02a
+    a
+      color: #fff !important
+  .member_avatar
     width: 100px
-    height: 100px
+    height: 75px
     margin: 5px
     padding: 0px
     overflow: hidden !important
@@ -62,22 +66,8 @@ a
     -webkit-border-radius: 0
     border-radius: 0
     text-align: center
-    img
-      margin: auto
-      width: 100px
-      height: 100px
-      &:hover
-        margin: 0
-        width: 102px
-        height: 102px
-    &:hover
-      width: 102px
-      height: 102px
-      margin: 4px
-      padding: 0
   span
     margin-left: 5px
-
 
 #mail_password_editor
   width: 340px
@@ -96,8 +86,6 @@ td.social_profiles
 
 form#edit_member
   padding-top: 30px
-  position: relative
-  z-index: 1000
   label
     font-style: italic
 
@@ -130,11 +118,11 @@ form#edit_member
   width: 560px
   margin-left: 260px
   text-align: left
+  float: none
   textarea
     width: 560px
     height: 38px
   table
-    float: left
     margin-left: -280px
     width: 860px
     table-layout: fixed
@@ -144,10 +132,12 @@ form#edit_member
         vertical-align: top
         width: 600px
         height: 40px
+        padding-left: 10px
     tr td:first-child
       width: 260px
       text-align: right
       padding-top: 5px
+      padding-left: 0
       p
         margin: 0 20px
         font-weight: normal
@@ -157,18 +147,18 @@ form#edit_member
   padding-top: 5px
 
 .outline
-  z-index: 100
   border: 5px solid #b2dfea
-  position: absolute
   width: 890px
-  height: 705px
-  top: 0
-  margin-top: 50px
-  p
+  margin-top: -40px
+  p.notice
     font-weight: bold
     float: right
     color: #2f2f2f
     margin-right: 10px
+  &.hidden
+    margin-top: 10px !important
+    border-color: transparent
+
 .admin_member_controls
   text-align: right
   padding-top: 20px

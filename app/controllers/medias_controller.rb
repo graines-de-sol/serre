@@ -8,10 +8,10 @@ class MediasController < ApplicationController
   def index
     first_category = MediaCategory.published
 
-    if first_category
+    if first_category.empty?
       first_category_id = MediaCategory.create(:name => 'Default category')
     else
-      first_category_id = first_category.id
+      first_category_id = first_category.first.id
     end
 
     redirect_to media_path(first_category_id)

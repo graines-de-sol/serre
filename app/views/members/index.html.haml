@@ -1,26 +1,33 @@
 #search_for_members
   %h3= t(:search_for_members)
   = form_tag '/members/search' do
-    %select{:name=>'category', :style=>'width:180px;float:left;margin-right:20px;'}
+    %select{:name => 'category', :style=>'width:180px;float:left;margin-right:20px;'}
       - Member.fields.each do |name, field|
-        %option{:value=>name, :selected=>params[:category] == name}= t(name)
+        %option{:value => name, :selected => params[:category] == name}= t(name)
 
-    %input{:type=>'text', :name=>'keywords'}
-    = submit_tag t(:search), :class=>'btn  btn-warning'
+    %input{:type => 'text', :name => 'keywords'}
+    = submit_tag t(:search), :class => 'btn  btn-warning'
+    .clear
+    = check_box_tag 'is_active'
+    = "Membres actifs"
+    = check_box_tag 'is_active'
+    = "Anciens"
+    = check_box_tag 'is_active'
+    = "Tous"
 
 #members_list
   - @members.each do |member|
     .member_resume
-      .avatar
-        %a{:href=>member_path(member.id)}
-          = avatar(member, '101x101')
+      .member_avatar
+        %a{:href => member_path(member.id)}
+          = avatar(member, '100x75')
 
       %span= link_to member.first_name, member_path(member.id)
 
-  .clear{:style=>'height:20px;'}
+  .clear{:style => 'height:20px;'}
 
 - if is_admin
-  %a{:href=>'#creation_modal', :class=>'label label-important', :data=>{'toggle'=>'modal'}, :style=>'margin-left:5px;'}
+  %a{:href => '#creation_modal', :class => 'label label-important', :data => {'toggle' => 'modal'}, :style => 'margin-left:5px;'}
     = t(:create_new_member)
 
   = render :partial => '/modals/member_creation_modal'

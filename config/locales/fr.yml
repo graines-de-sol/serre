@@ -175,6 +175,7 @@ fr:
   ok_www_published: "Je suis d'accord pour que ces informations apparaissent sur le site grainesdesol.fr"
   www_published: "(Affiché sur le site Web grainesdesol.fr)"
   non_www_published: "(Non affiché sur le site Web grainesdesol.fr)"
+  status: "Statut"
 
   blog:
     create_post: "+ Ajouter une actu"

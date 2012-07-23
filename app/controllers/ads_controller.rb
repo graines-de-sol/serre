@@ -7,7 +7,7 @@ class AdsController < ApplicationController
   # -----------------------------------------------------------------
   def index
     @categories = Category.all
-    @ads = Ad.all
+    @ads = Ad.published
   end
 
   # POST /ads
@@ -17,14 +17,14 @@ class AdsController < ApplicationController
 
     params[:ad][:member_id] = current_user.member.id
 
-    if params[:id].strip.blank?
+    if params[:ad_id].strip.blank?
       new_ad = Ad.create(params[:ad])
     else
-      ad = Ad.find(params[:id])
+      ad = Ad.find(params[:ad_id])
       ad.update_attributes(params[:ad])
     end
 
-    redirect_to  '/'
+    redirect_to  ads_path
   end
 
   # DELETE /ads/:id
@@ -36,7 +36,7 @@ class AdsController < ApplicationController
       :end_at => Time.now
     )
 
-    redirect_to  '/'
+    redirect_to  ads_path
   end
 end
 

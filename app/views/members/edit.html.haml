@@ -1,143 +1,145 @@
 .span12.form
 
-  .outline
-    %p= t('will_be_www_published')
-
   = simple_form_for @member, :html => {:multipart => true, :id=>'edit_member'} do |f|
 
-    .span3
-      .avatar
-        = avatar(@member, '180x180')
-      - if is_admin
-        = f.file_field :avatar
-    .span8
-      #mail_password_editor
-        .well
-          %a{:href=>'#edit_account', :data=>{'toggle'=>'modal'}, :id=>'mail_me'}
-            = t('edit_my_login_informations')
+    .outline
+      %p.notice= t('will_be_www_published')
 
-      %label= t('first_name')
-      = f.input :first_name, :label=>false
-      %label= t('last_name')
-      = f.input :last_name, :required => false, :label=>false
+      .clear{:style => 'height: 20px'}
+      .span3
+        .avatar
+          = avatar(@member, '180x180')
+        - if is_admin
+          = f.file_field :avatar
+      .span8
+        #mail_password_editor
+          .well
+            %a{:href=>'#edit_account', :data=>{'toggle'=>'modal'}, :id=>'mail_me'}
+              = t('edit_my_login_informations')
 
-      #baseline
-        %label= t('baseline')
-        = f.text_field :baseline, :style=>'width:570px;'
+        %label= t('first_name')
+        = f.input :first_name, :label=>false
+        %label= t('last_name')
+        = f.input :last_name, :required => false, :label=>false
 
-      #description
-        /%input{:type=>'text', :id=>'member_birthday_day', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>birthday[:day], :data=>{'required'=>'true', 'alert'=>t('warnings.member_birthday_day')}}
-        /= select_month(birthday[:month], {:use_month_names=>t('date.month_names').shift}, {:style=>'width:125px;', :name=>'member[birthday][month]'})
-        /= select_year(birthday[:year],  {:start_year => 1930, :end_year => Time.now.year}, {:style=>'width:80px;margin-right:30px;', :name=>'member[birthday][year]'})
+        #baseline
+          %label= t('baseline')
+          = f.text_field :baseline, :style=>'width:570px;'
 
-    .clear
+        #description
+          /%input{:type=>'text', :id=>'member_birthday_day', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>birthday[:day], :data=>{'required'=>'true', 'alert'=>t('warnings.member_birthday_day')}}
+          /= select_month(birthday[:month], {:use_month_names=>t('date.month_names').shift}, {:style=>'width:125px;', :name=>'member[birthday][month]'})
+          /= select_year(birthday[:year],  {:start_year => 1930, :end_year => Time.now.year}, {:style=>'width:80px;margin-right:30px;', :name=>'member[birthday][year]'})
 
-    .span7.well.editor.details
-      %table
-        %tr
-          %td
-            %p= t('status')
-          %td
-            %p= f.select(:status_id, Status.all.map{|l|[l.name, l.id]})
-        %tr
-          %td
-            %p= t('activity_1')
-          %td
-            %p
-              = f.text_field :organisation, :style=>'margin-right:10px;'
-              = t('website')
-              = f.text_field :website
-        %tr
-          %td
-            %p= t('activity_2')
-          %td
-            %p
-              = f.text_field :organisation, :style=>'margin-right:10px;'
-              = t('website')
-              = f.text_field :website
-        %tr
-          %td
-            %p= t('prestations')
-          %td
-            %p= f.text_area :prestations, :class=>'expandable'
-        %tr
-          %td
-            %p= t('specificities')
-          %td
-            %p= f.text_area :references, :class=>'expandable'
-        %tr
-          %td
-            %p= t('phone')
-          %td
-            %p
-              = f.text_field :phone
-              = t('www_published')
-        %tr
-          %td
-            %p= ""
-          %td
-            %p
-              = check_box_tag 'www_published'
-              = t('ok_www_published')
+      .clear
 
-    .span7.well.editor.details
-      %table
-        %tr
-          %td
-            %p= t('phone')
-          %td
-            %p
-              = f.text_field :phone
-              = t('non_www_published')
-        %tr
-          %td
-            %p= t('I_live_in')
-          %td
-            %p= f.text_field :city
-        %tr
-          %td
-            %p= t('hobbies')
-          %td
-            %p= f.text_area :hobbies, :class=>'expandable'
-        %tr
-          %td
-            %p= t('powers')
-          %td
-            %p= f.text_area :powers, :class=>'expandable'
-        %tr
-          %td
-            %p= t('presence')
-          %td
-            %p= f.text_field :presence
-        %tr
-          %td= ''
-          %td
-            .hr{:style=>'width:96%;margin:auto;margin-bottom:20px;'}
+      .span7.well.editor.details
+        %table
+          %tr
+            %td
+              %p= t('activity_1')
+            %td
+              %p
+                = f.text_field :organisation, :style=>'margin-right:10px;'
+                = t('website')
+                = f.text_field :website
+          %tr
+            %td
+              %p= t('activity_2')
+            %td
+              %p
+                = f.text_field :organisation_2, :style=>'margin-right:10px;'
+                = t('website')
+                = f.text_field :website_2
+          %tr
+            %td
+              %p= t('prestations')
+            %td
+              %p= f.text_area :prestations, :class=>'expandable'
+          %tr
+            %td
+              %p= t('specificities')
+            %td
+              %p= f.text_area :references, :class=>'expandable'
+          %tr
+            %td
+              %p= t('phone')
+            %td
+              %p
+                = f.text_field :phone
+                = t('www_published')
+          %tr
+            %td
+              %p= ""
+            %td
+              %p
+                = f.check_box 'www_published'
+                = t('ok_www_published')
 
-            .social_networks#pro
-              %h4= t(:pro_social_networks)
-              %br
-              - @pro_networks.each do |network|
-                %label= t(network[:label])
-                = image_tag network[:icon]
-                = text_field_tag "profile[#{network[:id]}]", network[:url]
+    .outline.hidden
+      .span7.well.editor.details
+        %table
+          %tr
+            %td
+              %p= t('status')
+            %td
+              %p= f.select(:status_id, Status.all.map{|l|[l.name, l.id]})
+          %tr
+            %td
+              %p= t('phone')
+            %td
+              %p
+                = f.text_field :mobile
+                = t('non_www_published')
+          %tr
+            %td
+              %p= t('I_live_in')
+            %td
+              %p= f.text_field :city
+          %tr
+            %td
+              %p= t('hobbies')
+            %td
+              %p= f.text_area :hobbies, :class=>'expandable'
+          %tr
+            %td
+              %p= t('powers')
+            %td
+              %p= f.text_area :powers, :class=>'expandable'
+          %tr
+            %td
+              %p= t('presence')
+            %td
+              %p= f.text_field :presence
+          %tr
+            %td= ''
+            %td
+              .hr{:style=>'width:96%;margin:auto;margin-bottom:20px;'}
 
-            .social_networks#perso
-              %h4= t(:perso_social_networks)
-              %br
-              - @perso_networks.each do |network|
-                %label= t(network[:label])
-                = image_tag network[:icon]
-                = text_field_tag "profile[#{network[:id]}]", network[:url]
+              .social_networks#pro
+                %h4= t(:pro_social_networks)
+                %br
+                - @pro_networks.each do |network|
+                  %label= t(network[:label])
+                  = image_tag network[:icon]
+                  = text_field_tag "profile[#{network[:id]}]", network[:url]
+
+              .social_networks#perso
+                %h4= t(:perso_social_networks)
+                %br
+                - @perso_networks.each do |network|
+                  %label= t(network[:label])
+                  = image_tag network[:icon]
+                  = text_field_tag "profile[#{network[:id]}]", network[:url]
       .clear
 
     - if current_user.member.id == @member.id || current_user.role == 'admin'
       - if current_user.role == 'admin' && !current_user.view_as_user
         .span11.admin_member_controls
           .span3.right
-            = radio_button_tag 'is_active', true
+            = f.radio_button 'is_active', true
             = "Actif"
-            = radio_button_tag 'is_active', false
+            = f.radio_button 'is_active', false
             = "Inactif"
           .span4.right
             = t('role')
@@ -161,25 +163,5 @@
 
 
 - # Hidden content
-
-#edit_account.modal.hide
-  .modal-header
-    %a.close{:data=>{'dismiss'=>'modal'}}
-      = '×'
-    %h3= t('edit_my_login_informations')
-
-  .modal-body
-    #edit_user_form
-      = form_tag member_path(@member.id), :method=>:put do
-        %label= t('email_address')
-        %input{:type=>'text', :name=>'user[email]', :value=>@member.user.email}
-
-        %label= t('new_password')
-        %input{:type=>'password', :name=>'user[password]'}
-
-        %label= t('confirm_password')
-        %input{:type=>'password', :name=>'user[password_confirmation]'}
-
-        %br
-        = submit_tag t(:modify), :class=>'btn  btn-warning'
+= render :partial => '/modals/edit_user_email_modal'
 

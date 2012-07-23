@@ -5,7 +5,7 @@ $ ->
     default_end_at = $.datepicker.parseDate('yy-mm-dd', $('#default_end_at').val())
 
     $('#create_ad .modal-header h3').text($(this).text())
-    $('#id').val ''
+    $('#ad_id').val ''
     $('#ad_subject').val ''
     $('#ad_body').val ''
 
@@ -23,13 +23,14 @@ $ ->
     default_end_at = $.datepicker.parseDate('yy-mm-dd', $('#ad_id_'+ad_id+' input.end_at').val())
 
     $('#create_ad .modal-header h3').text($(this).text())
-    $('#id').val ad_id
+    $('#ad_id').val ad_id
+    $('#delete_ad_link').attr('href', '/ads/'+ad_id)
     $('#ad_subject').val $('#ad_id_'+ad_id+' h3').text()
     $('#ad_body').val $('#ad_id_'+ad_id+' p').text()
 
     $('#show_end_date').val $.datepicker.formatDate('DD dd MM yy', default_end_at)
     $('#end_at').val $('#ad_id_'+ad_id+' input.end_at').val()
-    $('#delete_ad').attr('href', '/dashboard/'+ad_id)
+    $('#delete_ad').attr('href', '/ads/'+ad_id)
     $('#category_id option[value='+category_id+']').attr("selected", "selected")
     $('#ad_location_id option[value='+location_id+']').attr("selected", "selected")
 

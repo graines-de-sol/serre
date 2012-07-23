@@ -1,0 +1,21 @@
+#edit_account.modal.hide.fade
+  .modal-header
+    %a.close{:data=>{'dismiss'=>'modal'}}
+      = '×'
+    %h3= t('edit_my_login_informations')
+
+  .modal-body
+    #edit_user_form
+      = form_tag member_path(@member.id), :method=>:put do
+        %label= t('email_address')
+        %input{:type=>'text', :name=>'user[email]', :value=>@member.user.email}
+
+        %label= t('new_password')
+        %input{:type=>'password', :name=>'user[password]'}
+
+        %label= t('confirm_password')
+        %input{:type=>'password', :name=>'user[password_confirmation]'}
+
+        %br
+        = submit_tag t(:modify), :class=>'btn  btn-warning'
+
