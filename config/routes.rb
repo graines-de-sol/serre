@@ -26,6 +26,7 @@ Refuge::Application.routes.draw do
 
     match 'occupation' => 'locations#occupation', :via=>:put
 
+    resources :events,          :only => [:update]
     resources :conf,            :only => [:index, :create]
     resources :headlines,       :only => [:index, :create]
     resources :stats,           :only => [:index]

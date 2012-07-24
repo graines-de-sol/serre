@@ -185,7 +185,12 @@ fr:
   www_published: "(Affiché sur le site Web grainesdesol.fr)"
   non_www_published: "(Non affiché sur le site Web grainesdesol.fr)"
   status: "Statut"
-
+  calendar:
+    name: "Titre du calendrier"
+    rss: "Adresse du calendrier"
+    description: "Description"
+    edit_calendar: "+ Modifier les paramètres de ce calendrier"
+    mail_to: "Lorsqu'un membre s'inscrit, envoyer un Mail à..."
   blog:
     create_post: "+ Ajouter une actu"
     update_post: "Modifier une actu"

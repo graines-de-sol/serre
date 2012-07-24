@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   # Show main calendar                                           HTML
   # -----------------------------------------------------------------
   def index
-
+    @calendar = Calendar.find(1)
   end
 
 end

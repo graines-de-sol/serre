@@ -1,11 +1,42 @@
 .span11{:style=>'width:880px;'}
 
+  .well#calendar_header
+    - if is_admin
+      %a{:href => '#', :class => 'doToggleCalendarEditor'}= t('calendar.edit_calendar')
+      .clear
+    %h2= @calendar.name
+    %br
+    = soft_clean(@calendar.description)
+
+  - if is_admin
+    .well#calendar_editor.hide
+      %a{:href => '#', :class => 'doToggleCalendarEditor'}= t('calendar.edit_calendar')
+      .clear
+      = form_tag admin_event_path(@calendar), :method => :put do
+        %label= t('calendar.name')
+        = text_field_tag 'calendar[name]', @calendar.name
+        %br
+        %label= t('calendar.mail_to')
+        = text_field_tag 'calendar[email]', @calendar.email
+        %br
+        %label= t('calendar.rss')
+        = text_field_tag 'calendar[rss]', @calendar.rss
+        %br
+        %label= t('calendar.description')
+        .calendar_container.hide
+          = soft_clean @calendar.description
+        .textarea_container
+        %br
+        = submit_tag t('update'), :class=>'btn btn-warning right'
+
+  .clear
+
   #calendar
 
 :javascript
   $(document).ready(function() {
     $('#calendar').fullCalendar({
-      events: 'https://www.google.com/calendar/feeds/gbarillot%40gmail.com/public/basic',
+      events: "#{@calendar.rss}",
 
       header: {
         left: 'prev,next today',
@@ -45,4 +76,6 @@
   });
 
 = render :partial => '/modals/toggle_event_modal'
+= javascript_include_tag "/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js"
+= javascript_include_tag "/javascripts/tinymce/calendar.js"
 
