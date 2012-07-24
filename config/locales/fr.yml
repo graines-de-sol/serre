@@ -185,6 +185,11 @@ fr:
   www_published: "(Affiché sur le site Web grainesdesol.fr)"
   non_www_published: "(Non affiché sur le site Web grainesdesol.fr)"
   status: "Statut"
+  gallery: "photos"
+  gallery_title: "Vos photos"
+  gallery_manage_images: "» Gérer les photos"
+  register_ok_message: "Votre demande a bien été enregistrée, vous recevrez une confirmation par E-Mail dans les meilleurs délais"
+
   calendar:
     name: "Titre du calendrier"
     rss: "Adresse du calendrier"

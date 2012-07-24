@@ -9,5 +9,14 @@ class EventsController < ApplicationController
     @calendar = Calendar.find(1)
   end
 
+  # POST /events
+  # Send registration via EMail                                  AJAX
+  # -----------------------------------------------------------------
+  def create
+    #@calendar = Calendar.find(1)
+    sleep(5)
+    render :text => params[:user_id]
+  end
+
 end
 

@@ -49,26 +49,27 @@
 
       eventClick: function(calEvent, jsEvent, view) {
 
-          months = #{I18n.t('date.month_names').to_json};
-          start_date = new Date(calEvent.start);
-          formated_date = start_date.getDate() +' '+ months[start_date.getMonth()] +' '+ start_date.getFullYear();
-          formated_hour = start_date.getHours() +':'+ start_date.getMinutes();
+        months = #{fullmonth_names_start_1};
+        start_date = new Date(calEvent.start);
+        formated_date = start_date.getDate() +' '+ months[start_date.getMonth()] +' '+ start_date.getFullYear();
+        formated_hour = start_date.getHours() +':'+ start_date.getMinutes();
 
-          $('#toggle_event #event_details').empty();
-          $('#toggle_event #event_details').append(formated_date +', '+ formated_hour);
+        $('#toggle_event #event_details').empty();
+        $('#toggle_event #event_details').append(formated_date +', '+ formated_hour);
 
-          $('#toggle_event .modal-body #event_description').empty();
-          $('#toggle_event .modal-body #event_description').append(calEvent.title +'<br /><br /><strong>'+ calEvent.location +'</strong><br /><br />'+ calEvent.description);
+        $('#toggle_event .modal-body #event_description').empty();
+        $('#toggle_event .modal-body #event_description').append(calEvent.title +'<br /><br /><strong>'+ calEvent.location +'</strong><br /><br />'+ calEvent.description);
 
-          $('#toggle_event').modal('toggle');
-          //$(this).css('border-color', 'red');
+        $('#toggle_event .modal-body #event_date').val(formated_date +', '+ formated_hour);
+        $('#toggle_event .modal-body #event_name').val(calEvent.title);
+        $('#toggle_event').modal('toggle');
 
-          // #Prevent gcal linking by default
-          return false;
+        /* Prevent gcal linking by default */
+        return false;
       },
 
-      monthNames: #{I18n.t('date.month_names').to_json},
-      monthNamesShort: #{I18n.t('date.abbr_month_names').to_json},
+      monthNames: #{fullmonth_names_start_1},
+      monthNamesShort: #{fullmonth_names_start_1},
       dayNames: #{I18n.t('date.day_names').to_json},
       dayNamesShort: #{I18n.t('date.abbr_day_names').to_json}
 

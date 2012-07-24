@@ -129,6 +129,15 @@ module ApplicationHelper
     (7.days.since(Time.now)).strftime('%Y-%m-%d')
   end
 
+  def fullmonth_names_start_1
+    months = I18n.t('date.month_names')[1..-2]
+    months.to_json
+  end
+
+  def shortmonth_names_start_1
+    months = I18n.t('date.abbr_month_names')[1..-2]
+    months.to_json
+  end
   extend self
 end
 

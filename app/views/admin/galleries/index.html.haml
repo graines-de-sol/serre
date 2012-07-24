@@ -1,0 +1,16 @@
+= render :partial => '/admin/shared/left_column'
+
+.span10
+  #gallery
+    - @galleries.each do |gallery|
+      .thumbnail
+        %a.delete{:href => admin_gallery_path(gallery.id), :data => {'method' => 'delete', 'confirm' => 'sure ?!'}}
+        = image_tag gallery.image.thumb('100x100').url
+
+    .clear
+
+  .well
+    = form_tag admin_galleries_path, :multipart => true do
+      %input{:type => 'file', :name => 'gallery[image]'}
+      = submit_tag t('save'), :class => 'btn  btn-warning'
+

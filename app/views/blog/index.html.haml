@@ -1,5 +1,9 @@
 .span11#dashboard
   .left.blog
+    - if $conf.headline_published
+      .well
+        = soft_clean($conf.headline)
+
     - if is_admin
       %a{:href=>'#create_post_modal', :class=>'label label-important right', :data=>{'toggle'=>'modal'}}
         = t('blog.create_post')
@@ -19,7 +23,7 @@
           = link_to "#{comment_count} #{comment_label}", blog_path(post)
 
   .right
-    = render :partial => '/dashboard/right_column'
+    = render :partial => '/shared/right_column'
 
 - if is_admin
   = render :partial => '/modals/create_post_modal'

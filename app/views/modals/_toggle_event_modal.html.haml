@@ -10,7 +10,12 @@
     #event_description
 
     %br
-    %a{:href => '#'}
+    %a#send_event_registration{:href => '#'}
       .icon-pencil
       = t('register_this_event')
+
+    %input{:type => 'hidden', :id => 'event_date'}
+    %input{:type => 'hidden', :id => 'event_name'}
+    %input{:type => 'hidden', :id => 'user_id', :value => current_user.id}
+    %input{:type => 'hidden', :id => 'register_ok_message', :value => t('register_ok_message')}
 

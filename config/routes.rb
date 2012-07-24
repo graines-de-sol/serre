@@ -17,7 +17,7 @@ Refuge::Application.routes.draw do
   resources :members
   resources :pages
   resources :dashboard
-  resources :events,   :only => [:index]
+  resources :events,   :only => [:index, :create]
 
   match 'medias/download/:id' => 'medias#download', :as => :media_download, :via => :get
   resources :medias, :only => [:index, :show, :create]
@@ -26,6 +26,7 @@ Refuge::Application.routes.draw do
 
     match 'occupation' => 'locations#occupation', :via=>:put
 
+    resources :galleries,       :only => [:index, :create, :destroy]
     resources :events,          :only => [:update]
     resources :conf,            :only => [:index, :create]
     resources :headlines,       :only => [:index, :create]

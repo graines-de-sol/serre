@@ -1,0 +1,12 @@
+.gallery
+  %h2.ribbon= t('gallery_title')
+
+  - Gallery.all.each do |i|
+    .thumbnail
+      %a{:href => "#{i.image.thumb('500x500').url}", :rel=>"lightbox[gallery]"}
+        = image_tag i.image.thumb('100x100').url
+
+  .clear
+  - if is_admin
+    = link_to t('gallery_manage_images'), admin_galleries_path
+
