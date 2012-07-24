@@ -12,7 +12,7 @@
       = t('active_members')
       = radio_button_tag 'is_active', 'false', (params[:is_active] == 'false')
       = t('inactive_members')
-      = radio_button_tag 'is_active', 'all', (params[:is_active] == 'all')
+      = radio_button_tag 'is_active', 'all', (params[:is_active] == 'all' || !params[:is_active])
       = t('all_members')
 
 #members_list

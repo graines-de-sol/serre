@@ -29,9 +29,7 @@ gem 'simple_form'
 gem 'acts_as_tree_rails3'
 gem 'birthday', '~> 0.2.0'
 gem 'multi_json'
-#gem 'fullcalendar-rails'
-gem 'fullcalendar-rails', :git => 'git://github.com/mankind/fullcalendar-rails.git'
-#gem 'fullcalendar-rails', :path => 'vendor/cache/git/fullcalendar-rails'
+gem 'fullcalendar-rails', :path => 'git://github.com/mankind/fullcalendar-rails.git'
 
 group :development, :test do
   # Pretty printed test output
