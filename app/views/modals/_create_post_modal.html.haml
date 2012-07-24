@@ -5,15 +5,24 @@
     %h3= @post ? t('blog.update_post') : t('blog.create_post')
 
   .modal-body
-    = form_tag '/blog' do
+    = form_tag blog_index_path do
       - if @post
         = hidden_field_tag 'post_id', @post.id
 
       %label= t('blog.post_title')
       = text_field_tag 'post[title]', (@post.title if @post)
       %br
-      %label= "Catégorie"
-      = select_tag 'post[blog_category_id]', options_from_collection_for_select(BlogCategory.all, 'id', 'name', (@post.blog_category_id if @post))
+
+      .attributes
+        %label= t('blog.category')
+        = select_tag 'post[blog_category_id]', options_from_collection_for_select(BlogCategory.all, 'id', 'name', (@post.blog_category_id if @post)), :style => 'margin-right: 20px;'
+
+        = t('blog.published_at')
+        %input{:type => 'text', :class => 'datepicker', :id => 'published_at', :value => get_post_date(@post)['formated'], :style => 'width:170px;'}
+        %input{:type => 'hidden', :id => 'end_at', :name => 'published_date', :value => get_post_date(@post)['raw']}
+        = t('blog.published_at_time')
+        = select_time(get_post_hour(@post))
+
       %label= t('blog.post_content')
       .content_container.hide
         = @post.content if @post

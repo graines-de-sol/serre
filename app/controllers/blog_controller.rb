@@ -20,6 +20,7 @@ class BlogController < ApplicationController
   # Create/Update a blog post                          REDIRECT
   # -----------------------------------------------------------
   def create
+    params[:post][:published_at] = "#{params[:published_date]} #{params[:date][:hour]}:#{params[:date][:minute]}:00"
 
     if params[:post_id]
       Post.find(params[:post_id]).update_attributes(params[:post])
@@ -61,7 +62,7 @@ class BlogController < ApplicationController
   # -----------------------------------------------------------
   def show_category
 
-    @posts = Post.where(:blog_category_id => params[:id])
+    @posts = Post.by_category(params[:id])
 
     render :template => '/blog/index'
   end
@@ -70,7 +71,7 @@ class BlogController < ApplicationController
   # Show blog posts by month                               HTML
   # -----------------------------------------------------------
   def show_archives
-    @posts = Post.where(["YEAR(created_at) = ? AND MONTH(created_at) = ?", params[:year], params[:month]])
+    @posts = Post.by_month(params[:year], params[:month])
 
     render :template => '/blog/index'
   end

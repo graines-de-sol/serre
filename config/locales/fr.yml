@@ -197,6 +197,10 @@ fr:
     leave_a_comment: "Une envie de répondre ? Ajouter votre commentaire"
     archives: "Archives"
     categories: "Thématiques"
+    published_at: "Publié le "
+    in_category: ", dans la catégorie "
+    category: "Catégorie"
+    published_at_time: "à "
   medias:
     title: "Bibliothèque"
     choose_file: "Choisissez un fichier"

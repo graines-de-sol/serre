@@ -6,9 +6,13 @@
 
     - @posts.each do |post|
       .post
-        %h2
-          = link_to post.title.capitalize, blog_path(post)
+        %h2= link_to post.title.capitalize, blog_path(post)
+        %span.post_attributes
+          = "#{t('blog.published_at')} #{l(post.published_at)} #{t('blog.in_category')}"
+          = link_to post.blog_category.name, blog_category_path(post.blog_category.id)
+
         = soft_clean post.content
+
         .has_comments
           - comment_count = post.comments.length if post.comments.length > 1
           - comment_label = post.comments.length > 0 ? (post.comments.length > 1 ? t('blog.comments') : t('blog.comment')) : t('blog.no_comment')
@@ -18,5 +22,5 @@
     = render :partial => '/dashboard/right_column'
 
 - if is_admin
-  = render :partial => '/modals/edit_post'
+  = render :partial => '/modals/create_post_modal'
 

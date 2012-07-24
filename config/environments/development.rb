@@ -28,7 +28,9 @@ Refuge::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { :host => 'refuge.com' }
+  config.action_mailer.default_url_options = { :host => 'serre.com' }
+
+  config.time_zone = 'Paris'
 
   ActionMailer::Base.smtp_settings = {
     :address => "smtp.free.fr",

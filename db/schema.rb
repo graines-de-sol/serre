@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723151942) do
+ActiveRecord::Schema.define(:version => 20120724114514) do
 
   create_table "ads", :force => true do |t|
     t.string   "subject"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20120723151942) do
     t.string  "last_name"
     t.date    "birthday"
     t.string  "city"
-    t.string  "avatar_uid",     :default => "default_avatar/default_avatar.png"
+    t.string  "avatar_uid"
     t.text    "situation"
     t.text    "prestations"
     t.text    "references"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20120723151942) do
     t.text     "content"
     t.integer  "blog_category_id"
     t.boolean  "published"
+    t.datetime "published_at"
   end
 
   create_table "profiles", :force => true do |t|

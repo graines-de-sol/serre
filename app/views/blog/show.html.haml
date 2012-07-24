@@ -2,7 +2,12 @@
   .left
     .blog
       %h2= @post.title.capitalize
+      %span.post_attributes
+        = "#{t('blog.published_at')} #{l(@post.published_at)} #{t('blog.in_category')}"
+        = link_to @post.blog_category.name, blog_category_path(@post.blog_category.id)
+
       = soft_clean @post.content
+
       .clear
       %br
       - if is_admin
@@ -33,5 +38,5 @@
     = render :partial => '/dashboard/right_column'
 
 - if is_admin
-  = render :partial => '/modals/edit_post'
+  = render :partial => '/modals/create_post_modal'
 

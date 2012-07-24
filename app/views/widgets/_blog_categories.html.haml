@@ -4,8 +4,7 @@
   %ul.archives_month
     - BlogCategory.all.each do |category|
       %li
-        %a{:href => blog_category_path(category.id)}
-          = category.name
+        %a{:href => blog_category_path(category.id)}= category.name
 
   - if is_admin
     %a{:href => admin_blog_categories_path}= t('manage_blog_categories')
