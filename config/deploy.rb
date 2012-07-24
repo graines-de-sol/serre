@@ -26,6 +26,7 @@ namespace :deploy do
     run "ln -s #{shared_path}/config/database.yml #{release_path}/config/"
     run "rm -rf #{release_path}/medias && ln -s #{shared_path}/medias #{release_path}/medias"
     run "rm -rf #{release_path}/public && ln -s #{shared_path}/public #{release_path}/public"
+    run "rm -rf #{release_path}/vendor && ln -s #{shared_path}/vendor #{release_path}/vendor"
   end
 
   task :precompile_assets do
