@@ -40,9 +40,16 @@ class Admin::NewslettersController < ApplicationController
   # Update newsletter                                      HTML
   # -----------------------------------------------------------
   def update
-    @newsletter = Newsletter.find(params[:id]).update_attributes(params[:newsletter])
+    @newsletter = Newsletter.find(params[:id])
+    @newsletter.update_attributes(params[:newsletter])
 
     if params[:send]
+      Notifier.newsletter({
+        :to      => "gbarillot@gmail.com",
+        :subject => @newsletter.title,
+        :body    => @newsletter.content
+      }).deliver
+
       Newsletter.find(params[:id]).update_attributes(:sent_on => Time.now)
     end
 

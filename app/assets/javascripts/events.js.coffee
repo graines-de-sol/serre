@@ -9,6 +9,7 @@ $ ->
       data:
         event_date: $('#event_date').val()
         event_name: $('#event_name').val()
+        calendar_id: $('#calendar_id').val()
         user_id:  $('#user_id').val()
 
       beforeSend : (data) ->

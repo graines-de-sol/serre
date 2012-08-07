@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><%= @datas[:subject] %></title>
+</head>
+<body topmargin="0" leftmargin="0">
+
+  <table style="width:500px;">
+    <tr>
+      <td colspan='2'>
+        <%= "#{@datas[:current_user].member.first_name} #{@datas[:current_user].member.last_name} #{t('email.new_registration_body')}" %>
+        <br />
+        <br />
+        <strong><%= t('email.event_name') %></strong><%= @datas[:body][:event_name] %>
+        <br />
+        <strong><%= t('email.date_and_hour') %></strong><%= @datas[:body][:event_date] %>
+        <br />
+        <br />
+        <p><%= t('email.confirm_registration') %><a href='mailto:<%= @datas[:current_user].email %>'><%= @datas[:current_user].email %></a></p>
+      </td>
+    </tr>
+  </table>
+
+</body>
+
+</html>
+

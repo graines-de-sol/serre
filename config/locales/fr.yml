@@ -25,6 +25,11 @@ fr:
     delete_newsletter: "Supprimer cette newsletter ?!"
   email:
     introduction_message: "vous a envoyé un mail depuis la serre. Son adresse mail pour lui répondre :"
+    new_registration: "Nouvelle inscription pour : "
+    new_registration_body: "vient de s'inscrire via la serre à l'évènement suivant : "
+    date_and_hour: "Date prévue : "
+    confirm_registration: "Vous pouvez confirmer ou rejeter cette demande en répondant à l'adresse suivante : "
+    event_name: "Nom de l'évènement : "
   searchable_fields:
     organisation: "Nom de l'entreprise"
     first_name: "Prénom"
