@@ -1,0 +1,15 @@
+= render :partial => '/admin/shared/left_column'
+
+.span10
+  #global_conf.well
+    %p.label= t('newsletter.welcome_newsletters')
+
+    %br
+    %h4= t('newsletter.no_newsletter_yet')
+    %br
+
+  .clear
+    %a{:href => admin_newsletters_path, :data => {:method => 'post'}}
+      = t('newsletter.create')
+    %br
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724164712) do
+ActiveRecord::Schema.define(:version => 20120807122913) do
 
   create_table "ads", :force => true do |t|
     t.string   "subject"
@@ -66,16 +66,17 @@ ActiveRecord::Schema.define(:version => 20120724164712) do
     t.string  "default_avatar_uid"
     t.string  "default_location_id"
     t.string  "max_surveys"
-    t.string  "welcome_mail_subject", :default => ""
+    t.string  "welcome_mail_subject",  :default => ""
     t.text    "welcome_mail_body"
     t.text    "headline"
-    t.boolean "headline_published",   :default => true
+    t.boolean "headline_published",    :default => true
+    t.text    "newsletter_header_uid"
   end
 
   create_table "galleries", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "image"
+    t.text     "image_uid"
   end
 
   create_table "images", :force => true do |t|
@@ -146,6 +147,14 @@ ActiveRecord::Schema.define(:version => 20120724164712) do
     t.string  "icon"
     t.boolean "is_pro"
     t.string  "label"
+  end
+
+  create_table "newsletters", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "title"
+    t.text     "content"
+    t.datetime "sent_on"
   end
 
   create_table "posts", :force => true do |t|

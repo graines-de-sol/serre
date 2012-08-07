@@ -11,6 +11,15 @@
         = submit_tag t('send'), :class=>'btn  btn-warning'
     .clear
 
+    %p.label= t('default_newsletter_banner')
+    .left
+      = (image_tag $conf.newsletter_header.url) if $conf.newsletter_header
+    .right
+      = form_tag '/admin/conf', :multipart => true do
+        = file_field_tag "conf[newsletter_header]"
+        = submit_tag t('send'), :class=>'btn  btn-warning'
+    .clear
+
     %p.label= t('welcome_mail')
     = form_tag '/admin/conf' do
 

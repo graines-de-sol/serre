@@ -22,6 +22,7 @@ fr:
     delete_media: "Supprimer ce document de la base documentaire ?!"
     delete_blog_category: "Supprimer cette catégorie ainsi que toutes les actus qui lui sont rattachées ?!"
     delete_logo: "Supprimer votre logo ?!"
+    delete_newsletter: "Supprimer cette newsletter ?!"
   email:
     introduction_message: "vous a envoyé un mail depuis la serre. Son adresse mail pour lui répondre :"
   searchable_fields:
@@ -61,6 +62,7 @@ fr:
   anonymous: "Anonyme"
   logout: "Déconnexion"
   save: "Enregistrer"
+  send: "Envoyer"
   first_name: "Prénom"
   last_name: "Nom"
   birthday: "Anniversaire le"
@@ -189,6 +191,7 @@ fr:
   gallery_title: "Vos photos"
   gallery_manage_images: "» Gérer les photos"
   register_ok_message: "Votre demande a bien été enregistrée, vous recevrez une confirmation par E-Mail dans les meilleurs délais"
+  default_newsletter_banner: "Bannière par défaut de la newsletter (700px MAX !)"
 
   calendar:
     name: "Titre du calendrier"
@@ -215,6 +218,18 @@ fr:
     title: "Bibliothèque"
     choose_file: "Choisissez un fichier"
     file_name: "Nom du fichier"
+  newsletter:
+    title: "Sujet de la newsletter"
+    content: "Contenu de la newsletter"
+    welcome_newsletters: "Newsletters"
+    delete: "Supprimer cette newsletter"
+    create: "Créer une nouvelle newsletter"
+    no_newsletter_yet: "Aucune newsletter n'a encore été créée, pour le moment..."
+    archives: "Précedentes newsletters"
+    sent_on: "envoyée le :"
+    not_sent: "pas encore envoyée"
+    new: "Nouvelle newsletter"
+    latest_posts: "Dernières actus..."
   admin:
     default_older_surveys_to_display: "Nombre de précédents sondages à afficher"
     categories_management: "Catégories des petites annonces"
@@ -234,6 +249,9 @@ fr:
       medias: "Bibliothèque"
       headlines: "Message"
       blog_categories: "Thématiques"
+      galleries: "Galerie"
+      newsletters: "Newsletter"
+
     medias:
       category_name: "Catégorie"
       create_category: "Ajouter une catégorie"

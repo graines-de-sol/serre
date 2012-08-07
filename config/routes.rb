@@ -4,8 +4,8 @@ Refuge::Application.routes.draw do
 
   root :to=> "blog#index"
 
-  match '/members/search' => 'members#search', :via => :post
-  match '/members/mail' => 'members#mail_member', :via => :post
+  match 'members/search' => 'members#search', :via => :post
+  match 'members/mail' => 'members#mail_member', :via => :post
   match 'blog/category/:id' => 'blog#show_category',          :as => :blog_category, :via => :get
   match 'blog/archives/:year/:month' => 'blog#show_archives', :as => :blog_archives, :via => :get
 
@@ -34,9 +34,9 @@ Refuge::Application.routes.draw do
     resources :locations,       :only => [:index, :create, :update, :destroy]
     resources :blog_categories, :only => [:index, :create, :update, :destroy]
     resources :ads,             :only => [:index, :create, :update, :destroy]
+    resources :newsletters
 
     match 'medias/media/:id' => 'medias#delete_media', :as => :delete_media, :via => :delete
-
     resources :medias,     :only => [:index, :create, :update, :destroy] do
       member do
         post :upload_media

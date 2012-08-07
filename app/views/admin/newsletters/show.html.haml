@@ -1,0 +1,48 @@
+= render :partial => '/admin/shared/left_column'
+
+.span10
+  #global_conf.well
+    %p.label= t('newsletter.welcome_newsletters')
+
+    %span= t('newsletter.archives')
+    %select#selectNewsletter{:style => 'width:580px;'}
+      - @newsletters.each do |newsletter|
+        %option{:value => newsletter.id}= label_for_newsletters_archives(newsletter)
+    %br
+
+    = form_tag admin_newsletter_path(@newsletter.id), :method => :put do
+      %label= t('newsletter.title')
+      = text_field_tag 'newsletter[title]', @newsletter.title, :style => 'width: 730px;'
+      %br
+      %label= t('newsletter.content')
+      .content_container.hide
+        - if !@newsletter.content
+          = (image_tag $conf.newsletter_header.url) if $conf.newsletter_header
+          %br
+          = soft_clean @newsletter.content
+          %br
+          %br
+          = t('newsletter.latest_posts')
+          - @latest_news.each do |news|
+            %h2= soft_clean news.title
+            %span= l(news.created_at, :format => :long)
+            %br
+            = soft_clean news.content
+        - else
+          = soft_clean @newsletter.content
+
+      .textarea_container
+      %br
+      %a{:href => admin_newsletter_path(@newsletter.id), :data => {:confirm => t('confirms.delete_newsletter'), :method => :delete}}
+        = t('newsletter.delete')
+
+      = submit_tag t('send'), :name => 'send', :class => 'btn btn-danger', :style => 'float:right;margin-right:10px;'
+      = submit_tag t('save'), :class => 'btn btn-warning', :style => 'float:right;margin-right:10px;'
+  .clear
+    %a{:href => admin_newsletters_path, :data => {:method => :post}}
+      = t('newsletter.create')
+    %br
+
+= javascript_include_tag "/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js"
+= javascript_include_tag "/javascripts/tinymce/newsletter.js"
+
