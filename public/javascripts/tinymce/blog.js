@@ -22,7 +22,8 @@ tinyMCE.init({
   theme_advanced_toolbar_align: "left",
   theme_advanced_resizing: true,
   entity_encoding: "raw",
-  relative_urls : true,
-  remove_script_host : false
+  relative_urls : false,
+  remove_script_host : false,
+  document_base_url : "http://serre.grainesdesol.fr"
 })
 

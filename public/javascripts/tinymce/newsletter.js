@@ -24,6 +24,6 @@ tinyMCE.init({
   entity_encoding: "raw",
   relative_urls : false,
   remove_script_host : false,
-  document_base_url : "http://serre.grainedesol.fr"
+  document_base_url : "http://serre.grainesdesol.fr"
 })
 
