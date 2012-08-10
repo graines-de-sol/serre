@@ -61,6 +61,7 @@ Refuge::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'serre.grainesdesol.fr' }
   config.action_mailer.delivery_method = :sendmail
+
   config.time_zone = 'Paris'
 end
 

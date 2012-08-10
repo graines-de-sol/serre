@@ -1,0 +1,15 @@
+!!! XML
+%rss{ :version => "2.0" }
+  %channel
+    %title= "Graines de sol"
+    %description= "Les actus de la serre de graines de sol"
+    %lastBuildDate= Time.now
+    %language= 'fr'
+    %link= "http://serre.grainesdesol.fr"
+    - @posts.each do |post|
+      %item
+        %title= post.title
+        %description= post.content
+        %pubDate= post.created_at
+        %link= "http://serre.grainesdesol.fr/blog/#{post.id}"
+
