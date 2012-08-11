@@ -1,7 +1,7 @@
 class Api::MembersController < ApplicationController
 
   before_filter :load_conf
-  layout 'popup'
+  layout 'iframe'
 
   # GET /members
   # List all members                                    HTML

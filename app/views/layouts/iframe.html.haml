@@ -2,11 +2,12 @@
 %head
   %meta{:charset=>"utf-8"}
   %title= t('app.title')
-  = stylesheet_link_tag "application"
+  = stylesheet_link_tag    'application'
+  = javascript_include_tag 'iframe/override'
   = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
   = javascript_include_tag 'application'
   = csrf_meta_tags
 
-%body{:style=>'background:none;'}
+%body
   = yield
 
