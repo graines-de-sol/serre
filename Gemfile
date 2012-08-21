@@ -29,9 +29,6 @@ gem 'simple_form'
 gem 'acts_as_tree_rails3'
 gem 'birthday', '~> 0.2.0'
 gem 'multi_json'
-### !!! FIX ME : crappy work-around to make the gem not to crash capistrano
-### Make sure you alreay have the gem in /vendor/cache before bundle install
-gem 'fullcalendar-rails', :path => 'vendor/cache/fullcalendar-rails'
 
 group :development, :test do
   # Pretty printed test output
@@ -41,5 +38,10 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'simplecov', :require => false
   gem 'timecop'
+  gem 'selenium-webdriver'
+  gem 'launchy'
+  gem 'warden'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
 

@@ -21,8 +21,8 @@ class Member < ActiveRecord::Base
   acts_as_birthday :birthday
 
   # Weither a user can edit or just view a given content
-  def self.can_edit?(current_user, current_id)
-    ((current_user.role == 'admin' && !current_user.view_as_user)|| current_id == current_user.member.id)? true : false
+  def self.can_edit?(current_user, member_id)
+    ((current_user.role == 'admin' && !current_user.view_as_user) || current_user.member.id == member_id) ? true : false
   end
 
   # Search member by column and keywords

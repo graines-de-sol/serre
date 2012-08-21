@@ -22,7 +22,7 @@
 
       .clear{:style=>'height:20px;'}
       %div
-        = f.submit t('devise.common.sign_in'), :class=>'btn  btn-warning'
+        = f.submit t('devise.common.sign_in'), :class=>'btn  btn-warning', :id => 'commit'
 
 
     = render :partial => "devise/shared/links"

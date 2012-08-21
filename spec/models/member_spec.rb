@@ -3,6 +3,10 @@ require 'spec_helper'
 describe Member do
   subject { FactoryGirl.create(:member) }
 
+  after(:all) do
+    DatabaseCleaner.clean
+  end
+
   describe "a user trying to edit things" do
     before do
       @user = FactoryGirl.create :user
@@ -15,14 +19,12 @@ describe Member do
       end
 
       it "should edit himself" do
-        Member.can_edit?(@user, @user.id).should be_true
+        Member.can_edit?(@user, @user.member.id).should be_true
       end
 
-
       it "should edit someone else's profile" do
-        pending
         @user2 = FactoryGirl.create :user
-        Member.can_edit?(@user, @user2.id).should be_false
+        Member.can_edit?(@user, @user2.member.id).should be_false
       end
 
     end
@@ -38,7 +40,6 @@ describe Member do
 
     end
   end
-
 
 end
 

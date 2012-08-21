@@ -11,7 +11,7 @@
       .clear
       %br
       - if is_admin
-        %a.right.label.label-important{:href => '#create_post_modal', :data=>{'toggle'=>'modal'}}= t('edit_this_post')
+        %a.right.label.label-important{:href => '#create_post_modal', :data=>{'toggle'=>'modal'}, :id => 'edit_post'}= t('edit_this_post')
         %br
 
       .comments
@@ -19,7 +19,7 @@
         .clear
         = form_tag "/blog/#{@post.id}", :method => :put do
           = text_area_tag "comment"
-          = submit_tag t('save'), :class => 'btn btn-warning right'
+          = submit_tag t('save'), :class => 'btn btn-warning right', :id => 'save_comment'
 
         - @post.comments.each do |comment|
           .comment

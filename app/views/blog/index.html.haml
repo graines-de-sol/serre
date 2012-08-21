@@ -5,7 +5,7 @@
         = soft_clean($conf.headline)
 
     - if is_admin
-      %a{:href=>'#create_post_modal', :class=>'label label-important right', :data=>{'toggle'=>'modal'}}
+      %a{:href=>'#create_post_modal', :class=>'label label-important right', :data=>{'toggle'=>'modal'}, :id => 'add_new_post'}
         = t('blog.create_post')
 
     - @posts.each do |post|

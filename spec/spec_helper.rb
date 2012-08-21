@@ -14,8 +14,10 @@ def configure
   require 'rspec/rails'
   require 'capybara/rspec'
   require 'capybara/rails'
+  require 'selenium-webdriver'
 
   load_all 'spec/support/**/*.rb'
+  Capybara.default_driver = :selenium
 
   RSpec.configure do |c|
     c.include Devise::TestHelpers, :type => :controller
@@ -34,9 +36,9 @@ def configure
       DatabaseCleaner.start
     end
 
-    c.after :each do
-      DatabaseCleaner.clean
-    end
+    #c.after :each do
+    #  DatabaseCleaner.clean
+    #end
   end
 end
 
@@ -49,3 +51,4 @@ if defined?(Spork)
 else
   configure
 end
+
