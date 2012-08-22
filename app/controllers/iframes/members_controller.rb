@@ -7,7 +7,7 @@ class Iframes::MembersController < ApplicationController
   # List all members                                    HTML
   # --------------------------------------------------------
   def index
-    @members = Member.where(:www_published => true).order('first_name ASC')
+    @members = Member.where(['www_published = ? AND is_active = ?', true, true]).order('first_name ASC')
   end
 
   # POST /iframes/members/search
