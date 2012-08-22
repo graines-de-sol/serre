@@ -55,9 +55,10 @@ Refuge::Application.routes.draw do
   namespace :api do
     match 'blog/feed' => 'blog#feed'
 
-    resources :members, :only => [:index, :search, :show]
   end
 
-
+  namespace :iframes do
+    resources :members, :only => [:index, :search, :show]
+  end
 end
 

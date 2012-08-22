@@ -1,0 +1,66 @@
+.span12
+  .span3
+    .avatar
+      - if @member.logo
+        = (image_tag @member.logo.thumb('x180').url, :alt=>"logo")
+      - else
+        = avatar(@member, '180x180')
+
+  .span8
+    %h1= @member.first_name
+    %h2= @member.last_name
+
+    - if @member.baseline
+      #baseline= @member.baseline
+
+    #description= "#{@member.status.name if @member.status}"
+
+  .clear{:style=>'height:30px;'}
+
+  - if member_has_infos?(@member)
+    .span7.well#details
+      %table
+        - if @member.organisation
+          %tr
+            %td
+              %p= t('activity_1')
+            %td
+              - if @member.website
+                %p= link_to @member.organisation, "http://#{@member.website}", :target => 'blank'
+              - else
+                %p= @member.organisation
+
+        - if @member.organisation_2
+          %tr
+            %td
+              %p= t('activity_2')
+            %td
+              %p
+                - if @member.website_2
+                  = link_to @member.organisation_2, "http://#{@member.website_2}", :target => 'blank'
+                - else
+                  = @member.organisation_2
+
+        - if @member.prestations
+          %tr
+            %td
+              %p= t('prestations')
+            %td
+              %p= @member.prestations
+
+        - if @member.references
+          %tr
+            %td
+              %p= t('specificities')
+            %td
+              %p= @member.references
+
+        - if @member.phone
+          %tr
+            %td
+              %p= t('phone')
+            %td
+              %p= phone_number @member.phone
+
+      .clear
+
