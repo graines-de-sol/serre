@@ -7,23 +7,26 @@ class Iframes::MembersController < ApplicationController
   # List all members                                    HTML
   # --------------------------------------------------------
   def index
-    @members = Member.where(['www_published = ? AND is_active = ?', true, true]).order('first_name ASC')
+    @members = Member.www_published.order('first_name ASC')
   end
 
   # POST /iframes/members/search
   # Search for members                                  HTML
   # --------------------------------------------------------
   def search
-    @members = Member.search_by params[:category], params[:keywords], params[:is_active]
+    @members = Member.www_published.search_by(params[:category], params[:keywords], params[:is_active])
 
     render :template => '/iframes/members/index'
   end
 
-  # GET /iframes/member/:id
+  # GET /iframes/members/:id
   # Show member's profile                               HTML
   # --------------------------------------------------------
   def show
-    @member = Member.find(params[:id], :include=>:profiles)
+    @member = Member.www_published.where(['members.id = ?', params[:id]]).first
+
+    raise ActiveRecord::RecordNotFound.new(:not_found) if !@member
+
   end
 
 end

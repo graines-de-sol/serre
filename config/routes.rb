@@ -58,7 +58,8 @@ Refuge::Application.routes.draw do
   end
 
   namespace :iframes do
-    resources :members, :only => [:index, :search, :show]
+    match 'members/search' => 'members#search', :via => :post, :as => 'members_search'
+    resources :members, :only => [:index, :show]
   end
 end
 

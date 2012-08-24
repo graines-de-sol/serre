@@ -1,6 +1,6 @@
 #api_search_for_members.well
   %h3= t(:search_for_members)
-  = form_tag '/members/search' do
+  = form_tag iframes_members_search_path do
     %select{:name => 'category', :style=>'width:180px;float:left;margin-right:20px;'}
       - Member.fields.each do |name, field|
         %option{:value => name, :selected => params[:category] == name}= t(name)

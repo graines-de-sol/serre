@@ -20,6 +20,8 @@ class Member < ActiveRecord::Base
 
   acts_as_birthday :birthday
 
+  scope :www_published, self.where(['www_published = ? AND is_active = ?', true, true])
+
   # Weither a user can edit or just view a given content
   def self.can_edit?(current_user, member_id)
     ((current_user.role == 'admin' && !current_user.view_as_user) || current_user.member.id == member_id) ? true : false
