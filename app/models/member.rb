@@ -15,7 +15,7 @@ class Member < ActiveRecord::Base
   image_accessor :avatar
   image_accessor :logo
 
-  normalize_attributes :website, :baseline, :organisation, :prestations, :references, :city, :hobbies, :powers
+  normalize_attributes :website, :baseline, :organisation, :prestations, :references, :city, :hobbies, :powers, :organisation_2, :website_2, :logo_uid
   normalize_attribute :phone, :mobile, :with=>:phone
 
   acts_as_birthday :birthday
