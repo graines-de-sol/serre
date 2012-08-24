@@ -1,0 +1,45 @@
+ul.medias_list
+  margin-left: 0
+  li
+    list-style-type: none
+    clear: both
+    a
+      padding: 5px 5px 5px 25px
+      background-position: 5px !important
+      display: block
+      float: left
+      background-color: #d5edf7
+      border-: 1px solid #b1d7e5
+      margin-bottom: 10px
+      color: #2f2f2f
+      width: 550px
+      &.delete
+        width: 10px
+        height: 20px
+        overflow: hidden
+        background: #fff url(asset-path('cross.png', image)) center no-repeat
+      &.delete:hover
+        background-color: #fff
+
+      &.word
+        background: #d5edf7 url(asset-path('word.png', image)) left no-repeat
+      &.excel
+        background: #d5edf7 url(asset-path('excel.png', image)) left no-repeat
+      &.pdf
+        background: #d5edf7 url(asset-path('pdf.png', image)) left no-repeat
+      &.ruby
+        background: #d5edf7 url(asset-path('ruby.png', image)) left no-repeat
+      &.powerpoint
+        background: #d5edf7 url(asset-path('powerpoint.png', image)) left no-repeat
+      &.compressed
+        background: #d5edf7 url(asset-path('compressed.png', image)) left no-repeat
+      &.text
+        background: #d5edf7 url(asset-path('word.png', image)) left no-repeat
+      &.picture
+        background: #d5edf7 url(asset-path('picture.png', image)) left no-repeat
+      &.package
+        background: #d5edf7 url(asset-path('package.png', image)) left no-repeat
+    a:hover
+      background-color: #e3f1f7
+      text-decoration: none
+
