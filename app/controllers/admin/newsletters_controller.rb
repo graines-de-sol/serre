@@ -44,11 +44,13 @@ class Admin::NewslettersController < ApplicationController
     @newsletter.update_attributes(params[:newsletter])
 
     if params[:send]
-      Notifier.newsletter({
-        :to      => "gbarillot@gmail.com",
-        :subject => @newsletter.title,
-        :body    => @newsletter.content
-      }).deliver
+      Member.active.each do |recipient|
+        Notifier.newsletter({
+          :to      => recipient.user.email,
+          :subject => @newsletter.title,
+          :body    => @newsletter.content
+        }).deliver
+      end
 
       Newsletter.find(params[:id]).update_attributes(:sent_on => Time.now)
     end
