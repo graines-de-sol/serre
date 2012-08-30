@@ -33,7 +33,7 @@ class AdsController < ApplicationController
   def destroy
 
     Ad.find(params[:id]).update_attributes(
-      :end_at => Time.now
+      :end_at => Time.now - 1.day
     )
 
     redirect_to  ads_path
