@@ -48,7 +48,7 @@ class Member < ActiveRecord::Base
 
   # DB fields we can search into for search patterns
   def self.fields
-    fields = ['first_name', 'last_name', 'organisation', 'prestations', 'powers', 'city']
+    fields = [ 'last_name', 'organisation','first_name', 'prestations', 'powers', 'city']
 
     out = Hash.new
     # front label in select => DB column name

@@ -195,7 +195,7 @@ fr:
   gallery: "photos"
   gallery_title: "Vos photos"
   gallery_manage_images: "» Gérer les photos"
-  register_ok_message: "Votre demande a bien été enregistrée, vous recevrez une confirmation par E-Mail dans les meilleurs délais"
+  register_ok_message: "Votre inscription est bien prise en compte. Merci !"
   default_newsletter_banner: "Bannière par défaut de la newsletter (700px MAX !)"
 
   calendar:
