@@ -1,20 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
-    <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
-    <!-- script type="text/javascript" src="../../utils/mctabs.js"></script-->
-    <script type="text/javascript" src="../../utils/form_utils.js"></script>
-    <script type="text/javascript" src="../../utils/validate.js"></script>
-    <script type="text/javascript" src="js/link.js"></script>
-    <script type="text/javascript" src="../../../../../prototype.js"></script>
-    <base target="_self" />
-    
+  <title>Cr&eacute;er un lien</title>
+
+  <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+  <script type="text/javascript" src="../../utils/form_utils.js"></script>
+  <script type="text/javascript" src="../../utils/validate.js"></script>
+  <script type="text/javascript" src="js/link.js"></script>
+
+  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+
+  <base target="_self" />
+
   <style>
     html {
       background-color:#fff;
     }
-    
+
     body {
       background-color:#fff;
       width:490px;
@@ -69,114 +71,23 @@
       font-weight:bold !important;
     }
   </style>
+  <script>
 
-<script>
-function change_folder(folder){
+    function updateTarget(target_type){
 
-    new Ajax.Updater("available_files",'/admin/file_picker/'+folder,
-    {
-      method:'get',
-      onSuccess: function(transport){
-        var response = transport.responseText || "no response text";
-      },
-      onFailure: function(){ alert("Erreur dans l'échange avec le serveur...") }
-    });                  
-
-}
-function getLinkFor(link_type){
-  $$('.target_block').each(function(this_block){
-    this_block.hide();
-  });
-  if(link_type == 'external'){
-    $('external').show();
-  } 
-  else if(link_type == 'internal'){
-    new Ajax.Updater("pages_available",'/admin/file_picker/internal',
-    {
-      method:'get',
-      onSuccess: function(transport){
-        var response = transport.responseText || "no response text";
-      },
-      onFailure: function(){ alert("Erreur dans l'échange avec le serveur...") }
-    });     
-    $('internal').show();
-  }
-  else if(link_type == 'layer'){
-    new Ajax.Updater("layers_available",'/admin/file_picker/layer',
-    {
-      method:'get',
-      onSuccess: function(transport){
-        var response = transport.responseText || "no response text";
-      },
-      onFailure: function(){ alert("Erreur dans l'échange avec le serveur...") }
-    });     
-    $('layer').show();
-  }
-  else if(link_type == 'file'){
-    new Ajax.Updater("file_folders",'/admin/file_picker/file',
-    {
-      method:'get',
-      onSuccess: function(transport){
-        var response = transport.responseText || "no response text";
-      },
-      onFailure: function(){ alert("Erreur dans l'échange avec le serveur...") }
-    });     
-    $('file').show();
-  }
-}
-
-function getFolderContent(id){
-  //alert(id);
-  //return false;
-  
-  new Ajax.Updater("folder_content",'/admin/file_picker/get_folders/'+id,
-  {
-    method:'get',
-    onSuccess: function(transport){
-      var response = transport.responseText || "no response text";
-    },
-    onFailure: function(){ alert("Erreur dans l'échange avec le serveur...") }
-  });
-}
-
-function updateTarget(target_type){
-  var target_class = '.'+target_type;
-  $$(target_class).each(function(line){
-    if(line.checked){
-      $('href').value = line.value;
+      link = $('input[name=target]:checked', '#link_form')
+      $('#href').val(link.val());
       LinkDialog.update();
       return false;
-    }
-  });
-      
-  return false;
-}
 
-//Always get default folder content
-new Ajax.Updater("folder_content",'/admin/file_picker/default',
-{
-  method:'get',
-  onSuccess: function(transport){
-    var response = transport.responseText || "no response text";
-  },
-  onFailure: function(){ alert("Erreur dans l'échange avec le serveur...") }
-}); 
-</script>
+    }
+
+  </script>
 </head>
 
 <body id="link">
-  <form action="#">
-  
-    <div style="width:460px;height:35px;padding:10px;background-color:#fffaf0;text-align:left;border:1px solid #d4d4d4">
-      <label>Vers quoi voulez cr&eacute;er un lien ?</label>
-      <select name="link_type" style="width:250px;" onchange="getLinkFor(this.value)">
-        <option value="external">Un autre site Web</option>
-        <option value="internal">Une page &agrave; l'int&eacute;rieur de mon site</option>
-        <option value="layer">Un calque</option>
-        <option value="file">Un de mes fichiers</option>
-      </select>
-    </div>
-  
+  <form action="#" id='link_form'>
+
     <div class="target_block" id="external">
       <strong>Copiez/collez l'adresse de la page vers laquelle pointe le lien : </strong>
       <br />
@@ -186,32 +97,6 @@ new Ajax.Updater("folder_content",'/admin/file_picker/default',
       <br />
       <input type="button" style="margin-left:320px;" name="valid_link" class="button" value="Enregistrer" onclick="LinkDialog.update();"/>
       <br style="clear:both;"></div>
-    </div>
-    
-    <div class="target_block" id="internal" style=display:none;">
-      <p>S&eacute;lectionnez la page vers laquelle pointer le lien :</p>
-      <ul id="pages_available"></ul>
-      <br style="clear:both;" />
-      <input type="button" style="float:none;" class="button" value="Enregistrer" onclick="updateTarget('pages')" />
-      <br style="clear:both;" /><br style="clear:both;" />
-    </div>
-    
-    <div class="target_block" id="layer" style=display:none;">
-      <p>S&eacute;lectionnez le calque vers lequel pointer le lien :</p>
-      <ul id="layers_available"></ul>
-      <br style="clear:both;" />
-      <input type="button" style="float:none;" class="button" value="Enregistrer" onclick="updateTarget('layers')" />
-      <br style="clear:both;" /><br style="clear:both;" />
-    </div>
-    
-    <div class="target_block" id="file" style=display:none;">
-      <span>Dans quel dossier se trouve votre fichier ?</span>
-      <select id="file_folders" onchange="getFolderContent(this.value)" style="width:220px;"></select>
-      <p>Contenu de ce dossier :</p>
-      <ul id="folder_content"></ul>
-      <br style="clear:both;" />
-      <input type="button" style="float:none;" class="button" value="Enregistrer" onclick="updateTarget('files')" />
-      <br style="clear:both;" /><br style="clear:both;" />
     </div>
 
     <div class="panel_wrapper"  style="display:none;">
@@ -245,3 +130,4 @@ new Ajax.Updater("folder_content",'/admin/file_picker/default',
 </form>
 </body>
 </html>
+
