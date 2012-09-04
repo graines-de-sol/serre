@@ -3,7 +3,9 @@ class Post < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   belongs_to :blog_category
 
-  scope :last_posts, self.where(['published_at <= ?', Time.now]).order('published_at DESC').limit(10)
+  scope :last_posts, lambda { |max_post|
+    self.where(['published_at <= ?', Time.now]).order('published_at DESC').limit(max_post)
+  }
   scope :by_category, lambda{ |category_id|
     self.where(['blog_category_id = ? AND published_at <= ?', category_id, Time.now]).order('published_at DESC')
   }
