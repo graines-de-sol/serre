@@ -7,7 +7,7 @@
     %span= t('newsletter.archives')
     %select#selectNewsletter{:style => 'width:580px;'}
       - @newsletters.each do |newsletter|
-        %option{:value => newsletter.id}= label_for_newsletters_archives(newsletter)
+        %option{:value => newsletter.id, :selected => (newsletter.id == params[:id].to_i)}= label_for_newsletters_archives(newsletter)
     %br
 
     = form_tag admin_newsletter_path(@newsletter.id), :method => :put do
