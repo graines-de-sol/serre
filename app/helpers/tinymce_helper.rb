@@ -6,7 +6,7 @@ module TinymceHelper
     # default settings
     args[:width]  ||= '738'
     args[:height] ||= '260'
-    args[:css]    ||= '738'
+    args[:css]    ||= '/javascripts/tinymce/bootstrap.css'
 
     out =   "<script src='/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js' type='text/javascript'></script>"
     out <<  "<script language='javascript' type='text/javascript'>"
@@ -34,10 +34,10 @@ module TinymceHelper
     out << "  theme_advanced_resizing: true,"
     out << "  entity_encoding: 'raw',"
 
-    if args[:host]
+    if args[:relative]
       out << "  relative_urls : false,"
       out << "  remove_script_host : false,"
-      out << "  document_base_url : 'http://serre.grainesdesol.fr'"
+      out << "  document_base_url : 'http://#{$conf.app_url}'"
     else
       out << "  relative_urls : true"
     end

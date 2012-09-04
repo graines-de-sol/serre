@@ -6,7 +6,7 @@ class MembersController < ApplicationController
   # List all members                                    HTML
   # --------------------------------------------------------
   def index
-    @members = Member.order('first_name ASC')
+    @members = Member.active.order('first_name ASC')
   end
 
   # POST /members/search
@@ -104,11 +104,11 @@ class MembersController < ApplicationController
     @to = Member.find(params[:recipient_id])
 
     Notifier.mail_message({
-      :reply_addr=>@from.user.email,
-      :to=>@to.user.email,
-      :name=>"#{@from.first_name} #{@from.last_name}",
-      :subject=>params[:email][:subject],
-      :body=>params[:email][:body]
+      :reply_addr => @from.user.email,
+      :to         => @to.user.email,
+      :name       => "#{@from.first_name} #{@from.last_name}",
+      :subject    => params[:email][:subject],
+      :body       => params[:email][:body]
     }).deliver
 
     redirect_to params[:origin]

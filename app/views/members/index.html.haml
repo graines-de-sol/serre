@@ -12,11 +12,11 @@
     %input{:type => 'text', :name => 'keywords', :value => params[:keywords]}
     = submit_tag t(:search), :class => 'btn  btn-warning'
     %p
-      = radio_button_tag 'is_active', 'true', (params[:is_active] == 'true')
+      = radio_button_tag 'is_active', 'true', (params[:is_active] == 'true' || !params[:is_active])
       = t('active_members')
       = radio_button_tag 'is_active', 'false', (params[:is_active] == 'false')
       = t('inactive_members')
-      = radio_button_tag 'is_active', 'all', (params[:is_active] == 'all' || !params[:is_active])
+      = radio_button_tag 'is_active', 'all', (params[:is_active] == 'all')
       = t('all_members')
 
 #members_list

@@ -23,7 +23,7 @@
         = text_field_tag 'calendar[rss]', @calendar.rss
         %br
         %label= t('calendar.description')
-        .calendar_container.hide
+        .content_container.hide
           = soft_clean @calendar.description
         .textarea_container
         %br
@@ -78,8 +78,8 @@
 
 = render :partial => '/modals/toggle_event_modal'
 
-= javascript_include_tag "/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js"
-= javascript_include_tag "/javascripts/tinymce/calendar.js"
 = javascript_include_tag '/javascripts/fullcalendar-1.5.3/fullcalendar/fullcalendar.min.js'
 = javascript_include_tag '/javascripts/fullcalendar-1.5.3/fullcalendar/gcal.js'
+
+= t_init(:name => 'calendar[description]', :width => '838')
 

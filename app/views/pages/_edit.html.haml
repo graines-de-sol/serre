@@ -64,6 +64,5 @@
       = submit_tag t('save'), :class=>'btn btn-warning right'
     .clear
 
-= javascript_include_tag "/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js"
-= javascript_include_tag "/javascripts/tinymce/init.js"
+= t_init(:name => 'article[content]', :height => '260px', :width => '880px')
 

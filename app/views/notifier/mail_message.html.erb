@@ -8,14 +8,14 @@
 
   <table style="width:500px;">
     <tr>
-      <td colspan='2'><h1 style="color:#2f2f2f;font-size:16px;">La Cordée</h1></td>
+      <td colspan='2'><h1 style="color:#2f2f2f;font-size:16px;"><%= $conf.app_name %></h1></td>
     </tr>
     <tr>
       <td colspan='2'>
         <%= @datas[:name] %> <%= t('email.introduction_message') %> <%= @datas[:reply_addr] %>
         <br />
         <br />
-        <%= "#{@datas[:body].gsub(/\n/, '<br />')}".html_safe %>
+        <%= "#{simple_format @datas[:body]}".html_safe %>
       </td>
     </tr>
   </table>

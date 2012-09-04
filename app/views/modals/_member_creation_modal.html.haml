@@ -31,7 +31,5 @@
       = check_box_tag 'no_welcome_email'
       = t('no_welcome_email')
 
-
-= javascript_include_tag "/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js"
-= javascript_include_tag "/javascripts/tinymce/small.js"
+= t_init(:name => 'article[content]')
 

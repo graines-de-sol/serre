@@ -71,6 +71,7 @@
               %p= t('presence')
             %td
               %p= @member.presence
+
         - if member_has_profile?(@pro_networks) || member_has_profile?(@perso_networks)
           %tr
             %td= ''

@@ -2,6 +2,8 @@ $ ->
   # Tooltip init
   $("a[rel='tooltip']").tooltip()
 
+  jQuery('body').linkify()
+
   # Validation error messaging init
   $('.error_popover').each ->
     $(this).attr('rel','popover')

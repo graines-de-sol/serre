@@ -116,7 +116,7 @@ module ApplicationHelper
 
   # Clean-up except tags potentially used in TinyMCE
   def soft_clean(s)
-    sanitize s, :tags => %w(br p table tr td a img ul ol li h1 h2 h3 h4 h5 h6 b font), :attributes => %w(id class style color alt src href)
+    sanitize s, :tags => %w(strong br p table tr td a img ul ol li h1 h2 h3 h4 h5 h6 b font), :attributes => %w(id class style color alt src href)
   end
 
   # Formatted default end date for ads : seven days from now

@@ -78,7 +78,7 @@ fr:
   avatar: "Photo"
   organisation_logo: "Votre logo"
   baseline: "Une description en quelques mots..."
-  organisation: "Mon entreprise"
+  organisation: "Premiere activité"
   situation: "Situation professionnelle"
   prestations: "Prestations"
   references: "Mes réferences"
@@ -182,7 +182,7 @@ fr:
   blog_category_name: "Thématique"
   manage_medias_categories: "» Gérer les catégories"
   manage_blog_categories: "» Gérer les thématiques"
-  activity_1: "Première activité"
+  activity_1: "Mon activité s'appelle"
   activity_2: "Seconde activité"
   specificities: "Spécificités"
   phone_1: "Téléphone"
@@ -197,6 +197,10 @@ fr:
   gallery_manage_images: "» Gérer les photos"
   register_ok_message: "Votre inscription est bien prise en compte. Merci !"
   default_newsletter_banner: "Bannière par défaut de la newsletter (700px MAX !)"
+  conf:
+    app_name: "Nom de l'application (utilisé dans les E-Mails envoyés par l'application)"
+    app_url: "Adresse URL de l'application"
+    max_post_on_index: "Nombre de posts dans la page d'accueil du Blog"
 
   calendar:
     name: "Titre du calendrier"
