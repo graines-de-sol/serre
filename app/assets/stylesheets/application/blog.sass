@@ -9,9 +9,11 @@
     .attributes
       #date_hour, #date_minute
         width: 60px
-.blog
-  width: 585px
+
+.blog > .left
+  width: 570px
   overflow: auto
+  margin-left: -10px
   .post
     clear: both
     margin-bottom: 50px
@@ -50,8 +52,13 @@
         display: block
         float: left
         margin-top: 10px
+
+.blog > .right
+  width: 360px
+  margin-right: -5px
+
 ul.archives_month
-  width: 200px
+  width: 350px
   li
     list-style-type: square
     a

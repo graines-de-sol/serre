@@ -1,7 +1,6 @@
-.users_last_updated
-  %h2.ribbon= t(direction)
+%h2.ribbon= t(direction)
 
-  - users.each do |user|
-    %a{:href=>member_path(user.member.id)}
-      = avatar(user.member, '50x50')
+- users.each do |user|
+  %a{:href=>member_path(user.member.id)}
+    = avatar(user.member, '50x50')
 
