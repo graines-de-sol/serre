@@ -25,55 +25,57 @@
             %td
               %p= t('activity_1')
             %td
-              - if @member.website
-                %p= link_to @member.organisation, @member.website
-              - else
-                %p= @member.organisation
+              %p= @member.website ? link_to(@member.organisation, @member.website) : @member.organisation
+
         - if @member.organisation_2
           %tr
             %td
               %p= t('activity_2')
             %td
-              - if @member.website_2
-                %p= link_to @member.organisation_2, @member.website_2
-              - else
-                %p= @member.organisation
+              %p= @member.website_2 ? link_to(@member.organisation_2, @member.website_2) : @member.organisation_2
+
         - if @member.prestations
           %tr
             %td
               %p= t('prestations')
             %td
-              %p= @member.prestations
+              = simple_format @member.prestations
+
         - if @member.references
           %tr
             %td
               %p= t('specificities')
             %td
-              %p= @member.references
+              = simple_format @member.references
+
         - if @member.phone
           %tr
             %td
               %p= t('phone')
             %td
               %p= phone_number @member.mobile
+
         - if @member.city
           %tr
             %td
               %p= t('I_live_in')
             %td
               %p= @member.city.capitalize
+
         - if @member.hobbies
           %tr
             %td
               %p= t('hobbies')
             %td
-              %p= hard_clean @member.hobbies
+              = simple_format @member.hobbies
+
         - if @member.powers
           %tr
             %td
               %p= t('powers')
             %td
-              %p= hard_clean @member.powers
+              = simple_format @member.powers
+
         - if @member.presence
           %tr
             %td
