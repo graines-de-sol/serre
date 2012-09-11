@@ -23,6 +23,7 @@ namespace :deploy do
   end
 
   task :symlink_shared do
+    run "ln -s #{shared_path}/.bundle #{release_path}/.bundle"
     run "ln -s #{shared_path}/config/database.yml #{release_path}/config/"
     run "rm -rf #{release_path}/medias && ln -s #{shared_path}/medias #{release_path}/medias"
     run "cp -r #{release_path}/public/javascripts #{shared_path}/public && rm -rf #{release_path}/public && ln -s #{shared_path}/public #{release_path}/public"
