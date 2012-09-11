@@ -46,14 +46,14 @@
             %td
               %p= t('prestations')
             %td
-              %p= @member.prestations
+              = simple_format @member.prestations
 
         - if @member.references
           %tr
             %td
               %p= t('specificities')
             %td
-              %p= @member.references
+              = simple_format @member.references
 
         - if @member.phone
           %tr
