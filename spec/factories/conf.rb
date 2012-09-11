@@ -5,6 +5,7 @@ FactoryGirl.define do
     max_surveys '20'
     headline_published false
     newsletter_header_uid '2012/08/07/14_35_32_225_gds_header.png'
+    max_post_on_index 3
   end
 end
 

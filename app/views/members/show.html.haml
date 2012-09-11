@@ -23,10 +23,19 @@
         - if @member.organisation
           %tr
             %td
-              %p= t('organisation')
+              %p= t('activity_1')
             %td
               - if @member.website
                 %p= link_to @member.organisation, @member.website
+              - else
+                %p= @member.organisation
+        - if @member.organisation_2
+          %tr
+            %td
+              %p= t('activity_2')
+            %td
+              - if @member.website_2
+                %p= link_to @member.organisation_2, @member.website_2
               - else
                 %p= @member.organisation
         - if @member.prestations
@@ -38,7 +47,7 @@
         - if @member.references
           %tr
             %td
-              %p= t('references')
+              %p= t('specificities')
             %td
               %p= @member.references
         - if @member.phone
@@ -46,7 +55,7 @@
             %td
               %p= t('phone')
             %td
-              %p= phone_number @member.phone
+              %p= phone_number @member.mobile
         - if @member.city
           %tr
             %td
