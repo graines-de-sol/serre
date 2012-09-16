@@ -57,7 +57,7 @@ class BlogController < ApplicationController
     redirect_to  '/'
   end
 
-  # GET /blog/cateogry/:id
+  # GET /blog/category/:id
   # Show blog posts by category                            HTML
   # -----------------------------------------------------------
   def show_category

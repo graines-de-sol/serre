@@ -3,6 +3,6 @@
 %ul.archives_month
   - Post.archives_by_month.each do |month_name, post|
     %li
-      %a{:href => "/blog/archives/#{post.first.created_at.year}/#{post.first.created_at.month}"}
-        = l(month_name, :format=>:archives_month)
+      %a{:href => "/blog/archives/#{post.first.published_at.year}/#{post.first.published_at.month}"}
+        = l(month_name, :format => :archives_month)
 

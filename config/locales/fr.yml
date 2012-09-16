@@ -128,7 +128,6 @@ fr:
   valid_until: "Affichée jusqu'au"
   create_ad: "+ Créer une annonce"
   edit_this_ad: "Modifier mon annonce"
-  edit_this_post: "Modifier cette actu"
   ad_visibility: "Cette annonce est visible par les membres de"
   all_locations: "toutes les cordées"
   location_: "la cordée de "
@@ -211,6 +210,7 @@ fr:
   blog:
     create_post: "+ Ajouter une actu"
     update_post: "Modifier une actu"
+    edit_this_post: "Modifier cette actu"
     post_title: "Titre de l'actu"
     post_content: "Contenu de l'actu"
     comment: "un commentaire"

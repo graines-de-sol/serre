@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
     self.where(['blog_category_id = ? AND published_at <= ?', category_id, Time.now]).order('published_at DESC')
   }
   scope :by_month, lambda{ |year, month|
-    self.where(["YEAR(created_at) = ? AND MONTH(created_at) = ? AND published_at <= ?", year, month, Time.now]).order('published_at DESC')
+    self.where(["YEAR(published_at) = ? AND MONTH(published_at) = ? AND published_at <= ?", year, month, Time.now]).order('published_at DESC')
   }
 
   def self.archives_by_month
