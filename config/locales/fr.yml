@@ -1,3 +1,4 @@
+# encoding: UTF-8
 fr:
   app:
     title: "La serre, l'Intranet de Graines de Sol"
@@ -121,7 +122,6 @@ fr:
           attributes:
             first_name:
               blank: "Doit être renseigné !"
-  create_ad: "Créer une annonce"
   your_ad: "Votre annonce... (500 caractères maximum)"
   category: "Catégorie"
   reply_this_ad: "Répondre à cette annonce"
