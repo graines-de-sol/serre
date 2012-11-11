@@ -46,14 +46,21 @@
       defaultView: 'month',
       timeFormat: '(HH:mm)',
       eventColor: '#378006',
+      firstDay: 1,
+      buttonText: { 
+        today: "#{I18n.t('calendar.today')}", 
+        month: "#{I18n.t('calendar.month')}",
+        week: "#{I18n.t('calendar.week')}",
+        day: "#{I18n.t('calendar.day')}"
+      },
 
       eventClick: function(calEvent, jsEvent, view) {
 
         months = #{fullmonth_names_start_1};
         start_date = new Date(calEvent.start);
         formated_date = start_date.getDate() +' '+ months[start_date.getMonth()] +' '+ start_date.getFullYear();
-        formated_hour = start_date.getHours() +':'+ start_date.getMinutes();
-
+        formated_hour = pad2(start_date.getHours()) +':'+ pad2(start_date.getMinutes());
+        
         $('#toggle_event #event_details').empty();
         $('#toggle_event #event_details').append(formated_date +', '+ formated_hour);
 
@@ -75,7 +82,7 @@
 
     })
   });
-
+  
 = render :partial => '/modals/toggle_event_modal'
 
 = javascript_include_tag '/javascripts/fullcalendar-1.5.3/fullcalendar/fullcalendar.min.js'

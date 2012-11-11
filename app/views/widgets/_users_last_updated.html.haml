@@ -1,6 +1,7 @@
 %h2.ribbon= t(direction)
 
-- users.each do |user|
-  %a{:href=>member_path(user.member.id)}
-    = avatar(user.member, '50x50')
+.last_updated
+  - users.each do |user|
+    %a{:href=>member_path(user.member.id), :title => "#{user.member.first_name} #{user.member.last_name}", :data => {:do => 'tooltip'}}
+      = avatar(user.member, '50x50')
 

@@ -53,25 +53,25 @@ describe ApplicationHelper do
     end
   end
 
-#  describe "is_admin" do
+  describe "is_admin" do
 
-#    let(:current_user) { @current_user }
+    let(:current_user) { @current_user }
 
-#    it "should not identify a dumb user as an admin" do
-#      @current_user = Factory.create :user
-#      is_admin.should be_false
-#    end
+    it "should not identify a dumb user as an admin" do
+      @current_user = Factory.create :user
+      is_admin.should be_false
+    end
 
-#    it "should identify an admin" do
-#      @current_user = Factory.create :admin
-#      is_admin.should be_true
-#    end
+    it "should identify an admin" do
+      @current_user = Factory.create :admin
+      is_admin.should be_true
+    end
 
-#    it "should not identify an admin when view as user" do
-#      @current_user = Factory.create :admin, view_as_user: true
-#      is_admin.should be_false
-#    end
-#  end
+    it "should not identify an admin when view as user" do
+      @current_user = Factory.create :admin, view_as_user: true
+      is_admin.should be_false
+    end
+  end
 
   describe '#member_has_profile?' do
     it "should return false if there is no network" do

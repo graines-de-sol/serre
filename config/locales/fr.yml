@@ -207,6 +207,10 @@ fr:
     description: "Description"
     edit_calendar: "+ Modifier les paramètres de ce calendrier"
     mail_to: "Lorsqu'un membre s'inscrit, envoyer un Mail à..."
+    today: "Aujourd'hui"
+    month: "Mois"
+    week: "Semaine"
+    day: "Jour"
   blog:
     create_post: "+ Ajouter une actu"
     update_post: "Modifier une actu"

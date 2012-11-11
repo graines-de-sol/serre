@@ -16,10 +16,8 @@
       %br
       %label= t('newsletter.content')
       .content_container.hide
-        - if !@newsletter.content
+        - if @newsletter.content.blank?
           = (image_tag $conf.newsletter_header.url) if $conf.newsletter_header
-          %br
-          = soft_clean @newsletter.content
           %br
           %br
           = t('newsletter.latest_posts')
@@ -27,6 +25,7 @@
             %h2= soft_clean news.title
             %span= l(news.created_at, :format => :long)
             %br
+            /- raise news.inspect
             = soft_clean news.content
         - else
           = soft_clean @newsletter.content

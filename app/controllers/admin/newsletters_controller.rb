@@ -25,6 +25,7 @@ class Admin::NewslettersController < ApplicationController
     unless @newsletter.content
       @latest_news = Newsletter.latest_news
     end
+    
   end
 
   # POST /admin/newsletters

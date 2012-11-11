@@ -43,6 +43,7 @@ Refuge::Application.routes.draw do
       end
     end
 
+    match 'surveys/show_results/:id' => 'surveys#show_results', :via => :get
     resources :surveys,    :only => [:index, :create, :update, :destroy] do
       member do
         post   :create_answer
