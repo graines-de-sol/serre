@@ -4,10 +4,10 @@ class Member < ActiveRecord::Base
   belongs_to :status
   belongs_to :user
 
-  has_many :ads
+  has_many :ads, :dependent => :destroy
   has_many :networks, :through=>:profiles
   has_many :profiles
-  has_many :comments
+  has_many :comments, :dependent => :destroy
 
   validates_presence_of :first_name
   before_update :compose_birthday

@@ -17,7 +17,10 @@
         %input{:type=>'hidden', :class=>'end_at', :value=>ad.end_at.strftime('%Y-%m-%d')}
 
         .avatar
-          = link_to avatar(ad.member, '32x32'), member_path(ad.member.id), :rel=>'tooltip', :title=>"#{ad.member.first_name} #{ad.member.last_name}"
+          - begin
+            = link_to avatar(ad.member, '32x32'), member_path(ad.member.id), :rel=>'tooltip', :title=>"#{ad.member.first_name} #{ad.member.last_name}"
+          - rescue
+            = raise ad.id.inspect
 
         %h3= ad.subject
         %p= hard_clean ad.body
