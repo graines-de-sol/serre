@@ -2,6 +2,12 @@
 %head
   %meta{:charset=>"utf-8"}
   %title= t('app.title')
+
+  %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+      
+  %link{ :href => 'http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', :rel => 'stylesheet', :type => 'text/css'}
+  %link{ :href => 'http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600italic,600', :rel => 'stylesheet', :type => 'text/css'}
+
   = stylesheet_link_tag 'application'
   = stylesheet_link_tag '/javascripts/jquery_lightness/css/ui-lightness/jquery-ui-1.8.16.custom.css'
   = stylesheet_link_tag '/slimbox/css/slimbox2.css'
@@ -17,13 +23,14 @@
   = csrf_meta_tags
 
 %body
-  #sky_bg
-  #top_bar
+  .header
     = render :partial=>'shared/top_bar'
 
-  #main.container
-    .row
-      .span12
+  .page-content.blocky
+    .container
+      .side-cont
+        = render :partial => '/shared/aside'
+      .mainy
         = yield
 
     .clear#bottom_margin
@@ -44,7 +51,7 @@
       %a{:href=>'https://github.com/la-cordee/refuge', :target=>'blank'}
         = t('fork_me')
 
-  .clear.footer_spacer
+
 
 - #### Flash messages handler ####
 - if flash[:error] && !flash[:error].strip.blank?

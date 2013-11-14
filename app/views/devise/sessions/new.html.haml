@@ -1,29 +1,31 @@
-.container{:style=>'background:none;'}
-  .span4.offset3#login_box
-    %h2= t('devise.common.hello')
-
-    .clear{:style=>'height:20px;'}
-
-    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-      %div
-        = f.label t('devise.common.login')
-        .clear
-        = f.email_field :email, :data=>{'required'=>'true', 'alert'=>t('warnings.email_required')}
-
-      %div
-        = f.label t('devise.common.password')
-        .clear
-        = f.password_field :password, :data=>{'required'=>'true', 'alert'=>t('warnings.password_required')}
-
-      - if devise_mapping.rememberable?
-        %div
-          = f.check_box :remember_me
-          = f.label t('devise.common.remember_me')
-
-      .clear{:style=>'height:20px;'}
-      %div
-        = f.submit t('devise.common.sign_in'), :class=>'btn  btn-warning', :id => 'commit'
-
-
-    = render :partial => "devise/shared/links"
-
+.page-content.blocky
+  .container
+    .row
+      .col-md-12
+        .awidget.login-reg
+          .awidget-head
+          .awidget-body
+            .page-title.text-center
+              %h2 Login
+              %hr
+            %br
+            
+            = form_for(resource, :html => {:class => 'form-horizontal', :role => 'form'}, :as => resource_name, :url => session_path(resource_name)) do |f|
+              .form-group
+                %label.col-lg-2.control-label{for: "inputEmail1"}= t('devise.common.login')
+                .col-lg-10
+                  = f.email_field :email, :class => 'form-control', :id => 'inputEmail1', :placeholder => t('devise.common.login')
+              .form-group
+                %label.col-lg-2.control-label{for: "inputPassword1"}= t('devise.common.password')
+                .col-lg-10
+                  = f.password_field :password, :class => 'form-control', :id => 'inputPassword1', :placeholder => t('devise.common.password')
+              .form-group
+                .col-lg-offset-2.col-lg-10
+                  .checkbox
+                    %label
+                      = f.check_box :remember_me
+                      = t('devise.common.remember_me')
+              %hr
+              .form-group
+                .col-lg-offset-2.col-lg-10
+                  = f.submit t('devise.common.sign_in'), :class =>'btn btn-info'

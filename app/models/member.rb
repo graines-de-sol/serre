@@ -18,8 +18,6 @@ class Member < ActiveRecord::Base
   normalize_attributes :website, :baseline, :organisation, :presence, :prestations, :references, :city, :hobbies, :powers, :organisation_2, :website_2, :logo_uid
   normalize_attribute :phone, :mobile, :with=>:phone
 
-  acts_as_birthday :birthday
-
   scope :www_published, self.where(['www_published = ? AND is_active = ?', true, true])
   scope :active, self.where(['is_active = ?', true])
 

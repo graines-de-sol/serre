@@ -5,14 +5,12 @@ gem 'rails', '3.1.1'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', :github => "rails/sass-rails", :branch => "3-1-stable"
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'less-rails-bootstrap'
+  gem 'sass-rails'
+  gem 'coffee-rails'
 end
 
 gem 'mysql2'
-gem 'rmagick'
+gem 'rmagick', '2.13.2'
 gem 'will_paginate'
 gem 'acts_as_tree_rails3'
 gem 'haml'
@@ -27,19 +25,14 @@ gem 'dragonfly', '~>0.9.10'
 gem 'attribute_normalizer'
 gem 'simple_form'
 gem 'acts_as_tree_rails3'
-gem 'birthday', '~> 0.2.0'
 gem 'multi_json'
 
 group :development, :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
   gem 'rspec-rails'
   gem 'capybara'
   gem 'shoulda-matchers'
-  gem 'simplecov', :require => false
   gem 'timecop'
   gem 'selenium-webdriver'
-  gem 'launchy'
   gem 'warden'
   gem 'factory_girl_rails'
   gem 'database_cleaner'

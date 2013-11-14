@@ -1,30 +1,30 @@
-.span12.blog
-  .left
-    - if $conf.headline_published
-      .well
-        = soft_clean($conf.headline)
+- if !$conf.headline_published
+  .well
+    = soft_clean($conf.headline)
 
-    - if is_admin
-      %a{:href=>'#create_post_modal', :class=>'label label-important right', :data=>{'toggle'=>'modal'}, :id => 'add_new_post'}
-        = t('blog.create_post')
+- @posts.each do |post|
+  .page-title
+    %h2= link_to post.title.capitalize, blog_path(post)
+    %hr
 
-    - @posts.each do |post|
-      .post
-        %h2= link_to post.title.capitalize, blog_path(post)
-        %span.post_attributes
-          = "#{t('blog.published_at')} #{l(post.published_at)} #{t('blog.in_category')}"
-          = link_to post.blog_category.name, blog_category_path(post.blog_category.id)
+  .row
+    .col-md-12
+      .awidget
+        .awidget-head
+          %h3
+            = "#{t('blog.published_at')} #{l(post.published_at)} #{t('blog.in_category')}"
+            = link_to post.blog_category.name, blog_category_path(post.blog_category.id)
 
-        = soft_clean post.content
+        .awidget-body
+          .row
+            .col-md-10
+              = soft_clean post.content
 
-        .has_comments
-          - comment_count = post.comments.length if post.comments.length > 1
-          - comment_label = post.comments.length > 0 ? (post.comments.length > 1 ? t('blog.comments') : t('blog.comment')) : t('blog.no_comment')
-          = link_to "#{comment_count} #{comment_label}", blog_path(post)
+  .clearfix
+  %br
+  %br
 
-  .right
-    = render :partial => '/shared/right_column'
 
 - if is_admin
-  = render :partial => '/modals/create_post_modal'
-
+  %a{:href=>'#create_post_modal', :class=>'label label-important right', :data=>{'toggle'=>'modal'}, :id => 'add_new_post'}
+    = t('blog.create_post')

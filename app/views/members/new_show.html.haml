@@ -1,0 +1,116 @@
+.page-title
+  %h2
+    %i.icon-desktop.color
+    Profile
+    %small Subtext for header
+  %hr
+
+.row
+  .col-md-12
+    .awidget
+      .awidget-head
+        %h3 My Profile
+      .awidget-body
+        .row
+          .col-md-3.col-sm-3
+            %a{href: "#"}
+              %img.img-thumbnail.img-circle.img-responsive{alt: "", src: "img/user.jpg"}/
+          .col-md-9.col-sm-9
+            %table.table
+              %tr
+                %td
+                  %strong Name
+                %td :
+                %td Ashok Ramesh
+              %tr
+                %td
+                  %strong Email
+                %td :
+                %td ashok.ramesh.kumar@gmail.com
+              %tr
+                %td
+                  %strong Phone Number
+                %td :
+                %td +93-324-5344-64545
+              %tr
+                %td
+                  %strong Address
+                %td :
+                %td
+                  No.50, Kumarasamy Street, 5th Floor,
+                  %br/
+                  Bangalore Main Road
+                  %br/
+                  Kormamadna
+                  %br/
+                  India.
+                  
+    .awidget
+      .awidget-head
+        %h3 Update Profile
+      .awidget-body
+        / Profile form
+        .form.profile
+          / Edit profile form (not working)
+          %form.form-horizontal
+            / Name
+            .form-group
+              %label.control-label.col-lg-2{for: "name1"} Name
+              .col-lg-6
+                %input#name1.form-control{type: "text"}/
+            / Email
+            .form-group
+              %label.control-label.col-lg-2{for: "email1"} Email
+              .col-lg-6
+                %input#email1.form-control{type: "text"}/
+            / Telephone
+            .form-group
+              %label.control-label.col-lg-2{for: "telephone"} Telephone
+              .col-lg-6
+                %input#telephone.form-control{type: "text"}/
+            / Address
+            .form-group
+              %label.control-label.col-lg-2{for: "address"} Address
+              .col-lg-6
+                %textarea#address.form-control
+            / Country
+            .form-group
+              %label.control-label.col-lg-2 Country
+              .col-lg-6
+                %select.form-control
+                  %option{value: ""} --- Please Select ---
+                  %option{value: "1"} Afghanistan
+
+            / State
+            .form-group
+              %label.control-label.col-lg-2{for: "city"} State
+              .col-lg-6
+                %input#state.form-control{type: "text"}/
+            / City
+            .form-group
+              %label.control-label.col-lg-2{for: "city"} City
+              .col-lg-6
+                %input#city.form-control{type: "text"}/
+            / Username
+            .form-group
+              %label.control-label.col-lg-2{for: "username2"} Username
+              .col-lg-6
+                %input#username2.form-control{type: "text"}/
+            / Password
+            .form-group
+              %label.control-label.col-lg-2{for: "password2"} Password
+              .col-lg-6
+                %input#password2.form-control{type: "password"}/
+            / Checkbox
+            .form-group
+              .col-lg-6.col-lg-offset-2
+                %label.checkbox.inline
+                  %input#inlineCheckbox3{type: "checkbox", value: "agree"}/
+                  Agree with Terms and Conditions
+            / Buttons
+            .form-group
+              / Buttons
+              .col-lg-6.col-lg-offset-2
+                %button.btn.btn-info{type: "submit"} Update
+                %button.btn.btn-default{type: "reset"} Reset
+
