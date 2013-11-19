@@ -8,16 +8,16 @@
   %link{ :href => 'http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', :rel => 'stylesheet', :type => 'text/css'}
   %link{ :href => 'http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600italic,600', :rel => 'stylesheet', :type => 'text/css'}
 
-  = stylesheet_link_tag 'application'
   = stylesheet_link_tag '/javascripts/jquery_lightness/css/ui-lightness/jquery-ui-1.8.16.custom.css'
   = stylesheet_link_tag '/slimbox/css/slimbox2.css'
   = stylesheet_link_tag '/javascripts/fullcalendar-1.5.3/fullcalendar/fullcalendar.css'
+  = stylesheet_link_tag 'application'
 
-  = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
-  = javascript_include_tag '/javascripts/jquery_lightness/js/jquery-ui-1.8.16.custom.min.js'
-  = javascript_include_tag '/javascripts/jquery_lightness/js/jquery.ui.datepicker-fr.js'
-  = javascript_include_tag '/slimbox/js/slimbox2.js'
-  = javascript_include_tag '/javascripts/jquery.linkify-1.0-min.js'
+  = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'
+  /= javascript_include_tag '/javascripts/jquery_lightness/js/jquery-ui-1.8.16.custom.min.js'
+  /= javascript_include_tag '/javascripts/jquery_lightness/js/jquery.ui.datepicker-fr.js'
+  /= javascript_include_tag '/slimbox/js/slimbox2.js'
+  /= javascript_include_tag '/javascripts/jquery.linkify-1.0-min.js'
   = javascript_include_tag 'application'
 
   = csrf_meta_tags
@@ -28,29 +28,33 @@
 
   .page-content.blocky
     .container
-      .side-cont
-        = render :partial => '/shared/aside'
-      .mainy
-        = yield
+      .row
+        .col-md-9
+          .row
+            = yield
+
+        .col-md-3
+          = render :partial => '/shared/aside'
 
     .clear#bottom_margin
 
-  #footer
-    %p
-      = t('handcrafted_with_love')
-      %a{:href=>'http://www.guillaume-barillot.com', :target=>'blank'}
-        = t('guillaume_barillot')
-      = t('using')
-      %a{:href=>'http://rubyonrails.org', :target=>'blank'}
-        = t('ror')
-      = t('and')
-      %a{:href=>'http://twitter.github.com/bootstrap', :target=>'blank'}
-        = t('twitter_bootstrap')
-      = '|'
-      = t('cmon')
-      %a{:href=>'https://github.com/la-cordee/refuge', :target=>'blank'}
-        = t('fork_me')
-
+  .container
+    .row
+      .col-md-12#footer
+        %p.text-center
+          = t('handcrafted_with_love')
+          %a{:href=>'http://www.guillaume-barillot.com', :target=>'blank'}
+            = t('guillaume_barillot')
+          = t('using')
+          %a{:href=>'http://rubyonrails.org', :target=>'blank'}
+            = t('ror')
+          = t('and')
+          %a{:href=>'http://twitter.github.com/bootstrap', :target=>'blank'}
+            = t('twitter_bootstrap')
+          = '|'
+          = t('cmon')
+          %a{:href=>'https://github.com/la-cordee/refuge', :target=>'blank'}
+            = t('fork_me')
 
 
 - #### Flash messages handler ####

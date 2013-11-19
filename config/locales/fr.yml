@@ -224,7 +224,7 @@ fr:
     archives: "Archives"
     categories: "Thématiques"
     published_at: "Publié le "
-    in_category: ", dans la catégorie "
+    in_category: "Dans la catégorie "
     category: "Catégorie"
     published_at_time: "à "
   medias:

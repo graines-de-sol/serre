@@ -1,31 +1,28 @@
 .page-content.blocky
   .container
     .row
-      .col-md-12
-        .awidget.login-reg
-          .awidget-head
-          .awidget-body
-            .page-title.text-center
-              %h2 Login
-              %hr
-            %br
-            
-            = form_for(resource, :html => {:class => 'form-horizontal', :role => 'form'}, :as => resource_name, :url => session_path(resource_name)) do |f|
-              .form-group
-                %label.col-lg-2.control-label{for: "inputEmail1"}= t('devise.common.login')
-                .col-lg-10
-                  = f.email_field :email, :class => 'form-control', :id => 'inputEmail1', :placeholder => t('devise.common.login')
-              .form-group
-                %label.col-lg-2.control-label{for: "inputPassword1"}= t('devise.common.password')
-                .col-lg-10
-                  = f.password_field :password, :class => 'form-control', :id => 'inputPassword1', :placeholder => t('devise.common.password')
-              .form-group
-                .col-lg-offset-2.col-lg-10
-                  .checkbox
-                    %label
-                      = f.check_box :remember_me
-                      = t('devise.common.remember_me')
-              %hr
-              .form-group
-                .col-lg-offset-2.col-lg-10
-                  = f.submit t('devise.common.sign_in'), :class =>'btn btn-info'
+      .col-xs-4.awidget.center
+        .awidget-head
+        .awidget-body
+          .page-title
+            %h2 Se connecter
+            %hr
+          
+          = form_for(resource, :html => {:class => 'form-vertical', :role => 'form'}, :as => resource_name, :url => session_path(resource_name)) do |f|
+            .form-group
+              %label.control-label{for: "inputEmail1"}= t('devise.common.login')
+              = f.email_field :email, :class => 'form-control', :id => 'inputEmail1', :placeholder => t('devise.common.login')
+            .form-group
+              %label.control-label{for: "inputPassword1"}= t('devise.common.password')
+              = f.password_field :password, :class => 'form-control', :id => 'inputPassword1', :placeholder => t('devise.common.password')
+            .form-group
+              .checkbox
+                = f.check_box :remember_me
+                %label
+                  = t('devise.common.remember_me')
+            %hr
+            .form-group
+              .text-right
+                = f.submit t('devise.common.sign_in'), :class =>'btn btn-info'
+
+            .clearfix

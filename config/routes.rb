@@ -12,7 +12,7 @@ Refuge::Application.routes.draw do
   resources :blog
   resources :images,   :only => [:index, :create, :destroy]
   resources :surveys,  :only => [:create]
-  resources :comments, :only => [:destroy]
+  resources :comments, :only => [:destroy, :update]
   resources :ads,      :only => [:index, :create, :destroy]
   resources :members
   resources :pages

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   before_create :build_default_member
   before_update :confirm_password
 
-  scope :new_comers, self.where(['members.is_active = ?', true]).order('created_at DESC').limit(6).includes(:member)
+  scope :new_comers, self.where(['members.is_active = ?', true]).order('created_at DESC').limit(10).includes(:member)
   scope :new_outers, self.where(['members.is_active = ?', false]).order('created_at DESC').limit(6).includes(:member)
 
 private

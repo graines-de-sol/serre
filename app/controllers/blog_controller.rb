@@ -6,7 +6,7 @@ class BlogController < ApplicationController
   # Show last recent blog posts                            HTML
   # -----------------------------------------------------------
   def index
-    @posts = Post.last_posts($conf.max_post_on_index)
+    @post = Post.last
   end
 
   # GET /blog/:id

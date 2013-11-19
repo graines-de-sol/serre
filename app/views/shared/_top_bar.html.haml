@@ -1,15 +1,29 @@
 .container
   .row
 
-    .col-md-6
-      .row
-        .col-md-12
-          .input-group.form{:style =>'float:left;'}
-            %input.form-control{placeholder: "Un membre, une actualité...", type: "text"}/
-            %span.input-group-btn
-              %button.btn.btn-info{type: "button"}= t('search')
+    .col-md-3.top-me          
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        = avatar(current_user.member, '46x32')
+        = "Bonjour Guillaume"
+        %i.icon-caret-down
 
-    .col-md-6
+      %ul.dropdown-menu.animated.fadeInUp
+        %li
+          %a{:href => member_path(current_user.member.id)}
+            %i{:class=>'icon-user'}
+            = "Voir mon profil"
+        %li
+          %a{:href=>'/users/sign_out', :data=>{'method' => 'delete'}}
+            %i{:class=>'icon-remove'}
+            = t(:logout)
+
+    .col-md-5
+      .input-group.form{:style =>'float:left;'}
+        %input.form-control.main-search{placeholder: "Un membre, une actualité...", type: "text"}/
+        %span.input-group-btn
+          %button.btn.btn-info{type: "button"}= t('search')
+
+    .col-md-4
       .navbar.navbar-inverse{role: "banner"}
         .navbar-header
           %button.navbar-toggle{"data-target" => ".bs-navbar-collapse", "data-toggle" => "collapse", type: "button"}
@@ -22,7 +36,7 @@
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                   = "Admin"
-                  %b.caret
+                  %i.icon-caret-down
                 %ul.dropdown-menu.animated.fadeInUp
                   %li
                     %a{:href=>'/admin/surveys'}
@@ -34,16 +48,13 @@
                       = t('admin.admin_panel')
 
             %li.dropdown
-              /= avatar(current_user.member, '46x32')
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = "Bonjour Guillaume"
-                %b.caret
+                = "Aller à..."
+                %i.icon-caret-down
               %ul.dropdown-menu.animated.fadeInUp
-                %li
-                  %a{:href => member_path(current_user.member.id)}
-                    %i{:class=>'icon-user'}
-                    = "Voir mon profil"
-                %li
-                  %a{:href=>'/users/sign_out', :data=>{'method' => 'delete'}}
-                    %i{:class=>'icon-remove'}
-                    = t(:logout)
+
+                - tabs.each do |tab|
+                  %li{:class=>('active' if params[:controller] == tab[:controller])}
+                    %a{:href=>"/#{tab[:url]}"}
+                      %i{:class=>tab[:icon]}
+                      = t(tab[:name])

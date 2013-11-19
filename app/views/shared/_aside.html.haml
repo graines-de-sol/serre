@@ -1,10 +1,5 @@
-.sidebar-dropdown
-  %a{href: "#"} MENU
-  
-.sidey
-  %ul.nav
-    - tabs.each do |tab|
-      %li{:class=>('active' if params[:controller] == tab[:controller])}
-        %a{:href=>"/#{tab[:url]}"}
-          %i{:class=>tab[:icon]}
-          = t(tab[:name])
+.row       
+  .col-md-12.last_updated.block
+    = render :partial => '/widgets/new_comers' 
+
+    .clearfix

@@ -1,0 +1,6 @@
+%h3= "Derniers arrivés"
+%hr
+- User.new_comers.each do |user|
+  %a.avatar{:href=>member_path(user.member.id), :title => "#{user.member.first_name} #{user.member.last_name}", :data => {:do => 'tooltip'}}
+    = avatar(user.member, '100x100')
+

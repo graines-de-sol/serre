@@ -1,30 +1,72 @@
-- if !$conf.headline_published
-  .well
-    = soft_clean($conf.headline)
 
-- @posts.each do |post|
-  .page-title
-    %h2= link_to post.title.capitalize, blog_path(post)
-    %hr
+.col-md-11.content
 
-  .row
-    .col-md-12
-      .awidget
-        .awidget-head
-          %h3
-            = "#{t('blog.published_at')} #{l(post.published_at)} #{t('blog.in_category')}"
-            = link_to post.blog_category.name, blog_category_path(post.blog_category.id)
+  %h2= link_to @post.title.capitalize, blog_path(@post)
+  %h3
+    = t('blog.in_category').capitalize
+    = link_to @post.blog_category.name, blog_category_path(@post.blog_category.id)
 
-        .awidget-body
-          .row
-            .col-md-10
-              = soft_clean post.content
+  .awidget-body
+    .row
+      .col-md-12
+        = soft_clean @post.content
 
-  .clearfix
-  %br
-  %br
+    .row.comment
+      .col-md-2
+        %a.avatar{:href=>member_path(current_user.member.id), :title => "#{current_user.member.first_name} #{current_user.member.last_name}", :data => {:do => 'tooltip'}}
+          = avatar(current_user.member, '100x100')
+      .col-md-9
+        %label= "Un commentaire #{current_user.member.first_name} ?"
+        %form.form{'data-do' => 'postComment', 'data-post' => @post.id}
+          %textarea{'data-is' => 'newComment'}
+          %br
+          = submit_tag "Enregistrer", :class => 'btn btn-info pull-right'
+
+    #comments
+
+      - @post.comments.reverse.each do |comment|
+        .row.comment
+          .col-md-2
+            %a.avatar{:href=>member_path(current_user.member.id), :title => "#{current_user.member.first_name} #{current_user.member.last_name}", :data => {:do => 'tooltip'}}
+              = avatar(comment.member, '100x100')
+          .col-md-9
+            %p
+              = "#{comment.member.first_name} #{comment.member.last_name}"
+              %span= "Le #{l(comment.created_at, :format => :long)}"
+
+            %p= comment.content
+
+.clearfix
+%br
+%br
+
+
+.row.comment#comment-template.hide
+  .col-md-2
+    %a.avatar{:href=>member_path(current_user.member.id), :title => "#{current_user.member.first_name} #{current_user.member.last_name}", :data => {:do => 'tooltip'}}
+      = avatar(current_user.member, '100x100')
+  .col-md-9
+    %p
+      = "#{current_user.member.first_name} #{current_user.member.last_name}"
+      %span.new-comment-date= ""
+    %p.new-comment-content
 
 
 - if is_admin
   %a{:href=>'#create_post_modal', :class=>'label label-important right', :data=>{'toggle'=>'modal'}, :id => 'add_new_post'}
     = t('blog.create_post')
+
+- if !$conf.headline_published
+
+  #headline.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h4#myModalLabel.modal-title= "Flash info"
+        .modal-body
+          = soft_clean($conf.headline)
+          .clearfix.mt-50
+
+  :javascript
+    $('#headline').modal('show');
