@@ -5,7 +5,7 @@ set :repository,  "git@github.com:graines-de-sol/serre.git"
 set :keep_releases, 2
 set :deploy_to, "/home/gds/serre"
 set :use_sudo, false
-set :user, "serre"
+set :user, "gds"
 set :scm, 'git'
 set :default_stage, 'production'
 set :branch, fetch(:branch, "master")
