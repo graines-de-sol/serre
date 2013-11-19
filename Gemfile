@@ -26,6 +26,7 @@ gem 'attribute_normalizer'
 gem 'simple_form'
 gem 'acts_as_tree_rails3'
 gem 'multi_json'
+gem 'rvm-capistrano'
 
 group :development, :test do
   gem 'rspec-rails'
