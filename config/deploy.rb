@@ -4,7 +4,7 @@ set :application, "serre"
 set :repository,  "git@github.com:graines-de-sol/serre.git"
 set :keep_releases, 2
 set :deploy_to, "/home/gds/serre"
-set :use_sudo, true
+set :use_sudo, false
 set :user, "gds"
 set :scm, 'git'
 set :default_stage, 'production'
@@ -14,7 +14,7 @@ set :normalize_asset_timestamps, false
 role :web, "ns382592.ovh.net"
 role :app, "ns382592.ovh.net"
 role :db,  "ns382592.ovh.net", :primary => true
-default_environment["PATH"] = "$PATH:/opt/ree/bin/"
+#default_environment["PATH"] = "$PATH:/opt/ree/bin/"
 
 namespace :deploy do
   task :start do ; end
