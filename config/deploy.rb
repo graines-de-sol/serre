@@ -6,6 +6,7 @@ set :keep_releases, 2
 set :deploy_to, "/home/gds/serre"
 set :use_sudo, false
 set :user, "gds"
+set :ssh_key, "id_rsa.pub"
 set :scm, 'git'
 set :default_stage, 'production'
 set :branch, fetch(:branch, "master")
@@ -15,7 +16,8 @@ role :web, "ns382592.ovh.net"
 role :app, "ns382592.ovh.net"
 role :db,  "ns382592.ovh.net", :primary => true
 #default_environment["PATH"] = "$PATH:/opt/ree/bin/"
-ssh_options[:forward_agent] = true
+#ssh_options[:forward_agent] = true
+set :ssh_options, {:forward_agent => true}
 
 namespace :deploy do
   task :start do ; end
