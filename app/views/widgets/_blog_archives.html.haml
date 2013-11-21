@@ -1,5 +1,5 @@
-%h2.ribbon= t('blog.archives')
-%br
+%h3= "Derniers arrivés"
+%hr
 %ul.archives_month
   - Post.archives_by_month.each do |month_name, post|
     %li

@@ -1,14 +1,17 @@
-#blog_categories
-  %h2.ribbon= t('blog.categories')
-  %br
-  %ul.archives_month
+%h3= "Thématiques"
+%hr
+  %ul.blog-categories
     - BlogCategory.all.each do |category|
       %li
         %a{:href => blog_category_path(category.id)}= category.name
+    %li
+      %a{:href => blog_index_path}= "Toutes les catégories"
+    %li
+      %a{:href => root_path}= "Dernière actualité"
 
   - if is_admin
     %a{:href => admin_blog_categories_path}= t('manage_blog_categories')
     %br
     %br
-.clear
+
 

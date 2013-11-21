@@ -1,11 +1,12 @@
 .container
   .row
-
     .col-md-3.top-me          
       %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-        = avatar(current_user.member, '46x32')
-        = "Bonjour Guillaume"
-        %i.icon-caret-down
+        .main-avatar{:href=>member_path(current_user.member.id)}
+          = avatar(current_user.member, '70x70')
+        %span
+          = "Bonjour Guillaume"
+          %i.icon-caret-down
 
       %ul.dropdown-menu.animated.fadeInUp
         %li
@@ -18,10 +19,10 @@
             = t(:logout)
 
     .col-md-5
-      .input-group.form{:style =>'float:left;'}
-        %input.form-control.main-search{placeholder: "Un membre, une actualité...", type: "text"}/
+      .input-group.form.main-search
+        %input.form-control{placeholder: "Un membre, une actualité...", type: "text"}/
         %span.input-group-btn
-          %button.btn.btn-info{type: "button"}= t('search')
+          %button.btn.btn-warning{type: "button"}= t('search')
 
     .col-md-4
       .navbar.navbar-inverse{role: "banner"}
@@ -38,14 +39,10 @@
                   = "Admin"
                   %i.icon-caret-down
                 %ul.dropdown-menu.animated.fadeInUp
-                  %li
-                    %a{:href=>'/admin/surveys'}
-                      %i{:class=>'icon-ban-circle icon-white'}
-                      = t('admin.admin_panel')
-                  %li
-                    %a{:href=>'/admin/surveys'}
-                      %i{:class=>'icon-ban-circle icon-white'}
-                      = t('admin.admin_panel')
+                  - admin_tabs.each do |action|
+                    %li{:class=>('active' if params[:controller] == "admin/#{action}")}
+                      %a{:href=>"/admin/#{action}"}
+                        = t("admin.tabs.#{action}")
 
             %li.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}

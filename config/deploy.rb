@@ -17,8 +17,6 @@ set :rvm_ruby_string, '1.9.3-p194'
 role :web, "ns382592.ovh.net"
 role :app, "ns382592.ovh.net"
 role :db,  "ns382592.ovh.net", :primary => true
-#default_environment["PATH"] = "$PATH:/opt/ree/bin/"
-#ssh_options[:forward_agent] = true
 set :ssh_options, {:forward_agent => true}
 
 namespace :deploy do

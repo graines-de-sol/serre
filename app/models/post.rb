@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   belongs_to :blog_category
 
+  scope :published, self.where(["is_published = ? AND published_at < ?", true,  Time.now])
+
   scope :last_posts, lambda { |max_post|
     self.where(['published_at <= ?', Time.now]).order('published_at DESC').limit(max_post)
   }

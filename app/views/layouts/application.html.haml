@@ -14,15 +14,17 @@
   = stylesheet_link_tag 'application'
 
   = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'
-  /= javascript_include_tag '/javascripts/jquery_lightness/js/jquery-ui-1.8.16.custom.min.js'
-  /= javascript_include_tag '/javascripts/jquery_lightness/js/jquery.ui.datepicker-fr.js'
-  /= javascript_include_tag '/slimbox/js/slimbox2.js'
-  /= javascript_include_tag '/javascripts/jquery.linkify-1.0-min.js'
+  = javascript_include_tag '/javascripts/jquery_lightness/js/jquery-ui-1.8.16.custom.min.js'
+  = javascript_include_tag '/javascripts/jquery_lightness/js/jquery.ui.datepicker-fr.js'
+  = javascript_include_tag '/slimbox/js/slimbox2.js'
+  = javascript_include_tag '/javascripts/jquery.linkify-1.0-min.js'
   = javascript_include_tag 'application'
 
   = csrf_meta_tags
 
 %body
+  %img{ :src => '/assets/bg_body_wide.jpg', :id => 'wide_bg'}
+
   .header
     = render :partial=>'shared/top_bar'
 

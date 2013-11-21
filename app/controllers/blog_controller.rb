@@ -6,14 +6,18 @@ class BlogController < ApplicationController
   # Show last recent blog posts                            HTML
   # -----------------------------------------------------------
   def index
-    @post = Post.last
+    @posts = Post.published.order('published_at DESC')
   end
 
   # GET /blog/:id
   # Show a particular blog post                            HTML
   # -----------------------------------------------------------
   def show
-    @post = Post.find(params[:id])
+    if params[:id] == 'last'
+      @post = Post.published.order('published_at DESC').last
+    else
+      @post = Post.find(params[:id])
+    end
   end
 
   # POST /blog
@@ -31,20 +35,6 @@ class BlogController < ApplicationController
     end
 
     redirect_to  blog_path(this_post_id)
-  end
-
-  # PUT /blog/:id
-  # Add a comment for this blog post                   REDIRECT
-  # -----------------------------------------------------------
-  def update
-
-    Comment.create(
-      :member_id => current_user.member.id,
-      :post_id   => params[:id],
-      :content   => params[:comment]
-    )
-
-    redirect_to blog_path(params[:id])
   end
 
   # DELETE /blog/:id

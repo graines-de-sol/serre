@@ -10,7 +10,6 @@ group :assets do
 end
 
 gem 'mysql2'
-gem 'uglifier'
 gem 'rmagick', '2.13.2'
 gem 'will_paginate'
 gem 'acts_as_tree_rails3'
@@ -27,7 +26,8 @@ gem 'attribute_normalizer'
 gem 'simple_form'
 gem 'acts_as_tree_rails3'
 gem 'multi_json'
-gem 'rvm-capistrano'
+#gem 'uglifier'
+#gem 'rvm-capistrano'
 
 group :development, :test do
   gem 'rspec-rails'

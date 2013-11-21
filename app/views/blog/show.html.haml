@@ -1,41 +1,72 @@
-.span12.blog
-  .left
-    %h2= @post.title.capitalize
-    %span.post_attributes
-      = "#{t('blog.published_at')} #{l(@post.published_at)} #{t('blog.in_category')}"
-      = link_to @post.blog_category.name, blog_category_path(@post.blog_category.id)
 
-    = soft_clean @post.content
+.col-md-11.content
 
-    .clear
-    %br
-    - if is_admin
-      %a.right.label.label-important{:href => '#create_post_modal', :data=>{'toggle'=>'modal'}, :id => 'edit_post'}= t('blog.edit_this_post')
-      %br
+  %h2= link_to @post.title.capitalize, blog_path(@post)
+  %h3
+    = t('blog.in_category').capitalize
+    /= link_to @post.blog_category.name, blog_category_path(@post.blog_category.id)
 
-    .comments
-      %h4= t('blog.leave_a_comment')
-      .clear
-      = form_tag "/blog/#{@post.id}", :method => :put do
-        = text_area_tag "comment"
-        = submit_tag t('save'), :class => 'btn btn-warning right', :id => 'save_comment'
+  .awidget-body
+    .row
+      .col-md-12
+        = soft_clean @post.content
 
-      - @post.comments.each do |comment|
-        .comment
-          .left.avatar
-            %a{:href=>member_path(comment.member_id)}= avatar(comment.member, '50x50')
-          .left.date
-            %strong= "#{t('the')} #{l(comment.created_at, :format => :long)} #{t('by')} #{comment.member.first_name}"
-            %p= simple_format comment.content
+    .row.comment
+      .col-md-2
+        %a.avatar{:href=>member_path(current_user.member.id), :title => "#{current_user.member.first_name} #{current_user.member.last_name}", :data => {:do => 'tooltip'}}
+          = avatar(current_user.member, '100x100')
+      .col-md-9
+        %label= "Un commentaire #{current_user.member.first_name} ?"
+        %form.form{'data-do' => 'postComment', 'data-post' => @post.id}
+          %textarea{'data-is' => 'newComment'}
+          %br
+          = submit_tag "Enregistrer", :class => 'btn btn-info pull-right'
 
-          - if is_admin
-            .clear
-            %a.right.label.label-important{:href => comment_path(comment), :data => {:method => :delete, :confirm => t('confirms.delete_this_comment')}}= t('delete')
-      .clear
+    #comments
 
-  .right
-    = render :partial => '/shared/right_column'
+      - @post.comments.reverse.each do |comment|
+        .row.comment
+          .col-md-2
+            %a.avatar{:href=>member_path(current_user.member.id), :title => "#{current_user.member.first_name} #{current_user.member.last_name}", :data => {:do => 'tooltip'}}
+              = avatar(comment.member, '100x100')
+          .col-md-9
+            %p
+              = "#{comment.member.first_name} #{comment.member.last_name}"
+              %span= "Le #{l(comment.created_at, :format => :long)}"
+
+            %p= comment.content
+
+.clearfix
+%br
+%br
+
+
+.row.comment#comment-template.hide
+  .col-md-2
+    %a.avatar{:href=>member_path(current_user.member.id), :title => "#{current_user.member.first_name} #{current_user.member.last_name}", :data => {:do => 'tooltip'}}
+      = avatar(current_user.member, '100x100')
+  .col-md-9
+    %p
+      = "#{current_user.member.first_name} #{current_user.member.last_name}"
+      %span.new-comment-date= ""
+    %p.new-comment-content
+
 
 - if is_admin
-  = render :partial => '/modals/create_post_modal'
+  %a{:href=>'#create_post_modal', :class=>'label label-important right', :data=>{'toggle'=>'modal'}, :id => 'add_new_post'}
+    = t('blog.create_post')
 
+- if !$conf.headline_published
+
+  #headline.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h4#myModalLabel.modal-title= "Flash info"
+        .modal-body
+          = soft_clean($conf.headline)
+          .clearfix.mt-50
+
+  :javascript
+    $('#headline').modal('show');

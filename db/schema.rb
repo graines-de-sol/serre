@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120807122913) do
+ActiveRecord::Schema.define(:version => 20131120062138) do
 
   create_table "ads", :force => true do |t|
     t.string   "subject"
@@ -71,6 +72,9 @@ ActiveRecord::Schema.define(:version => 20120807122913) do
     t.text    "headline"
     t.boolean "headline_published",    :default => true
     t.text    "newsletter_header_uid"
+    t.string  "app_url"
+    t.string  "app_name"
+    t.integer "max_post_on_index",     :default => 5,    :null => false
   end
 
   create_table "galleries", :force => true do |t|
@@ -163,7 +167,7 @@ ActiveRecord::Schema.define(:version => 20120807122913) do
     t.text     "title"
     t.text     "content"
     t.integer  "blog_category_id"
-    t.boolean  "published"
+    t.boolean  "is_published"
     t.datetime "published_at"
   end
 
