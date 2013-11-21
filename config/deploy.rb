@@ -1,5 +1,5 @@
-require "bundler/capistrano"
 require "rvm/capistrano"
+require "bundler/capistrano"
 
 set :application, "serre"
 set :repository,  "git@github.com:graines-de-sol/serre.git"
