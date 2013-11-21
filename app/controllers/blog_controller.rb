@@ -14,7 +14,7 @@ class BlogController < ApplicationController
   # -----------------------------------------------------------
   def show
     if params[:id] == 'last'
-      @post = Post.published.order('published_at DESC').last
+      @post = Post.published.order('published_at DESC').first
     else
       @post = Post.find(params[:id])
     end
