@@ -1,166 +1,202 @@
-.span12.form
+.col-md-12.content.form.form-horizontal
 
   = simple_form_for @member, :html => {:multipart => true, :id=>'edit_member'} do |f|
 
-    .outline
-      %p.notice= t('will_be_www_published')
-
-      .clear{:style => 'height: 20px'}
-      .span3
+    .row
+      .col-md-3
         .avatar
           = avatar(@member, '180x180')
         - if is_admin
           = f.file_field :avatar
-      .span8
-        #mail_password_editor
-          .well
-            %a{:href=>'#edit_account', :data=>{'toggle'=>'modal'}, :id=>'mail_me'}
-              = t('edit_my_login_informations')
 
-        %label= t('first_name')
-        = f.input :first_name, :label=>false
-        %label= t('last_name')
-        = f.input :last_name, :required => false, :label=>false
+      .col-md-9
+        .row{:style => 'padding: 20px'}
+          .col-md-6
+            .form-group
+              %label= t('first_name')
+              = f.input :first_name, :label => false
 
-        #baseline
-          %label= t('baseline')
-          = f.text_field :baseline, :style=>'width:570px;'
+            .form-group
+              %label= t('last_name')
+              = f.input :last_name, :required => false, :label => false
 
-        #description
-          /%input{:type=>'text', :id=>'member_birthday_day', :name=>'member[birthday][day]', :style=>'width:20px;', :maxlength=>'2', :value=>birthday[:day], :data=>{'required'=>'true', 'alert'=>t('warnings.member_birthday_day')}}
-          /= select_month(birthday[:month], {:use_month_names=>t('date.month_names').shift}, {:style=>'width:125px;', :name=>'member[birthday][month]'})
-          /= select_year(birthday[:year],  {:start_year => 1930, :end_year => Time.now.year}, {:style=>'width:80px;margin-right:30px;', :name=>'member[birthday][year]'})
+            .form-group
+              %label= t('baseline')
+              = text_field_tag 'member[baseline]', @member.baseline, :style=>'width:100%'
 
-      .clear
+          .col-md-6
+            %br
+            .well
+              %a{:href=>'#edit_account', :data=>{'toggle'=>'modal'}, :id=>'mail_me'}
+                = t('edit_my_login_informations')
 
-      .span7.well.editor.details
-        %table
-          %tr
-            %td
-              %p= t('activity_1')
-            %td
-              %p
-                = f.text_field :organisation, :style=>'margin-right:10px;'
-                = "#{t('website')} http://"
-                = f.text_field :website
-          %tr
-            %td
-              %p= t('activity_2')
-            %td
-              %p
-                = f.text_field :organisation_2, :style=>'margin-right:10px;'
-                = "#{t('website')} http://"
-                = f.text_field :website_2
-          %tr
-            %td
-              %p= t('prestations')
-            %td
-              %p= f.text_area :prestations, :class=>'expandable'
-          %tr
-            %td
-              %p= t('specificities')
-            %td
-              %p= f.text_area :references, :class=>'expandable'
-          %tr
-            %td
-              %p= t('phone')
-            %td
-              %p
-                = f.text_field :phone
-                = t('www_published')
-          %tr
-            %td
-              %p= t('organisation_logo')
-            %td
-              %p
-                %span.logo.left= (image_tag @member.logo.thumb('x75').url, :alt=>"logo") if @member.logo
+        .well.detail-form
+          .form-group
+            .col-sm-2.ta-r
+              %label= "Toutes les compétences"
+            .col-sm-10#do-skillsToAdd
+              - skills = current_user.member.skill_list.map{|skill| skill}
+              - all_skills = ActsAsTaggableOn::Tagging.find_all_by_context("skills").map{|skill| skill.tag.name}
+
+              - all_skills.each do |skill|
+                - unless skills.include?(skill)
+                  %a{:href => '#', 'data-tag-name' => skill, :class => 'tag', :title => 'Cliquer pour ajouter cette compétence'}= skill
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= "Mes compétences"
+            .col-sm-10#do-skillsToremove
+              - skills.each do |skill|
+                %a{:href => '#', 'data-tag-name' => skill, :class => 'tag', :title => 'Cliquer pour retirer cette compétence'}= skill
+
+        .well.detail-form
+          .form-group
+            .col-sm-2.ta-r
+              %label= t('activity_1')
+            .col-sm-4
+              = text_field_tag 'member[organisation]', @member.organisation, :style => 'width: 100%'
+
+            .col-sm-2.ta-r
+              %label= "#{t('website')} http://"
+            .col-sm-4
+              = text_field_tag 'member[website]', @member.website
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= t('activity_2')
+            .col-sm-4
+              = text_field_tag :organisation_2, @member.organisation_2, :style => 'width: 100%'
+
+            .col-sm-2.ta-r
+              %label= "#{t('website')} http://"
+            .col-sm-4
+              = text_field_tag 'member[website_2]', @member.website_2
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= t('prestations')
+            
+            .col-sm-10
+              = text_area_tag 'member[prestations]', @member.prestations, :class=>'expandable'
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= t('phone')
+            .col-sm-10
+              = text_field_tag 'member[phone]', @member.phone
+              = t('www_published')
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= t('organisation_logo')
+            .col-sm-10            
+              %span.logo.left= (image_tag @member.logo.thumb('x75').url, :alt=>"logo") if @member.logo
+              - if @member.logo
                 %a.delete.left{:href => '#', :id => 'remove_logo', :data => {'message' => t('confirms.delete_logo')}}= "Supprimer le logo"
-                = hidden_field_tag 'logo_reset', 'false'
-                %br
-                %br
-                = f.file_field :logo
-                .clear.h-10
-          %tr
-            %td
-              %p= ""
-            %td
-              %p
-                = f.check_box 'www_published'
-                = t('ok_www_published')
+              = hidden_field_tag 'logo_reset', 'false'
+              %br
+              %br
+              = f.file_field :logo
+              .clear.h-10
 
-    .outline.hidden
-      .span7.well.editor.details
-        %table
-          %tr
-            %td
-              %p= t('status')
-            %td
-              %p= f.select(:status_id, Status.all.map{|l|[l.name, l.id]})
-          %tr
-            %td
-              %p= t('phone')
-            %td
-              %p
-                = f.text_field :mobile
-                = t('non_www_published')
-          %tr
-            %td
-              %p= t('I_live_in')
-            %td
-              %p= f.text_field :city
-          %tr
-            %td
-              %p= t('hobbies')
-            %td
-              %p= f.text_area :hobbies, :class=>'expandable'
-          %tr
-            %td
-              %p= t('powers')
-            %td
-              %p= f.text_area :powers, :class=>'expandable'
-          %tr
-            %td
-              %p= t('presence')
-            %td
-              %p= f.text_field :presence
-          %tr
-            %td= ''
-            %td
-              .hr{:style=>'width:96%;margin:auto;margin-bottom:20px;'}
+          .form-group
+            .col-sm-2.ta-r
+              %label= "Site grainesdesol.fr"
+            .col-sm-10
+              = f.check_box 'www_published'
+              = t('ok_www_published')
 
-              .social_networks#pro
-                %h4= t(:pro_social_networks)
-                %br
-                - @pro_networks.each do |network|
-                  %label= t(network[:label])
-                  = image_tag network[:icon]
-                  = text_field_tag "profile[#{network[:id]}]", network[:url]
+        .well.detail-form
+          .form-group
+            .col-sm-2.ta-r
+              %label= "Tous les statuts"
+            .col-sm-10#do-statusToAdd
+              - member_status = current_user.member.statu_list.map{|skill| skill}
+              - all_status    = ActsAsTaggableOn::Tagging.find_all_by_context("status").map{|status| status.tag.name}
 
-              .social_networks#perso
-                %h4= t(:perso_social_networks)
-                %br
-                - @perso_networks.each do |network|
-                  %label= t(network[:label])
-                  = image_tag network[:icon]
-                  = text_field_tag "profile[#{network[:id]}]", network[:url]
-      .clear
+              - all_status.each do |status|
+                - unless member_status.include?(status)
+                  %a{:href => '#', 'data-tag-name' => status, :class => 'tag', :title => 'Cliquer pour ajouter ce statut'}= status
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= "Mon (mes) statut(s)"
+            .col-sm-10#do-statusToremove
+              - member_status.each do |status|
+                %a{:href => '#', 'data-tag-name' => status, :class => 'tag', :title => 'Cliquer pour retirer ce statut'}= status
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= t('phone')
+            .col-sm-9
+              = text_field_tag 'member[mobile]', @member.mobile
+              = t('non_www_published')
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= t('I_live_in')
+            .col-sm-4
+              = f.text_field :city
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= t('hobbies')
+            .col-sm-10
+              = f.text_area :hobbies, :class=>'expandable'
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= t('powers')
+            .col-sm-10
+              = f.text_area :powers, :class=>'expandable'
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= t('presence')
+            .col-sm-10
+              = f.text_field :presence
+
+          .col-md-6
+            .social_networks#pro
+              %b= t(:pro_social_networks)
+              %br
+              %br
+              - @pro_networks.each do |network|
+                %label= t(network[:label])
+                = image_tag network[:icon]
+                = text_field_tag "profile[#{network[:id]}]", network[:url]
+
+          .col-md-6
+            .social_networks#perso
+              %b= t(:perso_social_networks)
+              %br
+              %br
+              - @perso_networks.each do |network|
+                %label= t(network[:label])
+                = image_tag network[:icon]
+                = text_field_tag "profile[#{network[:id]}]", network[:url]
+
+          .clearfix
+
 
     - if current_user.member.id == @member.id || current_user.role == 'admin'
       - if current_user.role == 'admin' && !current_user.view_as_user
-        .span11.admin_member_controls
-          .span3.right
-            = f.radio_button 'is_active', true
-            = "Actif"
-            = f.radio_button 'is_active', false
-            = "Inactif"
-          .span4.right
-            = t('role')
-            %select{:name=>'user[role]', :style=>'margin-right:20px;'}
-              %option{:value=>'user', :selected => @member.user.role == 'user'}= 'User'
-              %option{:value=>'admin', :selected => @member.user.role == 'admin'}= 'Admin'
+        .row
+          .col-md-12.admin_member_controls
+            .span3.right
+              = f.radio_button 'is_active', true
+              = "Actif"
+              = f.radio_button 'is_active', false
+              = "Inactif"
+            .span4.right
+              = t('role')
+              %select{:name=>'user[role]', :style=>'margin-right:20px;'}
+                %option{:value=>'user', :selected => @member.user.role == 'user'}= 'User'
+                %option{:value=>'admin', :selected => @member.user.role == 'admin'}= 'Admin'
 
-      .span11
-        = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right; margin-right:20px;'
+      .row
+        .col-md-12
+          = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right; margin-right:20px;'
 
         - if current_user.member.id == @member.id && current_user.role == 'admin'
           .span6{:style=>'float:right'}
@@ -173,7 +209,6 @@
             %i.icon-trash.icon-white
             = t(:delete_member)
 
+  .clearfix.mt-20
 
-- # Hidden content
 = render :partial => '/modals/edit_user_email_modal'
-

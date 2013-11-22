@@ -1,4 +1,4 @@
-.span11{:style=>'width:880px;'}
+.col-md-12
 
   .well#calendar_header
     - if is_admin
@@ -31,7 +31,9 @@
 
   .clear
 
-  #calendar
+  .row
+    .col-md-12.content
+      #calendar
 
 :javascript
   $(document).ready(function() {

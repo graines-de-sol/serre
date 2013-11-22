@@ -2,6 +2,7 @@ class MembersController < ApplicationController
 
   before_filter :is_logged, :load_conf
 
+
   # GET /members
   # List all members                                    HTML
   # --------------------------------------------------------
@@ -28,12 +29,14 @@ class MembersController < ApplicationController
     @pro_networks = Network.with_urls(@user_profiles, :pro)
     @perso_networks = Network.with_urls(@user_profiles, :perso)
 
-    if Member.can_edit?(current_user, @member.id)
-      render :template => '/members/edit'
-    else
-      render :template => '/members/show'
-    end
+  end
 
+  def edit
+    @member = current_user.member
+
+    @user_profiles = @member.profiles.map{|p|{p.network_id=>p.url}}
+    @pro_networks = Network.with_urls(@user_profiles, :pro)
+    @perso_networks = Network.with_urls(@user_profiles, :perso)
   end
 
   # POST /members
@@ -82,7 +85,7 @@ class MembersController < ApplicationController
     @pro_networks = Network.with_urls(@user_profiles, :pro)
     @perso_networks = Network.with_urls(@user_profiles, :perso)
 
-    render :template => '/members/edit'
+    redirect_to :action => :edit
 
   end
 
@@ -93,6 +96,30 @@ class MembersController < ApplicationController
     User.destroy(params[:id])
 
     redirect_to members_path
+  end
+
+  def tags
+    if params[:do] == 'remove'
+      current_user.member.skill_list.remove(params[:tag_name])
+    elsif params[:do] == 'add'
+      current_user.member.skill_list.add(params[:tag_name])
+    end    
+
+    current_user.member.save
+
+    render :text => 'success'
+  end
+
+  def status
+    if params[:do] == 'remove'
+      current_user.member.statu_list.remove(params[:tag_name])
+    elsif params[:do] == 'add'
+      current_user.member.statu_list.add(params[:tag_name])
+    end    
+
+    current_user.member.save
+
+    render :text => 'success'
   end
 
   # POST /members/mail
@@ -113,5 +140,6 @@ class MembersController < ApplicationController
 
     redirect_to params[:origin]
   end
+
 end
 

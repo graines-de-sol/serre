@@ -28,6 +28,7 @@ gem 'acts_as_tree_rails3'
 gem 'multi_json'
 gem 'uglifier'
 gem 'rvm-capistrano'
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   gem 'rspec-rails'

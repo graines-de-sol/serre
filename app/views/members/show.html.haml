@@ -1,110 +1,115 @@
-.span12
-  .span3
-    .avatar
-      = avatar(@member, '180x180')
+.col-md-12.content
+  .row.mt-20
+    .col-md-3
+      .avatar
+        = avatar(@member, '180x180')
 
-  .span8
-    %h1= @member.first_name
-    %h2= @member.last_name
+    .col-md-8
+      %h1
+        = "#{@member.first_name} #{@member.last_name}"
+        - if Member.can_edit?(current_user, @member.id)
+          %a{:href=> edit_member_path(current_user.member.id), :class=>'btn btn-warning'}= "Modifier ma fiche"
+    
+      - if @member.baseline
+        #baseline= @member.baseline
 
-    - if @member.baseline
-      #baseline= @member.baseline
-
-    #description= "#{@member.status.name if @member.status}"
-    %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@member.user.email, :recipient_id=>@member.id}, :class=>'mail_me'}
-      %i.icon-envelope
-      = t('send_a_message')
+      #description= "#{@member.status.name if @member.status}"
+      %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@member.user.email, :recipient_id=>@member.id}, :class=>'mail_me'}
+        %i.icon-envelope
+        = t('send_a_message')
 
   .clear{:style=>'height:30px;'}
 
-  - if member_has_infos?(@member) || member_has_profile?(@pro_networks) || member_has_profile?(@perso_networks)
-    .span7.well.details
-      %table
-        - if @member.organisation
-          %tr
-            %td
-              %p= t('activity_1')
-            %td
-              %p= @member.website ? link_to(@member.organisation, @member.website) : @member.organisation
+  .row
+    .col-md-12
+      - if member_has_infos?(@member) || member_has_profile?(@pro_networks) || member_has_profile?(@perso_networks)
+        .span7.well.details
+          %table
+            - if @member.organisation
+              %tr
+                %td
+                  %p= t('activity_1')
+                %td
+                  %p= @member.website ? link_to(@member.organisation, "http://#{@member.website}", :target => 'blank') : @member.organisation
 
-        - if @member.organisation_2
-          %tr
-            %td
-              %p= t('activity_2')
-            %td
-              %p= @member.website_2 ? link_to(@member.organisation_2, @member.website_2) : @member.organisation_2
+            - if @member.organisation_2
+              %tr
+                %td
+                  %p= t('activity_2')
+                %td
+                  %p= @member.website_2 ? link_to(@member.organisation_2, "http://#{@member.website_2}", :target => 'blank') : @member.organisation_2
 
-        - if @member.prestations
-          %tr
-            %td
-              %p= t('prestations')
-            %td
-              = simple_format @member.prestations
+            - if @member.prestations
+              %tr
+                %td
+                  %p= t('prestations')
+                %td
+                  = simple_format @member.prestations
 
-        - if @member.references
-          %tr
-            %td
-              %p= t('specificities')
-            %td
-              = simple_format @member.references
+            - if @member.references
+              %tr
+                %td
+                  %p= t('specificities')
+                %td
+                  = simple_format @member.references
 
-        - if @member.mobile
-          %tr
-            %td
-              %p= t('phone')
-            %td
-              %p= phone_number @member.mobile
+            - if @member.mobile
+              %tr
+                %td
+                  %p= t('phone')
+                %td
+                  %p= phone_number @member.mobile
 
-        - if @member.city
-          %tr
-            %td
-              %p= t('I_live_in')
-            %td
-              %p= @member.city.capitalize
+            - if @member.city
+              %tr
+                %td
+                  %p= t('I_live_in')
+                %td
+                  %p= @member.city.capitalize
 
-        - if @member.hobbies
-          %tr
-            %td
-              %p= t('hobbies')
-            %td
-              = simple_format @member.hobbies
+            - if @member.hobbies
+              %tr
+                %td
+                  %p= t('hobbies')
+                %td
+                  = simple_format @member.hobbies
 
-        - if @member.powers
-          %tr
-            %td
-              %p= t('powers')
-            %td
-              = simple_format @member.powers
+            - if @member.powers
+              %tr
+                %td
+                  %p= t('powers')
+                %td
+                  = simple_format @member.powers
 
-        - if @member.presence
-          %tr
-            %td
-              %p= t('presence')
-            %td
-              %p= @member.presence
+            - if @member.presence
+              %tr
+                %td
+                  %p= t('presence')
+                %td
+                  %p= @member.presence
 
-        - if member_has_profile?(@pro_networks) || member_has_profile?(@perso_networks)
-          %tr
-            %td= ''
-            %td
-              .hr{:style=>'width:96%;margin:auto;margin-bottom:20px;'}
+            - if member_has_profile?(@pro_networks) || member_has_profile?(@perso_networks)
+              %tr
+                %td= ''
+                %td
+                  .hr{:style=>'width:96%;margin:auto;margin-bottom:20px;'}
 
-              - if member_has_profile?(@pro_networks)
-                .social_networks#pro
-                  %strong= t(:pro_social_networks)
-                  %br
-                  %br
-                  = show_social_profiles(@pro_networks)
+                  - if member_has_profile?(@pro_networks)
+                    .social_networks#pro
+                      %strong= t(:pro_social_networks)
+                      %br
+                      %br
+                      = show_social_profiles(@pro_networks)
 
-              - if member_has_profile?(@perso_networks)
-                .social_networks#perso
-                  %strong= t(:perso_social_networks)
-                  %br
-                  %br
-                  = show_social_profiles(@perso_networks)
+                  - if member_has_profile?(@perso_networks)
+                    .social_networks#perso
+                      %strong= t(:perso_social_networks)
+                      %br
+                      %br
+                      = show_social_profiles(@perso_networks)
 
 
-      .clear
+          .clear
 
-= render :partial=>'/modals/send_mail_modal'
+  = render :partial=>'/modals/send_mail_modal'
 

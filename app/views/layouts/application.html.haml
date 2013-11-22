@@ -31,32 +31,24 @@
   .page-content.blocky
     .container
       .row
-        .col-md-9
-          .row
-            = yield
-
-        .col-md-3
-          = render :partial => '/shared/aside'
+        = yield
 
     .clear#bottom_margin
 
-  .container
-    .row
-      .col-md-12#footer
-        %p.text-center
-          = t('handcrafted_with_love')
-          %a{:href=>'http://www.guillaume-barillot.com', :target=>'blank'}
-            = t('guillaume_barillot')
-          = t('using')
-          %a{:href=>'http://rubyonrails.org', :target=>'blank'}
-            = t('ror')
-          = t('and')
-          %a{:href=>'http://twitter.github.com/bootstrap', :target=>'blank'}
-            = t('twitter_bootstrap')
-          = '|'
-          = t('cmon')
-          %a{:href=>'https://github.com/la-cordee/refuge', :target=>'blank'}
-            = t('fork_me')
+  %footer
+    .container
+      .row
+        .col-md-12#footer
+          %span.text-center
+            = "© Graines de Sol #{Time.now.year}"
+            = '|'
+            = "Développé par "
+            %a{:href=>'http://www.guillaume-barillot.com', :target=>'blank'}
+              = "GBO"
+            = '|'
+            = "You can also"
+            %a{:href=>'https://github.com/la-cordee/refuge', :target=>'blank'}
+              = t('fork_me')
 
 
 - #### Flash messages handler ####
