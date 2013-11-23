@@ -1,9 +1,10 @@
-- @survey.children.each do |answer|
-  %h4= answer.question
-  - if answer.voters.empty?
-    = t('no_vote')
-  - else
-    - @members.each do |member|
-      - if answer.voters.include?(member.id)
-        = link_to "» #{member.first_name} #{member.last_name}", member_path(member.id)
+.col-md-3
+  - @survey.children.each do |answer|
+    %h4= answer.question
+    - if answer.voters.empty?
+      = t('no_vote')
+    - else
+      - @members.each do |member|
+        - if answer.voters.include?(member.id)
+          = link_to "» #{member.first_name} #{member.last_name}", member_path(member.id)
 

@@ -1,6 +1,6 @@
 = render :partial => '/admin/shared/left_column'
 
-.span10
+.col-md-8.col-md-offset-1.content.pb-20
   #gallery
     - @galleries.each do |gallery|
       .thumbnail
@@ -9,8 +9,8 @@
 
     .clear
 
-  .well
-    = form_tag admin_galleries_path, :multipart => true do
-      %input{:type => 'file', :name => 'gallery[image]'}
-      = submit_tag t('save'), :class => 'btn  btn-warning'
+  .clearfix
+  = form_tag admin_galleries_path, :multipart => true do
+    %input{:type => 'file', :name => 'gallery[image]'}
+    = submit_tag t('save'), :class => 'btn  btn-warning'
 

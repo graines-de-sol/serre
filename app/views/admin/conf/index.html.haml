@@ -1,7 +1,7 @@
 = render :partial => '/admin/shared/left_column'
 
-.span10
-  #global_conf.well
+.col-md-8.col-md-offset-1.content.pt-20
+  #global_conf
     %p.label= t('default_avatar')
     .left
       = image_tag $conf.default_avatar.thumb('101x101').url, :alt => t('default_avatar')

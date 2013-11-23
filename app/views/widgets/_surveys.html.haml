@@ -1,12 +1,13 @@
-- # Holly MVC crap, cannot do anything else but this for now
 - @surveys = Survey.for_location($conf.default_location_id)
 
 - unless @surveys.empty?
   #survey
     %h2.ribbon= t('survey')
 
-    %p.well#question
-      = @surveys.first.question
+    .row
+      .col-md-12
+        .well
+          %p= @surveys.first.question
 
     %ul
       - @surveys.first.children.each do |survey|
@@ -17,11 +18,9 @@
     .clear
     %span= t('vote_to_know_the_results')
 
-    %br
-    %br
 
-    %h2.ribbon= t('older_surveys')
     #older_surveys
+      %h4= t('older_surveys')
       %ul
         - @surveys.offset(1).each do |survey|
           %li

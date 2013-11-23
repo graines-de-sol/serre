@@ -1,14 +1,4 @@
-.span3.show-grid.columns
-  .tabbable.tabs-left.span3
-    %ul.nav.nav-tabs.span3
-      - MediaCategory.published.each do |category|
-        %li{:class => ('active' if params[:id].to_i == category.id)}
-          %a{:href => media_path(category.id)}
-            = category.name
-    - if is_admin
-      %a{:href => admin_medias_path}= t('manage_medias_categories')
-
-.span8.right
+.col-md-8.content.pt-20
   .well
     %p= simple_format(@category.description)
   %br
@@ -36,3 +26,15 @@
           %a.delete{:href => admin_delete_media_path(media.id), :data => {'method'=>'delete', 'confirm'=>t('confirms.delete_media')}}
         %a{:href => media_download_path(media.id), :class => get_type_icon(media)}= "#{media.name} (#{number_to_human_size(media.filesize, :locale => :en)})"
 
+
+.col-md-3.col-md-offset-1.content
+
+  %h3= "Categories"
+  %hr
+  %ul
+    - MediaCategory.published.each do |category|
+      %li{:class => ('active' if params[:id].to_i == category.id)}
+        %a{:href => media_path(category.id)}
+          = category.name
+  - if is_admin
+    %a{:href => admin_medias_path}= t('manage_medias_categories')

@@ -10,7 +10,6 @@ body{
    font-size:13px;
    line-height:25px;
 	-webkit-font-smoothing: antialiased;
-   background:#fafafa url('../img/main-back.png') repeat;
 }
 
 h1,h2,h3,h4{
@@ -1026,7 +1025,6 @@ div.ppt {
 /* Footer */
 
 footer{
-   background:#333 url("../img/footer-back.png") repeat;
    border-top:3px solid #ddd; 
    box-shadow:inset 0px 0px 3px #111;
    color:#ccc;

@@ -1,7 +1,7 @@
 = render :partial => '/admin/shared/left_column'
 
-.span10
-  #categories_management.well
+.col-md-8.col-md-offset-1.content
+  #categories_management.pb-20
     %p.label= t('admin.categories_management')
     = form_tag '/admin/ads/update', :method=>:put do
       %table

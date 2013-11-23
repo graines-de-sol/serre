@@ -25,7 +25,7 @@ $ ->
   # Show older survey's result in modal
   $('#older_surveys ul li a').click ->
     $("#survey_modal").modal()
-    $("#survey_modal .modal-header h3").text $(this).text()
+    $("#survey_modal h3").text $(this).text()
 
     $.ajax
       url: '/surveys'

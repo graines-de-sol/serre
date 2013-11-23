@@ -33,7 +33,7 @@
         %nav.collapse.navbar-collapse.bs-navbar-collapse.navbar-right{role: "navigation"}
           %ul.nav.navbar-nav
 
-            - if !is_admin
+            - if is_admin
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                   = "Admin"

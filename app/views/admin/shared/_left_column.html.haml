@@ -1,8 +1,7 @@
-.span2.show-grid.columns{:style=>'width:115px;'}
-  .tabbable.tabs-left
-    %ul.nav.nav-tabs
-      - admin_tabs.each do |action|
-        %li{:class=>('active' if params[:controller] == "admin/#{action}")}
-          %a{:href=>"/admin/#{action}"}
-            = t("admin.tabs.#{action}")
+.col-md-3.content
+  %ul
+    - admin_tabs.each do |action|
+      %li{:class=>('active' if params[:controller] == "admin/#{action}")}
+        %a{:href=>"/admin/#{action}"}
+          = t("admin.tabs.#{action}")
 

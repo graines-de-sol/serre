@@ -1,7 +1,7 @@
 = render :partial => '/admin/shared/left_column'
 
-.span10
-  #medias_categories.well
+.col-md-8.col-md-offset-1.content.pb-20
+  #medias_categories
     %p.label= t('admin.medias.categories_title')
 
     %a.label.label-important.right{:href => admin_medias_path, :data => {'method' => 'post'}}= t('admin.medias.create_category')

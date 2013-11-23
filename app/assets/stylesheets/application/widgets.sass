@@ -1,62 +1,29 @@
-h2.ribbon
-  float: right
-  display: block
-  width: 351px
-  height: 45px
-  padding-left: 10px
-  color: #fff
-  font-size: 16px
-  background: url(asset-path('ribbon.png', image)) top right no-repeat
-  text-shadow: -1px -1px #555
-
-#survey a
-  display: block
-  margin-bottom: 10px
+#survey 
+  a
+    display: block
+    margin-bottom: 10px
+  ul
+    padding: 0
 
 #older_surveys
   margin-top: 10px
   border-top: 1px solid #d4d4d4
-  width: 325px
+  h4
+    font-weight: bold !important
   span
     color: #333
     line-height: 40px
-
-#occupation
-  width: 340px
-  height: 120px
-  margin-right: 20px
-  #gauge
-    background: url(asset-path('gauge.png', image)) left no-repeat
-    width: 338px
-    height: 45px
-    padding-top: 5px
-  span
-    line-height: 12px !important
-    font-size: 11px !important
-
-#rate
-  width: 40px
-  height: 31px
-  background: url(asset-path('alpha_bg_60.png', image))
-  margin: 0px
-  padding-top: 10px
-  color: #fff
-  text-align: center
-
-#occupation select
-  width: 150px
-
-a.occupation
-  color: #d4d4d4
-  text-decoration: none
-  cursor: default
+  ul
+    margin: 0
+    padding: 0
+    li
+      margin: 0
 
 #survey
-  width: 360px
-  p.well
+  .well
     clear: both
-    width: 317px
-    padding: 8px
+    width: 100%
+    padding: 10px
     margin-left: 0
     font-weight: normal
     font-style: italic
@@ -66,3 +33,22 @@ a.occupation
       list-style-type: none
       margin-left: 5px
 
+.modal-body 
+  .result
+    background-color: #a7cc49
+    height: 32px
+    width: 300px
+    padding: 5px
+    color: #fff
+    font-weight: bold
+    margin-top: 10px
+    -moz-box-shadow: inset 0px 0px 5px 0px #656565
+    -webkit-box-shadow: inset 0px 0px 5px 0px #656565
+    -o-box-shadow: inset 0px 0px 5px 0px #656565
+    box-shadow: inset 0px 0px 5px 0px #656565
+  span
+    font-style: italic
+  #wait
+    text-align: center
+    padding-top: 50px
+    padding-bottom: 50px

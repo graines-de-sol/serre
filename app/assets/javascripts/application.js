@@ -7,5 +7,7 @@
 //= require jquery_ujs
 //= require ./bootstrap/bootstrap.min
 //= require front
+//= require surveys
+//= require ads
 
 

@@ -1,12 +1,15 @@
 .col-md-12
 
-  .well#calendar_header
-    - if is_admin
-      %a{:href => '#', :class => 'doToggleCalendarEditor'}= t('calendar.edit_calendar')
-      .clear
-    %h2= @calendar.name
-    %br
-    = soft_clean(@calendar.description)
+  .row
+    .col-md-12.content.mb-20.pt-20
+
+      .well#calendar_header
+        - if is_admin
+          %a{:href => '#', :class => 'doToggleCalendarEditor'}= t('calendar.edit_calendar')
+          .clear
+        %h2= @calendar.name
+        %br
+        = soft_clean(@calendar.description)
 
   - if is_admin
     .well#calendar_editor.hide
@@ -34,6 +37,7 @@
   .row
     .col-md-12.content
       #calendar
+
 
 :javascript
   $(document).ready(function() {
@@ -88,7 +92,8 @@
   
 = render :partial => '/modals/toggle_event_modal'
 
-= javascript_include_tag '/javascripts/fullcalendar-1.5.3/fullcalendar/fullcalendar.min.js'
+
+= javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js'
 = javascript_include_tag '/javascripts/fullcalendar-1.5.3/fullcalendar/gcal.js'
 
 = t_init(:name => 'calendar[description]', :width => '838')

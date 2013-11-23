@@ -1,7 +1,7 @@
 = render :partial => '/admin/shared/left_column'
 
-.span10
-  #locations_conf.well
+.col-md-8.col-md-offset-1.content.pb-20
+  #locations_conf
     %p.label= t('admin.current_locations')
     = form_tag admin_blog_category_path('all'), :method=>:put do
       %table#locations_mgt

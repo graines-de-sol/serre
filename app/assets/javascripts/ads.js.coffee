@@ -1,6 +1,7 @@
 $ ->
   # Launch ad creation modal
   $('#toggle_ad_creator').click ->
+    $('#create_ad').modal()
     default_category_id = $('#default_category_id').val()
     default_end_at = $.datepicker.parseDate('yy-mm-dd', $('#default_end_at').val())
 
@@ -35,8 +36,8 @@ $ ->
     $('#ad_location_id option[value='+location_id+']').attr("selected", "selected")
 
   # Filter ads by categories
-  $('#categories ul li a').click ->
-    $('#categories ul li a').attr('id','')
+  $('#ads-categories ul li a').click ->
+    $('#ads-categories ul li a').attr('id','')
     category_id = parseInt($(this).data('category_id'))
     $('.ad').each ->
       if category_id == 0

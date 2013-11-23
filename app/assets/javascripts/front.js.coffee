@@ -1,8 +1,8 @@
 $ ->
   # Tooltip init
-  #$("a[rel='tooltip']").tooltip()
+  $("a[rel='tooltip']").tooltip()
 
-  #jQuery('body').linkify()
+  jQuery('body').linkify()
 
   $('.dotoggle').click ->
     $($(this).data('block')).slideToggle()
@@ -11,10 +11,10 @@ $ ->
   #$('textarea.expandable').autogrow()
 
   # Date picker init
-  #$('.datepicker').datepicker
-  #  dateFormat:'DD dd MM yy'
-  #  altField: '#end_at'
-  #  altFormat: 'yy-mm-dd'
+  $('.datepicker').datepicker
+    dateFormat:'DD dd MM yy'
+    altField: '#end_at'
+    altFormat: 'yy-mm-dd'
 
   # Modal mail form
   $('.mail_me').click ->
