@@ -1,0 +1,18 @@
+%h3= "Derniers commentaires"
+%hr
+- Comment.last_published.each do |comment|
+
+  .row.comment
+    .col-md-2
+      %a.avatar{:href=>member_path(current_user.member.id), :title => "#{current_user.member.first_name} #{current_user.member.last_name}", :data => {:do => 'tooltip'}}
+        = avatar(comment.member, '100x100')
+    .col-md-9.col-md-offset-1
+      .row
+        .col-md-12
+          %p
+            = "#{comment.member.first_name} #{comment.member.last_name}"
+            %span= "Le #{l(comment.created_at, :format => :long)}"
+      .row
+        .col-md-12
+          %p= comment.content
+

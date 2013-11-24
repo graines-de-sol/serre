@@ -7,5 +7,6 @@ class Ad < ActiveRecord::Base
   }
 
   scope :published, where(['end_at > ?', Time.now - 1.day]).order('created_at DESC')
+  scope :last_published, where(['end_at > ?', Time.now - 1.day]).order('created_at DESC').limit(10)
 end
 

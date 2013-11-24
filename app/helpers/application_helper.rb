@@ -10,7 +10,7 @@ module ApplicationHelper
     tabs = [
       {:name   => 'dashboard',
        :icon   => 'icon-home icon-white',
-       :url    => 'blog'
+       :url    => ''
       },
       {:name   => 'blog_tab',
        :icon   => 'icon-calendar icon-white',

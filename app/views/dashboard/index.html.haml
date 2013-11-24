@@ -1,8 +1,42 @@
-.span11#dashboard
-  .left
-    = render :partial  => '/widgets/headline'
-    = render :template => '/blog/index'
+.col-md-7.content.mb-20#last_post
+  %h2
+    %b= link_to @last_post.title, blog_path(@last_post.id)
+  %hr
+  = truncate(soft_clean(strip_tags(@last_post.content)), :length => 500)
+  .clearfix
+  = link_to "» Lire la suite", blog_path(@last_post.id), :class => 'read-more'
 
-  .right
-    = render :partial => 'right_column'
+.col-md-5.mb-20#last_ads
+  .row
+    .col-md-11.col-md-offset-1.content#last_ads
+      = render :partial => '/widgets/last_ads'
+      .clearfix
 
+.col-md-3
+  .row.mb-20
+    .col-md-12.content
+      = render :partial => '/widgets/new_comers'
+      .clearfix
+
+  .row
+    .col-md-12.content
+      = render :partial => '/widgets/blog_archives'
+      .clearfix
+
+.col-md-3
+  .row
+    .col-md-12.col-md-offset-1.content.pb-20.mb-20
+      = render :partial => '/widgets/surveys'
+
+  .row
+    .col-md-12.col-md-offset-1.content.pb-20
+      = render :partial => '/widgets/blog_categories'
+
+.col-md-6
+  .row
+    .col-md-11.col-md-offset-1.content.mb-20
+      = render :partial => '/widgets/last_comments'
+
+  .row
+    .col-md-11.col-md-offset-1.content
+      = render :partial => '/widgets/gallery'

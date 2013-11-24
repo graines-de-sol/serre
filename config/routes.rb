@@ -2,7 +2,7 @@ Refuge::Application.routes.draw do
 
   devise_for :users
 
-  root :to=> "blog#show", :id => 'last'
+  root :to=> "dashboard#index", :id => 'last'
 
   match 'members/search' => 'members#search', :via => :post
   match 'members/mail' => 'members#mail_member', :via => :post

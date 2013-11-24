@@ -38,20 +38,32 @@
     textarea
       width: 570px
       height: 150px
-    .comment
-      clear: both
-      padding: 10px 0
-      .avatar
-        text-align: center
-        width: 55px
-      .date
-        padding-top: 5px
-        padding-left: 5px
-        border-left: 1px solid #d4d4d4
-      p
-        display: block
-        float: left
-        margin-top: 10px
+.comment
+  clear: both
+  padding: 10px 0
+  margin: 20px 0
+  .avatar
+    text-align: center
+    border: 1px solid #eee
+  .date
+    padding-top: 5px
+    padding-left: 5px
+    border-left: 1px solid #d4d4d4
+  p
+    display: block
+    float: left
+    margin-top: 10px  
+  .col-md-9, .col-md-10
+    background-color: #f4eacd
+    padding: 20px  
+  textarea
+    width: 100%
+    height: 100px
+    border: 0
+    margin-bottom: 10px
+  span
+    color: #999
+    font-size: 12px
 
 .blog > .right
   width: 360px
@@ -60,7 +72,7 @@
 ul.archives_month
   width: 350px
   li
-    list-style-type: square
+    list-style-type: round
     a
       font-size: 14px
 
@@ -70,22 +82,6 @@ ul.archives_month
   textarea
     width: 90%
     height: 100px
-
-.comment
-  margin: 20px 0
-  .col-md-9
-    background-color: #f4eacd
-    padding: 20px
-  .avatar
-    border: 1px solid #eee
-  textarea
-    width: 100%
-    height: 100px
-    border: 0
-    margin-bottom: 10px
-  span
-    color: #999
-    font-size: 12px
 
 ul.blog-categories
   list-style-type: round

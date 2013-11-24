@@ -2,16 +2,10 @@ class DashboardController < ApplicationController
 
   before_filter :is_logged, :load_conf
 
-  # GET /
-  # Show dashboard main root page                                HTML
-  # -----------------------------------------------------------------
   def index
-    @posts = Post.last_posts
+    @last_post = Post.published.order('published_at DESC').first
   end
 
-  # POST /dashboard
-  # Create/update adds                                 REDIRECT
-  # -----------------------------------------------------------
   def create
 
     params[:ad][:member_id] = current_user.member.id
@@ -26,9 +20,6 @@ class DashboardController < ApplicationController
     redirect_to  '/'
   end
 
-  # PUT /dashboard/:id
-  # Update then output survey stats                         XHR
-  # -----------------------------------------------------------
   def update
 
     @survey = Survey.find(params[:survey_id])
@@ -46,9 +37,6 @@ class DashboardController < ApplicationController
     render :partial => '/dashboard/survey_response'
   end
 
-  # DELETE /dashboard/:id
-  # Deselete an ad                                     REDIRECT
-  # -----------------------------------------------------------
   def destroy
 
     Ad.find(params[:id]).update_attributes(

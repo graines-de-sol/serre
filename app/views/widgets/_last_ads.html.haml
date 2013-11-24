@@ -1,0 +1,7 @@
+%h3= "Dernières annonces"
+%hr
+%ul
+  - Ad.last_published.each do |ad|
+    %li
+      = link_to ad.subject, ads_path
+

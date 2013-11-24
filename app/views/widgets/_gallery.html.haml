@@ -1,12 +1,13 @@
-.gallery
-  %h2.ribbon= t('gallery_title')
 
-  - Gallery.all.each do |i|
-    .thumbnail
-      %a{:href => "#{i.image.thumb('500x500').url}", :rel=>"lightbox[gallery]"}
-        = image_tag i.image.thumb('100x100').url
+%h3= "Dernières photos ajoutées"
+%hr
+- Gallery.last_pictures.each do |picture|
+  .col-md-2
+    .row
+      .col-md-11.center.gallery-thumbnail
+        %a{:href => "#{picture.image.thumb('500x500').url}", :rel=>"lightbox[gallery]"}
+          = image_tag picture.image.thumb('100x100').url
 
-  .clear
-  - if is_admin
-    = link_to t('gallery_manage_images'), admin_galleries_path
+.clearfix
+
 

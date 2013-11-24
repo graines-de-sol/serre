@@ -2,7 +2,8 @@
 
 - unless @surveys.empty?
   #survey
-    %h2.ribbon= t('survey')
+    %h3= t('survey')
+    %hr
 
     .row
       .col-md-12
@@ -19,12 +20,13 @@
     %span= t('vote_to_know_the_results')
 
 
-    #older_surveys
-      %h4= t('older_surveys')
-      %ul
-        - @surveys.offset(1).each do |survey|
-          %li
-            %a{:href=>'#', :data=>{'survey_id' => survey.id}}= survey.question
+    - if params[:controller] != 'dashboard'
+      #older_surveys
+        %h4= t('older_surveys')
+        %ul
+          - @surveys.offset(1).each do |survey|
+            %li
+              %a{:href=>'#', :data=>{'survey_id' => survey.id}}= survey.question
 
 
   %input{:type => 'hidden', :id => 'current_survey_id', :value => @surveys.first.id}
