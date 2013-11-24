@@ -7,15 +7,29 @@
     background-color: #fff
     margin: 5px 5px 5px 0
     float: left
+    position: relative
     a.delete
       position: absolute
       width: 16px
       height: 16px
-      background: url(asset-path('cross.png', image)) left no-repeat
+      top: 0
+      left: 0      
+      &:before
+        content: "×"
+        color: red
+        font-size: 19px
+        font-weight: bolder
     img
       max-width: 100px
       max-height: 100px
       overflow: hidden
+
+ul#galleries
+  list-style-type: none
+  padding: 0 
+  a.delete
+    font-weight: bolder
+    margin-right: 10px
 
 .gallery
   width: 360px

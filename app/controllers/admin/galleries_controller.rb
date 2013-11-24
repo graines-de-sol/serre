@@ -1,27 +1,30 @@
-class Admin::GalleriesController < ApplicationController
+  class Admin::GalleriesController < ApplicationController
 
   before_filter :is_admin, :load_conf
 
-
-  # POST /admin/headlines
-  # Update headline                                        HTML
-  # -----------------------------------------------------------
   def index
     @galleries = Gallery.all
+    @gallery = Gallery.new
   end
 
-  # POST /admin/headlines
-  # Update headline                                    REDIRECT
-  # -----------------------------------------------------------
+  def show
+    @gallery = Gallery.find(params[:id])
+  end
+
   def create
-    Gallery.create(params[:gallery])
+    @galleries = Gallery.all
+    @gallery = Gallery.create(params[:gallery])
 
-    redirect_to admin_galleries_path
+    render :template => '/admin/galleries/index'
   end
 
-  # DELETE /admin/galleries/:id
-  # Delete image from gallery                          REDIRECT
-  # -----------------------------------------------------------
+  def update
+    @gallery = Gallery.find(params[:id])
+    @gallery.update_attributes(params[:gallery])
+
+    render :template => '/admin/galleries/show'
+  end
+
   def destroy
     Gallery.destroy(params[:id])
 

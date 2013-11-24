@@ -1,40 +1,32 @@
 .col-md-8.content.pt-20
-  .well
-    %p= simple_format(@category.description)
-  %br
-  - if is_admin
-    .well{:style => 'height:130px;overflow: hidden'}
-      = form_tag upload_media_admin_media_path(@category), :multipart => true do
-        %table#uploader
-          %tr
-            %td
-              %label= t('medias.choose_file')
-            %td
-              %input{:type => 'file', :name => 'media[file]'}
-          %tr
-            %td
-              %label= t('medias.file_name')
-            %td
-              %input{:type => 'text', :name => 'media[name]'}
+  - unless @category.description.blank?
+    %h5{:style => 'border-bottom: 2px solid #999'}= simple_format(@category.description)
 
-        = submit_tag t('send'), :class => 'btn  btn-warning'
+  - if(Agreement.to(current_user, :write, 'workgroup', @category.id) || @category.is_public == 1)
+    #media_uploader
+    .clear.h-20
+    %input{:type => 'hidden', :id => 'uploader_label', :value => "Glissez/déposez ici vos fichiers pour les télécharger ou bien cliquez pour les sélectionner"}
+    %input{:type => 'hidden', :id => 'media_id', :value => params[:id]}
 
   %ul.medias_list
     - @category.medias.each do |media|
       %li
-        - if is_admin
-          %a.delete{:href => admin_delete_media_path(media.id), :data => {'method'=>'delete', 'confirm'=>t('confirms.delete_media')}}
+        - if(Agreement.to(current_user, :delete, 'media_category', @category.id) || @category.is_public == 1)
+          %a.delete{:href => delete_media_path(media.id), :data => {'method'=>'delete', 'confirm'=>t('confirms.delete_media')}}
+        
         %a{:href => media_download_path(media.id), :class => get_type_icon(media)}= "#{media.name} (#{number_to_human_size(media.filesize, :locale => :en)})"
 
 
-.col-md-3.col-md-offset-1.content
+.col-md-4
+  .row
+    .col-md-11.col-md-offset-1.content
 
-  %h3= "Categories"
-  %hr
-  %ul
-    - MediaCategory.published.each do |category|
-      %li{:class => ('active' if params[:id].to_i == category.id)}
-        %a{:href => media_path(category.id)}
-          = category.name
-  - if is_admin
-    %a{:href => admin_medias_path}= t('manage_medias_categories')
+      %h3= "Categories"
+      %hr
+      %ul
+        - MediaCategory.published.each do |category|
+          %li{:class => ('active' if params[:id].to_i == category.id)}
+            %a{:href => media_path(category.id)}
+              = category.name
+      - if is_admin
+        %a{:href => admin_medias_path}= t('manage_medias_categories')

@@ -1,0 +1,53 @@
+= render :partial => '/admin/shared/left_column'
+
+.col-md-8.col-md-offset-1.content.pb-20
+  %h4
+    = link_to "« Toutes les galeries", admin_galleries_path
+
+  .row
+    .col-md-12
+      .well
+        %b= "Ajouter une image à la galerie"
+        = form_tag admin_gallery_pictures_path(@gallery.id), {:multipart => true, :method => :post} do
+          %input{:type => 'hidden', :name => 'picture[gallery_id]', :value => @gallery.id}
+          .row
+            .col-md-6
+              %input{:type => 'file', :name => 'picture[image]'}
+            .col-md-3
+              = submit_tag t('add'), :class => 'btn  btn-warning'
+
+  .row
+    .col-md-12
+      #gallery
+        - @gallery.pictures.each do |picture|
+          .thumbnail
+            %a.delete{:href => admin_gallery_picture_path(@gallery.id, picture.id), :data => {'method' => 'delete', 'confirm' => 'Supprimer cette image ?!'}}
+            = image_tag picture.image.thumb('100x100').url
+
+        .clearfix
+    .clearfix
+    %br
+
+  .well
+    %h3= "Paramètres de la galerie"
+    = form_tag admin_gallery_path(params[:id]), {:method => :put, :class => 'form'} do
+      = render :partial => '/admin/shared/errors', :locals => {:what => @gallery} 
+
+      .form-group
+        %label= "Nom : "
+        = text_field_tag 'gallery[name]', @gallery.name, :style => 'width: 100%'
+      .form-group
+        %label= "Evénement du :"
+        = text_field_tag 'event_at', l(@gallery.event_at, :format => :long), :class => 'datepicker', :style => 'width: 100%'
+        = hidden_field_tag 'gallery[event_at]', @gallery.event_at, :id => 'end_at'
+      .form-group
+        %label= "Commentaire :"
+        = text_area_tag 'gallery[comment]',@gallery.comment, :style => 'width: 100%; height:100px'
+      .form-group
+        = submit_tag "Enregistrer", :class => 'btn btn-warning'
+
+
+
+
+
+

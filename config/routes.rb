@@ -12,10 +12,12 @@ Refuge::Application.routes.draw do
   match 'blog/archives/:year/:month' => 'blog#show_archives', :as => :blog_archives, :via => :get
 
   resources :blog
-  resources :images,   :only => [:index, :create, :destroy]
-  resources :surveys,  :only => [:create]
-  resources :comments, :only => [:destroy, :update]
-  resources :ads,      :only => [:index, :create, :destroy]
+  resources :workgroups
+  resources :galleries, :only => [:index, :show]
+  resources :images,    :only => [:index, :create, :destroy]
+  resources :surveys,   :only => [:create]
+  resources :comments,  :only => [:destroy, :update]
+  resources :ads,       :only => [:index, :create, :destroy]
   resources :members
   resources :pages
   resources :dashboard
@@ -28,7 +30,9 @@ Refuge::Application.routes.draw do
 
     match 'occupation' => 'locations#occupation', :via=>:put
 
-    resources :galleries,       :only => [:index, :create, :destroy]
+    resources :galleries do
+      resources :pictures, :only => [:create, :update, :destroy]
+    end
     resources :events,          :only => [:update]
     resources :conf,            :only => [:index, :create]
     resources :headlines,       :only => [:index, :create]

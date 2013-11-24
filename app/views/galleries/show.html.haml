@@ -1,0 +1,20 @@
+.col-md-12.content.pb-20
+
+
+  %h3= @gallery.name
+  %hr
+  %h4= l(@gallery.event_at, :format => :long)
+  %p= @gallery.comment
+  %hr
+  .col-md12
+    - @gallery.pictures.each do |picture|
+      .col-md-2
+        .row
+          .col-md-11.center.gallery-thumbnail
+            %a{:href => picture.image.thumb('500x500').url, :rel => 'lightbox'}
+              = image_tag picture.image.thumb('100x100').url , :class => 'img-responsive'
+
+    .clearfix
+
+
+

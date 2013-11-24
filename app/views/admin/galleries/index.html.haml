@@ -1,16 +1,49 @@
 = render :partial => '/admin/shared/left_column'
 
 .col-md-8.col-md-offset-1.content.pb-20
-  #gallery
-    - @galleries.each do |gallery|
-      .thumbnail
-        %a.delete{:href => admin_gallery_path(gallery.id), :data => {'method' => 'delete', 'confirm' => 'sure ?!'}}
-        = image_tag gallery.image.thumb('100x100').url
 
-    .clear
+  %h3
+    %a{:href => '#', :class => 'dotoggle', 'data-block' => '#newGalleryForm'}= "+ Ajouter une galerie photo"
+
+  #newGalleryForm{:style => 'display:none;'}
+    = form_tag admin_galleries_path, :class => 'form' do
+      = render :partial => '/admin/shared/errors', :locals => {:what => @gallery} 
+
+      .form-group
+        %label= "Nom de la galerie"
+        %br
+        %input{:type => 'text', :name => 'gallery[name]', :value => @gallery.name, :class => 'form-control'}
+      .form-group
+        %label= "Date de l'événement"
+        %br
+        .row
+          .col-md-3
+            %input{:type => 'text', :name => 'gallery[event_at]', :class => 'form-control datepicker'}
+      .form-group
+        %label= "Commentaires"
+        %br
+        %textarea{:name => 'gallery[comment]', :class => 'form-control'}
+      .form-group
+        = submit_tag t('save'), :class => 'btn  btn-warning'
+
+  %hr
+  %ul#galleries
+    - @galleries.each do |gallery|
+      %li
+        .well
+          %h3
+            = link_to "×", admin_gallery_path(gallery.id), :method => :delete, :confirm => "Supprimer cette galerie ainsi que toutes ses images ?!", :class => 'delete'
+            = link_to "#{gallery.name} (#{gallery.pictures.count} images)", admin_gallery_path(gallery.id)
+          %p= l(gallery.event_at, :format => :long)
+          %hr
+          .col-md12
+            - i = 0
+            - gallery.pictures.each do |picture|
+              - break if i > 5
+              .col-md-2
+                = image_tag picture.image.thumb('100x100').url 
+              - i += 1
+            .clearfix
 
   .clearfix
-  = form_tag admin_galleries_path, :multipart => true do
-    %input{:type => 'file', :name => 'gallery[image]'}
-    = submit_tag t('save'), :class => 'btn  btn-warning'
 

@@ -12,6 +12,10 @@ module ApplicationHelper
        :icon   => 'icon-home icon-white',
        :url    => 'blog'
       },
+      {:name   => 'blog_tab',
+       :icon   => 'icon-calendar icon-white',
+       :url    => 'blog'
+      },
       {:name   => 'members',
        :icon   => 'icon-search icon-white',
        :url    => 'members'
@@ -24,10 +28,18 @@ module ApplicationHelper
        :icon   => 'icon-random icon-white',
        :url    => 'ads'
       },
+      {:name   => 'galleries',
+       :icon   => 'icon-camera icon-white',
+       :url    => 'galleries'
+      },
       {:name   => 'medias.title',
        :icon   => 'icon-book icon-white',
        :url    => 'medias'
-      }
+      },
+      {:name   => 'workgroups',
+       :icon   => 'icon-folder-open icon-white',
+       :url    => 'workgroups'
+      },
     ]
   end
 

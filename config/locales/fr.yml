@@ -40,6 +40,7 @@ fr:
     city: "Ville"
   the: "Le"
   by: "par"
+  add: "Ajouter"
   active_members: "Membres actifs"
   inactive_members: "Anciens"
   all_members: "Tous"
@@ -47,7 +48,9 @@ fr:
   register_this_event: "S'inscrire à cet évèvement"
   good_morning: "Bonjour"
   good_evening: "Bonsoir"
-  dashboard: "Actualité"
+  dashboard: "Accueil"
+  blog_tab: "Actualités"
+  workgroups: "Groupes de travail"
   members: "Les entrepreneurs"
   meetings: "Agenda"
   headlines: "Message"
@@ -122,6 +125,12 @@ fr:
           attributes:
             first_name:
               blank: "Doit être renseigné !"
+        gallery:
+          attributes:
+            name:
+              blank: "Merci de donner un nom à cette galerie"
+            event_at:
+              blank: "Merci de renseigner la date de l'événement"
   your_ad: "Votre annonce... (500 caractères maximum)"
   category: "Catégorie"
   reply_this_ad: "Répondre à cette annonce"

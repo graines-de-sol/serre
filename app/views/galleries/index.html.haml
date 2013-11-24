@@ -1,0 +1,21 @@
+.col-md-12.content.pt-20
+  %ul#galleries
+    - @galleries.each do |gallery|
+      %li
+        .well
+          %h3= link_to "#{gallery.name} (#{gallery.pictures.count} images)", gallery_path(gallery.id)
+          %p= l(gallery.event_at, :format => :long)
+          %hr
+          .col-md12
+            - i = 0
+            - gallery.pictures.each do |picture|
+              - break if i > 5
+              .col-md-2
+                .row
+                  .col-md-11.center.gallery-thumbnail
+                    = image_tag picture.image.thumb('100x100').url 
+              - i += 1
+            .clearfix
+
+
+

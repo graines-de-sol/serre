@@ -1,8 +1,8 @@
 class Gallery < ActiveRecord::Base
 
-  validates_presence_of :image
+  has_many :pictures, :dependent => :destroy
 
-  image_accessor :image
-
+  validates_presence_of :name
+  validates_presence_of :event_at
 end
 

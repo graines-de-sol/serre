@@ -1,0 +1,9 @@
+
+- if what.errors.any?
+  .row
+    .col-md-12.form-errors
+      %ul
+        - what.errors.messages.each do |error, message|
+          %li= message[0]
+
+ 
