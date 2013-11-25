@@ -1,8 +1,14 @@
-.row       
+.row     
+  .col-md-12.content.last_updated.side-block.mb-20
+    %h3= "Rechercher par nom"
+    %hr
+    %input{:type => 'text', :class => 'col-md-12', :placeholder => 'Premières lettres du nom ou prénom...', 'data-do' => 'searchMember'}
+    .clearfix.mt-10
+
   .col-md-12.last_updated.side-block
-    = render :partial => '/widgets/members_tags' 
+    = render :partial => '/widgets/members_skills' 
     .clearfix
 
   .col-md-12.last_updated.side-block.mt-20
-    = render :partial => '/widgets/members_activities'
+    = render :partial => '/widgets/members_status'
     .clearfix

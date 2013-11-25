@@ -41,6 +41,7 @@ Refuge::Application.routes.draw do
     resources :blog_categories, :only => [:index, :create, :update, :destroy]
     resources :ads,             :only => [:index, :create, :update, :destroy]
     resources :newsletters
+    resources :tags
 
     match 'medias/media/:id' => 'medias#delete_media', :as => :delete_media, :via => :delete
     resources :medias,     :only => [:index, :create, :update, :destroy] do

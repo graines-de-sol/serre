@@ -8,7 +8,7 @@
       %h1
         = "#{@member.first_name} #{@member.last_name}"
         - if Member.can_edit?(current_user, @member.id)
-          %a{:href=> edit_member_path(current_user.member.id), :class=>'btn btn-warning'}= "Modifier ma fiche"
+          %a{:href=> edit_member_path(@member.id), :class=>'btn btn-warning'}= "Modifier ma fiche"
     
       - if @member.baseline
         #baseline= @member.baseline

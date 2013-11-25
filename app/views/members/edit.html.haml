@@ -34,20 +34,19 @@
           .form-group
             .col-sm-2.ta-r
               %label= "Toutes les compétences"
-            .col-sm-10#do-skillsToAdd
-              - skills = current_user.member.skill_list.map{|skill| skill}
-              - all_skills = ActsAsTaggableOn::Tagging.find_all_by_context("skills").map{|skill| skill.tag.name}
-
+            .col-sm-10#do-skillsToAdd.mh-20
+              - skills = @member.skill_list.map{|skill| skill}
+              - all_skills = ActsAsTaggableOn::Tagging.find_all_by_context("skills").map{|skill| skill.tag.name}.uniq
               - all_skills.each do |skill|
                 - unless skills.include?(skill)
-                  %a{:href => '#', 'data-tag-name' => skill, :class => 'tag', :title => 'Cliquer pour ajouter cette compétence'}= skill
-
+                  %a{:href => '#', 'data-tag-name' => skill, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour ajouter cette compétence'}= skill
+              %hr
           .form-group
             .col-sm-2.ta-r
               %label= "Mes compétences"
             .col-sm-10#do-skillsToremove
               - skills.each do |skill|
-                %a{:href => '#', 'data-tag-name' => skill, :class => 'tag', :title => 'Cliquer pour retirer cette compétence'}= skill
+                %a{:href => '#', 'data-tag-name' => skill, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour retirer cette compétence'}= skill
 
         .well.detail-form
           .form-group
@@ -111,19 +110,19 @@
             .col-sm-2.ta-r
               %label= "Tous les statuts"
             .col-sm-10#do-statusToAdd
-              - member_status = current_user.member.statu_list.map{|skill| skill}
-              - all_status    = ActsAsTaggableOn::Tagging.find_all_by_context("status").map{|status| status.tag.name}
+              - member_status = @member.statu_list.map{|skill| skill}
+              - all_status    = ActsAsTaggableOn::Tagging.find_all_by_context("status").map{|status| status.tag.name}.uniq
 
               - all_status.each do |status|
                 - unless member_status.include?(status)
-                  %a{:href => '#', 'data-tag-name' => status, :class => 'tag', :title => 'Cliquer pour ajouter ce statut'}= status
+                  %a{:href => '#', 'data-tag-name' => status, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour ajouter ce statut'}= status
 
           .form-group
             .col-sm-2.ta-r
               %label= "Mon (mes) statut(s)"
             .col-sm-10#do-statusToremove
               - member_status.each do |status|
-                %a{:href => '#', 'data-tag-name' => status, :class => 'tag', :title => 'Cliquer pour retirer ce statut'}= status
+                %a{:href => '#', 'data-tag-name' => status, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour retirer ce statut'}= status
 
           .form-group
             .col-sm-2.ta-r

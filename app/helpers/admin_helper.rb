@@ -4,7 +4,7 @@ module AdminHelper
   # Name of the tab == controller name !
   def admin_tabs
     # 'locations'
-    tabs = ['surveys', 'ads', 'stats', 'conf', 'medias', 'headlines', 'blog_categories', 'galleries', 'newsletters']
+    tabs = ['surveys', 'ads', 'stats', 'conf', 'medias', 'headlines', 'blog_categories', 'galleries', 'newsletters', 'tags']
   end
 
 end

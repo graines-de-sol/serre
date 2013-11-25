@@ -3,25 +3,16 @@ class MembersController < ApplicationController
   before_filter :is_logged, :load_conf
 
 
-  # GET /members
-  # List all members                                    HTML
-  # --------------------------------------------------------
   def index
     @members = Member.active.order('first_name ASC')
   end
 
-  # POST /members/search
-  # Search for members                                  HTML
-  # --------------------------------------------------------
   def search
     @members = Member.search_by params[:category], params[:keywords], params[:is_active]
 
     render :template => 'members/index'
   end
 
-  # GET /member/:id
-  # Show member's profile                               HTML
-  # --------------------------------------------------------
   def show
     @member = Member.find(params[:id], :include=>:profiles)
 
@@ -32,16 +23,13 @@ class MembersController < ApplicationController
   end
 
   def edit
-    @member = current_user.member
+    @member = Member.find(params[:id])
 
     @user_profiles = @member.profiles.map{|p|{p.network_id=>p.url}}
     @pro_networks = Network.with_urls(@user_profiles, :pro)
     @perso_networks = Network.with_urls(@user_profiles, :perso)
   end
 
-  # POST /members
-  # Create a new user                               REDIRECT
-  # --------------------------------------------------------
   def create
 
     new_user = User.create(params[:user])
@@ -61,9 +49,6 @@ class MembersController < ApplicationController
     end
   end
 
-  # PUT /members/:id
-  # Update a member                                 REDIRECT
-  # --------------------------------------------------------
   def update
     params[:member][:logo] = nil if params[:logo_reset] == 'true'
 
@@ -89,9 +74,6 @@ class MembersController < ApplicationController
 
   end
 
-  # DELETE /members/:id
-  # Delete a member                                 REDIRECT
-  # --------------------------------------------------------
   def destroy
     User.destroy(params[:id])
 
@@ -99,32 +81,31 @@ class MembersController < ApplicationController
   end
 
   def tags
+    member = Member.find(params[:member_id])
     if params[:do] == 'remove'
-      current_user.member.skill_list.remove(params[:tag_name])
+      member.skill_list.remove(params[:tag_name])
     elsif params[:do] == 'add'
-      current_user.member.skill_list.add(params[:tag_name])
+      member.skill_list.add(params[:tag_name])
     end    
 
-    current_user.member.save
+    member.save
 
     render :text => 'success'
   end
 
   def status
+    member = Member.find(params[:member_id])
     if params[:do] == 'remove'
-      current_user.member.statu_list.remove(params[:tag_name])
+      member.statu_list.remove(params[:tag_name])
     elsif params[:do] == 'add'
-      current_user.member.statu_list.add(params[:tag_name])
+      member.statu_list.add(params[:tag_name])
     end    
 
-    current_user.member.save
+    member.save
 
     render :text => 'success'
   end
 
-  # POST /members/mail
-  # Send an Email to member                         REDIRECT
-  # --------------------------------------------------------
   def mail_member
 
     @from = Member.find(current_user.member.id)

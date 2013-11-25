@@ -4,7 +4,6 @@ class Member < ActiveRecord::Base
   acts_as_taggable_on :skills, :status
   
   belongs_to :location
-  belongs_to :status
   belongs_to :user
 
   has_many :ads, :dependent => :destroy

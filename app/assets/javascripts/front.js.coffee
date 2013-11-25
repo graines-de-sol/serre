@@ -41,9 +41,16 @@ $ ->
 
     return false
     
-  $("[data-do='filterByTag']").click ->
+  $("[data-do='filterBySkill']").click ->
     for resume in $('.member_resume')
-      if $(resume).data('tags') .indexOf($(this).data('tag-id')) > -1
+      if $(resume).data('skills') .indexOf($(this).data('skill-id')) > -1
+        $(resume).fadeIn()
+      else
+        $(resume).fadeOut() 
+
+  $("[data-do='filterByStatus']").click ->
+    for resume in $('.member_resume')
+      if $(resume).data('status') .indexOf($(this).data('status-id')) > -1
         $(resume).fadeIn()
       else
         $(resume).fadeOut() 
@@ -54,11 +61,12 @@ $ ->
       url: '/members/tags/add'
       type: 'POST'
       data:
-        tag_name: that.data('tag-name')
+        tag_name: that.data('tag-name'),
+        member_id: that.data('member-id')
 
       success : (data) ->
         that.attr('title', "Cliquer pour retirer cette compétence")
-        $('#do-skillsToremove').append that
+        $('#do-skillsToremove').prepend that
   )
     
   $("#do-skillsToremove").on('click', 'a', ->
@@ -67,11 +75,12 @@ $ ->
       url: '/members/tags/remove'
       type: 'POST'
       data:
-        tag_name: that.data('tag-name')
+        tag_name: that.data('tag-name'),
+        member_id: that.data('member-id')
 
       success : (data) ->
         that.attr('title', "Cliquer pour ajouter cette compétence")
-        $("#do-skillsToAdd").append that    
+        $("#do-skillsToAdd").prepend that    
   )
 
   $("#do-statusToAdd").on('click', 'a', ->
@@ -80,11 +89,12 @@ $ ->
       url: '/members/status/add'
       type: 'POST'
       data:
-        tag_name: that.data('tag-name')
+        tag_name: that.data('tag-name'),
+        member_id: that.data('member-id')
 
       success : (data) ->
         that.attr('title', "Cliquer pour retirer ce statut")
-        $('#do-statusToremove').append that
+        $('#do-statusToremove').prepend that
 
     return false
   )
@@ -95,14 +105,27 @@ $ ->
       url: '/members/status/remove'
       type: 'POST'
       data:
-        tag_name: that.data('tag-name')
+        tag_name: that.data('tag-name'),
+        member_id: that.data('member-id')
 
       success : (data) ->
         that.attr('title', "Cliquer pour ajouter ce statut")
-        $("#do-statusToAdd").append that  
+        $("#do-statusToAdd").prepend that  
 
     return false  
   )
+
+  $("[data-do='searchMember']").keyup ->
+    if $(this).val().length > 2
+      for resume in $('.member_resume')
+        if $(resume).data('first-name').substring(0, $(this).val().length) == $(this).val() || $(resume).data('last-name').substring(0, $(this).val().length) == $(this).val()
+          $(resume).fadeIn()
+        else
+          $(resume).fadeOut() 
+    else
+      for resume in $('.member_resume')
+        $(resume).fadeIn()
+
 
 # 00 padding for dates/times
 window.pad2 = (number) ->

@@ -1,7 +1,9 @@
-.col-md-3.content
-  %ul
-    - admin_tabs.each do |action|
-      %li{:class=>('active' if params[:controller] == "admin/#{action}")}
-        %a{:href=>"/admin/#{action}"}
-          = t("admin.tabs.#{action}")
+.col-md-3
+  .row
+    .col-md-11.content
+      %ul
+        - admin_tabs.each do |action|
+          %li{:class=>('active' if params[:controller] == "admin/#{action}")}
+            %a{:href=>"/admin/#{action}"}
+              = t("admin.tabs.#{action}")
 

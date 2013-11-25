@@ -1,21 +1,18 @@
-.col-md-9
-  .row
-    .col-md-11.content
+.col-md-8.content
+  %h3= "Toutes nos actus"
+  %hr
 
-      %h3= "Toutes nos actus"
-      %hr
+  - @posts.each do |post|
+    .row.comment
+      .col-md-12
+        %h2= link_to post.title, blog_path(post.id)
+        %span= "Publié le #{l(post.published_at, :format => :long)}"
 
-      - @posts.each do |post|
-        .row.comment
-          .col-md-12
-            %h2= link_to post.title, blog_path(post.id)
-            %span= "Publié le #{l(post.published_at, :format => :long)}"
+        %p= truncate(strip_tags(post.content), :length => 255)
 
-            %p= truncate(strip_tags(post.content), :length => 255)
+  .clearfix
+  %br
+  %br
 
-      .clearfix
-      %br
-      %br
-
-.col-md-3
+.col-md-4
   = render :partial => '/shared/aside_blog'
