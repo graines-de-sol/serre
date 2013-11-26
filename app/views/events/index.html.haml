@@ -40,9 +40,19 @@
 
 
 :javascript
+
+  var buildingEvents = $.map(#{@events.to_json}, function(item) {
+    return {
+        id: item.id,
+        title: item.title,
+        start: item.start_at,
+        end: item.end_at
+    };
+  });
+
   $(document).ready(function() {
     $('#calendar').fullCalendar({
-      events: "#{@calendar.rss}",
+      events: buildingEvents,
 
       header: {
         left: 'prev,next today',
@@ -62,21 +72,7 @@
 
       eventClick: function(calEvent, jsEvent, view) {
 
-        months = #{fullmonth_names_start_1};
-        start_date = new Date(calEvent.start);
-        formated_date = start_date.getDate() +' '+ months[start_date.getMonth()] +' '+ start_date.getFullYear();
-        formated_hour = pad2(start_date.getHours()) +':'+ pad2(start_date.getMinutes());
-        
-        $('#toggle_event #event_details').empty();
-        $('#toggle_event #event_details').append(formated_date +', '+ formated_hour);
-
-        $('#toggle_event .modal-body #event_description').empty();
-        $('#toggle_event .modal-body #event_description').append(calEvent.title +'<br /><br /><strong>'+ calEvent.location +'</strong><br /><br />'+ calEvent.description);
-
-        $('#toggle_event .modal-body #event_date').val(formated_date +', '+ formated_hour);
-        $('#toggle_event .modal-body #event_name').val(calEvent.title);
-        $('#send_event_registration').show();
-        $('#toggle_event').modal('toggle');
+        window.pullEvent(calEvent.id);
 
         /* Prevent gcal linking by default */
         return false;
@@ -94,7 +90,7 @@
 
 
 = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js'
-= javascript_include_tag '/javascripts/fullcalendar-1.5.3/fullcalendar/gcal.js'
+/= javascript_include_tag '/javascripts/fullcalendar-1.5.3/fullcalendar/gcal.js'
 
 = t_init(:name => 'calendar[description]', :width => '838')
 

@@ -1,22 +1,27 @@
-#toggle_event.modal.hide.fade
-  .modal-header
-    %a.close{:data=>{'dismiss'=>'modal'}}
-      = '×'
-    %h3
-      = t('event_details_modal_title')
-      %span#event_details
+#toggle_event.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
 
-  .modal-body
-    #event_description
+      .modal-header
+        %a.close{:data=>{'dismiss'=>'modal'}}
+          = '×'
+        %h3#event_start
 
-    %br
-    %a#send_event_registration{:href => '#'}
-      .icon-pencil
-      = t('register_this_event')
+      .modal-body
+        #event_description
+        #event_dates
+        %hr
+        %b= "Participants"
+        #event_participants
 
-    %input{:type => 'hidden', :id => 'event_date'}
-    %input{:type => 'hidden', :id => 'event_name'}
-    %input{:type => 'hidden', :id => 'calendar_id', :value => @calendar.id}
-    %input{:type => 'hidden', :id => 'user_id', :value => current_user.id}
-    %input{:type => 'hidden', :id => 'register_ok_message', :value => t('register_ok_message')}
+        %br
+        %a#event_register{:href => '#', 'data-do' => 'toggleRegistration', 'data-is' => 'add'}
+          .icon-pencil
+          = " S'inscrire à cet événement"
 
+        %a#event_cancel{:href => '#', 'data-do' => 'toggleRegistration', 'data-is' => 'remove'}
+          .icon-trash
+          = " Se désinscrire de cet événement"
+
+        %input{:type => 'hidden', :id => 'event-member-id', :value => current_user.member.id}
+        %input{:type => 'hidden', :id => 'modal-event-id', :value => ''}

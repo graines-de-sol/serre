@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126105105) do
+ActiveRecord::Schema.define(:version => 20131126145731) do
 
   create_table "ads", :force => true do |t|
     t.string   "subject"
@@ -84,6 +84,15 @@ ActiveRecord::Schema.define(:version => 20131126105105) do
     t.string  "app_url"
     t.string  "app_name"
     t.integer "max_post_on_index",     :default => 5,    :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "title"
+    t.datetime "start_at"
+    t.datetime "end_at",     :null => false
+    t.string   "event_id",   :null => false
   end
 
   create_table "galleries", :force => true do |t|
@@ -171,6 +180,13 @@ ActiveRecord::Schema.define(:version => 20131126105105) do
     t.text     "title"
     t.text     "content"
     t.datetime "sent_on"
+  end
+
+  create_table "participants", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "member_id"
+    t.integer  "event_id"
   end
 
   create_table "pictures", :force => true do |t|

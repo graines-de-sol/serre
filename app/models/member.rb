@@ -10,6 +10,8 @@ class Member < ActiveRecord::Base
   has_many :networks, :through=>:profiles
   has_many :profiles
   has_many :comments, :dependent => :destroy
+  has_many :events, :through => :participants
+  has_many :participants
 
   validates_presence_of :first_name
   before_update :compose_birthday

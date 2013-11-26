@@ -207,6 +207,8 @@ fr:
     month: "Mois"
     week: "Semaine"
     day: "Jour"
+    confirmed: "Votre participation est enregistrée"
+    canceled: "Votre participation est annulée"
   blog:
     create_post: "+ Ajouter une actu"
     update_post: "Modifier une actu"

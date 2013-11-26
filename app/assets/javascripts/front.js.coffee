@@ -43,14 +43,14 @@ $ ->
     
   $("[data-do='filterBySkill']").click ->
     for resume in $('.member_resume')
-      if $(resume).data('skills') .indexOf($(this).data('skill-id')) > -1
+      if $(resume).data('skills').indexOf($(this).data('skill-id')) > -1
         $(resume).fadeIn()
       else
         $(resume).fadeOut() 
 
   $("[data-do='filterByStatus']").click ->
     for resume in $('.member_resume')
-      if $(resume).data('status') .indexOf($(this).data('status-id')) > -1
+      if $(resume).data('status').indexOf($(this).data('status-id')) > -1
         $(resume).fadeIn()
       else
         $(resume).fadeOut() 

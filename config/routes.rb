@@ -21,7 +21,7 @@ Refuge::Application.routes.draw do
   resources :members
   resources :pages
   resources :dashboard
-  resources :events,   :only => [:index, :create]
+  resources :events,   :only => [:index, :create, :show]
   resources :users,   :only => [:update]
 
   match 'medias/download/:id' => 'medias#download', :as => :media_download, :via => :get

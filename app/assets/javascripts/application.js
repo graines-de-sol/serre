@@ -9,5 +9,6 @@
 //= require front
 //= require surveys
 //= require ads
+//= require events
 
 
