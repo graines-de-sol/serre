@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131123101724) do
+ActiveRecord::Schema.define(:version => 20131126105105) do
 
   create_table "ads", :force => true do |t|
     t.string   "subject"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(:version => 20131123101724) do
     t.integer  "member_id"
     t.datetime "created_at"
     t.integer  "location_id"
+  end
+
+  create_table "agreements", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id",    :null => false
+    t.string   "action",     :null => false
+    t.integer  "action_id"
+    t.string   "consent",    :null => false
   end
 
   create_table "articles", :force => true do |t|
@@ -81,7 +90,7 @@ ActiveRecord::Schema.define(:version => 20131123101724) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.datetime "event_at"
+    t.date     "event_at"
     t.text     "comment"
   end
 
@@ -144,6 +153,7 @@ ActiveRecord::Schema.define(:version => 20131123101724) do
     t.boolean "www_published",  :default => false
     t.boolean "is_active",      :default => true
     t.string  "logo_uid"
+    t.date    "entered_at"
   end
 
   add_index "members", ["status_id"], :name => "index_members_on_status_id"
@@ -238,5 +248,26 @@ ActiveRecord::Schema.define(:version => 20131123101724) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "workgroup_categories", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "name"
+    t.text     "description"
+    t.boolean  "published",                :default => true
+    t.integer  "is_public",   :limit => 1, :default => 1,    :null => false
+  end
+
+  create_table "workgroups", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "filename"
+    t.text     "description"
+    t.string   "mime_type"
+    t.string   "locator"
+    t.integer  "filesize"
+    t.integer  "workgroup_category_id"
+  end
 
 end

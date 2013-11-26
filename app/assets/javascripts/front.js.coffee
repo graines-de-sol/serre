@@ -58,7 +58,7 @@ $ ->
   $("#do-skillsToAdd").on('click', 'a', ->
     that = $(this)
     $.ajax
-      url: '/members/tags/add'
+      url: '/members/update_skills/add'
       type: 'POST'
       data:
         tag_name: that.data('tag-name'),
@@ -72,7 +72,7 @@ $ ->
   $("#do-skillsToremove").on('click', 'a', ->
     that = $(this)
     $.ajax
-      url: '/members/tags/remove'
+      url: '/members/update_skills/remove'
       type: 'POST'
       data:
         tag_name: that.data('tag-name'),
@@ -86,7 +86,7 @@ $ ->
   $("#do-statusToAdd").on('click', 'a', ->
     that = $(this)
     $.ajax
-      url: '/members/status/add'
+      url: '/members/update_status/add'
       type: 'POST'
       data:
         tag_name: that.data('tag-name'),
@@ -102,7 +102,7 @@ $ ->
   $("#do-statusToremove").on('click', 'a', ->
     that = $(this)
     $.ajax
-      url: '/members/status/remove'
+      url: '/members/update_status/remove'
       type: 'POST'
       data:
         tag_name: that.data('tag-name'),
@@ -126,6 +126,20 @@ $ ->
       for resume in $('.member_resume')
         $(resume).fadeIn()
 
+  $('#userCredentials').bind("ajax:success", (data, status, xhr) ->
+    $('.modal-errors').hide()
+    $('#userCredentials').hide()
+    $('.modal-success').show()
+  ).bind("ajax:error", (xhr, datas, error) ->
+    that = $('.modal-errors')
+    that.show()
+    messages = ''
+    form_errors = JSON.parse(datas.responseText)
+    for key, value of form_errors
+      messages += "<li>"+value[0]+"</li>"
+
+    that.html("<ul>"+messages+"</ul>")
+  )
 
 # 00 padding for dates/times
 window.pad2 = (number) ->

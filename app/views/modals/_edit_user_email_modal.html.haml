@@ -1,21 +1,40 @@
-#edit_account.modal.hide.fade
-  .modal-header
-    %a.close{:data=>{'dismiss'=>'modal'}}
-      = '×'
-    %h3= t('edit_my_login_informations')
+#edit_account.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %a.close{:data=>{'dismiss'=>'modal'}}
+          = '×'
+        %h3= t('edit_my_login_informations')
 
-  .modal-body
-    #edit_user_form
-      = form_tag member_path(@member.id), :method=>:put do
-        %label= t('email_address')
-        %input{:type=>'text', :name=>'user[email]', :value=>@member.user.email}
+      .modal-body
+        .modal-errors
+        .modal-success.pt-20.pb-20
+          = "Vos paramètres de connexions ont été mis à jour"
+        .clearfix
+        
+        = form_tag user_path(@member.user.id), {:method=>:put, :class =>'form', :id => 'userCredentials', :remote => true} do
+          .form-group
+            %label.col-md-4.control-label.ta-r= t('email_address')
+            .col-md-7
+              %input{:type=>'text', :name=>'user[email]', :value=>@member.user.email, :class => 'form-control'}
 
-        %label= t('new_password')
-        %input{:type=>'password', :name=>'user[password]'}
+          .clearfix
+          %br
+          .form-group
+            %label.col-md-4.control-label.ta-r= t('new_password')
+            .col-md-7
+              %input{:type=>'password', :name=>'user[password]', :class => 'form-control', :autocomplete => 'false'}
 
-        %label= t('confirm_password')
-        %input{:type=>'password', :name=>'user[password_confirmation]'}
+          .clearfix
+          %br
+          .form-group
+            %label.col-md-4.control-label.ta-r= t('confirm_password')
+            .col-md-7
+              %input{:type=>'password', :name=>'user[password_confirmation]', :class => 'form-control', :autocomplete => 'false'}
 
+          .clearfix
+          .col-md-11
+            = submit_tag t(:modify), :class=>'btn  btn-warning pull-right'
+
+        .clearfix
         %br
-        = submit_tag t(:modify), :class=>'btn  btn-warning'
-

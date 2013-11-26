@@ -6,8 +6,8 @@ Refuge::Application.routes.draw do
 
   match 'members/search' => 'members#search', :via => :post
   match 'members/mail' => 'members#mail_member', :via => :post
-  match 'members/tags/:do' => 'members#tags', :via => :post
-  match 'members/status/:do' => 'members#status', :via => :post
+  match 'members/update_skills/:do' => 'members#update_skills', :via => :post
+  match 'members/update_status/:do' => 'members#update_status', :via => :post
   match 'blog/category/:id' => 'blog#show_category',          :as => :blog_category, :via => :get
   match 'blog/archives/:year/:month' => 'blog#show_archives', :as => :blog_archives, :via => :get
 
@@ -22,6 +22,7 @@ Refuge::Application.routes.draw do
   resources :pages
   resources :dashboard
   resources :events,   :only => [:index, :create]
+  resources :users,   :only => [:update]
 
   match 'medias/download/:id' => 'medias#download', :as => :media_download, :via => :get
   resources :medias, :only => [:index, :show, :create]

@@ -2,7 +2,6 @@ class MembersController < ApplicationController
 
   before_filter :is_logged, :load_conf
 
-
   def index
     @members = Member.active.order('first_name ASC')
   end
@@ -54,9 +53,9 @@ class MembersController < ApplicationController
 
     @member = Member.find(params[:id])
 
-    # EMail, password & role
+    # User's role
     if params[:user]
-      User.find(@member.user_id).update_attributes(params[:user])
+      @member.user.update_attributes(params[:user])
     end
 
     # Member's profile
@@ -70,8 +69,7 @@ class MembersController < ApplicationController
     @pro_networks = Network.with_urls(@user_profiles, :pro)
     @perso_networks = Network.with_urls(@user_profiles, :perso)
 
-    redirect_to :action => :edit
-
+    redirect_to member_path(@member.id)
   end
 
   def destroy
@@ -80,7 +78,7 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
-  def tags
+  def update_skills
     member = Member.find(params[:member_id])
     if params[:do] == 'remove'
       member.skill_list.remove(params[:tag_name])
@@ -93,7 +91,7 @@ class MembersController < ApplicationController
     render :text => 'success'
   end
 
-  def status
+  def update_status
     member = Member.find(params[:member_id])
     if params[:do] == 'remove'
       member.statu_list.remove(params[:tag_name])

@@ -179,34 +179,40 @@
 
 
     - if current_user.member.id == @member.id || current_user.role == 'admin'
-      - if current_user.role == 'admin' && !current_user.view_as_user
+      - if current_user.role == 'admin' 
         .row
-          .col-md-12.admin_member_controls
-            .span3.right
+          .col-md-10.pull-right
+            .col-md-5.pull-right
+              = "Date d'entrée"
+              = text_field_tag "entered_at", l(@member.entered_at, :format => :long), :class => 'datepicker col-md-8 pull-right'
+              = hidden_field_tag "member[entered_at]", @member.entered_at, :id => 'end_at'
+            .col-md-3.pull-right
               = f.radio_button 'is_active', true
               = "Actif"
               = f.radio_button 'is_active', false
               = "Inactif"
-            .span4.right
+            .col-md-3.pull-right
               = t('role')
               %select{:name=>'user[role]', :style=>'margin-right:20px;'}
                 %option{:value=>'user', :selected => @member.user.role == 'user'}= 'User'
                 %option{:value=>'admin', :selected => @member.user.role == 'admin'}= 'Admin'
+          .clearfix
+          %br
 
       .row
         .col-md-12
           = submit_tag t(:save), :class=>'btn  btn-warning', :style=>'float:right; margin-right:20px;'
 
-        - if current_user.member.id == @member.id && current_user.role == 'admin'
-          .span6{:style=>'float:right'}
-            = hidden_field_tag 'user[view_as_user]', false
-            = check_box_tag 'user[view_as_user]', true, @member.user.view_as_user == true
-            %strong= t('view_as_user_label')
+          - if current_user.member.id == @member.id && current_user.role == 'admin'
+            .span6{:style=>'float:right'}
+              = hidden_field_tag 'user[view_as_user]', false
+              = check_box_tag 'user[view_as_user]', true, @member.user.view_as_user == true
+              %strong= t('view_as_user_label')
 
-        - if current_user.role == 'admin' && !current_user.view_as_user
-          %a{:href=>member_path(@member.user.id), :class=>'btn btn-danger destroy', :style=>'float:left;', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_member')}}
-            %i.icon-trash.icon-white
-            = t(:delete_member)
+          - if current_user.role == 'admin'
+            %a{:href=>member_path(@member.user.id), :class=>'btn btn-danger destroy', :style=>'float:left;', :data=>{'method'=>'delete', 'confirm'=>t('confirms.delete_member')}}
+              %i.icon-trash.icon-white
+              = t(:delete_member)
 
   .clearfix.mt-20
 

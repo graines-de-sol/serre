@@ -118,19 +118,6 @@ fr:
   email_body: "Votre message..."
   send: "Envoyer"
   actual_occupation_of_location: "Remplitude de la Cordée de "
-  activerecord:
-    errors:
-      models:
-        member:
-          attributes:
-            first_name:
-              blank: "Doit être renseigné !"
-        gallery:
-          attributes:
-            name:
-              blank: "Merci de donner un nom à cette galerie"
-            event_at:
-              blank: "Merci de renseigner la date de l'événement"
   your_ad: "Votre annonce... (500 caractères maximum)"
   category: "Catégorie"
   reply_this_ad: "Répondre à cette annonce"
@@ -303,4 +290,25 @@ fr:
     abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
     month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
     abbr_month_names: [~, Jan, Fev, Mar, Avr, Mai, Juin, Juil, Aout, Sep, Oct, Nov, Dec]
-
+  activerecord:
+    errors:
+      models:
+        member:
+          attributes:
+            first_name:
+              blank: "Doit être renseigné !"
+        gallery:
+          attributes:
+            name:
+              blank: "Merci de donner un nom à cette galerie"
+            event_at:
+              blank: "Merci de renseigner la date de l'événement"
+        user:
+          attributes:
+            email:
+              blank: "Merci de renseigner votre adresse E-Mail"
+              invalid: "Merci de renseigner une adresse E-Mail valide"
+            password:
+              confirmation: "Merci de confirmer le mot de passe"
+              blank: "Merci de choisir un mot de passe"
+              too_short: "Le mot de passe doit comporter au moins 6 lettre et/ou chiffres"

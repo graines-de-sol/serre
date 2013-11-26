@@ -1,25 +1,31 @@
-#send_mail.modal.hide.fade
-  .modal-header
-    %a.close{:data=>{'dismiss'=>'modal'}}
-      = '×'
-    %h3= t('send_email_to')
-    %span#recipient= ''
+#send_mail.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
 
-  .modal-body
-    #email_form
-      = form_tag "/members/mail", :method=>:post do
+      .modal-header
+        %a.close{:data=>{'dismiss'=>'modal'}}
+          = '×'
+        %h3= t('send_email_to')
+        %span#recipient= ''
 
-        = hidden_field_tag 'recipient_id'
-        = hidden_field_tag 'origin', request.url
+      .modal-body
+        .row
+          .col-md-12
+            = form_tag "/members/mail", {:method=>:post, :class => 'form'} do
 
-        %label= t('email_subject')
-        %input{:type=>'text', :name=>'email[subject]', :style=>'width:520px;'}
-        %br
-        %label= t('email_body')
-        %textarea{:name=>'email[body]', :style=>'width:520px;height:250px;'}
+              = hidden_field_tag 'recipient_id'
+              = hidden_field_tag 'origin', request.url
 
-        %br
-        = submit_tag t('send'), :class=>'btn  btn-warning', :style=>'float:right'
+              .form-group
+                %label= t('email_subject')
+                %input{:type=>'text', :name=>'email[subject]', :class => 'form-control'}
+              .form-group
+                %label= t('email_body')
+                %textarea{:name=>'email[body]', :style=>'height:250px;', :class => 'form-control'}
 
-      .clear
+              .form-group
+                = submit_tag t('send'), :class=>'btn  btn-warning', :style=>'float:right'
+
+            .clearfix
+            %br
 

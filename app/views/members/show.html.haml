@@ -10,13 +10,12 @@
         - if Member.can_edit?(current_user, @member.id)
           %a{:href=> edit_member_path(@member.id), :class=>'btn btn-warning'}= "Modifier ma fiche"
     
-      - if @member.baseline
+      - unless @member.baseline.blank?
         #baseline= @member.baseline
 
-      #description= "#{@member.status.name if @member.status}"
       %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@member.user.email, :recipient_id=>@member.id}, :class=>'mail_me'}
         %i.icon-envelope
-        = t('send_a_message')
+        = "Envoyer un E-Mail à #{@member.user.email}"
 
   .clear{:style=>'height:30px;'}
 
