@@ -34,11 +34,15 @@ Refuge::Application.configure do
 
   config.time_zone = 'Paris'
 
-  ActionMailer::Base.smtp_settings = {
-    :address => "smtp.free.fr",
-    :port => 25,
-    :domain => "free.fr"
-  }
+  smtp_config_file = File.join(Rails.root, 'config', 'smtp.rb')
+  if File.exists?(smtp_config_file)
+    # Let me define here my own private SMTP for dev.
+    require smtp_config_file
+  else
+    SMTP_SETTINGS = { :address => "smtp.host.com", :port => 25, :domain => "domain.com" }
+  end
+
+  ActionMailer::Base.smtp_settings = SMTP_SETTINGS
 
 end
 

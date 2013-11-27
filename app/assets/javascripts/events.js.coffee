@@ -30,10 +30,11 @@ window.pullEvent = (id) ->
 
       success : (data) ->
         $('#toggle_event .modal-body #event_participants').empty()
-        $('#toggle_event .modal-body #event_description').text(data.event.title)
+        $('#toggle_event .modal-body #event_title').text(data.event.title)
         $('#toggle_event .modal-header #event_start').text(data.event.start_at)
         $('#toggle_event .modal-body #modal-event-id').val(data.event.event_id)
         $('#toggle_event .modal-body #event_dates').text("De : "+ data.event.start_at_time+" à "+ data.event.end_at_time)
+        $('#toggle_event .modal-body #event_description').text(data.event.description)
 
         participant_ids = []
         if data.participants.length == 0

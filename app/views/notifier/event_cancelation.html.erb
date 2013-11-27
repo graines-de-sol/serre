@@ -12,7 +12,7 @@
         Bonjour <%= "#{@datas[:current_user].member.first_name}" %>
         <br />
         <br />
-        <%= "#{t('email.new_registration_body')}" %>
+        <%= "#{t('email.new_cancelation_body')}" %>
         <br />
         <br />
         <strong><%= t('email.event_name') %></strong><%= @datas[:body][:event_name] %>
@@ -20,7 +20,7 @@
         <strong><%= t('email.date_and_hour') %></strong><%= @datas[:body][:event_date] %>
         <br />
         <br />
-        <p><%= t('email.confirm_registration') %></p>
+        <p><%= t('email.confirm_cancelation') %></p>
         <p><b>L'équipe Graines de sol</b></p>
       </td>
     </tr>
