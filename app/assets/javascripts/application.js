@@ -10,5 +10,6 @@
 //= require surveys
 //= require ads
 //= require events
+//= require workgroups
 
 

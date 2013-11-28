@@ -1,12 +1,11 @@
 class Agreement < ActiveRecord::Base
 
-  belongs_to :users
+  belongs_to :member
   serialize :consent
 
-  def self.to(user, consent, action, action_id)
-    this_agreement = self.current(user.id, action, action_id)
+  def self.to(member, consent, action, action_id)
+    this_agreement = self.current(member.id, action, action_id)
 
-#raise this_agreement.inspect
     if(this_agreement && this_agreement.consent.include?(consent.to_s))
       return true
     else
@@ -14,25 +13,25 @@ class Agreement < ActiveRecord::Base
     end
   end
 
-  def self.current(user_id, action, action_id)
-    self.where(['user_id = ? AND action = ? AND action_id = ?', user_id, action, action_id]).order('created_at DESC').first
+  def self.current(member_id, action, action_id)
+    self.where(['member_id = ? AND action = ? AND action_id = ?', member_id, action, action_id]).order('created_at DESC').first
   end
 
-  def self.add(user_id, consent, action, action_id)
+  def self.add(member_id, consent, action, action_id)
 
-    this_agreement = self.current(user_id, action, action_id)
+    this_agreement = self.current(member_id, action, action_id)
     consent = consent.split(', ')
 
     if this_agreement == nil
-      self.create(:user_id => user_id, :action => action, :action_id => action_id, :consent => consent)
+      self.create(:member_id => member_id, :action => action, :action_id => action_id, :consent => consent)
     else
       this_agreement.update_attributes(:consent => this_agreement.consent.concat(consent))
     end
   end
 
-  def self.remove(user_id, consent, action, action_id)
+  def self.remove(member_id, consent, action, action_id)
 
-    this_agreement = self.current(user_id, action, action_id)
+    this_agreement = self.current(member_id, action, action_id)
     consent = consent.split(',')
 
     if this_agreement != nil

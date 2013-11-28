@@ -1,0 +1,18 @@
+- if(Agreement.to(current_user.member, :add, 'workgroup_category', @category.id) || @category.is_public)
+  .row
+    .col-md-12
+      .clearfix.mt-10
+      #media_uploader
+      .clearfix.mb-10
+  %input{:type => 'hidden', :id => 'uploader_label', :value => "Glissez/déposez ici vos fichiers pour les télécharger ou bien cliquez pour les sélectionner"}
+  %input{:type => 'hidden', :id => 'workgroup_id', :value => params[:id]}
+
+%ul.medias_list.mt-20.pb-10
+  - @category.workgroups.reverse.each do |media|
+    %li
+      - if(Agreement.to(current_user.member, :delete, 'workgroup_category', @category.id) || @category.is_public)
+        %a.delete{:href => delete_file_workgroup_path(media.id), :data => {'method'=>'delete', 'confirm' => "Supprimer ce document du groupe de travail ?"}}= '×'
+      
+      %a{:href => download_workgroup_path(media.id), :class => get_type_icon(media)}= "#{truncate(media.name, :length => 60)} (#{number_to_human_size(media.filesize, :locale => :en)})"
+
+  .clearfix

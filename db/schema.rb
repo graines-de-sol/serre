@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126145731) do
+ActiveRecord::Schema.define(:version => 20131128195642) do
 
   create_table "ads", :force => true do |t|
     t.string   "subject"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20131126145731) do
   create_table "agreements", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "user_id",    :null => false
+    t.integer  "member_id",  :null => false
     t.string   "action",     :null => false
     t.integer  "action_id"
     t.string   "consent",    :null => false
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20131126145731) do
     t.text     "content"
     t.integer  "post_id"
     t.integer  "member_id"
+    t.integer  "workgroup_category_id"
   end
 
   create_table "confs", :force => true do |t|
@@ -90,9 +91,11 @@ ActiveRecord::Schema.define(:version => 20131126145731) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "title"
+    t.text     "description", :null => false
     t.datetime "start_at"
-    t.datetime "end_at",     :null => false
-    t.string   "event_id",   :null => false
+    t.datetime "end_at",      :null => false
+    t.string   "event_id",    :null => false
+    t.integer  "calendar_id", :null => false
   end
 
   create_table "galleries", :force => true do |t|
@@ -194,6 +197,7 @@ ActiveRecord::Schema.define(:version => 20131126145731) do
     t.datetime "updated_at"
     t.text     "image_uid"
     t.integer  "gallery_id"
+    t.integer  "workgroup_category_id"
   end
 
   create_table "posts", :force => true do |t|
@@ -270,8 +274,9 @@ ActiveRecord::Schema.define(:version => 20131126145731) do
     t.datetime "updated_at"
     t.text     "name"
     t.text     "description"
-    t.boolean  "published",                :default => true
-    t.integer  "is_public",   :limit => 1, :default => 1,    :null => false
+    t.boolean  "is_published", :default => true
+    t.boolean  "is_public",    :default => false
+    t.boolean  "has_photos",   :default => false
   end
 
   create_table "workgroups", :force => true do |t|

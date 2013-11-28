@@ -1,0 +1,10 @@
+%h3= "Prochains événements"
+%hr
+%ul.next_events
+  - Event.upcoming.each do |event|
+    %li
+      = link_to event.title, events_path
+      %br
+      %span= l(event.start_at, :format => :long)
+
+

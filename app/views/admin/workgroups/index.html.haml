@@ -1,0 +1,45 @@
+= render :partial => '/admin/shared/left_column'
+
+.col-md-9.content.pb-20
+
+  .row
+    .col-md-12
+      %h3= "Groupes de travail"
+      %hr
+      .row
+        .col-md-12
+          = form_tag admin_workgroups_path, :class => 'form' do
+            = submit_tag "+ Ajouter un groupe de travail", :class => 'btn btn-danger pull-right'
+        .clearfix
+        %br
+      .row
+        .col-md-12
+          = form_tag admin_workgroup_path('all'), {:class => 'form-horizontal', :method=>:put} do
+            - @workgroup_categories.each do |workgroup_category|
+              .form-group
+                .col-md-4
+                  %a{:href => admin_workgroup_path(workgroup_category.id), :data => {'method' => 'delete', 'confirm' => "Sur ?! Ceci détruira tous les documents, images rattachées à ce groupe de travail"}}
+                    %i.icon-remove
+                  = text_field_tag "workgroup_names[#{workgroup_category.id}]", workgroup_category.name, :style => 'width: 90%'
+                .col-md-2
+                  = hidden_field_tag "workgroup_is_published[#{workgroup_category.id}]", false
+                  = check_box_tag "workgroup_is_published[#{workgroup_category.id}]", true, workgroup_category.is_published
+                  %span= "Visible"
+                .col-md-2
+                  = hidden_field_tag "workgroup_is_public[#{workgroup_category.id}]", false
+                  = check_box_tag "workgroup_is_public[#{workgroup_category.id}]", true, workgroup_category.is_public
+                  %span= "Public"
+                .col-md-2
+                  - if workgroup_category.is_public
+                    %span= "Accès libre"
+                  - else
+                    %a{:href => admin_workgroup_contributors_path(workgroup_category.id)}= "» Membres"
+                .col-md-2
+                  %a{:href => admin_workgroup_materials_path(workgroup_category.id)}= "» Description"
+            .clearfix
+
+            %br
+            = submit_tag t('save'), :class => 'btn  btn-warning'
+
+
+

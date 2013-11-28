@@ -1,34 +1,36 @@
-- if(Agreement.to(current_user, :access, 'workgoup_category', @category.id) || @category.is_public == 1)
-  .col-md-8.content.pt-20
-    - unless @category.description.blank?
-      %h5{:style => 'border-bottom: 2px solid #999'}= simple_format(@category.description)
-
-    - if(Agreement.to(current_user, :write, 'workgroup_category', @category.id) || @category.is_public == 1)
-      #media_uploader
-      .clear.h-20
-      %input{:type => 'hidden', :id => 'uploader_label', :value => "Glissez/déposez ici vos fichiers pour les télécharger ou bien cliquez pour les sélectionner"}
-      %input{:type => 'hidden', :id => 'media_id', :value => params[:id]}
-
-    %ul.medias_list
-      - @category.workgroups.each do |media|
-        %li
-          - if(Agreement.to(current_user, :delete, 'workgroup_category', @category.id) || @category.is_public == 1)
-            /%a.delete{:href => delete_workgroup_path(media.id), :data => {'method'=>'delete', 'confirm'=>t('confirms.delete_media')}}
-          
-          %a{:href => media_download_path(media.id), :class => get_type_icon(media)}= "#{media.name} (#{number_to_human_size(media.filesize, :locale => :en)})"
-
-.col-md-4
+.col-md-4.admin_nav
   .row
-    .col-md-11.col-md-offset-1.content
+    .col-md-11.content
 
-      %h3= "Categories"
+      %h3= "Groupes de travail"
       %hr
       %ul
         - WorkgroupCategory.published.each do |category|
-          - if((Agreement.to current_user, :access, 'workgroup_category', category.id) || category.is_public == 1)
+          - if((Agreement.to current_user.member, :access, 'workgroup_category', category.id) || category.is_public)
             %li{:class => ('active' if params[:id].to_i == category.id)}
-              %a{:href => media_path(category.id)}
+              %a{:href => workgroup_path(category.id)}
                 = category.name
 
-      - if is_admin
-        %a{:href => admin_medias_path}= t('manage_medias_categories')
+- if(Agreement.to(current_user.member, :access, 'workgroup_category', @category.id) || @category.is_public )
+  .col-md-8.content.pt-20
+    %ul.nav.nav-tabs
+      %li{:class => ('active' if params[:action] == 'show')}
+        %a{:href => workgroup_path(@category.id)}= "Description"
+
+      %li{:class => ('active' if params[:action] == 'files')}
+        %a{:href => files_workgroup_path(@category.id)}= "Fichiers"
+
+      %li{:class => ('active' if params[:action] == 'participants')}
+        %a{:href => participants_workgroup_path(@category.id)}= "Participants"
+
+      %li{:class => ('active' if params[:action] == 'comments')}
+        %a{:href => comments_workgroup_path(@category.id)}= "Commentaires"
+
+      - if @category.has_photos
+        %li{:class => ('active' if params[:action] == 'photos')}
+          %a{:href => photos_workgroup_path(@category.id)}= "Photos"
+
+
+    .clearfix
+
+    = render :partial => "/workgroups/#{params[:action]}"

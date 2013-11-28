@@ -1,0 +1,49 @@
+= render :partial => '/admin/shared/left_column'
+
+.col-md-9.content.pb-20
+
+  .row
+    .col-md-12
+      %h3= "Membres du groupe de travail : #{@workgroup.name}"
+      %hr
+      .row
+        .col-md-12
+          .well
+            = form_tag admin_workgroup_contributors_path(@workgroup.id), :class => 'form' do
+              %span= "Ajouter un membre"
+              %select.ml-10.mr-20{:name => 'member_id'}
+                - Member.order('first_name ASC').each do |member|
+                  %option{:value => member.id}= member.full_name
+
+              = submit_tag "+ Ajouter au groupe", :class => 'btn btn-danger '
+        .clearfix
+        %br
+      .row
+        .col-md-12
+          = form_tag admin_workgroup_contributor_path(@workgroup.id, 'all'), {:class => 'form-horizontal', :method=>:put} do
+            - @members.each do |m|
+              .form-group{:style => 'border-bottom: 1px solid #eee;padding-bottom: 10px'}
+                .col-md-5
+                  %a.mr-10{:href => admin_workgroup_contributor_path(@workgroup.id, m.member.id), :data => {'method' => 'delete', 'confirm' => "Sur ?! Ceci détruira tous les documents, images rattachées à ce groupe de travail"}}
+                    %i.icon-remove
+                  = link_to m.member.full_name, member_path(m.member.id), :target => 'blank'
+                .col-md-2
+                  = hidden_field_tag "agreement[#{m.member.id}][access]", false
+                  = check_box_tag "agreement[#{m.member.id}][access]", true, (true if m.consent.include?('access'))
+                  %span= "Accéder"
+                .col-md-2
+                  = hidden_field_tag "agreement[#{m.member.id}][add]", false
+                  = check_box_tag "agreement[#{m.member.id}][add]", true, (true if m.consent.include?('add'))
+                  %span= "Ajouter"
+                .col-md-2
+                  = hidden_field_tag "agreement[#{m.member.id}][delete]", false
+                  = check_box_tag "agreement[#{m.member.id}][delete]", true, (true if m.consent.include?('delete'))
+                  %span= "Supprimer"
+
+            .clearfix
+
+            %br
+            = submit_tag t('save'), :class => 'btn  btn-warning'
+
+
+

@@ -12,6 +12,7 @@ class Member < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :events, :through => :participants
   has_many :participants
+  has_many :agreements
 
   validates_presence_of :first_name
   before_update :compose_birthday
@@ -57,6 +58,10 @@ class Member < ActiveRecord::Base
     fields.each{|f|out.update("searchable_fields.#{f}" => f)}
 
     return out
+  end
+
+  def full_name
+    return "#{self.first_name.capitalize} #{self.last_name.capitalize}"
   end
 
 private

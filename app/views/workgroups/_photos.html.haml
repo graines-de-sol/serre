@@ -1,0 +1,25 @@
+- if(Agreement.to(current_user.member, :add, 'workgroup_category', @category.id) || @category.is_public)
+  .row
+    .col-md-12
+      .clearfix.mt-10
+      #photos_uploader
+      .clearfix.mb-10
+  %input{:type => 'hidden', :id => 'uploader_label', :value => "Glissez/déposez ici vos images pour les télécharger ou bien cliquez pour les sélectionner"}
+  %input{:type => 'hidden', :id => 'workgroup_id', :value => params[:id]}
+
+.row.images_list.mt-20.pb-10
+  .col-md-12
+    .row
+      - if @category.pictures.empty?
+        .col-md-12.mb-20.ta-c
+          %h4= "Aucune photo dans ce groupe de travail"
+      - else
+
+        - @category.pictures.reverse.each do |media|
+          .col-md-2.mb-20.ta-c
+            - if(Agreement.to(current_user.member, :delete, 'workgroup_category', @category.id) || @category.is_public)
+              %a.delete{:href => delete_photo_workgroup_path(media.id), :data => {'method'=>'delete', 'confirm' => "Supprimer cette image du groupe de travail ?"}}= '×'
+            
+            = image_tag media.image.thumb('100x100').url
+
+  .clearfix

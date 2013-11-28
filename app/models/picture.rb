@@ -5,6 +5,7 @@ class Picture < ActiveRecord::Base
   image_accessor :image
 
   belongs_to :gallery
+  belongs_to :workgroup_category
 
 
 end

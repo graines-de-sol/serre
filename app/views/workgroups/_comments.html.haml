@@ -1,0 +1,28 @@
+- if(Agreement.to(current_user.member, :add, 'workgroup_category', @category.id) || @category.is_public)
+  .row
+    .col-md-12.mt-20
+      = form_tag create_comment_workgroup_path(@category.id), :class => 'form' do
+        .form-group
+          %label.form-label= "Un commentaire ?"
+          %textarea{:name => 'comment', :class => 'col-md-12', :style => 'height: 140px'}
+        .form-group
+          = submit_tag "Enregistrer", :class => 'btn btn-warning pull-right'
+
+.row
+  .col-md-12.mb-10
+    - @category.comments.each do |comment|
+    
+      .row.comment
+        .col-md-2
+          %a.avatar{:href=>member_path(current_user.member.id), :title => "#{current_user.member.first_name} #{current_user.member.last_name}", :data => {:do => 'tooltip'}}
+            = avatar(comment.member, '100x100')
+        .col-md-10
+          - if comment.member_id == current_user.member.id
+            %a{:href => delete_comment_workgroup_path(comment.id), :class => 'delete', 'data-method' => 'delete', 'data-confirm' => "Retirer votre commentaire ?!"}= '×'
+          %p
+            = "#{comment.member.first_name} #{comment.member.last_name}"
+            %span= "Le #{l(comment.created_at, :format => :long)}"
+          .clearfix
+          %p= simple_format comment.content
+  
+  .clearfix

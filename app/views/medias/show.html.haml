@@ -2,17 +2,11 @@
   - unless @category.description.blank?
     %h5{:style => 'border-bottom: 2px solid #999'}= simple_format(@category.description)
 
-  - if(Agreement.to(current_user, :write, 'workgroup', @category.id) || @category.is_public == 1)
-    #media_uploader
-    .clear.h-20
-    %input{:type => 'hidden', :id => 'uploader_label', :value => "Glissez/déposez ici vos fichiers pour les télécharger ou bien cliquez pour les sélectionner"}
-    %input{:type => 'hidden', :id => 'media_id', :value => params[:id]}
+
 
   %ul.medias_list
     - @category.medias.each do |media|
       %li
-        - if(Agreement.to(current_user, :delete, 'media_category', @category.id) || @category.is_public == 1)
-          %a.delete{:href => delete_media_path(media.id), :data => {'method'=>'delete', 'confirm'=>t('confirms.delete_media')}}
         
         %a{:href => media_download_path(media.id), :class => get_type_icon(media)}= "#{media.name} (#{number_to_human_size(media.filesize, :locale => :en)})"
 

@@ -1,0 +1,32 @@
+= render :partial => '/admin/shared/left_column'
+
+.col-md-9.content.pb-20
+
+  .row
+    .col-md-12
+      %h3= "Description du groupe de travail : #{@workgroup.name}"
+      %hr
+
+      = form_tag admin_workgroup_materials_path(@workgroup.id), :class =>'form' do
+        .form-group
+          %label.form-label= "Description"
+
+          .content_container.hide
+            = soft_clean @workgroup.description
+          .textarea_container
+
+          %hr
+
+        .form-group
+          = hidden_field_tag "workgroup[has_photos]", false
+          = check_box_tag "workgroup[has_photos]", true, @workgroup.has_photos
+
+          %span= "Ce groupe peut contenir et présenter des photos"
+
+        .clearfix
+        %br
+        = submit_tag t('save'), :class => 'btn  btn-warning'
+
+      .clearfix
+
+= t_init(:name => 'workgroup[description]')

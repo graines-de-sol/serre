@@ -40,6 +40,13 @@ fr:
     confirm_admin_cancelation: "Vous pouvez écrire à cet utilisateur à l'adresse suivante :"
     date_and_hour: "Date prévue : "
     event_name: "Nom de l'évènement : "
+    email_sent: "Votre E-Mail a bien été envoyé"
+    emails_sent: "%{count} E-Mails envoyés"
+    workgroup_name_subject: "Message du groupe de travail : %{name}"
+    respond_email_to: "Répondre par E-Mail :"
+    workgroup_notification: "Vous recevez ce message parce que vous êtes membre du groupe de travail : "
+    connect_to_app: "Plus d'infos en vous connectant à"
+    please_check_participants: "Merci de séléctionner un ou plusieurs destinataires !"
   searchable_fields:
     organisation: "Nom de l'entreprise"
     first_name: "Prénom"
@@ -271,6 +278,8 @@ fr:
       blog_categories: "Thématiques"
       galleries: "Galerie"
       newsletters: "Newsletter"
+      tags: "Statuts/compétences"
+      workgroups: "Groupes de travail"
 
     medias:
       category_name: "Catégorie"

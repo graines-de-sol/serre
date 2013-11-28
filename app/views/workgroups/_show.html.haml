@@ -1,0 +1,6 @@
+.well.mt-20
+  - if @category.description.blank?
+    %h3= "Aucune description"
+  - else
+    = simple_format(@category.description)
+

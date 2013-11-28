@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><%= @datas[:subject] %></title>
+</head>
+<body topmargin="0" leftmargin="0">
+
+  <table style="width:500px;">
+    <tr>
+      <td colspan='2'>
+        <%= "#{@datas[:current_user].member.full_name} vous envoie un message via la serre concernant le groupe de travail : #{@datas[:workgroup]}" %>
+        <br />
+        <p><%= simple_format @datas[:body] %></p>
+        <br />
+        <p><%= t('email.workgroup_notification') %><%= @datas[:workgroup] %></p>
+        <p><b><%= t('email.respond_email_to') %></b>&nbsp;<%= @datas[:current_user].email %></p>
+        <p><b><%= t('email.connect_to_app') %></b>&nbsp;<a href='http://serre.grainesdesol.fr'>la serre</a></p>
+      </td>
+    </tr>
+  </table>
+
+</body>
+
+</html>
+

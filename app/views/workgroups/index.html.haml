@@ -1,0 +1,24 @@
+.col-md-4
+  .row
+    .col-md-11.content
+
+      %h3= "Groupes de travail"
+      %hr
+      %ul
+        - WorkgroupCategory.published.each do |category|
+          - if((Agreement.to current_user, :access, 'workgroup_category', category.id) || category.is_public)
+            %li{:class => ('active' if params[:id].to_i == category.id)}
+              %a{:href => media_path(category.id)}
+                = category.name
+
+      - if is_admin
+        %a{:href => admin_medias_path}= t('manage_medias_categories')
+
+
+.col-md-8.content.pt-20
+  %h2.center.ta-c
+    = "Aucun groupe de travail public et visible à vous montrer"
+  %h2.center.ta-c
+    = "Par ailleurs, vous n'êtes accrédité à aucun groupe privé"
+  %br
+  %br

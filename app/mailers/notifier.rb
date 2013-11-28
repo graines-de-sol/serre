@@ -66,6 +66,17 @@ class Notifier < ActionMailer::Base
     end
   end
 
+  def workgroup_notify_members(datas)
+    @datas = datas
+    mail(
+      :from    => "graines-de-sol@serre.grainesdesol.fr",
+      :to      => @datas[:to],
+      :subject => I18n.t('email.workgroup_name_subject', :name => @datas[:workgroup]),
+      :body    => @datas[:body]) do |format|
+        format.html
+    end
+  end
+
   def newsletter(datas)
     @datas = datas
     mail(

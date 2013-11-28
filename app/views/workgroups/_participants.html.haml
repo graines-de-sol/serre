@@ -1,0 +1,28 @@
+.col-md-12.pb-20
+  %h3= "Envoyer un E-Mail aux autres participants du groupe de travail "
+  %hr
+  %b= "Destinataires : "
+  %br
+  = form_tag notify_participants_workgroup_path(@category.id), :class => 'form' do
+
+    - @members.each do |a|
+      %span.mr-20
+        = check_box_tag 'member[ids][]', a.member.id
+        = a.member.full_name
+
+    %hr
+    .clearfix.mb-20
+      .form-group
+        %label= "Message"
+        %br
+        %textarea{:name => 'message', :class => 'col-md-12', :style => 'height: 200px'}
+
+      .form-group
+        = submit_tag 'Envoyer', :class => 'btn btn-warning pull-right'
+  .clearfix
+
+- if session[:notice]
+  :javascript
+    alert("#{session[:notice]}");
+
+  - session[:notice] = nil
