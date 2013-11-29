@@ -1,7 +1,21 @@
-%h3= "Dernières annonces"
+%h3= "Dernière annonce publiée"
 %hr
-%ul
-  - Ad.last_published.each do |ad|
-    %li
-      = link_to ad.subject, ads_path
+
+- ad = Ad.last
+.row.pb-20
+  .col-md-11.center.ad{:id=>"ad_id_#{ad.id}"}
+    
+
+    %h3
+      .avatar
+        = link_to avatar(ad.member, '32x32'), member_path(ad.member.id), :rel=>'tooltip', :title=>"#{ad.member.first_name} #{ad.member.last_name}"
+      = ad.subject
+      
+    %p= hard_clean ad.body
+
+    .cleafix
+
+  .col-md-11.center
+    %br
+    = link_to "» Voir toutes les annonces", ads_path, :class => 'read-more'
 

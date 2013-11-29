@@ -6,37 +6,54 @@
   .clearfix
   = link_to "» Lire la suite", blog_path(@last_post.id), :class => 'read-more'
 
-.col-md-5.mb-20#last_ads
+.col-md-5.mb-40#last_ads
   .row
     .col-md-11.col-md-offset-1.content#last_ads
       = render :partial => '/widgets/next_events'
       .clearfix
 
-.col-md-3
-  .row.mb-20
-    .col-md-12.content
-      = render :partial => '/widgets/new_comers'
-      .clearfix
-
+.col-md-6
   .row
-    .col-md-12.content
-      = render :partial => '/widgets/blog_archives'
-      .clearfix
+    .col-md-12
+      .row
+        .col-md-12.content.mb-40
+          = render :partial => '/widgets/last_ads'
+          .clearfix 
 
-.col-md-3
-  .row
-    .col-md-12.col-md-offset-1.content.pb-20.mb-20
-      = render :partial => '/widgets/surveys'
+      .row
+        .col-md-6
+          .row
+            .col-md-11
+              .row.mb-40
+                .col-md-12.content
+                  = render :partial => '/widgets/new_comers'
+                  .clearfix
 
-  .row
-    .col-md-12.col-md-offset-1.content.pb-20
-      = render :partial => '/widgets/blog_categories'
+              .row
+                .col-md-12.content
+                  = render :partial => '/widgets/blog_archives'
+                  .clearfix
+
+        .col-md-6
+          .row
+            .col-md-12.content.pb-20.mb-40
+              = render :partial => '/widgets/surveys'
+
+          .row
+            .col-md-12.content.pb-20
+              = render :partial => '/widgets/blog_categories'
 
 .col-md-6
   .row
-    .col-md-11.col-md-offset-1.content.mb-20
-      = render :partial => '/widgets/last_comments'
+    .col-md-12
+      .row
+        .col-md-11.col-md-offset-1.content.mb-40
+          = render :partial => '/widgets/last_comments'
 
-  .row
-    .col-md-11.col-md-offset-1.content
-      = render :partial => '/widgets/gallery'
+      .row
+        .col-md-11.col-md-offset-1.content.mb-40
+          = render :partial => '/widgets/gallery'
+
+      .row
+        .col-md-11.col-md-offset-1.content.pb-20
+          = render :partial => '/widgets/last_documents'

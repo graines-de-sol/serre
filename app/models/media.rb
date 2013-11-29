@@ -13,6 +13,8 @@ class Media < ActiveRecord::Base
   before_destroy :remove_from_fs
   validates :filename, :uniqueness => { :scope => :media_category_id, :message => "already_uploaded" }
 
+  scope :last_added, order('created_at DESC').limit(5)
+
 private
   def upload
     if self.file.blank?

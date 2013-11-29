@@ -1,0 +1,12 @@
+
+%h3= "Derniers documents"
+%hr
+%ul.medias_list
+  - Media.last_added.each do |media|
+    %li
+      
+      %a{:href => media_download_path(media.id), :class => get_type_icon(media)}= "#{media.name} (#{number_to_human_size(media.filesize, :locale => :en)})"
+
+.clearfix
+= link_to "» Tous les documents", medias_path, :class => 'read-more'
+

@@ -6,8 +6,7 @@
 
   %ul.medias_list
     - @category.medias.each do |media|
-      %li
-        
+      %li        
         %a{:href => media_download_path(media.id), :class => get_type_icon(media)}= "#{media.name} (#{number_to_human_size(media.filesize, :locale => :en)})"
 
 
