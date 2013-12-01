@@ -41,6 +41,11 @@ namespace :deploy do
     run "cd #{release_path}; rake assets:precompile RAILS_ENV=production "
   end
 
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :app, :except => { :no_release => true } do
+    run "cd #{release_path} && bundle exec whenever --update-crontab #{application}"
+  end
+
 end
 
 namespace :dragonfly do
