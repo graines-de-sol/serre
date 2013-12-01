@@ -29,6 +29,7 @@ gem 'multi_json'
 gem 'uglifier'
 gem 'rvm-capistrano'
 gem 'acts-as-taggable-on'
+gem 'whenever'
 
 group :development, :test do
   gem 'rspec-rails'
