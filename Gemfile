@@ -30,6 +30,7 @@ gem 'uglifier'
 gem 'rvm-capistrano'
 gem 'acts-as-taggable-on'
 gem 'whenever'
+gem 'nokogiri'
 
 group :development, :test do
   gem 'rspec-rails'
