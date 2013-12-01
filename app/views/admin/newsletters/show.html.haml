@@ -1,6 +1,6 @@
 = render :partial => '/admin/shared/left_column'
 
-.col-md-8.col-md-offset-1.content.pb-20
+.col-md-9.content.pt-20-pb-20
   #global_conf
     %p.label= t('newsletter.welcome_newsletters')
 
@@ -13,6 +13,7 @@
     = form_tag admin_newsletter_path(@newsletter.id), :method => :put do
       %label= t('newsletter.title')
       = text_field_tag 'newsletter[title]', @newsletter.title, :style => 'width: 730px;'
+      %br
       %br
       %label= t('newsletter.content')
       .content_container.hide
@@ -36,7 +37,7 @@
 
       = submit_tag t('send'), :name => 'send', :class => 'btn btn-danger', :style => 'float:right;margin-right:10px;'
       = submit_tag t('save'), :class => 'btn btn-warning', :style => 'float:right;margin-right:10px;'
-  .clear
+  .clearfix
     %a{:href => admin_newsletters_path, :data => {:method => :post}}
       = t('newsletter.create')
     %br

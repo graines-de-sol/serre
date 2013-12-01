@@ -1,21 +1,23 @@
 = render :partial => '/admin/shared/left_column'
 
-.col-md-8.col-md-offset-1.content
+.col-md-9.content
   #categories_management.pb-20
-    %p.label= t('admin.categories_management')
-    = form_tag '/admin/ads/update', :method=>:put do
-      %table
-        - Category.all.each do |category|
-          %tr
-            %td
-              %a{:href=>"/admin/ads/#{category.id}", :id=>category.id, :data=>{'method'=>'delete', 'confirm'=>t('delete_category_confirm')}}
-                %i.icon-remove
-            %td
-              %input{:type=>'text', :name=>"category[#{category.id}][name]", :value=>category.name}
+    .row
+      .col-md-11
+        %p.label= t('admin.categories_management')
+        = form_tag '/admin/ads/update', :method=>:put do
+          %table
+            - Category.all.each do |category|
+              %tr
+                %td
+                  %a{:href=>"/admin/ads/#{category.id}", :id=>category.id, :data=>{'method'=>'delete', 'confirm'=>t('delete_category_confirm')}}
+                    %i.icon-remove
+                %td
+                  %input{:type=>'text', :name=>"category[#{category.id}][name]", :value=>category.name}
 
-      %a{:href=>"/admin/ads", :data=>{'method'=>'post'}}
-        = t('create_category')
-      %br
-      %br
-      = submit_tag t('send'), :class=>'btn  btn-warning'
+          %a{:href=>"/admin/ads", :data=>{'method'=>'post'}}
+            = t('create_category')
+          %br
+          %br
+          = submit_tag t('send'), :class=>'btn  btn-warning'
 

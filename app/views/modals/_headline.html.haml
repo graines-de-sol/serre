@@ -1,0 +1,22 @@
+#headline.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %a.close{:data => {'dismiss' => 'modal'}}
+          = '×'
+        %h3= "Flash info"
+
+      .modal-body
+        %br
+        %br
+        = $conf.headline.html_safe
+        %br
+        %br
+        .clearfix
+
+
+:javascript
+  $(document).ready(function(){
+    $('#headline').modal()
+  })
+    
