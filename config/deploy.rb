@@ -14,6 +14,7 @@ set :default_stage, 'production'
 set :branch, fetch(:branch, "master")
 set :normalize_asset_timestamps, false
 set :rvm_ruby_string, '1.9.3-p194'
+set :rvm_type, :user
 
 role :web, "ns382592.ovh.net"
 role :app, "ns382592.ovh.net"
