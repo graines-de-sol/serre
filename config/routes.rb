@@ -51,6 +51,8 @@ Refuge::Application.routes.draw do
     resources :galleries do
       resources :pictures, :only => [:create, :update, :destroy]
     end
+    
+    resources :blog
     resources :events,          :only => [:update]
     resources :conf,            :only => [:index, :create]
     resources :headlines,       :only => [:index, :create]

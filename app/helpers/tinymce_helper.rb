@@ -4,8 +4,8 @@ module TinymceHelper
   def t_init(args)
 
     # default settings
-    args[:width]  ||= '738'
-    args[:height] ||= '260'
+    args[:width]  ||= '738px'
+    args[:height] ||= '260px'
     args[:css]    ||= '/javascripts/tinymce/bootstrap.css'
 
     out =   "<script src='/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js' type='text/javascript'></script>"
@@ -23,8 +23,8 @@ module TinymceHelper
     out << "  skin_variant : 'silver',"
     out << "  plugins : 'safari,xhtmlxtras,media,paste,table',"
     out << "  language : 'fr',"
-    out << "  height: '#{args[:height]}px',"
-    out << "  width: '#{args[:width]}px',"
+    out << "  height: '#{args[:height]}',"
+    out << "  width: '#{args[:width]}',"
     out << "  content_css : '#{args[:css]}',"
     out << "  theme_advanced_buttons1 : 'bold,italic,underline,strikethrough,bullist,numlist,blockquote,justifyleft,justifycenter,justifyright,formatselect,link,unlink,image,pasteword,|,tablecontrols',"
     out << "  theme_advanced_buttons2 : '',"

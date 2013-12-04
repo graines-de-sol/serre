@@ -15,8 +15,11 @@
         .clearfix
 
 
-:javascript
-  $(document).ready(function(){
-    $('#headline').modal()
-  })
-    
+- unless session[:headline_shown]
+  :javascript
+    $(document).ready(function(){
+      $('#headline').modal()
+    })
+
+
+  - session[:headline_shown] = true

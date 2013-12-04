@@ -1,0 +1,32 @@
+.form-group
+  %label.form-label= "Titre"
+  = text_field_tag "post[title]", @post.title, :class => 'form-control'
+
+  %br
+  %label.form-label= "Contenu"
+  .content_container{:style => 'display:none;'}
+    = soft_clean @post.content
+  .textarea_container
+
+  %br
+  .form-group
+    %label.form-label= "Date publication"
+    - @post.published_at ? published_at = @post.published_at : published_at = Time.now
+    = text_field_tag "published_at", l(published_at, :format => :long), :class => 'datepicker form-control'
+    = hidden_field_tag "post[published_at]", published_at, :id => 'end_at'
+  
+  .form-group.pull-left
+    = "Categorie"
+    %select{:name => 'post[blog_category_id]'}
+      - BlogCategory.all.each do |cat|
+        %option{:value => cat.id, :selected => @post.blog_category_id == cat.id}= cat.name
+
+  .form-group.pull-right
+    = hidden_field_tag "post[is_published]", 'false'
+    = check_box_tag("post[is_published]", true, @post.is_published)
+    = t('published')
+
+  .clearfix
+  = submit_tag t('save'), :class => 'btn btn-warning pull-right'
+
+= t_init(:name => 'post[content]', :width => '100%')

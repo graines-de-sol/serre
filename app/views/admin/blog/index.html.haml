@@ -1,0 +1,9 @@
+= render :partial => '/admin/shared/left_column'
+
+.col-md-9.content.pb-20
+  - @posts.each do |post|
+    %h3
+      = link_to post.title, admin_blog_path(post.id)
+    %hr
+    = truncate(soft_clean(strip_tags(post.content)), :length => 500)
+    .clearfix

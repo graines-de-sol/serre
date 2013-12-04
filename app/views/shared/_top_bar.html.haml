@@ -5,7 +5,7 @@
         .main-avatar{:href=>member_path(current_user.member.id)}
           = avatar(current_user.member, '70x70')
         %span
-          = "Bonjour Guillaume"
+          = "Bonjour #{current_user.member.first_name}"
           %i.icon-caret-down
 
       %ul.dropdown-menu.animated.fadeInUp

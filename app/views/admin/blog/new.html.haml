@@ -1,0 +1,8 @@
+= render :partial => '/admin/shared/left_column'
+
+.col-md-9.content.pb-20
+  #locations_conf
+    %p.label= t('admin.current_locations')
+    = form_tag admin_blog_index_path, :class => 'form' do
+
+      = render :partial => '/admin/blog/form'
