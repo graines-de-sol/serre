@@ -58,4 +58,6 @@
         .col-md-11.col-md-offset-1.content.pb-20
           = render :partial => '/widgets/last_documents'
 
-= render :partial => '/modals/headline'
+- unless session[:headline_shown]
+  - session[:headline_shown] = true
+  = render :partial => '/modals/headline'

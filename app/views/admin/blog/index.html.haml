@@ -1,6 +1,8 @@
 = render :partial => '/admin/shared/left_column'
 
 .col-md-9.content.pb-20
+  = link_to "+ Créer une actu", new_admin_blog_path, :class => 'btn btn-danger pull-right'
+
   - @posts.each do |post|
     %h3
       = link_to post.title, admin_blog_path(post.id)

@@ -27,6 +27,8 @@
     = t('published')
 
   .clearfix
+  - if params[:action] != 'new'
+    = link_to "× Supprimer", admin_blog_path(@post.id), :method => :delete, :confirm => "Supprimer ce post ?!", :class => 'delete'
   = submit_tag t('save'), :class => 'btn btn-warning pull-right'
 
 = t_init(:name => 'post[content]', :width => '100%')
