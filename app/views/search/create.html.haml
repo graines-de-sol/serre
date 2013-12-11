@@ -1,0 +1,76 @@
+.col-md-6
+  - if @members.any?
+    .row.mb-20
+      .col-md-12.content
+      
+        %h2.underline= "Membres"
+
+        #members_list
+          - @members.each do |member|
+            .member_resume{'data-skills' => member.skills.map{|t| t.id}, 'data-status' => member.status.map{|t| t.id}, 'data-first-name' => member.first_name.downcase, 'data-last-name' => member.last_name.downcase}
+              .member_avatar
+                %a{:href => member_path(member.id), :target => 'blank'}
+                  = avatar(member, '100x75')
+
+              %span= link_to member.first_name, member_path(member.id), :target => 'blank'
+
+        .clearfix
+
+  - if @events.any?
+    .row.mb-20
+      .col-md-12.content
+        %h2.underline= "Evénements"
+        - @events.each do |event|
+          %h2
+            %b= link_to event.title, events_path
+          %hr
+          = truncate(soft_clean(strip_tags(event.description)), :length => 500)
+
+          .clearfix
+
+  - if @galleries.any?
+    .row.mb-20
+      .col-md-12.content
+        %h2.underline= "Photos"
+        - @galleries.each do |gallery|
+          %h2
+            %b= link_to gallery.name, gallery_path(gallery.id)
+          %hr
+          %p= gallery.comment
+          %br
+          - gallery.pictures.first(6).each do |picture|
+            .col-md-2
+              .row
+                .col-md-11.center.gallery-thumbnail
+                  %a{:href => picture.image.thumb('500x500').url, :rel => 'lightbox'}
+                    = image_tag picture.image.thumb('100x100').url , :class => 'img-responsive'
+
+          .clearfix
+
+  - if @medias.any?
+    .row.mb-20
+      .col-md-12.content
+        %h2.underline= "Documents"
+        %ul.medias_list
+          - @medias.each do |media|
+            %li        
+              %a{:href => media_download_path(media.id), :class => get_type_icon(media)}= "#{media.name} (#{number_to_human_size(media.filesize, :locale => :en)})"
+
+          .clearfix
+
+.col-md-6
+  .row
+    - if @posts.any?
+      .col-md-11.content.col-md-offset-1
+        %h2.underline= "Actus"
+        - @posts.each do |post|
+
+          %h2
+            %b= link_to post.title, blog_path(post.id)
+          %hr
+          = truncate(soft_clean(strip_tags(post.content)), :length => 500)
+          .clearfix
+          = link_to "» Lire la suite", blog_path(post.id), :class => 'read-more'
+
+          .clearfix
+

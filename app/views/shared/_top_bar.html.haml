@@ -18,13 +18,14 @@
             %i{:class=>'icon-remove'}
             = t(:logout)
 
-    .col-md-5
-      /.input-group.form.main-search
-      /  %input.form-control{placeholder: "Un membre, une actualité...", type: "text"}/
-      /  %span.input-group-btn
-      /    %button.btn.btn-warning{type: "button"}= t('search')
+    .col-md-6
+      = form_tag search_index_path do
+        .input-group.form.main-search
+          %input.form-control{:placeholder => "Un membre, une actualité...", :type => "text", :name => 'pattern', :value => (params[:pattern] unless params[:pattern].blank?) }/
+          %span.input-group-btn
+            = submit_tag t('search'), :class => 'btn btn-warning'
 
-    .col-md-4
+    .col-md-3
       .navbar.navbar-inverse{role: "banner"}
         .navbar-header
           %button.navbar-toggle{"data-target" => ".bs-navbar-collapse", "data-toggle" => "collapse", type: "button"}
