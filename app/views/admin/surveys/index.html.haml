@@ -1,83 +1,88 @@
 = render :partial => '/admin/shared/left_column'
 
-.col-md-9
-  #surveys_management.content
-    %p.label= t('current_survey')
+.col-md-9.content
+  %a.pull-right.btn.btn-danger{:href => '#', :class => 'dotoggle', :data => {'block' => '#new_survey'}}= t('create_new_survey')
+  #new_survey{:style => 'display:none;'}
+    %br
+    = form_tag admin_surveys_path do
+      %p
+        = t('admin.question_for_new_survey')
+        %input{:type => 'text', :name => 'question', :style => 'width:450px;'}
+        = submit_tag t('create'), :class => 'btn  btn-warning'
 
+  %h3.underline= t('current_survey')
+  %hr
+  .well
     - if @survey
       %table
         %tr
-          %td
+          %td{:style=>'width:30px;'}
             %a{:href => admin_survey_path(@survey.id), :id => @survey.id, :data => {'method'=>'delete', 'confirm' => t('confirms.delete_survey')}}
               %i.icon-remove
           %td
             %h3= @survey.question
-      .hr
+      %hr
 
-      = form_tag admin_survey_path(@survey.id), :method => :put do
+      = form_tag admin_survey_path(@survey.id), :method => :put, :class => 'form' do
         - unless @survey.children.empty?
-          %a.right{:href => '#', :class => 'doshow_results', :data => {'id' => @survey.id}}
-            = t('who_has_voted_what')
+          %a.pull-right{:href => '#', :class => 'doshow_results', :data => {'id' => @survey.id}}
+            %strong= t('who_has_voted_what')
 
           %table#survey_mgt
             %tr
               %th{:style=>'width:20px;'}= ''
-              %th= t('survey_question')
-              %th= t('survey_score')
+              %th{:style=>'width:300px;'}= t('survey_question')
+              %th.pl-10{:style=>'width:50px;'}= t('survey_score')
 
             - @survey.children.each do |answer|
               %tr
-                %td
+                %td.pt-10
                   %a{:href => create_answer_admin_survey_path(answer.id), :id => answer.id, :data => {'method'=>'delete', 'confirm'=>t('confirms.delete_answer')}}
                     %i.icon-remove
-                %td= text_field_tag "survey[#{answer.id}][question]", answer.question
-                %td= text_field_tag "survey[#{answer.id}][score]", answer.score
+                %td.pt-10= text_field_tag "survey[#{answer.id}][question]", answer.question, :class => 'form-control'
+                %td.pl-10.pt-10= text_field_tag "survey[#{answer.id}][score]", answer.score, :class => 'form-control'
 
+        .clearfix.pt-20
         %a{:href => create_answer_admin_survey_path(@survey.id), :data => {'method'=>'post'}}
           = t('create_new_answer')
         %br
         %br
         = submit_tag t('save'), :class=>'btn  btn-warning'
 
-    %a{:href => '#', :class => 'dotoggle', :data => {'block' => '#new_survey'}}= t('create_new_survey')
-    #new_survey.hide
-      %br
-      = form_tag admin_surveys_path do
-        %p
-          = t('admin.question_for_new_survey')
-          %input{:type => 'text', :name => 'question', :style => 'width:450px;'}
-          = submit_tag t('create'), :class => 'btn  btn-warning'
 
-    %br
-    %br
-    %p.label= t('admin.default_older_surveys_to_display')
-    = form_tag admin_conf_index_path do
+  .well
+    
+    = form_tag admin_conf_index_path, :class => 'form form-horizontal' do
       = hidden_field_tag 'from', admin_surveys_path
-      = text_field_tag "conf[max_surveys]", $conf.max_surveys, :style=>'width:30px;'
-      = submit_tag t('save'), :class=>'btn  btn-warning'
+      %label= t('admin.default_older_surveys_to_display')
+      .form-group{:style => 'margin-left: 0px'}
+        = text_field_tag "conf[max_surveys]", $conf.max_surveys, :style=>'width:50px;', :class => 'form-control pull-left'
 
-    %br
-    %br
-    %p.label= t('admin.older_surveys')
-    %table
-      - Survey.questions.offset(1).all.each do |survey|
-        %tr
-          %td
-            %a{:href => admin_survey_path(survey.id), :data => {'method' => 'delete', 'confirm' => t('confirms.delete_survey')}}
-              %i.icon-remove
-          %td{:style => 'width:500px;'}= survey.question
-          %td{:style => 'width:215px;text-align:right;'}
-            %a{:href => '#', :class=>'doshow_results', :data => {'id' => survey.id}}
-              = t('who_has_voted_what')
+        = submit_tag t('save'), :class=>'btn btn-warning pull-left ml-20'
+
+  %p.label= t('admin.older_surveys')
+  %table.table.table-striped
+    - Survey.questions.offset(1).all.each do |survey|
+      %tr
+        %td{:style => 'width:20px;'}
+          %a{:href => admin_survey_path(survey.id), :data => {'method' => 'delete', 'confirm' => t('confirms.delete_survey')}}
+            %i.icon-remove
+        %td{:style => 'width:500px;'}= survey.question
+        %td{:style => 'width:215px;text-align:right;'}
+          %a{:href => '#', :class=>'doshow_results', :data => {'id' => survey.id}}
+            = t('who_has_voted_what')
 
 - # Hidden
+#show_results.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %a.close{:data => {'dismiss'=>'modal'}}
+          = '×'
+        %h3= t('who_has_voted_what')
 
-#show_results.modal.hide.fade
-  .modal-header
-    %a.close{:data => {'dismiss'=>'modal'}}
-      = '×'
-    %h3= t('who_has_voted_what')
+      .modal-body
+        .row
+          #results
 
-  .modal-body
-    #results
-
+        .clearfix

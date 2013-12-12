@@ -2,7 +2,7 @@
   %h2
     %b= link_to @last_post.title, blog_path(@last_post.id)
   %hr
-  = truncate(soft_clean(strip_tags(@last_post.content)), :length => 500)
+  = truncate(soft_clean(strip_tags(@last_post.content)), :length => 200)
   .clearfix
   = link_to "» Lire la suite", blog_path(@last_post.id), :class => 'read-more'
 
@@ -31,17 +31,17 @@
 
               .row
                 .col-md-12.content
-                  = render :partial => '/widgets/blog_archives'
+                  = render :partial => '/widgets/surveys'
                   .clearfix
 
         .col-md-6
           .row
             .col-md-12.content.pb-20.mb-40
-              = render :partial => '/widgets/surveys'
+              = render :partial => '/widgets/new_outers'
 
           .row
-            .col-md-12.content.pb-20
-              = render :partial => '/widgets/blog_categories'
+            /.col-md-12.content.pb-20
+            /  = render :partial => '/widgets/blog_categories'
 
 .col-md-6
   .row
@@ -55,8 +55,8 @@
           = render :partial => '/widgets/gallery'
 
       .row
-        .col-md-11.col-md-offset-1.content.pb-20
-          = render :partial => '/widgets/last_documents'
+        /.col-md-11.col-md-offset-1.content.pb-20
+        /  = render :partial => '/widgets/last_documents'
 
 - unless session[:headline_shown]
   - session[:headline_shown] = true

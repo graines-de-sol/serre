@@ -1,18 +1,19 @@
 = render :partial => '/admin/shared/left_column'
 
 .col-md-9.content.pb-20
+  %h3.underline= "Catégories des actus"
+  %hr
   #locations_conf
     %p.label= t('admin.current_locations')
-    = form_tag admin_blog_category_path('all'), :method=>:put do
-      %table#locations_mgt
-        %tr
+    = form_tag admin_blog_category_path('all'), :method=>:put, :class => 'form' do
 
-        - BlogCategory.all.each do |category|
-          %tr
-            %td
-              %a{:href => admin_blog_category_path(category.id), :data => {'method' => 'delete', 'confirm' => t('confirms.delete_blog_category')}}
-                %i.icon-remove
-            %td= text_field_tag "category[#{category.id}][name]", category.name
+      - BlogCategory.all.each do |category|
+        .row.mb-20
+          .col-md-1
+            %a{:href => admin_blog_category_path(category.id), :data => {'method' => 'delete', 'confirm' => t('confirms.delete_blog_category')}}
+              %i.icon-remove
+          .col-md-5
+            = text_field_tag "category[#{category.id}][name]", category.name, :class => 'form-control'
 
       %a{:href => admin_blog_categories_path, :data => {'method' => 'post'}}
         = t('create_blog_category')

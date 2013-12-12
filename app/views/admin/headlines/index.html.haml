@@ -1,9 +1,10 @@
 = render :partial => '/admin/shared/left_column'
 
-.col-md-9.content.pt-20
-  #global_conf.well
-
-    %p.label= t('welcome_headline')
+.col-md-9.content
+  %h3= t('welcome_headline')
+  %hr
+  .well
+    
     = form_tag admin_headlines_path do
       .content_container.hide
         = soft_clean $conf.headline
@@ -11,7 +12,7 @@
       %br
       = check_box("conf", "headline_published", {:checked => $conf.headline_published, :class => 'left'}, "true", "false")
       = t('published')
-      = submit_tag t('update'), :class => 'btn btn-danger', :style => 'float:right;margin-right:10px;'
+      = submit_tag t('update'), :class => 'btn btn-warning', :style => 'float:right;margin-right:10px;'
 
-= t_init(:name => 'conf[headline]')
+= t_init(:name => 'conf[headline]', :width => '100%')
 

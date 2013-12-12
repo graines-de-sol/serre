@@ -2,14 +2,13 @@
 
 .col-md-9.content.pb-20
 
+  = form_tag admin_workgroups_path, :class => 'form pull-right' do
+    = submit_tag "+ Ajouter un groupe de travail", :class => 'btn btn-danger pull-right'
   .row
     .col-md-12
       %h3= "Groupes de travail"
       %hr
-      .row
-        .col-md-12
-          = form_tag admin_workgroups_path, :class => 'form' do
-            = submit_tag "+ Ajouter un groupe de travail", :class => 'btn btn-danger pull-right'
+
         .clearfix
         %br
       .row
@@ -18,9 +17,9 @@
             - @workgroup_categories.each do |workgroup_category|
               .form-group
                 .col-md-4
-                  %a{:href => admin_workgroup_path(workgroup_category.id), :data => {'method' => 'delete', 'confirm' => "Sur ?! Ceci détruira tous les documents, images rattachées à ce groupe de travail"}}
+                  %a.pull-left.mr-10{:href => admin_workgroup_path(workgroup_category.id), :data => {'method' => 'delete', 'confirm' => "Sur ?! Ceci détruira tous les documents, images rattachées à ce groupe de travail"}}
                     %i.icon-remove
-                  = text_field_tag "workgroup_names[#{workgroup_category.id}]", workgroup_category.name, :style => 'width: 90%'
+                  = text_field_tag "workgroup_names[#{workgroup_category.id}]", workgroup_category.name, :style => 'width: 90%', :class => 'form-control'
                 .col-md-2
                   = hidden_field_tag "workgroup_is_published[#{workgroup_category.id}]", false
                   = check_box_tag "workgroup_is_published[#{workgroup_category.id}]", true, workgroup_category.is_published

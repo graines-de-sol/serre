@@ -1,46 +1,49 @@
 = render :partial => '/admin/shared/left_column'
 
-.col-md-9.content.pt-20-pb-20
-  #global_conf
-    %p.label= t('newsletter.welcome_newsletters')
+.col-md-9.content.pb-20
 
-    %span= t('newsletter.archives')
-    %select#selectNewsletter{:style => 'width:580px;'}
-      - @newsletters.each do |newsletter|
-        %option{:value => newsletter.id, :selected => (newsletter.id == params[:id].to_i)}= label_for_newsletters_archives(newsletter)
+  %h3.underline= t('newsletter.welcome_newsletters')
+  %hr
+
+  %label= t('newsletter.archives')
+  %br
+  %select#selectNewsletter{:style => 'width:580px;'}
+    - @newsletters.each do |newsletter|
+      %option{:value => newsletter.id, :selected => (newsletter.id == params[:id].to_i)}= label_for_newsletters_archives(newsletter)
+  %br
+  %br
+
+  = form_tag admin_newsletter_path(@newsletter.id), :method => :put, :class => 'form' do
+    %label= t('newsletter.title')
+    = text_field_tag 'newsletter[title]', @newsletter.title, :class => 'form-control'
     %br
-
-    = form_tag admin_newsletter_path(@newsletter.id), :method => :put do
-      %label= t('newsletter.title')
-      = text_field_tag 'newsletter[title]', @newsletter.title, :style => 'width: 730px;'
-      %br
-      %br
-      %label= t('newsletter.content')
-      .content_container.hide
-        - if @newsletter.content.blank?
-          = (image_tag $conf.newsletter_header.url) if $conf.newsletter_header
+    %label= t('newsletter.content')
+    .content_container.hide
+      - if @newsletter.content.blank?
+        = (image_tag $conf.newsletter_header.url) if $conf.newsletter_header
+        %br
+        %br
+        = t('newsletter.latest_posts')
+        - @latest_news.each do |news|
+          %h2= soft_clean news.title
+          %span= l(news.created_at, :format => :long)
           %br
-          %br
-          = t('newsletter.latest_posts')
-          - @latest_news.each do |news|
-            %h2= soft_clean news.title
-            %span= l(news.created_at, :format => :long)
-            %br
-            = truncate(news.content, :length => 200) 
-        - else
-          = soft_clean @newsletter.content
+          = truncate(news.content, :length => 200) 
+      - else
+        = soft_clean @newsletter.content
 
-      .textarea_container
-      %br
-      %a{:href => admin_newsletter_path(@newsletter.id), :data => {:confirm => t('confirms.delete_newsletter'), :method => :delete}}
-        = t('newsletter.delete')
+    .textarea_container
+    %br
+    %a.delete{:href => admin_newsletter_path(@newsletter.id), :data => {:confirm => t('confirms.delete_newsletter'), :method => :delete}}
+      = t('newsletter.delete')
 
-      = submit_tag t('send'), :name => 'send', :class => 'btn btn-danger', :style => 'float:right;margin-right:10px;'
-      = submit_tag t('save'), :class => 'btn btn-warning', :style => 'float:right;margin-right:10px;'
+    = submit_tag t('send'), :name => 'send', :class => 'btn btn-danger', :style => 'float:right;margin-right:10px;'
+    = submit_tag t('save'), :class => 'btn btn-warning', :style => 'float:right;margin-right:10px;'
+
   .clearfix
     %a{:href => admin_newsletters_path, :data => {:method => :post}}
       = t('newsletter.create')
     %br
 
-= t_init(:name => 'newsletter[content]', :relative => true)
+= t_init(:name => 'newsletter[content]', :relative => true, :width => '100%')
 

@@ -3,11 +3,11 @@
 .col-md-9.content.pb-20
   %a.btn.btn-danger.pull-right{:href => admin_medias_path, :data => {'method' => 'post'}}= t('admin.medias.create_category')
 
+  %h3.underline= "Catégories de la bibliothèque"
+  %hr
   .clearfix
   #medias_categories
-    %p.label= t('admin.medias.categories_title')
-
-    %br
+ 
     = form_tag admin_media_path('all'), :method=>:put do
       - MediaCategory.published.each do |category|
         .row

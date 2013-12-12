@@ -1,31 +1,34 @@
 = render :partial => '/admin/shared/left_column'
 
 .col-md-9.content
-  #global_conf
-    %table#stats
-      %tr
-        %th{:style=>'width:300px;'}
-          %a{:href => '/admin/stats?sort=name&dir=des'}
-            %i.icon-chevron-up
-          %a{:href => '/admin/stats?sort=name&dir=asc'}
-            %i.icon-chevron-down
-          = t('admin.name')
-        %th{:style=>'width:100px;'}
-          %a{:href => '/admin/stats?sort=cx&dir=desc'}
-            %i.icon-chevron-up
-          %a{:href => '/admin/stats?sort=cx&dir=asc'}
-            %i.icon-chevron-down
-          = t('cx')
-        %th{:style=>'width:300px;'}
-          %a{:href => '/admin/stats?sort=last&dir=desc'}
-            %i.icon-chevron-up
-          %a{:href => '/admin/stats?sort=last&dir=asc'}
-            %i.icon-chevron-down
-          = t('admin.last_sign_in')
+  %h3.underline= "Statistiques de visites"
+  %hr
+  %table.table.table-striped#stats
+    %tr
+      %th
+        %a{:href => '/admin/stats?sort=name&dir=des'}
+          %i.icon-chevron-up
+        %a{:href => '/admin/stats?sort=name&dir=asc'}
+          %i.icon-chevron-down
+        = t('admin.name')
 
-      - @users.each do |user|
-        %tr
-          %td= link_to "#{user.member.last_name} #{user.member.first_name}", member_path(user.member.id)
-          %td= user.sign_in_count
-          %td= l(user.last_sign_in_at, :format=>:long) if user.last_sign_in_at
+      %th
+        %a{:href => '/admin/stats?sort=cx&dir=desc'}
+          %i.icon-chevron-up
+        %a{:href => '/admin/stats?sort=cx&dir=asc'}
+          %i.icon-chevron-down
+        = t('cx')
+        
+      %th
+        %a{:href => '/admin/stats?sort=last&dir=desc'}
+          %i.icon-chevron-up
+        %a{:href => '/admin/stats?sort=last&dir=asc'}
+          %i.icon-chevron-down
+        = t('admin.last_sign_in')
+
+    - @users.each do |user|
+      %tr
+        %td= link_to "#{user.member.last_name} #{user.member.first_name}", member_path(user.member.id)
+        %td= user.sign_in_count
+        %td= l(user.last_sign_in_at, :format=>:long) if user.last_sign_in_at
 
