@@ -10,8 +10,9 @@
       .avatar
         = link_to avatar(ad.member, '32x32'), member_path(ad.member.id), :rel=>'tooltip', :title=>"#{ad.member.first_name} #{ad.member.last_name}"
       = ad.subject
-      
-    %p= hard_clean ad.body
+    
+    .clearfix
+    = soft_clean ad.body
 
     .cleafix
 

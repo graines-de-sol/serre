@@ -134,7 +134,7 @@ fr:
   email_body: "Votre message..."
   send: "Envoyer"
   actual_occupation_of_location: "Remplitude de la Cordée de "
-  your_ad: "Votre annonce... (500 caractères maximum)"
+  your_ad: "Votre texte"
   category: "Catégorie"
   reply_this_ad: "Répondre à cette annonce"
   valid_until: "Affichée jusqu'au"

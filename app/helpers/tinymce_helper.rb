@@ -11,7 +11,7 @@ module TinymceHelper
     out =   "<script src='/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js' type='text/javascript'></script>"
     out <<  "<script language='javascript' type='text/javascript'>"
     out <<  "$('.content_container').each(function(){"
-    out <<  "  $(this).next('.textarea_container').append(\"<textarea name='#{args[:name]}' class='expandable MCEeditable'>\"+$(this).html()+\"</textarea>\")"
+    out <<  "  $(this).next('.textarea_container').append(\"<textarea name='#{args[:name]}' class='expandable MCEeditable' id='wisiwig'>\"+$(this).html()+\"</textarea>\")"
     out <<  "});"
 
     # Toolbars and stuff...

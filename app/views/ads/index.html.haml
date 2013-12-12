@@ -1,6 +1,6 @@
 .col-md-12
   .row
-    .col-md-7.content.pt-10
+    .col-md-8.content.pt-10
       #ads-categories
         %ul
           %li
@@ -24,7 +24,7 @@
               = link_to avatar(ad.member, '32x32'), member_path(ad.member.id), :rel=>'tooltip', :title=>"#{ad.member.first_name} #{ad.member.last_name}"
 
             %h3= ad.subject
-            %p= hard_clean ad.body
+            .ad_body= soft_clean ad.body
 
             .action_bar
               - if Member.can_edit?(current_user, ad.member_id)
@@ -41,8 +41,10 @@
             .clearfix
             %br
 
-    .col-md-4.col-md-offset-1.content
-      = render :partial => '/ads/right_column'
+    .col-md-4
+      .row
+        .col-md-10.col-md-offset-1.content
+          = render :partial => '/ads/right_column'
 
 - # hidden
 - unless @categories.empty?

@@ -33,8 +33,11 @@
           %label= t('email_subject')
           %input{:type => 'text', :name => 'ad[subject]', :id => 'ad_subject', :style => 'width:100%;'}
           %br
+          %br
           %label= t('your_ad')
-          %textarea{:name => 'ad[body]', :id => 'ad_body', :style => 'width:100%;height:80px;', :class => 'expandable', :maxlength => '500'}
+          .content_container.hide
+          .textarea_container
+          /%textarea{:name => 'ad[body]', :id => 'ad_body', :style => 'width:100%;height:80px;', :class => 'expandable', :maxlength => '500'}
 
           .clearfix
           %br
@@ -43,7 +46,8 @@
             %i.icon-remove
             = t('delete_my_ad')
 
-          = submit_tag t('send'), :class=>'btn  btn-warning', :style=>'float:right'
+          = submit_tag t('send'), :class=>'btn btn-warning pull-right'
 
         .clearfix
 
+= t_init(:name => 'ad[body]')

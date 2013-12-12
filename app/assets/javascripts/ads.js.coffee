@@ -12,7 +12,7 @@ $ ->
 
     $('#show_end_date').val $.datepicker.formatDate('DD dd MM yy', default_end_at)
     $('#end_at').val $('#default_end_at').val()
-    $('#delete_ad').hide()
+    $('#delete_ad_link').hide()
     $('#category_id option[value='+default_category_id+']').attr("selected", "selected")
     $('#ad_location_id option[value=0]').attr("selected", "selected")
 
@@ -27,13 +27,18 @@ $ ->
     $('#ad_id').val ad_id
     $('#delete_ad_link').attr('href', '/ads/'+ad_id)
     $('#ad_subject').val $('#ad_id_'+ad_id+' h3').text()
-    $('#ad_body').val $('#ad_id_'+ad_id+' p').text()
+
+    #$('.content_container').text('huuuuu')
+    tinyMCE.execInstanceCommand('wisiwig', "mceInsertContent", false, $('#ad_id_'+ad_id+' .ad_body').html());
+    #tinyMCE.get('ad_body').setContent('<span>some</span> html');
+    #$('#ad_body').val $('#ad_id_'+ad_id+' p').text()
 
     $('#show_end_date').val $.datepicker.formatDate('DD dd MM yy', default_end_at)
     $('#end_at').val $('#ad_id_'+ad_id+' input.end_at').val()
     $('#delete_ad').attr('href', '/ads/'+ad_id)
     $('#category_id option[value='+category_id+']').attr("selected", "selected")
     $('#ad_location_id option[value='+location_id+']').attr("selected", "selected")
+    $('#delete_ad_link').show()
 
   # Filter ads by categories
   $('#ads-categories ul li a').click ->
