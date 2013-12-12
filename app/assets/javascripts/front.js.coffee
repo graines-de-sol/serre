@@ -126,6 +126,10 @@ $ ->
       for resume in $('.member_resume')
         $(resume).fadeIn()
 
+  $("[data-do='showAllMembers']").click ->
+    for resume in $('.member_resume')
+      $(resume).fadeIn()
+
   $('#userCredentials').bind("ajax:success", (data, status, xhr) ->
     $('.modal-errors').hide()
     $('#userCredentials').hide()

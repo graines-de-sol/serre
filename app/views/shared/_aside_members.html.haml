@@ -4,6 +4,8 @@
     %hr
     %input{:type => 'text', :class => 'col-md-12', :placeholder => 'Premières lettres du nom ou prénom...', 'data-do' => 'searchMember'}
     .clearfix.mt-10
+    %a{:href=>'#', 'data-do' => 'showAllMembers'}= "Afficher tout le monde"
+    
 
   .col-md-12.last_updated.side-block
     = render :partial => '/widgets/members_skills' 
