@@ -1,6 +1,8 @@
 = render :partial => '/admin/shared/left_column'
 
 .col-md-9.content.pb-20
+  %a.btn.btn-danger.pull-right{:href => admin_blog_categories_path, :data => {'method' => 'post'}}
+    = t('create_blog_category')
   %h3.underline= "Catégories des actus"
   %hr
   #locations_conf
@@ -15,9 +17,6 @@
           .col-md-5
             = text_field_tag "category[#{category.id}][name]", category.name, :class => 'form-control'
 
-      %a{:href => admin_blog_categories_path, :data => {'method' => 'post'}}
-        = t('create_blog_category')
-      %br
       %br
       = submit_tag t('save'), :class => 'btn  btn-warning'
 

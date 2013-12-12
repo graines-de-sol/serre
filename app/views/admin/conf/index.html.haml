@@ -1,58 +1,91 @@
 = render :partial => '/admin/shared/left_column'
 
-.col-md-9.content.pt-20
-  #global_conf
-    %p.label= t('default_avatar')
-    .left
-      = image_tag $conf.default_avatar.thumb('101x101').url, :alt => t('default_avatar')
-    .right
-      = form_tag '/admin/conf', :multipart => true do
-        = file_field_tag "conf[default_avatar]"
-        = submit_tag t('send'), :class=>'btn  btn-warning'
-    .clear
+.col-md-9.content
+  .row
+    .col-md-12
+      %h3= t('default_avatar')
+      %hr
+      .well
+        .col-md-2
+          = image_tag $conf.default_avatar.thumb('101x101').url, :alt => t('default_avatar')
+        .col-md-8.pt-20
+          = form_tag '/admin/conf', :multipart => true, :class => 'form form-horizontal' do
+            = file_field_tag "conf[default_avatar]", :class => 'pull-left'
+            = submit_tag t('save'), :class=>'btn btn-warning pull-left'
+        .clearfix
 
-    %p.label= t('conf.max_post_on_index')
-    = form_tag '/admin/conf' do
-      = text_field_tag "conf[max_post_on_index]", $conf.max_post_on_index
-      = submit_tag t('save'), :class=>'btn  btn-warning'
-    .clear
+  .row
+    .col-md-12
+      %h3= t('conf.max_post_on_index')
+      %hr
+      .well
+        = form_tag '/admin/conf', :class => 'form form-horizontal' do
+          .row
+            .col-md-1
+              = text_field_tag "conf[max_post_on_index]", $conf.max_post_on_index, :class => 'form-control'
+            .col-md-11
+              = submit_tag t('save'), :class=>'btn btn-warning'
+        .clearfix
 
-    %p.label= t('conf.app_name')
-    %p
-    = form_tag '/admin/conf' do
-      = text_field_tag "conf[app_name]", $conf.app_name
-      = submit_tag t('save'), :class=>'btn  btn-warning'
-    .clear
+  .row
+    .col-md-12
+      %h3= t('conf.app_name')
+      %hr
+      .well
+        = form_tag '/admin/conf', :class => 'form form-horizontal' do
+          .row
+            .col-md-6
+              = text_field_tag "conf[app_name]", $conf.app_name, :class => 'form-control'
+            .col-md-6
+              = submit_tag t('save'), :class=>'btn  btn-warning'
+        .clearfix
 
-    %p.label= t('conf.app_url')
-    = form_tag '/admin/conf' do
-      = text_field_tag "conf[app_url]", $conf.app_url
-      = submit_tag t('save'), :class=>'btn  btn-warning'
-    .clear
+  .row
+    .col-md-12
+      %h3= t('conf.app_url')
+      %hr
+      .well
+        = form_tag '/admin/conf', :class => 'form form-horizontal' do
+          .row
+            .col-md-6
+              = text_field_tag "conf[app_url]", $conf.app_url, :class => 'form-control'
+            .col-md-6
+              = submit_tag t('save'), :class=>'btn btn-warning'
+        .clearfix
 
-    %p.label= t('default_newsletter_banner')
-    .left
-      = (image_tag $conf.newsletter_header.url) if $conf.newsletter_header
-    .right
-      = form_tag '/admin/conf', :multipart => true do
-        = file_field_tag "conf[newsletter_header]"
-        = submit_tag t('send'), :class=>'btn  btn-warning'
-    .clear
+  .row
+    .col-md-12
+      %h3= t('default_newsletter_banner')
+      %hr
+      .well
+        .row
+          .col-md-12
+            = (image_tag $conf.newsletter_header.url) if $conf.newsletter_header
+        %hr
+        .row
+          .col-md-8.pt-20
+            = form_tag '/admin/conf', :multipart => true, :class => 'form form-horizontal' do
+              = file_field_tag "conf[newsletter_header]", :class => 'pull-left'
+              = submit_tag t('send'), :class=>'btn btn-warning pull-left'
+        .clearfix
 
+  .row
+    .col-md-12
+      %h3= t('welcome_mail')
+      %hr
+      .well
+        = form_tag '/admin/conf', :class => 'form' do
 
-    %p.label= t('welcome_mail')
-    = form_tag '/admin/conf' do
+          %label= t('welcome_mail_subject')
+          = text_field_tag "conf[welcome_mail_subject]", $conf.welcome_mail_subject, :class => 'form-control'
+          %br
+          %label= t('welcome_mail_body')
+          .content_container.hide
+            = soft_clean $conf.welcome_mail_body
+          .textarea_container
+          %br
+          = submit_tag t(:create), :class=>'btn btn-warning pull-right'
+        .clearfix
 
-      %label= t('welcome_mail_subject')
-      = text_field_tag "conf[welcome_mail_subject]", $conf.welcome_mail_subject, :style=>'width:730px;'
-
-      %label= t('welcome_mail_body')
-      .content_container.hide
-        = soft_clean $conf.welcome_mail_body
-      .textarea_container
-      %br
-      = submit_tag t(:create), :class=>'btn  btn-danger', :style=>'float:right;margin-right:10px;'
-
-
-= t_init(:name => 'conf[welcome_mail_body]')
+= t_init(:name => 'conf[welcome_mail_body]', :width => '100%')
 

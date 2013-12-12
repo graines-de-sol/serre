@@ -1,6 +1,8 @@
 = render :partial => '/admin/shared/left_column'
 
 .col-md-9.content
+  %a.btn.btn-danger.pull-right{:href=>"/admin/ads", :data=>{'method'=>'post'}}
+    = t('create_category')
   %h3.underline= "Catégories d'annonces"
   %hr
   #categories_management.pb-20
@@ -17,9 +19,6 @@
               .col-md-10
                 %input.form-control{:type=>'text', :name=>"category[#{category.id}][name]", :value=>category.name}
 
-          %a{:href=>"/admin/ads", :data=>{'method'=>'post'}}
-            = t('create_category')
-          %br
           %br
           = submit_tag t('save'), :class=>'btn  btn-warning'
 
