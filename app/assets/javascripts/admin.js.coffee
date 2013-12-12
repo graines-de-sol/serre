@@ -1,5 +1,5 @@
 $ ->
   # Toggle Media description block
   $('.doToggleMediaDescription').click ->
-    $(this).closest('.col').next('.category_description').slideToggle('slow')
+    $(this).closest('.col-md-5').next('.category_description').slideToggle('slow')
 

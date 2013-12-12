@@ -11,5 +11,6 @@
 //= require ads
 //= require events
 //= require workgroups
+//= require admin
 
 

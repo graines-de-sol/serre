@@ -1,31 +1,32 @@
 = render :partial => '/admin/shared/left_column'
 
 .col-md-9.content.pb-20
+  %a.btn.btn-danger.pull-right{:href => admin_medias_path, :data => {'method' => 'post'}}= t('admin.medias.create_category')
+
+  .clearfix
   #medias_categories
     %p.label= t('admin.medias.categories_title')
 
-    %a.label.label-important.right{:href => admin_medias_path, :data => {'method' => 'post'}}= t('admin.medias.create_category')
-    .clear
     %br
     = form_tag admin_media_path('all'), :method=>:put do
       - MediaCategory.published.each do |category|
         .row
-          .col
+          .col-md-2
             %a{:href => admin_media_path(category.id), :data => {'method' => 'delete', 'confirm' => t('confirms.delete_this_media_category')}}
               %i.icon-remove
-          .col.w90
+            = '&nbsp;|&nbsp;'.html_safe
             %label= t('admin.medias.category_name')
-          .col
-            = text_field_tag "category[#{category.id}][name]", category.name
-          .col
-            %a.doToggleMediaDescription= t('admin.medias.toggle_description')
+          
+          .col-md-4
+            = text_field_tag "category[#{category.id}][name]", category.name,  :class => 'col-md-12'
 
-          .category_description.hide
-            .col
-            .col.w90
-              %label= t('admin.medias.category_description')
-            .col
-              = text_area_tag "category[#{category.id}][description]", category.description
+          .col-md-5
+            %a.doToggleMediaDescription{:href => '#'}= t('admin.medias.toggle_description')
+
+          .col-md-12.category_description{:style => 'display: none;'}
+            %label= t('admin.medias.category_description')
+            %br
+            = text_area_tag "category[#{category.id}][description]", category.description, :class => 'col-md-12 mb-20 h-150'
 
 
       %br
