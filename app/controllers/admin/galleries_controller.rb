@@ -15,7 +15,11 @@
     @galleries = Gallery.all
     @gallery = Gallery.create(params[:gallery])
 
-    render :template => '/admin/galleries/index'
+    if @gallery.errors.any?
+      render :template => '/admin/galleries/index'
+    else
+      redirect_to admin_galleries_path
+    end
   end
 
   def update

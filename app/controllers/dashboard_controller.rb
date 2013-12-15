@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
   before_filter :is_logged, :load_conf
 
   def index
-    @last_post = Post.published.order('published_at DESC').first
+    @last_posts = Post.last_posts(3).published
   end
 
   def create

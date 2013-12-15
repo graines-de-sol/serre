@@ -1,8 +1,11 @@
 %h3= "Derniers commentaires"
 %hr
 - Comment.last_published.each do |comment|
-
   .row.comment
+    .col-md-12
+      %h3
+        %a{:href => blog_path(comment.post.id)}= truncate(comment.post.title, :lenght => '80')
+    .clearfix.mb-10
     .col-md-2
       %a.avatar{:href=>member_path(current_user.member.id), :title => "#{current_user.member.first_name} #{current_user.member.last_name}", :data => {:do => 'tooltip'}}
         = avatar(comment.member, '100x100')

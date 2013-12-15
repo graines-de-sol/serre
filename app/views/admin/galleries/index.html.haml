@@ -18,7 +18,8 @@
         %br
         .row
           .col-md-3
-            %input{:type => 'text', :name => 'gallery[event_at]', :class => 'form-control datepicker'}
+            %input{:type => 'text', :name => 'event', :class => 'form-control datepicker'}
+            %input{:type => 'hidden', :name => 'gallery[event_at]', :id => 'end_at'}
       .form-group
         %label= "Commentaires"
         %br
@@ -28,7 +29,7 @@
 
   %hr
   %ul#galleries
-    - @galleries.each do |gallery|
+    - @galleries.reverse.each do |gallery|
       %li
         .well
           %h3

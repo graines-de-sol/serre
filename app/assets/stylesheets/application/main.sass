@@ -14,6 +14,10 @@ p, span
   word-wrap: break-word
   text-overflow:ellipsis
 
+.content 
+  a
+    border-bottom: 1px solid transparent
+
 a.avatar
   display: block
   width: 70px
@@ -117,6 +121,8 @@ a.dropdown-toggle
 .delete
   color: red
 .comment 
+  padding: 0
+  margin-bottom: 20px
   a.delete
     position: absolute
     right: 10px
@@ -165,3 +171,13 @@ h2
     padding-bottom: 20px
     border-bottom: 1px solid #d4d4d4
     margin-bottom: 20px
+.readmore 
+  background-color: #16cbe6
+  color: #fff
+  padding: 5px 10px
+
+.readmore:before 
+  content: "» "
+.readmore:hover
+  color: #fff
+  border-bottom: 1px solid transparent

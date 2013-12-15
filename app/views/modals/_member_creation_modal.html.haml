@@ -1,35 +1,39 @@
-#creation_modal.modal.hide.fade
-  .modal-header
-    %a.close{:data=>{'dismiss'=>'modal'}}
-      = '×'
-    %h3= t('new_account_creation')
+#creation_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %a.close{:data=>{'dismiss'=>'modal'}}
+          = '×'
+        %h3= t('new_account_creation')
 
-  .modal-body
-    = form_tag "/members" do
-      #new_user_form
+      .modal-body
+        = form_tag "/members", :class => 'form form-form-horizontal' do
+          #new_user_form
+            .form-group.col-md-5
+              %label.form-label= t(:login)
+              %input.form-control.col-md-3{:type=>'text', :name=>'user[email]'}
 
-        .left
-          %label= t(:login)
-          %input{:type=>'text', :name=>'user[email]'}
-        .left
-          %label= t(:password)
-          %input{:type=>'password', :name=>'user[password]'}
+            .form-group.col-md-5
+              %label.form-label= t(:password)
+              %input.form-control.col-md-3{:type=>'password', :name=>'user[password]'}
 
-        .left
-          %label= t(:role)
-          %select{:name=>'user[role]'}
-            %option{:value=>'user'}= t('member')
-            %option{:value=>'administrator'}= t('administrator')
-      .clear
+            .clearfix
+            .form-group.col-md-6
+              %label.form-label= t(:role)
+              %select.form-control{:name=>'user[role]'}
+                %option{:value=>'user'}= t('member')
+                %option{:value=>'administrator'}= t('administrator')
 
-      %label= "Mail de bienvenue"
-      .content_container.hide
-        = $conf.welcome_mail_body
-      .textarea_container
-      %br
-      = submit_tag t(:create), :class=>'btn  btn-danger', :style=>'float:right;margin-right:10px;'
-      = check_box_tag 'no_welcome_email'
-      = t('no_welcome_email')
+          .clearfix.mt-10.mb-10
+
+          %label= "Mail de bienvenue"
+          .content_container.hide
+            = $conf.welcome_mail_body
+          .textarea_container
+          %br
+          = submit_tag t(:create), :class=>'btn  btn-danger', :style=>'float:right;margin-right:10px;'
+          = check_box_tag 'no_welcome_email'
+          = t('no_welcome_email')
 
 = t_init(:name => 'article[content]')
 
