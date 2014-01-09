@@ -35,8 +35,8 @@ task :pull_events => :environment do
     agenda.push({ 
       :start_at => start_at.to_time,
       :end_at   => end_at.to_time,
-      :title    => Iconv.conv("iso-8859-1", "UTF8", title.encode("iso-8859-1")),
-      :description  => Iconv.conv("iso-8859-1", "UTF8",description.encode("iso-8859-1")),
+      :title    => title,
+      :description  => description,
       :id       => detail.split('https://www.google.com/calendar/event?eid=').last
     })
 
@@ -46,23 +46,27 @@ task :pull_events => :environment do
 
     event_exists = Event.where(['event_id = ?', event[:id]]).first
 
+    desc = "#{Iconv.conv("iso-8859-1", "UTF8", event[:description].gsub(/\\/, ""))}".force_encoding('UTF-8')
+    title = "#{Iconv.conv("iso-8859-1", "UTF8", event[:title].gsub(/\\/, ""))}".force_encoding('UTF-8')
+
     if event_exists
 
       event_exists.update_attributes(
         :start_at => event[:start_at].to_datetime, 
         :end_at => event[:end_at].to_datetime, 
-        :title => event[:title], 
-        :description => event[:description]
+        :title => title, 
+        :description => desc
       )
 
       puts "Updated event id #{event[:id]}"
 
     else
+
       Event.create(
         :start_at => event[:start_at].to_datetime, 
         :end_at => event[:end_at].to_datetime, 
-        :title => event[:title], 
-        :description => event[:description], 
+        :title => title, 
+        :description => desc,
         :event_id => event[:id],
         :calendar_id => 1
       )        

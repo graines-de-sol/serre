@@ -184,7 +184,7 @@
           .col-md-10.pull-right
             .col-md-5.pull-right
               = "Date d'entrée"
-              - entered_at = Time.now unless @member.entered_at
+              - @member.entered_at ? entered_at = @member.entered_at : entered_at = Time.now
               = text_field_tag "entered_at", l(entered_at, :format => :long), :class => 'datepicker col-md-8 pull-right'
               = hidden_field_tag "member[entered_at]", entered_at, :id => 'end_at'
             .col-md-3.pull-right
