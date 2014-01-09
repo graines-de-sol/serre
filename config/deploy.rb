@@ -1,6 +1,6 @@
 require "rvm/capistrano"
 require "bundler/capistrano"
-#require "whenever/capistrano"
+require "whenever/capistrano"
 
 set :application, "serre"
 set :repository,  "git@github.com:graines-de-sol/serre.git"
@@ -15,6 +15,12 @@ set :branch, fetch(:branch, "master")
 set :normalize_asset_timestamps, false
 set :rvm_ruby_string, '1.9.3-p194'
 set :rvm_type, :user
+set :whenever_command, "bundle exec whenever"
+set :default_environment, {
+  'PATH' =>         "/home/gds/.rvm/gems/ruby-1.9.3-p194/bin:/home/gds/.rvm/gems/ruby-1.9.3-p194@global/bin:/home/gds/.rvm/rubies/ruby-1.9.3-p194/bin:/home/gds/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+  'GEM_HOME' =>     "/home/gds/.rvm/gems/ruby-1.9.3-p194",
+  'GEM_PATH' =>     "/home/gds/.rvm/gems/ruby-1.9.3-p194:/home/gds/.rvm/gems/ruby-1.9.3-p194@global"
+}
 
 role :web, "ns382592.ovh.net"
 role :app, "ns382592.ovh.net"
