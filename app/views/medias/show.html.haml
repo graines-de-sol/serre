@@ -2,13 +2,30 @@
   - unless @category.description.blank?
     %h5{:style => 'border-bottom: 2px solid #999'}= simple_format(@category.description)
 
-
-
   %ul.medias_list
     - @category.medias.each do |media|
-      %li        
+      %li   
+        - if is_admin
+          %a.delete{:href => admin_delete_media_path(media.id), :data => {'method'=>'delete', 'confirm'=>t('confirms.delete_media')}}= '×'
+
         %a{:href => media_download_path(media.id), :class => get_type_icon(media)}= "#{media.name} (#{number_to_human_size(media.filesize, :locale => :en)})"
 
+    - if is_admin
+      .well{:style => 'height:160px;overflow: hidden'}
+        = form_tag upload_media_admin_media_path(@category), :multipart => true, :class => 'form' do
+          %table#uploader
+            %tr
+              %td
+                %label= t('medias.choose_file')
+              %td
+                %input.form-control{:type => 'file', :name => 'media[file]'}
+            %tr
+              %td
+                %label= t('medias.file_name')
+              %td
+                %input.form-control{:type => 'text', :name => 'media[name]'}
+
+          = submit_tag t('send'), :class => 'btn  btn-warning'
 
 .col-md-4
   .row
@@ -21,5 +38,6 @@
           %li{:class => ('active' if params[:id].to_i == category.id)}
             %a{:href => media_path(category.id)}
               = category.name
+
       - if is_admin
         %a{:href => admin_medias_path}= t('manage_medias_categories')
