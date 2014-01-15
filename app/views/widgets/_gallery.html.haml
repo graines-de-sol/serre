@@ -1,4 +1,3 @@
-
 %h3= "Dernières photos ajoutées"
 %hr
 - Gallery.last_pictures.each do |picture|
@@ -9,5 +8,7 @@
           = image_tag picture.image.thumb('100x100').url
 
 .clearfix
+= link_to "Toutes les galeries", galleries_path, :class => 'readmore pull-right mt-10 mb-10'
+
 
 

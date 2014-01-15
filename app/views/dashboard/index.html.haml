@@ -1,74 +1,34 @@
-.col-md-12.content.mb-20
-  - @last_posts.each do |post|
-    %h2
-      %b= link_to post.title, blog_path(post.id)
-    %hr
-    = truncate(soft_clean(strip_tags(post.content)), :length => 200)
-    .clearfix
-    = link_to "» Lire la suite", blog_path(post.id), :class => 'read-more'
-    .clearfix
-  
-  = link_to "Toutes les actus", blog_index_path, :class => 'readmore pull-right mt-10 mb-10'
-  .clearfix
-
 .col-md-6
   .row
     .col-md-12
       .row
         .col-md-12.content.mb-40
-          = render :partial => '/widgets/last_ads'
-          = link_to "Toutes les annonces", ads_path, :class => 'readmore pull-right mt-10 mb-10'
-          .clearfix 
-
+          = render :partial => '/widgets/last_posts'
+        
       .row
-        .col-md-6
-          .row
-            .col-md-11
-              .row.mb-40
-                .col-md-12.content
-                  = render :partial => '/widgets/new_comers'
-                  .clearfix
-                  = link_to "Toutes les membres", members_path, :class => 'readmore pull-right mt-10 mb-10'
-                  .clearfix
-
-              .row
-                .col-md-12.content
-                  = render :partial => '/widgets/surveys'
-                  .clearfix
-
-        .col-md-6
-          .row
-            .col-md-12.content.pb-20.mb-40
-              = render :partial => '/widgets/new_outers'
-              .clearfix
-              = link_to "Toutes les membres", members_path, :class => 'readmore pull-right mt-10 mb-10'
-              .clearfix
-
-          .row
-            .col-md-12.content.pb-20
-              = render :partial => '/widgets/next_events'
-              .clearfix
-              = link_to "Tous les événements", events_path, :class => 'readmore pull-right mt-10 mb-10'
-              .clearfix
+        .col-md-12.content.mb-40
+          = render :partial => '/widgets/last_ads'
 
 .col-md-6
   .row
     .col-md-12
       .row
         .col-md-11.col-md-offset-1.content.mb-40
-          = render :partial => '/widgets/last_comments'
-          .clearfix
-          = link_to "Toutes les actus", blog_index_path, :class => 'readmore pull-right mt-10 mb-10'
+          = render :partial => '/widgets/next_events'
 
       .row
         .col-md-11.col-md-offset-1.content.mb-40
           = render :partial => '/widgets/gallery'
-          .clearfix
-          = link_to "Toutes les galeries", galleries_path, :class => 'readmore pull-right mt-10 mb-10'
 
       .row
-        /.col-md-11.col-md-offset-1.content.pb-20
-        /  = render :partial => '/widgets/last_documents'
+        .col-md-11.col-md-offset-1.content.pb-20.mb-40
+          = render :partial => '/widgets/new_comers'
+          /= render :partial => '/widgets/last_documents'
+
+      .row
+        .col-md-11.col-md-offset-1.content.pb-20
+          = render :partial => '/widgets/new_outers'
+
 
 - unless session[:headline_shown]
   - session[:headline_shown] = true

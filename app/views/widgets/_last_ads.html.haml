@@ -1,18 +1,20 @@
-%h3= "Dernière annonce publiée"
+%h3= "Entre nous"
 %hr
 
 - ad = Ad.last
 .row.pb-20
-  .col-md-11.center.ad{:id=>"ad_id_#{ad.id}"}
-    
+  - Ad.lasts_4.each do |ad|
+    .col-md-11.mb-20.center.ad{:id=>"ad_id_#{ad.id}"}
+      %h3
+        .avatar
+          = link_to avatar(ad.member, '32x32'), member_path(ad.member.id), :rel=>'tooltip', :title=>"#{ad.member.first_name} #{ad.member.last_name}"  
+        = ad.subject
+      
+      .clearfix
+      = truncate(soft_clean(strip_tags(ad.body)), :length => 200)
+      .clearfix
+      = link_to "» Lire la suite", ads_path, :class => 'read-more'
+      .clearfix
 
-    %h3
-      .avatar
-        = link_to avatar(ad.member, '32x32'), member_path(ad.member.id), :rel=>'tooltip', :title=>"#{ad.member.first_name} #{ad.member.last_name}"
-      = ad.subject
-    
-    .clearfix
-    = soft_clean ad.body
-
-    .cleafix
-
+= link_to "Entre nous", ads_path, :class => 'readmore pull-right mt-10 mb-10'
+.clearfix 

@@ -1,7 +1,7 @@
 class Member < ActiveRecord::Base
 
   acts_as_taggable
-  acts_as_taggable_on :skills, :status
+  acts_as_taggable_on :skills, :status, :specificities
   
   belongs_to :location
   belongs_to :user

@@ -1,7 +1,9 @@
-%h3= "Derniers partis"
+%h3= "Ils s'en vont..."
 %hr
 - User.new_outers.each do |user|
   %a.avatar{:href=>member_path(user.member.id), :title => "#{user.member.first_name} #{user.member.last_name}", :data => {:do => 'tooltip'}}
     = avatar(user.member, '100x100')
 
+.clearfix
+= link_to "Toutes les membres", members_path, :class => 'readmore pull-right mt-10 mb-10'
 .clearfix

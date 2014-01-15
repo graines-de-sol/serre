@@ -67,6 +67,7 @@ $ ->
       success : (data) ->
         that.attr('title', "Cliquer pour retirer cette compétence")
         $('#do-skillsToremove').prepend that
+    return false
   )
     
   $("#do-skillsToremove").on('click', 'a', ->
@@ -81,6 +82,7 @@ $ ->
       success : (data) ->
         that.attr('title', "Cliquer pour ajouter cette compétence")
         $("#do-skillsToAdd").prepend that    
+    return false
   )
 
   $("#do-statusToAdd").on('click', 'a', ->
@@ -111,6 +113,38 @@ $ ->
       success : (data) ->
         that.attr('title', "Cliquer pour ajouter ce statut")
         $("#do-statusToAdd").prepend that  
+
+    return false  
+  )
+
+  $("#do-specificityToAdd").on('click', 'a', ->
+    that = $(this)
+    $.ajax
+      url: '/members/update_status/add'
+      type: 'POST'
+      data:
+        tag_name: that.data('tag-name'),
+        member_id: that.data('member-id')
+
+      success : (data) ->
+        that.attr('title', "Cliquer pour retirer ce statut")
+        $('#do-specificityToremove').prepend that
+
+    return false
+  )
+    
+  $("#do-specificityToremove").on('click', 'a', ->
+    that = $(this)
+    $.ajax
+      url: '/members/update_status/remove'
+      type: 'POST'
+      data:
+        tag_name: that.data('tag-name'),
+        member_id: that.data('member-id')
+
+      success : (data) ->
+        that.attr('title', "Cliquer pour ajouter ce statut")
+        $("#do-specificityToAdd").prepend that  
 
     return false  
   )

@@ -33,24 +33,6 @@
         .well.detail-form
           .form-group
             .col-sm-2.ta-r
-              %label= "Toutes les compétences"
-            .col-sm-10#do-skillsToAdd.mh-20
-              - skills = @member.skill_list.map{|skill| skill}
-              - all_skills = ActsAsTaggableOn::Tagging.find_all_by_context("skills").map{|skill| skill.tag.name}.uniq
-              - all_skills.each do |skill|
-                - unless skills.include?(skill)
-                  %a{:href => '#', 'data-tag-name' => skill, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour ajouter cette compétence'}= skill
-              %hr
-          .form-group
-            .col-sm-2.ta-r
-              %label= "Mes compétences"
-            .col-sm-10#do-skillsToremove
-              - skills.each do |skill|
-                %a{:href => '#', 'data-tag-name' => skill, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour retirer cette compétence'}= skill
-
-        .well.detail-form
-          .form-group
-            .col-sm-2.ta-r
               %label= t('activity_1')
             .col-sm-4
               = text_field_tag 'member[organisation]', @member.organisation, :style => 'width: 100%'
@@ -116,7 +98,7 @@
               - all_status.each do |status|
                 - unless member_status.include?(status)
                   %a{:href => '#', 'data-tag-name' => status, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour ajouter ce statut'}= status
-
+              %hr
           .form-group
             .col-sm-2.ta-r
               %label= "Mon (mes) statut(s)"
@@ -124,6 +106,43 @@
               - member_status.each do |status|
                 %a{:href => '#', 'data-tag-name' => status, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour retirer ce statut'}= status
 
+        .well.detail-form
+          .form-group
+            .col-sm-2.ta-r
+              %label= "Toutes les secteurs d'activités"
+            .col-sm-10#do-skillsToAdd.mh-20
+              - skills = @member.skill_list.map{|skill| skill}
+              - all_skills = ActsAsTaggableOn::Tagging.find_all_by_context("skills").map{|skill| skill.tag.name}.uniq
+              - all_skills.each do |skill|
+                - unless skills.include?(skill)
+                  %a{:href => '#', 'data-tag-name' => skill, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour ajouter cette compétence'}= skill
+              %hr
+          .form-group
+            .col-sm-2.ta-r
+              %label= "Mes secteurs d'activités"
+            .col-sm-10#do-skillsToremove
+              - skills.each do |skill|
+                %a{:href => '#', 'data-tag-name' => skill, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour retirer cette compétence'}= skill
+
+        .well.detail-form
+          .form-group
+            .col-sm-2.ta-r
+              %label= "Toutes les spécialitées"
+            .col-sm-10#do-specificityToAdd.mh-20
+              - specificities = @member.specificity_list.map{|specificity| specificity}
+              - all_specificities = ActsAsTaggableOn::Tagging.find_all_by_context("specificity").map{|specificity| specificity.tag.name}.uniq
+              - all_specificities.each do |specificity|
+                - unless specificities.include?(specificity)
+                  %a{:href => '#', 'data-tag-name' => specificity, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour ajouter cette spécialité'}= specificity
+              %hr
+          .form-group
+            .col-sm-2.ta-r
+              %label= "Mes spécialités"
+            .col-sm-10#do-specificityToremove
+              - specificities.each do |specificity|
+                %a{:href => '#', 'data-tag-name' => specificity, 'data-member-id' => @member.id, :class => 'tag', :title => 'Cliquer pour retirer cette spécialité'}= specificity
+
+        .well.detail-form
           .form-group
             .col-sm-2.ta-r
               %label= t('phone')

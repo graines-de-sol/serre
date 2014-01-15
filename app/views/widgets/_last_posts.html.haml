@@ -1,0 +1,15 @@
+%h3= "Actualité"
+%hr
+
+- @last_posts.each do |post|
+  %h2
+    %b= link_to post.title, blog_path(post.id)
+  %hr
+  = truncate(soft_clean(strip_tags(post.content)), :length => 200)
+  .clearfix
+  = link_to "» Lire la suite", blog_path(post.id), :class => 'read-more'
+  .clearfix
+
+= link_to "Toutes les actus", blog_index_path, :class => 'readmore pull-right mt-10 mb-10'
+
+.clearfix

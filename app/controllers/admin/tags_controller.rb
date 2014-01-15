@@ -5,6 +5,7 @@ class Admin::TagsController < ApplicationController
   def index
     @skills = ActsAsTaggableOn::Tagging.where('taggable_id IS NULL AND context = ?', 'skills')
     @status = ActsAsTaggableOn::Tagging.where('taggable_id IS NULL AND context = ?', 'status')
+    @specificities = ActsAsTaggableOn::Tagging.where('taggable_id IS NULL AND context = ?', 'specificity')
   end
 
   def create

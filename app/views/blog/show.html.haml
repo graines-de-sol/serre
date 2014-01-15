@@ -1,10 +1,13 @@
 .col-md-8.content
-
+  = link_to "Toutes les actus", blog_index_path, :class => 'readmore pull-right mt-10 mb-10'
+  
 
   %h2= link_to @post.title.capitalize, blog_path(@post)
-  %h3
-    = t('blog.in_category').capitalize
-    /= link_to @post.blog_category.name, blog_category_path(@post.blog_category.id)
+  %span= "Publié le #{l(@post.published_at, :format => :long)}"
+  .clearfix
+  /%h3
+  /= t('blog.in_category').capitalize
+  /= link_to @post.blog_category.name, blog_category_path(@post.blog_category.id)
 
   .awidget-body
     .row

@@ -4,7 +4,7 @@
 
   .row
     .col-md-12
-      %h3= "Compétences"
+      %h3= "Secteurs d'activités"
       %hr
       .row
         .col-md-5
@@ -51,3 +51,27 @@
           = form_tag admin_tags_path, :class => 'form' do
             = hidden_field_tag 'tag_type', 'status'
             = submit_tag "+ Ajouter un statut", :class => 'btn btn-danger'
+
+  .row
+    .col-md-12
+      %h3= "Spécialités"
+      %hr
+      .row
+        .col-md-5
+          = form_tag admin_tag_path('all'), {:class => 'form-horizontal', :method=>:put} do
+
+            - @specificities.each do |skill|
+              .form-group
+                .col-md-1
+                  %a{:href => admin_tag_path(skill.id), :data => {'method' => 'delete', 'confirm' => "Sur ?! Ceci enlèvera cette compétence à tous ceux qui se l'était attribué"}}
+                    %i.icon-remove
+                .col-md-10
+                  = text_field_tag "tag[#{skill.tag.id}]", skill.tag.name, :class => 'form-control'
+
+            %br
+            = submit_tag t('save'), :class => 'btn  btn-warning'
+
+        .col-md-3
+          = form_tag admin_tags_path, :class => 'form' do
+            = hidden_field_tag 'tag_type', 'specificity'
+            = submit_tag "+ Ajouter une spécialité", :class => 'btn btn-danger'
