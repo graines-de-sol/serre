@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   has_many :members, :through => :participants
 
   def self.upcoming
-    Event.where(['start_at > ?', Time.now]).limit(4)
+    Event.where(['start_at > ?', Time.now]).order('start_at ASC').limit(4)
   end
 
 end

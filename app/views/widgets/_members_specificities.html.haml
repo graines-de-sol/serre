@@ -1,0 +1,6 @@
+%h3= "Rechercher par spécialité"
+%hr
+%ul
+  - tag_cloud(Member.tag_counts_on(:specificities), %w(cloud3)) do |tag, css_class| 
+    %li
+      %a{ :href => '#', 'data-do' => 'filterBySpecificity', 'data-specificity-id' => tag.id }= tag.name

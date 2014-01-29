@@ -8,6 +8,7 @@ Refuge::Application.routes.draw do
   match 'members/mail' => 'members#mail_member', :via => :post
   match 'members/update_skills/:do' => 'members#update_skills', :via => :post
   match 'members/update_status/:do' => 'members#update_status', :via => :post
+  match 'members/update_specificity/:do' => 'members#update_specificity', :via => :post
   match 'blog/category/:id' => 'blog#show_category',          :as => :blog_category, :via => :get
   match 'blog/archives/:year/:month' => 'blog#show_archives', :as => :blog_archives, :via => :get
 

@@ -2,7 +2,7 @@
   .row
     #members_list
       - @members.each do |member|
-        .member_resume{'data-skills' => member.skills.map{|t| t.id}, 'data-status' => member.status.map{|t| t.id}, 'data-first-name' => member.first_name.downcase, 'data-last-name' => member.last_name.downcase}
+        .member_resume{'data-skills' => member.skills.map{|t| t.id}, 'data-specificities' => member.specificities.map{|t| t.id},  'data-status' => member.status.map{|t| t.id}, 'data-first-name' => member.first_name.downcase, 'data-last-name' => member.last_name.downcase}
           .member_avatar
             %a{:href => member_path(member.id), :target => 'blank'}
               = avatar(member, '100x75')

@@ -48,6 +48,13 @@ $ ->
       else
         $(resume).fadeOut() 
 
+  $("[data-do='filterBySpecificity']").click ->
+    for resume in $('.member_resume')
+      if $(resume).data('specificities').indexOf($(this).data('specificity-id')) > -1
+        $(resume).fadeIn()
+      else
+        $(resume).fadeOut() 
+
   $("[data-do='filterByStatus']").click ->
     for resume in $('.member_resume')
       if $(resume).data('status').indexOf($(this).data('status-id')) > -1
@@ -120,7 +127,7 @@ $ ->
   $("#do-specificityToAdd").on('click', 'a', ->
     that = $(this)
     $.ajax
-      url: '/members/update_status/add'
+      url: '/members/update_specificity/add'
       type: 'POST'
       data:
         tag_name: that.data('tag-name'),
@@ -136,7 +143,7 @@ $ ->
   $("#do-specificityToremove").on('click', 'a', ->
     that = $(this)
     $.ajax
-      url: '/members/update_status/remove'
+      url: '/members/update_specificity/remove'
       type: 'POST'
       data:
         tag_name: that.data('tag-name'),

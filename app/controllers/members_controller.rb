@@ -104,6 +104,19 @@ class MembersController < ApplicationController
     render :text => 'success'
   end
 
+  def update_specificity
+    member = Member.find(params[:member_id])
+    if params[:do] == 'remove'
+      member.specificity_list.remove(params[:tag_name])
+    elsif params[:do] == 'add'
+      member.specificity_list.add(params[:tag_name])
+    end    
+
+    member.save
+
+    render :text => 'success'
+  end
+
   def mail_member
 
     @from = Member.find(current_user.member.id)
