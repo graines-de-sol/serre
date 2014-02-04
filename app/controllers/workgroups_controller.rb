@@ -94,7 +94,7 @@ class WorkgroupsController < ApplicationController
     params[:workgroup] = {}
     params[:workgroup][:workgroup_category_id] = params[:id]
     params[:workgroup][:file] = params[:qqfile]
-    Workgroup.create(params[:workgroup])
+    Workgroup.create!(params[:workgroup])
 
     render :json => {:success => true}
   end
