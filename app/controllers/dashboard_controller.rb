@@ -3,7 +3,10 @@ class DashboardController < ApplicationController
   before_filter :is_logged, :load_conf
 
   def index
-    @last_posts = Post.last_posts(4).published
+    @last_posts = Post.where(['published_at <= ?', Time.now])
+      .published
+      .limit(4)
+      .order('published_at DESC')
   end
 
   def create

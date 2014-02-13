@@ -2,7 +2,7 @@
   %h2= "Toutes nos actus"
   %hr
 
-  - Post.last_posts(10).each do |post|
+  - @posts.each do |post|
     .row.comment
       .col-md-12.post_detail_content
         %h2= link_to post.title, blog_path(post.id)

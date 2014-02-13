@@ -51,8 +51,8 @@ class BlogController < ApplicationController
   # Show blog posts by category                            HTML
   # -----------------------------------------------------------
   def show_category
-
-    @posts = Post.by_category(params[:id])
+    @posts = Post.where(['blog_category_id = ?', params[:id]]).order('published_at DESC')
+    #@posts = Post.by_category(params[:id])
 
     render :template => '/blog/index'
   end
