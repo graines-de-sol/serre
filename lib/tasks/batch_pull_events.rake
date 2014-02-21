@@ -10,7 +10,7 @@ task :pull_events => :environment do
   agenda = []
 
   url = Calendar.find(1).rss
-  doc = Nokogiri::XML(open(url))
+  doc = Nokogiri::XML(open("#{url}?max-results=300"))
 
   events = doc.xpath(" //xmlns:feed/xmlns:entry")
   
@@ -32,18 +32,21 @@ task :pull_events => :environment do
     # Title 
     title = doc.at_xpath('//title').inner_text.inspect.gsub(/"/, '')
 
-    agenda.push({ 
-      :start_at => start_at.to_time,
-      :end_at   => end_at.to_time,
-      :title    => title,
-      :description  => description,
-      :id       => detail.split('https://www.google.com/calendar/event?eid=').last
-    })
+    if start_at.to_time > Time.now
+      agenda.push({ 
+        :start_at => start_at.to_time,
+        :end_at   => end_at.to_time,
+        :title    => title,
+        :description  => description,
+        :id       => detail.split('https://www.google.com/calendar/event?eid=').last
+      })
+    end
 
   end
 
   agenda.each do |event|
 
+    #puts "Event at #{event[:start_at].to_date}"
     event_exists = Event.where(['event_id = ?', event[:id]]).first
 
     desc = "#{Iconv.conv("iso-8859-1", "UTF8", event[:description].gsub(/\\/, ""))}".force_encoding('UTF-8')
