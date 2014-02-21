@@ -10,7 +10,7 @@ task :pull_events => :environment do
   agenda = []
 
   url = Calendar.find(1).rss
-  doc = Nokogiri::XML(open("#{url}?max-results=300"))
+  doc = Nokogiri::XML(open("#{url}?orderby=starttime&sortorder=ascending&futureevents=true&max-results=300"))
 
   events = doc.xpath(" //xmlns:feed/xmlns:entry")
   
