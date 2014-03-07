@@ -12,9 +12,8 @@ class Api::BlogController < ApplicationController
     if @posts.empty?
       render :text => ''
     else
-      headers['Content-Type'] = 'application/xml'
       respond_to do |format|
-        format.html { render :html => '/api/blog/feed', :layout => false, :disposition => :inline }
+        format.rss { render :layout => false, :template => '/api/blog/feed' }
       end
     end
 

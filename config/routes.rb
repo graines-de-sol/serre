@@ -87,7 +87,7 @@ Refuge::Application.routes.draw do
   end
 
   namespace :api do
-    match 'blog/feed' => 'blog#feed', :as => 'rss_feed'
+    match 'blog/feed' => 'blog#feed', :as => 'rss_feed', :defaults => {:format => 'rss'}
 
   end
 
