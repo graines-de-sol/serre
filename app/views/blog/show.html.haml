@@ -63,17 +63,3 @@
   %a{:href=>'#create_post_modal', :class=>'label label-important right', :data=>{'toggle'=>'modal'}, :id => 'add_new_post'}
     = t('blog.create_post')
 
-- if !$conf.headline_published
-
-  #headline.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
-    .modal-dialog
-      .modal-content
-        .modal-header
-          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-          %h4#myModalLabel.modal-title= "Flash info"
-        .modal-body
-          = soft_clean($conf.headline)
-          .clearfix.mt-50
-
-  :javascript
-    $('#headline').modal('show');
