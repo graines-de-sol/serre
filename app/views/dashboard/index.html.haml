@@ -32,5 +32,4 @@
 - unless session[:headline_shown]
   - session[:headline_shown] = true
 
-  - if $conf.headline_published 
-    = render :partial => '/modals/headline'
+  = render :partial => '/modals/headline'

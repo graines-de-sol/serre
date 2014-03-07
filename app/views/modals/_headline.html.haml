@@ -1,20 +1,21 @@
-#headline.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %a.close{:data => {'dismiss' => 'modal'}}
-          = '×'
-        %h3= "Flash info"
+- if $conf.headline_published 
+  #headline.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %a.close{:data => {'dismiss' => 'modal'}}
+            = '×'
+          %h3= "Flash info"
 
-      .modal-body
-        %br
-        %br
-        = $conf.headline.html_safe if $conf.headline
-        %br
-        %br
-        .clearfix
+        .modal-body
+          %br
+          %br
+          = $conf.headline.html_safe if $conf.headline
+          %br
+          %br
+          .clearfix
 
-:javascript
-  $(document).ready(function(){
-    $('#headline').modal()
-  })
+  :javascript
+    $(document).ready(function(){
+      $('#headline').modal()
+    })
