@@ -43,7 +43,7 @@ $ ->
   # Filter ads by categories
   $('#ads-categories ul li a').click ->
     $('#ads-categories ul li a').attr('id','')
-    category_id = parseInt($(this).data('category_id'))
+    category_id = parseInt($(this).data('category-id'))
     $('.ad').each ->
       if category_id == 0
         $(this).show()

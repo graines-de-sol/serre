@@ -35,6 +35,16 @@
                 %td
                   %p= @member.website ? link_to(@member.organisation, "http://#{@member.website}", :target => 'blank') : @member.organisation
 
+            - if @member.logo
+              %tr
+                %td
+                  %p= ''
+                %td
+                  %p
+                    = image_tag @member.logo.thumb('x75').url, :alt=>"logo"
+                    %br
+                    %br
+              
             - if @member.organisation_2
               %tr
                 %td
@@ -62,6 +72,13 @@
                   %p= t('phone')
                 %td
                   %p= phone_number @member.mobile
+
+            - if @member.entered_at
+              %tr
+                %td
+                  %p= "Date d'entrée"
+                %td
+                  %p= l(@member.entered_at, :format => :long)
 
             - if @member.city
               %tr

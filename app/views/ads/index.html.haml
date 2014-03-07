@@ -4,10 +4,10 @@
       #ads-categories
         %ul
           %li
-            %a{:href=>'#', :id=>'active', :data=>{'category_id'=>0}}= t('all_categories')
+            %a{:href=>'#', :id=>'active', :data=>{'category-id'=>0}}= t('all_categories')
           - @categories.each do |category|
             %li
-              %a{:href=>'#', :data=>{'category_id'=>category.id}}= category.name
+              %a{:href=>'#', :data=>{'category-id'=>category.id}}= category.name
 
       %button{:id=>'toggle_ad_creator', :class=>'btn btn-warning'}= t('create_ad')
       .clearfix
