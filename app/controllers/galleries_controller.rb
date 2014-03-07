@@ -1,6 +1,6 @@
   class GalleriesController < ApplicationController
 
-  before_filter :is_admin, :load_conf
+  before_filter :load_conf
 
   def index
     @galleries = Gallery.all
