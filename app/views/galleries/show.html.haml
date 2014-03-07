@@ -1,5 +1,5 @@
 .col-md-12.content.pb-20
-
+  = link_to "Toutes les galeries", galleries_path, :class => 'readmore pull-right mt-10 mb-10'
 
   %h3= @gallery.name
   %hr
@@ -11,7 +11,7 @@
       .col-md-2
         .row
           .col-md-11.center.gallery-thumbnail
-            %a{:href => picture.image.thumb('500x500').url, :rel => 'lightbox'}
+            %a{:href => picture.image.thumb('500x500').url, :rel => "lightbox[gallery_#{@gallery.id}]"}
               = image_tag picture.image.thumb('200x200').url , :class => 'img-responsive'
 
     .clearfix
