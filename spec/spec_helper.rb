@@ -9,46 +9,44 @@ def load_all(*patterns)
   patterns.each { |pattern| Dir[pattern].sort.each { |path| load File.expand_path(path) } }
 end
 
-def configure
-  require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
-  require 'capybara/rspec'
-  require 'capybara/rails'
-  require 'selenium-webdriver'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+require 'capybara/rspec'
+require 'capybara/rails'
+include Warden::Test::Helpers
 
-  load_all 'spec/support/**/*.rb'
-  Capybara.default_driver = :selenium
+load_all 'spec/support/**/*.rb'
 
-  RSpec.configure do |c|
-    c.include Devise::TestHelpers, :type => :controller
-    c.include Devise::TestHelpers, :type => :view
-    c.include Devise::TestHelpers, :type => :helper
-    c.render_views
+#### Poltergeist
+#require 'capybara/poltergeist'
+#Capybara.javascript_driver = :poltergeist
 
-    c.mock_with :rspec
+#### Selenium
+require 'selenium-webdriver'
+Capybara.default_driver = :selenium
 
-    c.before :suite do
-      DatabaseCleaner.strategy = :truncation
-      DatabaseCleaner.clean_with :truncation
-    end
+RSpec.configure do |c|
+  c.include Devise::TestHelpers, :type => :controller
+  c.include Devise::TestHelpers, :type => :view
+  c.include Devise::TestHelpers, :type => :helper
+  c.render_views
 
-    c.before :each do
-      DatabaseCleaner.start
-    end
+  c.include Capybara::DSL
 
-    #c.after :each do
-    #  DatabaseCleaner.clean
-    #end
+  c.mock_with :rspec
+
+  c.before :suite do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with :truncation
+  end
+
+  c.before :each do
+    DatabaseCleaner.start
+  end
+
+  c.after :each do
+    DatabaseCleaner.clean
   end
 end
 
-if defined?(Spork)
-  Spork.prefork  { configure }
-  Spork.each_run do
-    # FIXME: Reloading lib won't work :(
-    # load_all 'lib/**/*.rb', 'config/routes.rb'
-  end
-else
-  configure
-end
 

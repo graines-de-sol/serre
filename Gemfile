@@ -1,13 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-end
+gem 'rails', '3.2.17'
 
 gem 'mysql2'
 gem 'rmagick', '2.13.2'
@@ -31,6 +24,12 @@ gem 'rvm-capistrano'
 gem 'acts-as-taggable-on'
 gem 'whenever'
 gem 'nokogiri'
+gem 'sass'
+
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+end
 
 group :development, :test do
   gem 'rspec-rails'

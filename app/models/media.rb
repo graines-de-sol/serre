@@ -2,7 +2,7 @@ require 'extend_string.rb'
 
 class Media < ActiveRecord::Base
 
-  set_table_name 'medias'
+  self.table_name = 'medias'
 
   attr_accessor :file
 

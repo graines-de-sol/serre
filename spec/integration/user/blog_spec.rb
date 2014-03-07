@@ -2,74 +2,43 @@ require 'spec_helper'
 
 describe 'Blog', :js => true do
 
-  before(:all) do
-    FactoryGirl.create :conf
-    FactoryGirl.create :user, :role => 'user'
-    (1..3).each do |i|
-      FactoryGirl.create :blog_category
-    end
+  before :each do
+    factories_for_blog_section
 
-    (1..3).each do
-      FactoryGirl.create :post
-    end
-
-    FactoryGirl.create :post, :blog_category_id => 1, :published_at => Time.now - 1.month
+    @user = FactoryGirl.create :user, :role => 'admin'
+    login_as @user, :scope => :user
+       
+    @post = Post.first
   end
 
-  before (:each) do
-    visit '/users/sign_in'
-    fill_in('user_email', :with => 'testing1@example.com')
-    fill_in('user_password', :with => 'testing')
-    click_button I18n.t('devise.common.sign_in')
-  end
-
-  after(:all) do
-    DatabaseCleaner.clean
-  end
-
-  it "visit blog index" do
+  it "shows all last posts in index" do
     visit '/blog'
 
-    page.should have_content('Post number 1')
-    page.should have_content('Post number 2')
-    page.should have_content('Post number 4')
+    page.should have_content('post number 1')
+    page.should have_content('post number 2')
 
     page.should_not have_content(I18n.t('blog.create_post'))
-    page.should_not have_content('Post number 3')
   end
 
-  it "visit blog show" do
-    visit '/blog/1'
+  it "shows a detailed blog post" do
+    visit "/blog/#{@post.id}"
 
-    page.should have_content('Post number 1')
-    page.should have_content('category 1')
-
-    page.should_not have_content(I18n.t('blog.edit_this_post'))
-    page.should_not have_content('Post number 2')
-    page.should_not have_content('Post number 3')
-    page.should_not have_content('Post number 4')
+    page.should have_content(@post.title)
   end
 
-  it "visit blog category" do
+  it "lists all posts in a category" do
     visit '/blog'
-    click_link 'category 1'
+    click_link @post.blog_category.name
 
-    page.should have_content('Post number 1')
-    page.should have_content('Post number 4')
-
-    page.should_not have_content('Post number 2')
-    page.should_not have_content('Post number 3')
+    page.should have_content(@post.title)
   end
 
-  it "visit blog archives" do
+  it "lists all archived posts in a given month" do
     visit '/blog'
+
     click_link "#{I18n.l(Time.now - 1.month, :format => :archives_month)}"
 
-    page.should have_content('Post number 1')
-    page.should have_content('Post number 4')
-
-    page.should_not have_content('Post number 2')
-    page.should_not have_content('Post number 3')
+    page.should have_content('last month post')
   end
 
 end

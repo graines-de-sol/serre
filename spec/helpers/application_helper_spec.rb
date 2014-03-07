@@ -3,10 +3,6 @@ require 'spec_helper'
 
 describe ApplicationHelper do
 
-  after(:each) do
-    DatabaseCleaner.clean
-  end
-
   describe "#member_has_infos?" do
 
     context "member is empty" do
@@ -55,7 +51,7 @@ describe ApplicationHelper do
 
   describe "is_admin" do
 
-    let(:current_user) { @current_user }
+    let :current_user { @current_user }
 
     it "should not identify a dumb user as an admin" do
       @current_user = Factory.create :user

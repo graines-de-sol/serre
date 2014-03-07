@@ -4,7 +4,7 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "no-reply@refuge.la-cordee.net"
+  config.mailer_sender = "no-reply@grainesdesol.fr"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -15,6 +15,7 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
+  config.secret_key = '94ca1b490471a348ecf23b354e0e151d9eaa5ffa6c2a60e587e23b4f316048b2cf1b6f91561915b8b33fe5d55606e04460a858ef3e7452b52b4473f77c9addb2'
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for

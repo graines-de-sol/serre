@@ -9,9 +9,10 @@ FactoryGirl.define do
     sequence (:title) {|n| "post number #{n}"}
     sequence (:content) {|n| "<p>This is a post content number #{n}</p>"}
     sequence (:blog_category_id) {|n| n}
-    published true
+    is_published true
     sequence (:published_at) {|n| Time.now - n.month}
 
+    blog_category
   end
 
 end

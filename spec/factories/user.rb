@@ -3,6 +3,8 @@ FactoryGirl.define do
     email { FactoryGirl.generate(:email) }
     password "testing"
     password_confirmation "testing"
+
+    member
   end
 end
 

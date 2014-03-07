@@ -6,7 +6,7 @@ class WorkgroupsController < ApplicationController
     public_workgroups = WorkgroupCategory.public.published
     private_workgroups = Agreement.where(['member_id = ? AND consent LIKE ?', current_user.member.id, "%access%"])
 
-    if !public_workgroups.empty?
+    if public_workgroups.any?
       redirect_to workgroup_path(public_workgroups.first.id)
     elsif public_workgroups.empty? && !private_workgroups.empty?
       redirect_to workgroup_path(private_workgroups.first.action_id)
