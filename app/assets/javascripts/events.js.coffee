@@ -34,6 +34,12 @@ window.pullEvent = (id) ->
         $('#toggle_event .modal-header #event_start').text(data.event.start_at)
         $('#toggle_event .modal-body #modal-event-id').val(data.event.event_id)
         $('#toggle_event .modal-body #event_dates').text("De : "+ data.event.start_at_time+" à "+ data.event.end_at_time)
+
+        if data.event.location
+          $('#toggle_event .modal-body #event_location').text('Lieu : '+data.event.location)
+        else
+          $('#toggle_event .modal-body #event_location').text('')
+
         if data.event.description
           $('#toggle_event .modal-body #event_description').text(data.event.description)
         else

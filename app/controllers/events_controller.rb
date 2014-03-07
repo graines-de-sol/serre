@@ -27,6 +27,7 @@ class EventsController < ApplicationController
         :event_id => @event.id, 
         :start_at => I18n.l(@event.start_at, :format => :long), 
         :end_at   => I18n.l(@event.end_at, :format => :long), 
+        :location   => @event.location, 
         :start_at_time   => "#{@event.start_at.strftime("%Hh%M")}", 
         :end_at_time   => "#{@event.end_at.strftime("%Hh%M")}", 
         :title    => @event.title,
