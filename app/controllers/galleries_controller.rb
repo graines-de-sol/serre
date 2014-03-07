@@ -3,7 +3,7 @@
   before_filter :is_logged, :load_conf
 
   def index
-    @galleries = Gallery.all.order('event_at DESC')
+    @galleries = Gallery.order('event_at DESC')
   end
 
   def show
