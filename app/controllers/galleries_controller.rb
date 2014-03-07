@@ -1,6 +1,6 @@
   class GalleriesController < ApplicationController
 
-  before_filter :load_conf
+  before_filter :is_logged, :load_conf
 
   def index
     @galleries = Gallery.all
