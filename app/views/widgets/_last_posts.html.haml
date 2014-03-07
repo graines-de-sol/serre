@@ -10,6 +10,7 @@
   = link_to "» Lire la suite", blog_path(post.id), :class => 'read-more'
   .clearfix
 
+= link_to "Abonnez vous au flux RSS", '/api/blog/feed.rss', :class => 'rss pull-left mt-10 mb-10'
 = link_to "Toutes les actus", blog_index_path, :class => 'readmore pull-right mt-10 mb-10'
 
 .clearfix
