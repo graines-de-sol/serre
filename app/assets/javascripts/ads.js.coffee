@@ -18,7 +18,7 @@ $ ->
 
   # Launch ad editor modal
   $('.edit_ad').click ->
-    ad_id = $(this).data('ad_id')
+    ad_id = $(this).data('ad-id')
     category_id = $('#ad_id_'+ad_id+' input.category_id').val()
     location_id = $('#ad_id_'+ad_id+' input.location_id').val()
     default_end_at = $.datepicker.parseDate('yy-mm-dd', $('#ad_id_'+ad_id+' input.end_at').val())

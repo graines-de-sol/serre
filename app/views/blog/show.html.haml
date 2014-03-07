@@ -36,7 +36,7 @@
             %p
               = "#{comment.member.first_name} #{comment.member.last_name}"
               %span= "Le #{l(comment.created_at, :format => :long)}"
-
+            .clearfix
             %p= comment.content
 
   .clearfix
@@ -55,6 +55,7 @@
     %p
       = "#{current_user.member.first_name} #{current_user.member.last_name}"
       %span.new-comment-date= ""
+    .clearfix
     %p.new-comment-content
 
 

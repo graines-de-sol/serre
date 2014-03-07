@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     this_comment = Comment.create(:content => params[:comment], :post_id => params[:id], :member_id => current_user.member.id)
 
     this_response = {:date => "Le #{l(this_comment.created_at, :format => :long)}", :comment => CGI::escapeHTML(this_comment.content).gsub(/\n/, '<br />')}
+    
     render :json => this_response.to_json
   end
 

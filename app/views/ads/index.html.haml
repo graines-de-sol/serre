@@ -28,7 +28,7 @@
 
             .action_bar
               - if Member.can_edit?(current_user, ad.member_id)
-                %a{:href=>'#create_ad', :data=>{'toggle'=>'modal', :ad_id=>ad.id}, :class=>'edit_ad'}
+                %a{:href=>'#create_ad', :data=>{'toggle'=>'modal', 'ad-id' => ad.id}, :class=>'edit_ad'}
                   %i.icon-pencil
                   = t('edit_this_ad')
                 %span= "#{t('valid_until')} #{l(ad.end_at, :format=>:long)}"
