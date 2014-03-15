@@ -41,7 +41,6 @@ class BlogController < ApplicationController
   # Delete a post                                      REDIRECT
   # -----------------------------------------------------------
   def destroy
-
     Post.find(params[:id]).delete
 
     redirect_to  '/'

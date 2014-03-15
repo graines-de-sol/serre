@@ -34,7 +34,7 @@ Refuge::Application.routes.draw do
   resources :galleries, :only => [:index, :show]
   resources :images,    :only => [:index, :create, :destroy]
   resources :surveys,   :only => [:create]
-  resources :comments,  :only => [:destroy, :update]
+  resources :comments,  :only => [:destroy, :update, :post]
   resources :ads,       :only => [:index, :create, :destroy]
   resources :members
   resources :pages

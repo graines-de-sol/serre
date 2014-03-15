@@ -28,16 +28,31 @@
     #comments
 
       - @post.comments.reverse.each do |comment|
-        .row.comment
+        .row.comment{'data-comment-id' => "row-#{comment.id}"}
           .col-md-2
             %a.avatar{:href=>member_path(current_user.member.id), :title => "#{current_user.member.first_name} #{current_user.member.last_name}", :data => {:do => 'tooltip'}}
               = avatar(comment.member, '100x100')
           .col-md-9
-            %p
+            - if comment.is_editable_by current_user
+              %span.ta-r.pull-right
+                %a{:href => '#', :class => 'icon-pencil', 'data-do' => 'formForComment', 'data-id' => comment.id}= "&nbsp;Modifier".html_safe
+                = '|'
+                %a{:href => '#', :class => 'icon-remove', 'data-do' => 'removeComment', 'data-id' => comment.id}= "&nbsp;Supprimer".html_safe
+            
+            %span
               = "#{comment.member.first_name} #{comment.member.last_name}"
               %span= "Le #{l(comment.created_at, :format => :long)}"
             .clearfix
-            %p= comment.content
+
+            %p{'data-comment-id' => "content-#{comment.id}"}
+              = simple_format comment.content
+
+            - if comment.is_editable_by current_user
+              .commentEditor{'data-comment-id' => "edit-#{comment.id}", :style => 'display: none'}
+                %form.form{'data-do' => 'updateComment', 'data-id' => comment.id}
+                  %textarea= comment.content
+                  %br
+                  = submit_tag "Enregistrer", :class => 'btn btn-info pull-right'
 
   .clearfix
   %br

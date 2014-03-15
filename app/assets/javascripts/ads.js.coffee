@@ -27,11 +27,7 @@ $ ->
     $('#ad_id').val ad_id
     $('#delete_ad_link').attr('href', '/ads/'+ad_id)
     $('#ad_subject').val $('#ad_id_'+ad_id+' h3').text()
-
-    #$('.content_container').text('huuuuu')
     tinyMCE.execInstanceCommand('wisiwig', "mceInsertContent", false, $('#ad_id_'+ad_id+' .ad_body').html());
-    #tinyMCE.get('ad_body').setContent('<span>some</span> html');
-    #$('#ad_body').val $('#ad_id_'+ad_id+' p').text()
 
     $('#show_end_date').val $.datepicker.formatDate('DD dd MM yy', default_end_at)
     $('#end_at').val $('#ad_id_'+ad_id+' input.end_at').val()
