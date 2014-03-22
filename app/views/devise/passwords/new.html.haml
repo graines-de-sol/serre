@@ -1,23 +1,29 @@
-.container{:style=>'background:none;'}
-  .span4.offset3#login_box
-    %h2= t('devise.common.forgot_your_password?')
+.page-content.blocky
+  .container
+    .row
+      .col-xs-4.awidget.center
+        .awidget-head
+        .awidget-body
+          .page-title
+            %h2= t('devise.common.forgot_your_password?')
+            %hr
 
-    .clear{:style=>'height:20px;'}
-    %p.well{:style=>'width:220px;'}
-      = t('devise.common.an_email_is_going_to_be_sent_with_instructions_1')
-      %br
-      %br
-      %i= t('devise.common.an_email_is_going_to_be_sent_with_instructions_2')
-    .clear{:style=>'height:10px;'}
+          .clearfix{:style=>'height:20px;'}
+          %p.well
+            = t('devise.common.an_email_is_going_to_be_sent_with_instructions_1')
+            %br
+            %br
+            %i= t('devise.common.an_email_is_going_to_be_sent_with_instructions_2')
+          .clear{:style=>'height:10px;'}
 
-    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-      %div
-        = f.label t('devise.common.login')
-        %br
-        = f.email_field :email
+          = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form' }) do |f|
+            .form-group
+              = f.label t('devise.common.login')
+              %br
+              = f.email_field :email, :class => 'form-control'
 
 
-      .clear{:style=>'height:20px;'}
-      %div
-        = f.submit t('devise.passwords.edit.change_my_password'), :class=>'btn  btn-warning'
+            .clearfix{:style=>'height:20px;'}
+              = f.submit t('devise.passwords.edit.change_my_password'), :class=>'btn  btn-warning pull-right'
 
+          .clearfixpt-20.pb-20

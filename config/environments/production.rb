@@ -63,5 +63,15 @@ Refuge::Application.configure do
   config.action_mailer.delivery_method = :sendmail
 
   config.time_zone = 'Paris'
+
+  smtp_config_file = File.join(Rails.root, 'config', 'smtp.production.rb')
+  if File.exists?(smtp_config_file)
+    # Let me define here my own private SMTP for dev.
+    require smtp_config_file
+  else
+    SMTP_SETTINGS = { :address => "smtp.host.com", :port => 25, :domain => "domain.com" }
+  end
+
+  config.smtp_settings = SMTP_SETTINGS
 end
 

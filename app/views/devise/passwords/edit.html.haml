@@ -1,23 +1,33 @@
-.container{:style=>'background:none;'}
-  .span4.offset3#login_box
-    %h2= t('devise.common.password_renew_1')
-    %h2= t('devise.common.password')
+.page-content.blocky
+  .container
+    .row
+      .col-xs-4.awidget.center
+        .awidget-head
+        .awidget-body
+          .page-title
 
-    .clear{:style=>'height:20px;'}
-    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-      = f.hidden_field :reset_password_token
+          %h2
+            = t('devise.common.password_renew_1')
+            %br
+            = t('devise.common.password')
+          %hr
 
-      %div
-        = f.label t('devise.common.new_password')
-        %br
-        = f.password_field :password
+          .clearfix
+          = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class => 'form' }) do |f|
+            = f.hidden_field :reset_password_token
 
-      %div
-        = f.label t('devise.common.confirm_password')
-        %br
-        = f.password_field :password_confirmation
+            .form-group
+              = f.label t('devise.common.new_password')
+              %br
+              = f.password_field :password, :class => 'form-control'
 
-      .clear{:style=>'height:20px;'}
-      %div
-        = f.submit t('devise.passwords.edit.change_my_password'), :class=>'btn  btn-warning'
+            .form-group
+              = f.label t('devise.common.confirm_password')
+              %br
+              = f.password_field :password_confirmation, :class => 'form-control'
 
+            
+            %div
+              = f.submit t('devise.passwords.edit.change_my_password'), :class=>'btn  btn-warning pull-right'
+
+          .clearfix.pt-20pb-20

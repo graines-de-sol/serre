@@ -9,7 +9,7 @@ Refuge::Application.configure do
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
-  config.assets.paths << "#{Rails.root}/app/assets/fonts"
+  #config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
@@ -34,7 +34,7 @@ Refuge::Application.configure do
 
   config.time_zone = 'Paris'
 
-  smtp_config_file = File.join(Rails.root, 'config', 'smtp.rb')
+  smtp_config_file = File.join(Rails.root, 'config', 'smtp.development.rb')
   if File.exists?(smtp_config_file)
     # Let me define here my own private SMTP for dev.
     require smtp_config_file
@@ -42,7 +42,7 @@ Refuge::Application.configure do
     SMTP_SETTINGS = { :address => "smtp.host.com", :port => 25, :domain => "domain.com" }
   end
 
-  ActionMailer::Base.smtp_settings = SMTP_SETTINGS
+  config.smtp_settings = SMTP_SETTINGS
 
 end
 

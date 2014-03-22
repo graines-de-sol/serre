@@ -22,6 +22,7 @@
                   = t('devise.common.remember_me')
             %hr
             .form-group
+              = link_to t('devise.common.forgot_your_password?'), new_password_path(resource_name), :class => 'pull-left'
               .text-right
                 = f.submit t('devise.common.sign_in'), :class =>'btn btn-warning'
 
