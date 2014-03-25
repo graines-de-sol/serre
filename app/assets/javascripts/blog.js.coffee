@@ -36,6 +36,8 @@ $ ->
     $("[data-comment-id='content-"+post_id+"']").toggle()
     $("[data-comment-id='edit-"+post_id+"']").toggle()
 
+    return false
+
   $("[data-do='updateComment']").submit ->
     comment_id = $(this).data('id')
 
