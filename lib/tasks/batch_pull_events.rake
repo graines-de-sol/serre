@@ -68,7 +68,6 @@ task :pull_events => :environment do
     
     if event[:location]
       location = "#{Iconv.conv("iso-8859-1", "UTF8", event[:location].gsub(/\\/, ""))}".force_encoding('UTF-8')
-      puts location
     end
 
     if event_exists
