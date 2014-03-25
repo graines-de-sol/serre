@@ -24,7 +24,6 @@ Refuge::Application.routes.draw do
       post :upload_photo
       delete :delete_photo
       get :download
-      get :comments
       post :create_comment
       delete :delete_comment
       post :notify_participants
@@ -34,7 +33,7 @@ Refuge::Application.routes.draw do
   resources :galleries, :only => [:index, :show]
   resources :images,    :only => [:index, :create, :destroy]
   resources :surveys,   :only => [:create]
-  resources :comments,  :only => [:destroy, :update, :post]
+  resources :comments,  :only => [:destroy, :update, :create]
   resources :ads,       :only => [:index, :create, :destroy]
   resources :members
   resources :pages
