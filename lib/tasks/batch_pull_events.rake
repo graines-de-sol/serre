@@ -33,9 +33,9 @@ task :pull_events => :environment do
     title = doc.at_xpath('//title').inner_text.inspect.gsub(/"/, '')
 
     # Location
-    loc = block[3].split(')Lieu')[1] 
+    loc = block[3].split(')Where')[1] 
     if loc
-      loc = loc.split('(plan)').first
+      loc = loc.split('(map)').first
     else
       loc = nil
     end
@@ -68,6 +68,7 @@ task :pull_events => :environment do
     
     if event[:location]
       location = "#{Iconv.conv("iso-8859-1", "UTF8", event[:location].gsub(/\\/, ""))}".force_encoding('UTF-8')
+      puts location
     end
 
     if event_exists
