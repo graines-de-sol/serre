@@ -169,6 +169,7 @@ fr:
       default: "%d-%m-%Y"
       short: "%b %d"
       long: "%A %d %B %Y"
+      rss: "%A, %d %b %Y %H:%M:00"
 
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Wednesday, Saturday]
     abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Wed, Sat]
@@ -180,6 +181,7 @@ fr:
       default: "%A %d %B %Y"
       short: "%b %d"
       long: "%A %d %B %Y %H:%M"
+      rss: "%A, %d %b %Y %H:%M:00"
 
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Wednesday, Saturday]
     abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Wed, Sat]
