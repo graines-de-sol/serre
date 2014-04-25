@@ -13,7 +13,7 @@
           .col-md-12
             = form_tag "/members/mail", {:method=>:post, :class => 'form'} do
 
-              = hidden_field_tag 'recipient_id'
+              = hidden_field_tag 'recipient_id', @member.id
               = hidden_field_tag 'origin', request.url
 
               .form-group
