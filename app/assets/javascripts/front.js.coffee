@@ -19,8 +19,7 @@ $ ->
   # Modal mail form
   $('.mail_me').click ->
     $('#recipient').html $(this).data('recipient')
-
-
+    $('#recipient_id').val( $(this).data('recipient-id'))
     
   $("[data-do='filterBySkill']").click ->
     for resume in $('.member_resume')

@@ -17,7 +17,7 @@
       - unless @member.baseline.blank?
         #baseline= @member.baseline
 
-      %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@member.user.email, :recipient_id=>@member.id}, :class=>'mail_me'}
+      %a{:href=>'#send_mail', :data=>{'toggle'=>'modal', :recipient=>@member.user.email, 'recipient-id' => @member.id}, :class=>'mail_me'}
         %i.icon-envelope
         = "Envoyer un E-Mail"
 
