@@ -4,9 +4,10 @@ class Notifier < ActionMailer::Base
     @datas = datas
 
     mail(
-      :from    => "graines-de-sol@serre.grainesdesol.fr",
-      :to      => @datas[:to],
-      :subject => @datas[:subject]
+      :from     => "graines-de-sol@serre.grainesdesol.fr",
+      :to       => @datas[:to],
+      :reply_to => @datas[:reply_addr],
+      :subject  => @datas[:subject]
     )
   end
 
