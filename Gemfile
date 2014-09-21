@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.17'
 
 gem 'mysql2'
-gem 'rmagick', '2.13.2'
+gem 'rmagick'
 gem 'will_paginate'
 gem 'acts_as_tree_rails3'
 gem 'haml'

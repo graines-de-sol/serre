@@ -55,10 +55,15 @@
 
           .form-group
             .col-sm-2.ta-r
-              %label= t('prestations')
-            
+              %label= t('prestations')           
             .col-sm-10
               = text_area_tag 'member[prestations]', @member.prestations, :class=>'expandable'
+
+          .form-group
+            .col-sm-2.ta-r
+              %label= "Spécificités"        
+            .col-sm-10
+              = text_area_tag 'member[references]', @member.references, :class=>'expandable'
 
           .form-group
             .col-sm-2.ta-r
