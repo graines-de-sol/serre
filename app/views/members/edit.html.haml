@@ -46,7 +46,7 @@
             .col-sm-2.ta-r
               %label= t('activity_2')
             .col-sm-4
-              = text_field_tag :organisation_2, @member.organisation_2, :style => 'width: 100%'
+              = text_field_tag 'member[organisation_2]', @member.organisation_2, :style => 'width: 100%'
 
             .col-sm-2.ta-r
               %label= "#{t('website')} http://"
