@@ -166,6 +166,11 @@ $ ->
     that.html("<ul>"+messages+"</ul>")
   )
 
+  $("[data-do='removeLogo']").click (e) ->
+    e.preventDefault()
+    $('.member-logo').fadeOut()
+    $('#logo_reset').val(true)
+
 # 00 padding for dates/times
 window.pad2 = (number) ->
   if number < 10 
