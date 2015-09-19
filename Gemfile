@@ -10,7 +10,7 @@ gem 'haml'
 gem 'execjs'
 gem 'therubyracer'
 gem 'yaml_db'
-gem 'capistrano'
+gem 'capistrano', require: false
 gem 'devise'
 gem 'jquery-rails'
 gem 'rack-cache', :require => 'rack/cache'

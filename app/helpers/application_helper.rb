@@ -133,7 +133,7 @@ module ApplicationHelper
 
   # Formatted default end date for ads : seven days from now
   def default_end_at
-    (7.days.since(Time.now)).strftime('%Y-%m-%d')
+    (14.days.since(Time.now)).strftime('%Y-%m-%d')
   end
 
   def fullmonth_names_start_1
