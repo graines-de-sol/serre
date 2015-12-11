@@ -7,27 +7,41 @@ task :pull_events => :environment do
   require 'iconv'
   require 'nokogiri'
 
-  agenda = []
+  cal_file = open("https://calendar.google.com/calendar/ical/47ot47k7q50cp78lntc5gif8po%40group.calendar.google.com/public/basic.ics")
 
-  url = Calendar.find(1).rss
-  doc = Nokogiri::XML(open("#{url}?orderby=starttime&sortorder=ascending&futureevents=true&max-results=300"))
+  cals = Icalendar.parse(cal_file)
+  cal = cals.first
+  #events = cal.events.first
 
-  events = doc.xpath(" //xmlns:feed/xmlns:entry")
+  # puts "start date-time: #{event.dtstart}"
+  # puts "start date-time timezone: #{event.dtstart.ical_params['tzid']}"
+  # puts "summary: #{event.summary}"
+
+  # raise 'done'
+
+  # agenda = []
+
+  # url = Calendar.find(1).rss
+  # raise url.inspect
+  # doc = Nokogiri::XML(open("#{url}?orderby=starttime&sortorder=ascending&futureevents=true&max-results=300"))
+
+  # events = doc.xpath(" //xmlns:feed/xmlns:entry")
   
-  events.each do |event|
+  cal.events.each do |event|
 
-    detail = event.xpath('xmlns:link').attr('href').value
+    # detail = event.xpath('xmlns:link').attr('href').value
 
-    doc = Nokogiri::HTML(open(detail))
+    # doc = Nokogiri::HTML(open(detail))
 
     # Description
-    block = doc.css("div").map {|node| node.children.text}
-    block[5] == "Date" ? description = "" : description = block[5]
-
+    # block = doc.css("div").map {|node| node.children.text}
+    # block[5] == "Date" ? description = "" : description = block[5]
+    description = event.summary
+    
     # Date 
-    dates = doc.css("time")
-    start_at = dates[0]['datetime']
-    end_at   = dates[1]['datetime']
+    # dates = doc.css("time")
+    # start_at = dates[0]['datetime']
+    # end_at   = dates[1]['datetime']
 
     # Title 
     title = doc.at_xpath('//title').inner_text.inspect.gsub(/"/, '')
@@ -53,51 +67,50 @@ task :pull_events => :environment do
 
   end
 
-  agenda.each do |event|
+  # agenda.each do |event|
 
-    #puts "Event at #{event[:start_at].to_date}"
-    event_exists = Event.where(['event_id = ?', event[:id]]).first
+  #   event_exists = Event.where(['event_id = ?', event[:id]]).first
 
-    if event[:description]
-      desc = "#{Iconv.conv("iso-8859-1", "UTF8", event[:description].gsub(/\\/, ""))}".force_encoding('UTF-8')
-    end
+  #   if event[:description]
+  #     desc = "#{Iconv.conv("iso-8859-1", "UTF8", event[:description].gsub(/\\/, ""))}".force_encoding('UTF-8')
+  #   end
 
-    if event[:title]
-      title = "#{Iconv.conv("iso-8859-1", "UTF8", event[:title].gsub(/\\/, ""))}".force_encoding('UTF-8')
-    end
+  #   if event[:title]
+  #     title = "#{Iconv.conv("iso-8859-1", "UTF8", event[:title].gsub(/\\/, ""))}".force_encoding('UTF-8')
+  #   end
     
-    if event[:location]
-      location = "#{Iconv.conv("iso-8859-1", "UTF8", event[:location].gsub(/\\/, ""))}".force_encoding('UTF-8')
-    end
+  #   if event[:location]
+  #     location = "#{Iconv.conv("iso-8859-1", "UTF8", event[:location].gsub(/\\/, ""))}".force_encoding('UTF-8')
+  #   end
 
-    if event_exists
+  #   if event_exists
 
-      event_exists.update_attributes(
-        :start_at => event[:start_at].to_datetime, 
-        :end_at => event[:end_at].to_datetime, 
-        :title => title, 
-        :location => location,
-        :description => desc
-      )
+  #     event_exists.update_attributes(
+  #       :start_at => event[:start_at].to_datetime, 
+  #       :end_at => event[:end_at].to_datetime, 
+  #       :title => title, 
+  #       :location => location,
+  #       :description => desc
+  #     )
 
-      puts "Updated event id #{event[:id]}"
+  #     puts "Updated event id #{event[:id]}"
 
-    else
+  #   else
 
-      Event.create(
-        :start_at => event[:start_at].to_datetime, 
-        :end_at => event[:end_at].to_datetime, 
-        :title => title, 
-        :description => desc,
-        :event_id => event[:id],
-        :location => location,
-        :calendar_id => 1
-      )        
+  #     Event.create(
+  #       :start_at => event[:start_at].to_datetime, 
+  #       :end_at => event[:end_at].to_datetime, 
+  #       :title => title, 
+  #       :description => desc,
+  #       :event_id => event[:id],
+  #       :location => location,
+  #       :calendar_id => 1
+  #     )        
 
-      puts "Inserted event id #{event[:id]}"
-    end
+  #     puts "Inserted event id #{event[:id]}"
+  #   end
 
-  end
+  # end
 
 end
 
