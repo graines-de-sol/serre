@@ -1,8 +1,4 @@
 $ ->
-  $("[data-do='toggleCalendarEditor']").click ->
-    $('#calendar_editor').toggle()
-    $('#calendar_header').toggle()
-
   # Push vote and launch current survey's modal
   $("[data-do='toggleRegistration']").click ->
     if $(this).data('is') == 'add'
