@@ -75,7 +75,6 @@
       %hr
       .well
         = form_tag '/admin/conf', :class => 'form' do
-
           %label= t('welcome_mail_subject')
           = text_field_tag "conf[welcome_mail_subject]", $conf.welcome_mail_subject, :class => 'form-control'
           %br
@@ -86,6 +85,26 @@
           %br
           = submit_tag t(:create), :class=>'btn btn-warning pull-right'
         .clearfix
+
+  .row
+    .col-md-12
+      %h3= "Calendrier"
+      %hr
+      .well
+        = form_tag '/admin/conf', :class => 'form' do
+          %label= t('calendar.name')
+          = text_field_tag 'calendar[name]', Calendar.find(1).name, :class => 'form-control'
+          %br
+          %label= t('calendar.mail_to')
+          = text_field_tag 'calendar[email]', Calendar.find(1).email, :class => 'form-control'
+          %br
+          %label= t('calendar.rss')
+          = text_field_tag 'calendar[rss]', Calendar.find(1).rss, :class => 'form-control'
+          %br
+          %label= t('calendar.description')
+          = text_area_tag 'calendar[description]', Calendar.find(1).description, :class => 'form-control', :rows => 10
+          %br
+          = submit_tag t('update'), :class=>'btn btn-warning right'
 
 = t_init(:name => 'conf[welcome_mail_body]', :width => '100%')
 

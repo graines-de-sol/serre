@@ -4,8 +4,8 @@ task :pull_events => :environment do
 
   require 'iconv'
 
-  url = 
-  cal_file = open("https://calendar.google.com/calendar/ical/47ot47k7q50cp78lntc5gif8po%40group.calendar.google.com/public/basic.ics")
+  url = Calendar.find(1).rss
+  cal_file = open(url)
   cals = Icalendar.parse(cal_file)
   agenda = []
 
