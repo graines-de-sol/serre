@@ -2,101 +2,54 @@
 
 task :pull_events => :environment do
 
-  require 'open-uri'
-  require 'net/https'
   require 'iconv'
-  require 'nokogiri'
 
+  url = 
+  cal_file = open("https://calendar.google.com/calendar/ical/47ot47k7q50cp78lntc5gif8po%40group.calendar.google.com/public/basic.ics")
+  cals = Icalendar.parse(cal_file)
   agenda = []
 
-  url = Calendar.find(1).rss
-  doc = Nokogiri::XML(open("#{url}?orderby=starttime&sortorder=ascending&futureevents=true&max-results=300"))
-
-  events = doc.xpath(" //xmlns:feed/xmlns:entry")
-  
-  events.each do |event|
-
-    detail = event.xpath('xmlns:link').attr('href').value
-
-    doc = Nokogiri::HTML(open(detail))
-
-    # Description
-    block = doc.css("div").map {|node| node.children.text}
-    block[5] == "Date" ? description = "" : description = block[5]
-
-    # Date 
-    dates = doc.css("time")
-    start_at = dates[0]['datetime']
-    end_at   = dates[1]['datetime']
-
-    # Title 
-    title = doc.at_xpath('//title').inner_text.inspect.gsub(/"/, '')
-
-    # Location
-    loc = block[3].split(')Where')[1] 
-    if loc
-      loc = loc.split('(map)').first
-    else
-      loc = nil
-    end
-
-    if start_at.to_time > Time.now
+  cals.first.events.each do |event|
+    if event.dtstart > Time.now.to_date
       agenda.push({ 
-        :start_at => start_at.to_time,
-        :end_at   => end_at.to_time,
-        :title    => title,
-        :description  => description,
-        :location => loc,
-        :id       => detail.split('https://www.google.com/calendar/event?eid=').last
+        :start_at => event.dtstart,
+        :end_at   => event.dtend,
+        :title    => event.summary.to_s,
+        :description  => event.description.to_s,
+        :location => event.location.to_s,
+        :event_id => event.uid.split('@google.com').first.to_s,
+        :calendar_id => 1
       })
     end
-
   end
 
+  # Create / Update
   agenda.each do |event|
+    previous_event = Event.where(['event_id = ?', event[:event_id]]).first
 
-    #puts "Event at #{event[:start_at].to_date}"
-    event_exists = Event.where(['event_id = ?', event[:id]]).first
-
-    if event[:description]
-      desc = "#{Iconv.conv("iso-8859-1", "UTF8", event[:description].gsub(/\\/, ""))}".force_encoding('UTF-8')
-    end
-
-    if event[:title]
-      title = "#{Iconv.conv("iso-8859-1", "UTF8", event[:title].gsub(/\\/, ""))}".force_encoding('UTF-8')
-    end
-    
-    if event[:location]
-      location = "#{Iconv.conv("iso-8859-1", "UTF8", event[:location].gsub(/\\/, ""))}".force_encoding('UTF-8')
-    end
-
-    if event_exists
-
-      event_exists.update_attributes(
-        :start_at => event[:start_at].to_datetime, 
-        :end_at => event[:end_at].to_datetime, 
-        :title => title, 
-        :location => location,
-        :description => desc
-      )
-
+    if previous_event
+      previous_event.update_attributes(event)
       puts "Updated event id #{event[:id]}"
-
     else
+      Event.create!(event)
+      puts "Inserted event id #{event[:id]}"     
+    end
+  end
 
-      Event.create(
-        :start_at => event[:start_at].to_datetime, 
-        :end_at => event[:end_at].to_datetime, 
-        :title => title, 
-        :description => desc,
-        :event_id => event[:id],
-        :location => location,
-        :calendar_id => 1
-      )        
-
-      puts "Inserted event id #{event[:id]}"
+  # Delete
+  events = Event.where(['start_at > ?', Time.now])
+  events.each do |event|
+    exists = false
+    agenda.each do |e|
+      if event.event_id == e[:event_id].to_s
+        exists = true
+      end
     end
 
+    if !exists
+      event.destroy
+      puts "Deleted event id #{event.event_id}"   
+    end
   end
 
 end
