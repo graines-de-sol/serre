@@ -14,7 +14,7 @@ gem 'capistrano', require: false
 gem 'devise'
 gem 'jquery-rails'
 gem 'rack-cache', :require => 'rack/cache'
-gem 'dragonfly', '~>0.9.10'
+gem 'dragonfly', '~>1.4.0'
 gem 'attribute_normalizer'
 gem 'simple_form'
 gem 'multi_json'
